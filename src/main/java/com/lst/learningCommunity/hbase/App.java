@@ -1,4 +1,4 @@
-package com.lst.LearningCommunity;
+package com.lst.learningCommunity.hbase;
 
 /**
  * Hello world!
