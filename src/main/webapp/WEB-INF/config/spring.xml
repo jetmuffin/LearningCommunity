@@ -58,7 +58,7 @@
 	</aop:config>
 
 	<!-- 配置自动扫描的包,忽略Controller -->
-	<context:component-scan base-package="com.lst.learningCommunity"
+	<context:component-scan base-package="com.lst.lc"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Service" />
