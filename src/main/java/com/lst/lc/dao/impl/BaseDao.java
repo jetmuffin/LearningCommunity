@@ -1,4 +1,4 @@
-package com.lst.learningCommunity.dao.impl;
+package com.lst.lc.dao.impl;
 
 
 import java.io.Serializable;

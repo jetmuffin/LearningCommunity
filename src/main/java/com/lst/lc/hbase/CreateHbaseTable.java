@@ -1,4 +1,4 @@
-package com.lst.learningCommunity.hbase;
+package com.lst.lc.hbase;
 
 import java.io.IOException;
 import java.util.List;
