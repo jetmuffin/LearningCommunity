@@ -49,7 +49,7 @@ public class CreateHbaseTable {
 			for (int i = 0; i < nameNumbers; i++) {
 				// 如果存在要创建的表，不做操作
 				if (hBaseAdmin.tableExists(mNameList.get(i))) {
-
+					System.out.println("表" + mNameList.get(i) + "已存在");
 				} else {
 					HTableDescriptor tableDescriptor = new HTableDescriptor(
 							TableName.valueOf(mNameList.get(i)));
