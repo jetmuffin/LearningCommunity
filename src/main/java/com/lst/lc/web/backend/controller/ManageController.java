@@ -25,6 +25,13 @@ public class ManageController {
 	
 	@RequestMapping(value = "/users", method = RequestMethod.GET)
 	public String user(Model model) {
+		model.addAttribute("module", "user");
 		return "backend/user/list";
+	}
+	
+	@RequestMapping(value = "/adduser", method = RequestMethod.GET)
+	public String addUser(Model model) {
+		model.addAttribute("module", "user");
+		return "backend/user/add";
 	}
 }
