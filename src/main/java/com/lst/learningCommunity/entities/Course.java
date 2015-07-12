@@ -1,6 +1,6 @@
 package com.lst.learningCommunity.entities;
 
-// Generated 2015-7-11 20:31:17 by Hibernate Tools 4.3.1
+// Generated 2015-7-12 13:28:32 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
