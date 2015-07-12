@@ -3,4 +3,4 @@ target/*
 .classpath
 .project
 /target/
-/home/sloriac/Workspace/LearningCommunity/src/main/webapp/WEB-INF/config/mysql.properties
+src/main/webapp/WEB-INF/config/mysql.properties
