@@ -24,16 +24,16 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String toLogin(Model model) {
+	public String login(Model model) {
 		return "frontend/user/login";
 	}
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String toRegister(Model model) {
+	public String register(Model model) {
 		return "frontend/user/register";
 	}
 
-	@RequestMapping(value = "/login/{email}/{password}", method = RequestMethod.GET)
+	@RequestMapping(value = "/login/{email}", method = RequestMethod.POST)
 	public String login(@PathVariable String email, String password, Model model){
 		User user = userDao.validateUser(email, password);
 		return "frontend/index";
