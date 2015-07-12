@@ -15,6 +15,8 @@ public class AdminController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
-		return "frontend/admin/login";
+		return "backend/admin/login";
 	}
+	
+	
 }
