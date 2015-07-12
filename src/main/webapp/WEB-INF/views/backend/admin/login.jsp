@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,13 +20,13 @@
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" class="form-control" placeholder="请输入帐号">           
+		              	<input type="text" class="form-control" name="username" placeholder="请输入帐号">           
 		          	</div>	
 	        	</div>
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-key fa-fw"></i></div>	        		
-		              	<input type="password" class="form-control" placeholder="请输入密码">           
+		              	<input type="password" class="form-control"  name="password" placeholder="请输入密码">           
 		          	</div>	
 	        	</div>	          	
 	          	<div class="form-group">
