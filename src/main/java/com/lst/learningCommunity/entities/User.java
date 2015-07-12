@@ -1,6 +1,6 @@
 package com.lst.learningCommunity.entities;
 
-// Generated 2015-7-11 20:31:17 by Hibernate Tools 4.3.1
+// Generated 2015-7-12 13:28:32 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,10 +29,11 @@ public class User implements java.io.Serializable {
 	private int integral;
 	private String rank;
 	private String avatar;
+	private String type;
 	private String motto;
 	private String city;
 	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
-	private RelUserRoute relUserRoute;
+	private Set<RelUserRoute> relUserRoutes = new HashSet<RelUserRoute>(0);
 	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>(0);
 	private Set<Question> questions = new HashSet<Question>(0);
 	private Set<LessonComment> lessonComments = new HashSet<LessonComment>(0);
@@ -43,7 +44,7 @@ public class User implements java.io.Serializable {
 	}
 
 	public User(String userName, String email, String password, String gender,
-			int integral, String rank, String avatar) {
+			int integral, String rank, String avatar, String type) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -51,14 +52,16 @@ public class User implements java.io.Serializable {
 		this.integral = integral;
 		this.rank = rank;
 		this.avatar = avatar;
+		this.type = type;
 	}
 
 	public User(String userName, String email, String password, String gender,
-			int integral, String rank, String avatar, String motto,
-			String city, Set<BlogComment> blogComments,
-			RelUserRoute relUserRoute, Set<QuestionAnswer> questionAnswers,
-			Set<Question> questions, Set<LessonComment> lessonComments,
-			Set<Blog> blogs, RelUserCourse relUserCourse) {
+			int integral, String rank, String avatar, String type,
+			String motto, String city, Set<BlogComment> blogComments,
+			Set<RelUserRoute> relUserRoutes,
+			Set<QuestionAnswer> questionAnswers, Set<Question> questions,
+			Set<LessonComment> lessonComments, Set<Blog> blogs,
+			RelUserCourse relUserCourse) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -66,10 +69,11 @@ public class User implements java.io.Serializable {
 		this.integral = integral;
 		this.rank = rank;
 		this.avatar = avatar;
+		this.type = type;
 		this.motto = motto;
 		this.city = city;
 		this.blogComments = blogComments;
-		this.relUserRoute = relUserRoute;
+		this.relUserRoutes = relUserRoutes;
 		this.questionAnswers = questionAnswers;
 		this.questions = questions;
 		this.lessonComments = lessonComments;
@@ -151,6 +155,15 @@ public class User implements java.io.Serializable {
 		this.avatar = avatar;
 	}
 
+	@Column(name = "type", nullable = false, length = 10)
+	public String getType() {
+		return this.type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Column(name = "motto", length = 65535)
 	public String getMotto() {
 		return this.motto;
@@ -178,13 +191,13 @@ public class User implements java.io.Serializable {
 		this.blogComments = blogComments;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-	public RelUserRoute getRelUserRoute() {
-		return this.relUserRoute;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<RelUserRoute> getRelUserRoutes() {
+		return this.relUserRoutes;
 	}
 
-	public void setRelUserRoute(RelUserRoute relUserRoute) {
-		this.relUserRoute = relUserRoute;
+	public void setRelUserRoutes(Set<RelUserRoute> relUserRoutes) {
+		this.relUserRoutes = relUserRoutes;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
