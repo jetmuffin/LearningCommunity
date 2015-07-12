@@ -32,7 +32,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	@Override
 	public User validateUser(String email, String password) {
-		String hql = "from User as user where topic.email = ?";
+		String hql = "from User as user where user.email = ?";
 		List<User> users = query(hql).setString(0, email).list();
 		if(users.size() != 1)
 			return null;
