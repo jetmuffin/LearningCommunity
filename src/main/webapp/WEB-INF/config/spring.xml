@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
 
 	<!-- 导入mysql配置文件 -->
-	<context:property-placeholder location="classpath:mysql.properties" />
+	<context:property-placeholder location="/WEB-INF/config/mysql.properties" />
 
 	<!-- 配置c3p0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -27,7 +27,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+		<property name="configLocation" value="/WEB-INF/config/hibernate.cfg.xml"></property>
 		<property name="packagesToScan" value="com.lst" />
 	</bean>
 
