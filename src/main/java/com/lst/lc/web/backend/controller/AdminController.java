@@ -30,7 +30,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(Model model, HttpSession session, String email,
+	public String login(HttpSession session, String email,
 			String password) {
 
 		Admin admin = adminDao.validateAdmin(email, password);
