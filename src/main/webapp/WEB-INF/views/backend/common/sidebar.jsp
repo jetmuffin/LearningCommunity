@@ -23,8 +23,8 @@
         </div>
         <nav class="templatemo-left-nav">          
           <ul>
-            <li><a href="../index" class="active"><i class="fa fa-home fa-fw"></i>首页</a></li>
-            <li><a href="../user"><i class="fa fa-bar-chart fa-fw"></i>用户管理</a></li>
+            <li><a href="index" class="active"><i class="fa fa-home fa-fw"></i>首页</a></li>
+            <li><a href="users"><i class="fa fa-bar-chart fa-fw"></i>用户管理</a></li>
             <li><a href="data-visualization.html"><i class="fa fa-database fa-fw"></i>课程管理</a></li>
             <li><a href="maps.html"><i class="fa fa-map-marker fa-fw"></i>Maps</a></li>
             <li><a href="manage-users.html"><i class="fa fa-users fa-fw"></i>Manage Users</a></li>
