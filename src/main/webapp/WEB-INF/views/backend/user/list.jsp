@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,8 +21,8 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="users" class="active">用户列表</a></li>
-					<li><a href="addUser">添加用户</a></li>
+					<li><a href="users"  class="active">用户列表</a></li>
+					<li><a href="adduser">添加用户</a></li>
 					<li><a href="login.html">Sign in form</a></li>
 				</ul>
 				</nav>
