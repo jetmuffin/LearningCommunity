@@ -1,4 +1,4 @@
-package com.lst.learningCommunity.entities;
+package com.lst.lc.entities;
 
 // Generated 2015-7-12 13:28:32 by Hibernate Tools 4.3.1
 

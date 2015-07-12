@@ -1,4 +1,4 @@
-package com.lst.learningCommunity.web.frontend.controller;
+package com.lst.lc.web.frontend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lst.learningCommunity.dao.UserDao;
-import com.lst.learningCommunity.entities.User;
+import com.lst.lc.dao.UserDao;
+import com.lst.lc.entities.User;
 
 @Controller
 @RequestMapping("/user")

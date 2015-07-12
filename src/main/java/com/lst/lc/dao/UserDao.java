@@ -1,6 +1,6 @@
-package com.lst.learningCommunity.dao;
+package com.lst.lc.dao;
 
-import com.lst.learningCommunity.entities.User;
+import com.lst.lc.entities.User;
 
 public interface UserDao {
 

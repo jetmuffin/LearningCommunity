@@ -1,11 +1,11 @@
-package com.lst.learningCommunity.dao.impl;
+package com.lst.lc.dao.impl;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.lst.learningCommunity.dao.UserDao;
-import com.lst.learningCommunity.entities.User;
+import com.lst.lc.dao.UserDao;
+import com.lst.lc.entities.User;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao implements UserDao {
