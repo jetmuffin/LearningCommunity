@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:hdp="http://www.springframework.org/schema/hadoop" xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+    http://www.springframework.org/schema/hadoop
+    http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+    		http://www.springframework.org/schema/data/neo4j
+       http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd
+ http://www.springframework.org/schema/websocket 
+ http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+	<!-- 导入mysql配置文件 -->
+	<context:property-placeholder location="/WEB-INF/config/mysql.properties" />
+
+	<!-- 配置c3p0数据源 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="user" value="${jdbc.user}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="driverClass" value="${jdbc.driverClass}"></property>
+		<property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+		<property name="initialPoolSize" value="${jdbc.initPoolSize}"></property>
+		<property name="maxPoolSize" value="${jdbc.maxPoolSize}"></property>
+	</bean>
+
+	<!-- 配置 SessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="/WEB-INF/config/hibernate.cfg.xml"></property>
+		<property name="packagesToScan" value="com.lst" />
+	</bean>
+
+	<!-- 配置 hibernate 的事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<!-- 配置事务属性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="*" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 配置事务切入点, 再把事务属性和事务切入点关联起来 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* com.lst.learningCommunity.dao.*.*(..))"
+			id="txPointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+
+	<!-- 配置自动扫描的包,忽略Controller -->
+	<context:component-scan base-package="com.lst.lc"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 自动装配 -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+
+	<!-- <hdp:configuration resources="classpath:/hbase-site.xml" /> <hdp:hbase-configuration 
+		configuration-ref="hadoopConfiguration" /> <bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate" 
+		p:configuration-ref="hbaseConfiguration" /> -->
+
+	<!-- 表名配置 -->
+	<util:list id="hbaseTableNames">
+		<value>cloud_user</value>
+		<value>cloud_hd</value>
+		<value>cloud_image</value>
+		<value>cloud_log</value>
+		<value>cloud_mapfile</value>
+		<value>cloud_pano</value>
+		<value>cloud_space</value>
+		<value>cloud_threeD</value>
+		<value>cloud_dustbin</value>
+	</util:list>
+
+	<!-- 列族名配置 -->
+	<util:list id="hbaseTableColumnNames">
+		<value>attr</value>
+		<value>var</value>
+	</util:list>
+	<!-- <bean id="createHbase" class="com.lst.learningCommunity.hbase.CreateHbaseTable"> 
+		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg> 
+		<constructor-arg name="mNameList" ref="hbaseTableNames"></constructor-arg> 
+		<constructor-arg name="mColumnList" ref="hbaseTableColumnNames"></constructor-arg> 
+		</bean> -->
+</beans>
+

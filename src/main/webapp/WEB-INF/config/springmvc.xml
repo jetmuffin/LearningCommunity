@@ -14,27 +14,27 @@
     http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
 
 	<!-- 自动扫描，且只扫描Controller -->
-	<context:component-scan base-package="com.lst"
+	<context:component-scan base-package="com.lst.lc"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
 	<!-- System Configuration -->
-	<context:property-placeholder location="classpath:/config.properties" />
+	<context:property-placeholder location="/WEB-INF/config/config.properties" />
 
 	<!-- Annotation Driven -->
 	<mvc:annotation-driven />
 
 	<!-- Static Resources -->
-	<mvc:resources location="/resources/" mapping="/resources/**" />
+	<mvc:resources location="/WEB-INF/resources/" mapping="/resources/**" />
 
 	<!-- ViewResolver -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/views/" />
+		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 
