@@ -3,15 +3,21 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:hdp="http://www.springframework.org/schema/hadoop"
+	xmlns:hdp="http://www.springframework.org/schema/hadoop" xmlns:neo4j="http://www.springframework.org/schema/data/neo4j"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
     http://www.springframework.org/schema/hadoop
-    http://www.springframework.org/schema/hadoop/spring-hadoop.xsd">
-
+    http://www.springframework.org/schema/hadoop/spring-hadoop.xsd
+    		http://www.springframework.org/schema/data/neo4j
+       http://www.springframework.org/schema/data/neo4j/spring-neo4j.xsd
+ http://www.springframework.org/schema/websocket 
+ http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 	<!-- 导入mysql配置文件 -->
-	<context:property-placeholder location="classpath:mysql.properties" />
+	<context:property-placeholder location="/WEB-INF/config/mysql.properties" />
 
 	<!-- 配置c3p0数据源 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
@@ -27,7 +33,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:hibernate.cfg.xml"></property>
+		<property name="configLocation" value="/WEB-INF/config/hibernate.cfg.xml"></property>
 		<property name="packagesToScan" value="com.lst" />
 	</bean>
 
