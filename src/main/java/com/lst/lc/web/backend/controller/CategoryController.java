@@ -44,7 +44,7 @@ public class CategoryController {
 		return "redirect:/manage/category/categorys";
 	}
 
-	@RequestMapping(value = "/categorys", method = RequestMethod.GET)
+	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Category> categorys = categoryDao.getAllCategories();
 		model.addAttribute("categorys", categorys);
