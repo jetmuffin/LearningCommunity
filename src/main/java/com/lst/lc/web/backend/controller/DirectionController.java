@@ -29,7 +29,7 @@ public class DirectionController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
+	public String add(Model model) {
 		return "backend/direction/add";
 	}
 
@@ -39,7 +39,8 @@ public class DirectionController {
 		Admin admin = (Admin) session.getAttribute("admin");
 		Direction direction = new Direction(name, admin, new Date(),
 				description, enabled, null);
-		return "redirect:/manage/direction/list";
+		System.out.println(direction);
+		return "redirect:/manage/direction/directions";
 	}
 
 
@@ -47,7 +48,7 @@ public class DirectionController {
 	public String list(Model model) {
 		List<Direction> directions = directionDao.getAllDirections();
 		model.addAttribute("directions", directions);
-		return "direction/list";
+		return "backend/direction/list";
 	}
 
 }

@@ -32,7 +32,7 @@
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
 				<h2 class="margin-bottom-10">添加新方向</h2>
-				<form action="addDirection" class="templatemo-login-form"
+				<form action="add" class="templatemo-login-form"
 					method="post" enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
