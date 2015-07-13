@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="../course/courses" >课程列表</a></li>
-					<li><a href="../category/categories">分类列表</a></li>
-					<li><a href="../direction/directions"  class="active">方向列表</a></li>
+					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
+					<li><a href="/LearningCommunity/manage/category/categories">分类列表</a></li>
+					<li><a href="/LearningCommunity/manage/direction/directions" class="active">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -70,7 +70,7 @@
 									<td>${direction.directionName}</td>
 									<td>${direction.admin.name}</td>
 									<td>${direction.time}</td>
-									<td><c:if test="${direction.enabled eq 1}">启用</c:if><c:if test="${direction.enabled eq 0}">未启用</c:if></td>
+									<td><c:if test="${direction.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>启用</c:if><c:if test="${direction.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未启用</c:if></td>
 								<td><a href="edit/${direction.directionId}" class="templatemo-edit-btn">Edit</a></td>
 								<td><a href="delete/${direction.directionId}" class="templatemo-link">Delete</a></td>									
 								</tr>
