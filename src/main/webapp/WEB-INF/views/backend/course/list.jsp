@@ -39,13 +39,13 @@
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">课程名称 <span class="caret"></span>
+								<td><a href="?sortKey=courseName" class="white-text templatemo-sort-by">课程名称 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">方向<span class="caret"></span>
+								<td><a href="?sortKey=direction" class="white-text templatemo-sort-by">方向<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">类别 <span class="caret"></span>
+								<td><a href="?sortKey=category" class="white-text templatemo-sort-by">类别 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">学生人数
+								<td><a href="?sortKey=enabled" class="white-text templatemo-sort-by">开放状态
 										<span class="caret"></span>
 								</a></td>
 								<td>Edit</td>
@@ -59,7 +59,7 @@
 								<td class="course-td">John</td>
 								<td class="course-td">Smith</td>
 								<td class="course-td">@jS</td>
-								<td class="course-td">js@company.com</td>
+								<td class="course-td"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>开放</td>
 								<td class="course-td"><a href="" class="templatemo-edit-btn">Edit</a></td>
 								<td class="course-td"><a href="" class="templatemo-edit-btn">Action</a></td>
 								<td class="course-td"><a href="" class="templatemo-link">Delete</a></td>

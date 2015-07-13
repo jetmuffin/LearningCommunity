@@ -90,7 +90,7 @@ public class CategoryController {
 		return "redirect:/manage/category/categories";
 	}
 	
-	@RequestMapping(value = "/{directionId}.json", method = RequestMethod.GET)
+	@RequestMapping(value = "/direction/{directionId}.json", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Category> getCategoriesOfDirection(@PathVariable int directionId){
 		return categoryDao.getCategoriesOfDirection(directionId);

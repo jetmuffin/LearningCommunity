@@ -76,5 +76,4 @@ public class DirectionController {
 		redirectAttributes.addFlashAttribute("directionMsg", "删除方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
-	
 }
