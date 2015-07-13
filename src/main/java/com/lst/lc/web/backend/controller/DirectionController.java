@@ -64,11 +64,7 @@ public class DirectionController {
 	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.POST)
 	public String edit(@PathVariable int directionId, String name, String description,
 			String enabled, RedirectAttributes redirectAttributes){
-		Direction direction = directionDao.getDirection(directionId);
-		direction.setDirectionName(name);
-		direction.setDescription(description);
-		direction.setEnabled(enabled);
-		directionDao.update(direction);
+		directionDao.update(directionId, name, description, enabled);
 		redirectAttributes.addFlashAttribute("directionMsg", "修改方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
@@ -76,7 +72,7 @@ public class DirectionController {
 	@RequestMapping(value = "/delete/{directionId}", method = RequestMethod.GET)
 	public String delete(@PathVariable int directionId, RedirectAttributes redirectAttributes){
 		Direction direction = directionDao.getDirection(directionId);
-		directionDao.delete(direction);
+		directionDao.delete(directionId);
 		redirectAttributes.addFlashAttribute("directionMsg", "删除方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
