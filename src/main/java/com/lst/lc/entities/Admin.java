@@ -1,12 +1,16 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-12 13:28:32 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 13:31:58 by Hibernate Tools 4.3.1
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +24,8 @@ public class Admin implements java.io.Serializable {
 	private String name;
 	private String email;
 	private String password;
+	private Set<Direction> directions = new HashSet<Direction>(0);
+	private Set<Category> categories = new HashSet<Category>(0);
 
 	public Admin() {
 	}
@@ -28,6 +34,15 @@ public class Admin implements java.io.Serializable {
 		this.name = name;
 		this.email = email;
 		this.password = password;
+	}
+
+	public Admin(String name, String email, String password,
+			Set<Direction> directions, Set<Category> categories) {
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.directions = directions;
+		this.categories = categories;
 	}
 
 	@Id
@@ -66,6 +81,24 @@ public class Admin implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "admin")
+	public Set<Direction> getDirections() {
+		return this.directions;
+	}
+
+	public void setDirections(Set<Direction> directions) {
+		this.directions = directions;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "admin")
+	public Set<Category> getCategories() {
+		return this.categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
 
 }

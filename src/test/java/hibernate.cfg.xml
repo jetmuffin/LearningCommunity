@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- 配置 hibernate 的基本信息 -->
+
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.password">szq1993721</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/LearningCommunity</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+
+		<!-- hibernate 所使用的数据库方言 -->
+		<property name="dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
+
+		<!-- 执行操作时是否在控制台打印 SQL ,为了进行测试，我们需要打印sql语句 -->
+		<property name="show_sql">true</property>
+
+		<!-- 是否对 SQL 进行格式化 -->
+		<property name="format_sql">true</property>
+
+		<!-- 设置数据隔离级别 -->
+		<property name="connection.isolation">2</property>
+
+	</session-factory>
+</hibernate-configuration>
