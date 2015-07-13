@@ -16,11 +16,11 @@
 	          <div class="square"></div>
 	          <h1>Visual Admin</h1>
 	        </header>
-	        <form action="/admin/login" method="post" class="templatemo-login-form">
+	        <form action="login" method="post" class="templatemo-login-form">
 	        	<div class="form-group">
 	        		<div class="input-group">
 		        		<div class="input-group-addon"><i class="fa fa-user fa-fw"></i></div>	        		
-		              	<input type="text" class="form-control" name="username" placeholder="请输入帐号">           
+		              	<input type="text" class="form-control" name="email" placeholder="请输入帐号">           
 		          	</div>	
 	        	</div>
 	        	<div class="form-group">
