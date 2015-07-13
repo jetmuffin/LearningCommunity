@@ -31,15 +31,21 @@
 		<!-- Content -->
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
-				<h2 class="margin-bottom-10">添加新课程</h2>
-				<form action="index.html" class="templatemo-login-form"
+				<h2 class="margin-bottom-10">添加新分类</h2>
+				<form action="addCategory" class="templatemo-login-form"
 					method="post" enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
 							<label for="inputName">分类名</label> <input type="text"
-								class="form-control" id="inputName" placeholder="请输入课程名">
+								class="form-control" id="inputName" name="categoryName" placeholder="请输入课程名">
 						</div>
 					</div>
+					<div class="row form-group">
+						<div class="col-lg-12 form-group">
+							<label class="control-label" for="inputNote">分类描述</label>
+							<textarea class="form-control" id="inputNote"  name="categoryDesc" rows="3"></textarea>
+						</div>
+					</div>					
 					<div class="form-group text-right">
 						<button type="submit" class="templatemo-blue-button">添加</button>
 						<button type="reset" class="templatemo-white-button">重置</button>

@@ -31,7 +31,7 @@
 		<!-- Content -->
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
-				<h2 class="margin-bottom-10">添加新课程</h2>
+				<h2 class="margin-bottom-10">添加新方向</h2>
 				<form action="addDirection" class="templatemo-login-form"
 					method="post" enctype="multipart/form-data">
 					<div class="row form-group">
