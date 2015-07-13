@@ -12,7 +12,7 @@ public interface CategoryDao {
 	
 	public List<Category> getAllCategories();
 
-	public void update(Category category);
+	public void update(int categoryId, String categoryName, String description, String enabled, int directionId);
 
-	public void delete(Category category);
+	public void delete(int categoryId);
 }
