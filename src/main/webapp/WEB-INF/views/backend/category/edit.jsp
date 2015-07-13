@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台管理 - 添加分类</title>
+<title>后台管理 - 编辑分类</title>
 <link href="/LearningCommunity/resources/font/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href="/LearningCommunity/resources/css/bootstrap.min.css"
@@ -22,7 +22,7 @@
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
 					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
-					<li><a href="/LearningCommunity/manage/category/categories"   class="active">分类列表</a></li>
+					<li><a href="/LearningCommunity/manage/category/categories"  class="active">分类列表</a></li>
 					<li><a href="/LearningCommunity/manage/direction/directions">方向列表</a></li>
 				</ul>
 				</nav>
@@ -31,33 +31,35 @@
 		<!-- Content -->
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
-				<h2 class="margin-bottom-10">添加新分类</h2>
-				<form action="add" class="templatemo-login-form"
-					method="post" enctype="multipart/form-data">
+				<h2 class="margin-bottom-10">编辑分类 - ${category.categoryName}</h2>
+				<form action="" class="templatemo-login-form" method="post"
+					enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
-							<label for="inputName">分类名</label> <input type="text"
-								class="form-control" id="inputName" name="name" placeholder="请输入课程名">
+							<label for="inputName">方向名</label> <input type="text"
+								class="form-control" id="inputName" name="name"
+								placeholder="请输入课程名" value="${category.categoryName}">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
-							<label class="control-label" for="inputNote">分类描述</label>
-							<textarea class="form-control" id="inputNote"  name="description" rows="3"></textarea>
+							<label class="control-label" for="inputNote">方向描述</label>
+							<textarea class="form-control" name="description" id="inputNote"
+								rows="3" >${category.description}</textarea>
 						</div>
-					</div>		
+					</div>
 					<div class="col-lg-12 form-group">
 						<div class="margin-right-15 templatemo-inline-block">
-							<input  name="enabled"  type="radio" id="r4" value="1" checked=""> <label
+							<input  name="enabled"  type="radio" id="r4" value="1" <c:if test="${category.enabled eq 1}">checked=""</c:if>  > <label
 								for="r4"class="font-weight-400"><span></span>启用</label>
 						</div>
 						<div class="margin-right-15 templatemo-inline-block">
-							<input type="radio"   name="enabled"  id="r5" value="0" >
+							<input type="radio"   name="enabled"  id="r5" value="0" <c:if test="${category.enabled eq 0}">checked=""</c:if>  >
 							<label for="r5" class="font-weight-400"><span></span>不启用</label>
 						</div>
-					</div>								
+					</div>
 					<div class="form-group text-right">
-						<button type="submit" class="templatemo-blue-button">添加</button>
+						<button type="submit" class="templatemo-blue-button">保存</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
 					</div>
 				</form>
@@ -69,6 +71,7 @@
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/templatemo-script.js"></script>
-		    <script type="text/javascript" src="/LearningCommunity/resources/js/bootstrap-filestyle.min.js"></script> 
+	<script type="text/javascript"
+		src="/LearningCommunity/resources/js/bootstrap-filestyle.min.js"></script>
 </body>
 </html>

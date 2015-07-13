@@ -45,7 +45,7 @@
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">分类名
+								<td><a href="" class="white-text templatemo-sort-by">方向名称
 										 <span class="caret"></span>
 								</a></td>	
 								<td><a href="" class="white-text templatemo-sort-by">创建人

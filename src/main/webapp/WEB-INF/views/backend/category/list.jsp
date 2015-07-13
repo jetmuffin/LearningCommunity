@@ -65,8 +65,8 @@
 									<td>${category.admin.name}</td>
 									<td>${category.time}</td>
 									<td><c:if test="${category.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>启用</c:if><c:if test="${direction.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未启用</c:if></td>
-								<td><a href="edit/${category.directionId}" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="delete/${category.directionId}" class="templatemo-link">Delete</a></td>									
+								<td><a href="edit/${category.categoryId}" class="templatemo-edit-btn">Edit</a></td>
+								<td><a href="delete/${category.categoryId}" class="templatemo-link">Delete</a></td>									
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div>
-				<div class="text-right"><button onClick="location.href='addCategory'"  class="templatemo-blue-button">添加新分类</button></div>
+				<div class="text-right"><button onClick="location.href='add'"  class="templatemo-blue-button">添加新分类</button></div>
 			</div>
 		</div>
 		          <div class="pagination-wrap">
