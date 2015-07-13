@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.entities.Category;
+import com.lst.lc.entities.Direction;
 
 @Repository("categoryDao")
 public class CategoryDaoImpl extends BaseDao implements CategoryDao {
@@ -41,6 +42,14 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		String hql = "delete Category as category where category.categoryId = ?";
 		Query query = query(hql);
 		query.setInteger(0, categoryId).executeUpdate();
+	}
+
+	@Override
+	public List<Category> getCategoriesOfDirection(int directionId) {
+		String hql = "from Category as category where category.directionId = ?";
+		Query query = query(hql);
+		List<Category> categories = query.setInteger(0, directionId).list();
+		return categories;
 	}
 	
 
