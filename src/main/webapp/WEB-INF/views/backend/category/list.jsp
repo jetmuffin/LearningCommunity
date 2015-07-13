@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="../course/courses"  class="active">课程列表</a></li>
-					<li><a href="../category/categories" class="active">分类列表</a></li>
-					<li><a href="../direction/directions">方向列表</a></li>
+					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
+					<li><a href="/LearningCommunity/manage/category/categories"   class="active">分类列表</a></li>
+					<li><a href="/LearningCommunity/manage/direction/directions">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -58,21 +58,23 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1.</td>
-								<td>John</td>
-								<td>Smith</td>
-								<td>@jS</td>
-								<td>js@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
+							<c:forEach var="category" items="${categories}">
+								<tr>
+									<td>${category.categoryId}</td>
+									<td>${category.categoryName}</td>
+									<td>${category.admin.name}</td>
+									<td>${category.time}</td>
+									<td><c:if test="${category.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>启用</c:if><c:if test="${direction.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未启用</c:if></td>
+								<td><a href="edit/${category.directionId}" class="templatemo-edit-btn">Edit</a></td>
+								<td><a href="delete/${category.directionId}" class="templatemo-link">Delete</a></td>									
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
 			</div>
 			<div>
-				<div class="text-right"><button onClick="location.href='addCategory'"  class="templatemo-blue-button">添加新分类</button></div>
+				<div class="text-right"><button onClick="location.href='add'"  class="templatemo-blue-button">添加新分类</button></div>
 			</div>
 		</div>
 		          <div class="pagination-wrap">

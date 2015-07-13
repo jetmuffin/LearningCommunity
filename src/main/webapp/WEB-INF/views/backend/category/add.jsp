@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="courses">课程列表</a></li>
-					<li><a href="categories"  class="active">分类列表</a></li>
-					<li><a href="directions">方向列表</a></li>
+					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
+					<li><a href="/LearningCommunity/manage/category/categories"   class="active">分类列表</a></li>
+					<li><a href="/LearningCommunity/manage/direction/directions">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -32,7 +32,7 @@
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
 				<h2 class="margin-bottom-10">添加新分类</h2>
-				<form action="addCategory" class="templatemo-login-form"
+				<form action="add" class="templatemo-login-form"
 					method="post" enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">

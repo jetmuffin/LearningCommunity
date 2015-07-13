@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="courses">课程列表</a></li>
-					<li><a href="categories">分类列表</a></li>
-					<li><a href="directions" class="active">方向列表</a></li>
+					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
+					<li><a href="/LearningCommunity/manage/category/categories">分类列表</a></li>
+					<li><a href="/LearningCommunity/manage/direction/directions" class="active">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -31,35 +31,35 @@
 		<!-- Content -->
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
-				<h2 class="margin-bottom-10">添加新方向</h2>
-				<form action="add" class="templatemo-login-form" method="post"
+				<h2 class="margin-bottom-10">编辑方向 - ${direction.directionName}</h2>
+				<form action="" class="templatemo-login-form" method="post"
 					enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
 							<label for="inputName">方向名</label> <input type="text"
 								class="form-control" id="inputName" name="name"
-								placeholder="请输入课程名">
+								placeholder="请输入课程名" value="${direction.directionName}">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">方向描述</label>
 							<textarea class="form-control" name="description" id="inputNote"
-								rows="3"></textarea>
+								rows="3" >${direction.description}</textarea>
 						</div>
 					</div>
 					<div class="col-lg-12 form-group">
 						<div class="margin-right-15 templatemo-inline-block">
-							<input  name="enabled"  type="radio" id="r4" value="1" checked=""> <label
+							<input  name="enabled"  type="radio" id="r4" value="1" <c:if test="${direction.enabled eq 1}">checked=""</c:if>  > <label
 								for="r4"class="font-weight-400"><span></span>启用</label>
 						</div>
 						<div class="margin-right-15 templatemo-inline-block">
-							<input type="radio"   name="enabled"  id="r5" value="0" >
+							<input type="radio"   name="enabled"  id="r5" value="0" <c:if test="${direction.enabled eq 0}">checked=""</c:if>  >
 							<label for="r5" class="font-weight-400"><span></span>不启用</label>
 						</div>
 					</div>
 					<div class="form-group text-right">
-						<button type="submit" class="templatemo-blue-button">添加</button>
+						<button type="submit" class="templatemo-blue-button">保存</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
 					</div>
 				</form>
