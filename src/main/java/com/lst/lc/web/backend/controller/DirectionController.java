@@ -72,4 +72,13 @@ public class DirectionController {
 		redirectAttributes.addFlashAttribute("directionMsg", "修改方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
+	
+	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.POST)
+	public String delete(@PathVariable int directionId, RedirectAttributes redirectAttributes){
+		Direction direction = directionDao.getDirection(directionId);
+		directionDao.delete(direction);
+		redirectAttributes.addFlashAttribute("directionMsg", "删除方向信息成功");
+		return "redirect:/manage/direction/directions";
+	}
+	
 }

@@ -29,4 +29,9 @@ public class DirectionDaoImpl extends BaseDao implements DirectionDao {
 	public void update(Direction direction) {
 		saveOrUpdate(direction);
 	}
+
+	@Override
+	public void delete(Direction direction) {
+		delete(direction);
+	}
 }
