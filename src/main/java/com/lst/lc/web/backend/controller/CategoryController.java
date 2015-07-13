@@ -51,7 +51,7 @@ public class CategoryController {
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Category> categories = categoryDao.getAllCategories();
-		model.addAttribute("categoryies", categories);
+		model.addAttribute("categories", categories);
 		return "backend/category/list";
 	}
 	
@@ -74,7 +74,7 @@ public class CategoryController {
 		return "redirect:/manage/category/categories";
 	}
 
-	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.GET)
 	public String delete(@PathVariable int categoryId, RedirectAttributes redirectAttributes){
 		Category category = categoryDao.getCategory(categoryId);
 		categoryDao.delete(category);
