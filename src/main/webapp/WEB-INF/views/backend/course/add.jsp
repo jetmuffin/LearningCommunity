@@ -44,8 +44,9 @@
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程方向</label> <select
 								class="form-control">
-								<option value="html">前端开发</option>
-								<option value="plain">后端开发</option>
+								<c:forEach var="direction" items="${directions}">
+									<option value="${direction.directionId}">${direction.directionName}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>
@@ -53,8 +54,9 @@
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程分类</label> <select
 								class="form-control">
-								<option value="html">HTML</option>
-								<option value="plain">Javascript</option>
+								<c:forEach var="category" items="${categories}">
+									<option value="${category.categoryId}">${category.categoryName}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>
