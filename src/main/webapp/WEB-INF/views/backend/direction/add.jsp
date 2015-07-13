@@ -23,7 +23,7 @@
 				<ul class="text-uppercase">
 					<li><a href="courses">课程列表</a></li>
 					<li><a href="categories">分类列表</a></li>
-					<li><a href="directions"   class="active">方向列表</a></li>
+					<li><a href="directions" class="active">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -32,20 +32,32 @@
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
 				<h2 class="margin-bottom-10">添加新方向</h2>
-				<form action="add" class="templatemo-login-form"
-					method="post" enctype="multipart/form-data">
+				<form action="add" class="templatemo-login-form" method="post"
+					enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
 							<label for="inputName">方向名</label> <input type="text"
-								class="form-control" id="inputName"  name="directionName" placeholder="请输入课程名">
+								class="form-control" id="inputName" name="name"
+								placeholder="请输入课程名">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">方向描述</label>
-							<textarea class="form-control"  name="directionDesc" id="inputNote" rows="3"></textarea>
+							<textarea class="form-control" name="description" id="inputNote"
+								rows="3"></textarea>
 						</div>
-					</div>		
+					</div>
+					<div class="col-lg-12 form-group">
+						<div class="margin-right-15 templatemo-inline-block">
+							<input  name="enabled"  type="radio" id="r4" value="1" checked=""> <label
+								for="r4"class="font-weight-400"><span></span>启用</label>
+						</div>
+						<div class="margin-right-15 templatemo-inline-block">
+							<input type="radio"   name="enabled"  id="r5" value="0" >
+							<label for="r5" class="font-weight-400"><span></span>不启用</label>
+						</div>
+					</div>
 					<div class="form-group text-right">
 						<button type="submit" class="templatemo-blue-button">添加</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
@@ -59,6 +71,7 @@
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/templatemo-script.js"></script>
-		    <script type="text/javascript" src="/LearningCommunity/resources/js/bootstrap-filestyle.min.js"></script> 
+	<script type="text/javascript"
+		src="/LearningCommunity/resources/js/bootstrap-filestyle.min.js"></script>
 </body>
 </html>

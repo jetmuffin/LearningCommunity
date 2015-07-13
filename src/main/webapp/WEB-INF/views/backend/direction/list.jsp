@@ -30,33 +30,51 @@
 		</div>
 		<!-- Content -->
 		<div class="templatemo-content-container">
+		<c:if test="${not empty directionMsg}">
+		<div class="alert alert-info templatemo-content-widget" role="alert">
+			<i class="fa fa-times"></i>
+			<p>${directionMsg}</p>
+		</div>
+		</c:if>
 			<div class="templatemo-content-widget no-padding">
 				<div class="panel panel-default table-responsive">
 					<table
 						class="table table-striped table-bordered templatemo-user-table">
-						<thead>
+				<thead>
 							<tr>
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">First
-										Name <span class="caret"></span>
+								<td><a href="" class="white-text templatemo-sort-by">分类名
+										 <span class="caret"></span>
+								</a></td>	
+								<td><a href="" class="white-text templatemo-sort-by">创建人
+										 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">Last
-										Name <span class="caret"></span>
-								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">User
-										Name <span class="caret"></span>
-								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">Email
+								<td><a href="" class="white-text templatemo-sort-by">创建时间
 										<span class="caret"></span>
 								</a></td>
-								<td>Edit</td>
-								<td>Action</td>
-								<td>Delete</td>
+								<td><a href="" class="white-text templatemo-sort-by">是否启用
+										<span class="caret"></span>
+								</a></td>	
+								<td><a href="" class="white-text templatemo-sort-by">编辑
+								</a></td>				
+									<td><a href="" class="white-text templatemo-sort-by">删除
+								</a></td>																								
 							</tr>
 						</thead>
 						<tbody>
+							<c:forEach var="direction" items="${directions}">
+								<tr>
+									<td>${direction.directionId}</td>
+									<td>${direction.directionName}</td>
+									<td>${direction.admin.name}</td>
+									<td>${direction.time}</td>
+									<td><c:if test="${direction.enabled eq 1}">启用</c:if><c:if test="${direction.enabled eq 0}">不启用</c:if></td>
+								<td><a href="edit/${directionId}" class="templatemo-edit-btn">Edit</a></td>
+								<td><a href="delete/${directionID}" class="templatemo-link">Delete</a></td>									
+								</tr>
+							</c:forEach>
 							<tr>
 								<td>1.</td>
 								<td>John</td>
@@ -64,77 +82,6 @@
 								<td>@jS</td>
 								<td>js@company.com</td>
 								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>2.</td>
-								<td>Bill</td>
-								<td>Jones</td>
-								<td>@bJ</td>
-								<td>bj@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>3.</td>
-								<td>Mary</td>
-								<td>James</td>
-								<td>@mJ</td>
-								<td>mj@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>4.</td>
-								<td>Steve</td>
-								<td>Bride</td>
-								<td>@sB</td>
-								<td>sb@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>5.</td>
-								<td>Paul</td>
-								<td>Richard</td>
-								<td>@pR</td>
-								<td>pr@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>6.</td>
-								<td>Will</td>
-								<td>Brad</td>
-								<td>@wb</td>
-								<td>wb@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>7.</td>
-								<td>Steven</td>
-								<td>Eric</td>
-								<td>@sE</td>
-								<td>se@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>8.</td>
-								<td>Landi</td>
-								<td>Susan</td>
-								<td>@lS</td>
-								<td>ls@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
 								<td><a href="" class="templatemo-link">Delete</a></td>
 							</tr>
 						</tbody>
