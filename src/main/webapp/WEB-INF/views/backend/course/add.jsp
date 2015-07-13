@@ -106,6 +106,7 @@
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/templatemo-script.js"></script>
+		<script src="/LearningCommunity/resources/js/backend/course/add.js"></script>
 		    <script type="text/javascript" src="/LearningCommunity/resources/js/bootstrap-filestyle.min.js"></script> 
 </body>
 </html>
