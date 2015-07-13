@@ -47,7 +47,7 @@ public class CourseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "/addCourse", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
 		List<Direction> directions = directionDao.getAllDirections();
 		List<Category> categories = categoryDao.getAllCategories();
@@ -66,55 +66,12 @@ public class CourseController {
 	 * @param direction
 	 * @return
 	 */
-	@RequestMapping(value = "/addCourse", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(String title, String description, String difficulty,
 			String imageUrl, String category, String direction) {
 		
 		return null;
 	}
 	
-	/**
-	 * 分类列表页面
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/categories", method = RequestMethod.GET)
-	public String listCategory(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/category/list";
-	}
-	
-	/**
-	 * 添加分类页面
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/addCategory", method = RequestMethod.GET)
-	public String addCategory(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/category/add";
-	}
-	
-	/**
-	 * 分类列表页面
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/directions", method = RequestMethod.GET)
-	public String listDirection(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/direction/list";
-	}
-	
-	/**
-	 * 添加分类页面
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping(value = "/addDirection", method = RequestMethod.GET)
-	public String addDirection(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/direction/add";
-	}
 }
 	

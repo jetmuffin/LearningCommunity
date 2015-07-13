@@ -11,6 +11,13 @@
 <link rel="stylesheet" href="/LearningCommunity/resources/css/templatemo-style.css" />
 </head>
 	<body class="light-gray-bg">
+			<c:if test="${not empty loginMsg}">
+			<div class="templatemo-content-widget  templatemo-login-widget templatemo-register-widget pink-bg">
+                <i class="fa fa-times"></i>                
+                <p class="margin-bottom-0">${loginMsg}</p>
+              </div>
+              </c:if>
+              
 		<div class="templatemo-content-widget templatemo-login-widget white-bg">
 			<header class="text-center">
 	          <div class="square"></div>
@@ -43,5 +50,10 @@
 		<div class="templatemo-content-widget templatemo-login-widget templatemo-register-widget white-bg">
 			<p>不记得密码了？ <strong><a href="#" class="blue-text">找回密码</a></strong></p>
 		</div>
+		<script type="text/javascript"
+		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+	<script type="text/javascript"
+		src="/LearningCommunity/resources/js/templatemo-script.js"></script>
+	<!-- Templatemo Script -->
 	</body>
 </html>
