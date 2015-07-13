@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.entities.Category;
+import com.lst.lc.entities.Course;
 
 @Repository("categoryDao")
 public class CategoryDaoImpl extends BaseDao implements CategoryDao {
@@ -41,6 +42,16 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		String hql = "delete Category as category where category.categoryId = ?";
 		Query query = query(hql);
 		query.setInteger(0, categoryId).executeUpdate();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> getEnabledCategories() {
+		String hqlString = "from Category as category where category.enabled=?";
+		Query query = query(hqlString);
+		query.setString(0, "1");
+		List<Category> ts = query.list();
+		return ts;
 	}
 	
 
