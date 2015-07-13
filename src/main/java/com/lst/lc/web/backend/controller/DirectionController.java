@@ -17,7 +17,7 @@ import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Direction;
 
 @Controller
-@RequestMapping("/direction")
+@RequestMapping("/manage/direction")
 public class DirectionController {
 
 	@Autowired
@@ -39,19 +39,15 @@ public class DirectionController {
 		Admin admin = (Admin) session.getAttribute("admin");
 		Direction direction = new Direction(name, admin, new Date(),
 				description, enabled, null);
-		return "redirect:/direction/list";
+		return "redirect:/manage/direction/list";
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list() {
-		return "backend/direction/list";
-	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/directions", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Direction> directions = directionDao.getAllDirections();
 		model.addAttribute("directions", directions);
-		return "redirect:/direction/list";
+		return "direction/list";
 	}
 
 }
