@@ -74,4 +74,11 @@ public class CategoryController {
 		return "redirect:/manage/category/categories";
 	}
 
+	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.POST)
+	public String delete(@PathVariable int categoryId, RedirectAttributes redirectAttributes){
+		Category category = categoryDao.getCategory(categoryId);
+		categoryDao.delete(category);
+		redirectAttributes.addFlashAttribute("categoryMsg", "删除分类信息成功");
+		return "redirect:/manage/category/categories";
+	}
 }

@@ -30,4 +30,9 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 		saveOrUpdate(category);
 	}
 	
+	@Override
+	public void delete(Category category){
+		delete(category);
+	}
+	
 }

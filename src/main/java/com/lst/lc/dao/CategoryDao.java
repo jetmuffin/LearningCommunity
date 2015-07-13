@@ -13,4 +13,6 @@ public interface CategoryDao {
 	public List<Category> getAllCategories();
 
 	public void update(Category category);
+
+	public void delete(Category category);
 }
