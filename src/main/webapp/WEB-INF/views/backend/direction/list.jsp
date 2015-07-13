@@ -70,20 +70,11 @@
 									<td>${direction.directionName}</td>
 									<td>${direction.admin.name}</td>
 									<td>${direction.time}</td>
-									<td><c:if test="${direction.enabled eq 1}">启用</c:if><c:if test="${direction.enabled eq 0}">不启用</c:if></td>
-								<td><a href="edit/${directionId}" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="delete/${directionID}" class="templatemo-link">Delete</a></td>									
+									<td><c:if test="${direction.enabled eq 1}">启用</c:if><c:if test="${direction.enabled eq 0}">未启用</c:if></td>
+								<td><a href="edit/${direction.directionId}" class="templatemo-edit-btn">Edit</a></td>
+								<td><a href="delete/${direction.directionId}" class="templatemo-link">Delete</a></td>									
 								</tr>
 							</c:forEach>
-							<tr>
-								<td>1.</td>
-								<td>John</td>
-								<td>Smith</td>
-								<td>@jS</td>
-								<td>js@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
