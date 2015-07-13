@@ -41,13 +41,13 @@ public class CategoryController {
 		Category category = new Category(admin, name, new Date(),
 				description, enabled);
 		categoryDao.addCategory(category);
-		return "redirect:/manage/category/categorys";
+		return "redirect:/manage/category/categories";
 	}
 
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public String list(Model model) {
-		List<Category> categorys = categoryDao.getAllCategories();
-		model.addAttribute("categorys", categorys);
+		List<Category> categories = categoryDao.getAllCategories();
+		model.addAttribute("categoryies", categories);
 		return "backend/category/list";
 	}
 	
