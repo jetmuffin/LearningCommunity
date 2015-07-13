@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 19:18:52 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 19:59:48 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -36,6 +36,7 @@ public class Course implements java.io.Serializable {
 	private String difficulty;
 	private String imageUrl;
 	private String isFinished;
+	private String enabled;
 	private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(0);
 	private Set<CourseLesson> courseLessons = new HashSet<CourseLesson>(0);
 	private Set<RelCourseRoute> relCourseRoutes = new HashSet<RelCourseRoute>(0);
@@ -46,7 +47,7 @@ public class Course implements java.io.Serializable {
 	public Course(Category category, Direction direction, String title,
 			String description, int studentNums, float duration,
 			Date createTime, String difficulty, String imageUrl,
-			String isFinished) {
+			String isFinished, String enabled) {
 		this.category = category;
 		this.direction = direction;
 		this.title = title;
@@ -57,13 +58,15 @@ public class Course implements java.io.Serializable {
 		this.difficulty = difficulty;
 		this.imageUrl = imageUrl;
 		this.isFinished = isFinished;
+		this.enabled = enabled;
 	}
 
 	public Course(Category category, Direction direction, String title,
 			String description, int studentNums, float duration,
 			Date createTime, String difficulty, String imageUrl,
-			String isFinished, Set<RelUserCourse> relUserCourses,
-			Set<CourseLesson> courseLessons, Set<RelCourseRoute> relCourseRoutes) {
+			String isFinished, String enabled,
+			Set<RelUserCourse> relUserCourses, Set<CourseLesson> courseLessons,
+			Set<RelCourseRoute> relCourseRoutes) {
 		this.category = category;
 		this.direction = direction;
 		this.title = title;
@@ -74,6 +77,7 @@ public class Course implements java.io.Serializable {
 		this.difficulty = difficulty;
 		this.imageUrl = imageUrl;
 		this.isFinished = isFinished;
+		this.enabled = enabled;
 		this.relUserCourses = relUserCourses;
 		this.courseLessons = courseLessons;
 		this.relCourseRoutes = relCourseRoutes;
@@ -181,6 +185,15 @@ public class Course implements java.io.Serializable {
 
 	public void setIsFinished(String isFinished) {
 		this.isFinished = isFinished;
+	}
+
+	@Column(name = "enabled", nullable = false, length = 10)
+	public String getEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "course")
