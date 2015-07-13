@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="courses">课程列表</a></li>
-					<li><a href="categories">分类列表</a></li>
-					<li><a href="directions"    class="active">方向列表</a></li>
+					<li><a href="../course/courses" >课程列表</a></li>
+					<li><a href="../category/categories">分类列表</a></li>
+					<li><a href="../direction/directions"  class="active">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
@@ -142,7 +142,7 @@
 				</div>
 			</div>
 			<div>
-				<div class="text-right"><button onClick="location.href='addDirection'"  class="templatemo-blue-button">添加新方向</button></div>
+				<div class="text-right"><button onClick="location.href='add'"  class="templatemo-blue-button">添加新方向</button></div>
 			</div>
 		</div>
 		          <div class="pagination-wrap">

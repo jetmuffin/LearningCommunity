@@ -21,9 +21,9 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="courses">课程列表</a></li>
-					<li><a href="categories"   class="active">分类列表</a></li>
-					<li><a href="directions">方向列表</a></li>
+					<li><a href="../course/courses"  class="active">课程列表</a></li>
+					<li><a href="../category/categories" class="active">分类列表</a></li>
+					<li><a href="../direction/directions">方向列表</a></li>
 				</ul>
 				</nav>
 			</div>
