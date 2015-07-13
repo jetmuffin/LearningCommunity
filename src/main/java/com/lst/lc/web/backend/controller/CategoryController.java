@@ -91,8 +91,8 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/{directionId}.json", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Category> getCategoriesOfDirection(@PathVariable int directionId){
-		return categoryDao.getCategoriesOfDirection(directionId);
+	public String getCategoriesOfDirection(@PathVariable int directionId){
+		categoryDao.getCategoriesOfDirection(directionId);
+		return "index";
 	}
 }

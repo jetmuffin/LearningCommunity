@@ -55,10 +55,13 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 
 	@Override
 	public List<Category> getCategoriesOfDirection(int directionId) {
-		String hql = "from Category as category where category.directionId = ?";
+		String hql = "from Category as category where category.direction.directionId = ?";
 		Query query = query(hql);
 		List<Category> categories = query.setInteger(0, directionId).list();
+		for (int i = 0; i < categories.size(); i++) {
+			System.out.println(categories.get(i).getDirection().getDirectionId());
+		}
+		System.out.println(categories);
 		return categories;
 	}
-
 }
