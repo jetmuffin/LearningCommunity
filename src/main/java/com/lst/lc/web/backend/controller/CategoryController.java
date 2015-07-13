@@ -40,7 +40,7 @@ public class CategoryController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
-		List<Direction> directions = directionDao.getAllDirections();
+		List<Direction> directions = directionDao.getEnabledDirections();
 		model.addAttribute("directions", directions);
 		return "backend/category/add";
 	}
@@ -69,7 +69,7 @@ public class CategoryController {
 	public String edit(@PathVariable int categoryId, Model model) {
 		Category category = categoryDao.getCategory(categoryId);
 		model.addAttribute("category", category);
-		List<Direction> directions = directionDao.getAllDirections();
+		List<Direction> directions = directionDao.getEnabledDirections();
 		model.addAttribute("directions", directions);
 		return "backend/category/edit";
 	}

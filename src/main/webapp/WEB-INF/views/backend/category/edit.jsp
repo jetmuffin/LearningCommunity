@@ -43,11 +43,21 @@
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
-							<label class="control-label" for="inputNote">方向描述</label>
+							<label class="control-label" for="inputNote">分类描述</label>
 							<textarea class="form-control" name="description" id="inputNote"
 								rows="3" >${category.description}</textarea>
 						</div>
 					</div>
+					<div class="row form-group">
+						<div class="col-lg-6 col-md-6 form-group">
+							<label class="control-label templatemo-block">属于方向</label> <select
+								class="form-control" name="directionId">
+								<c:forEach var="direction" items="${directions}">
+									<option value="${direction.directionId}">${direction.directionName}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>									
 					<div class="col-lg-12 form-group">
 						<div class="margin-right-15 templatemo-inline-block">
 							<input  name="enabled"  type="radio" id="r4" value="1" <c:if test="${category.enabled eq 1}">checked=""</c:if>  > <label
