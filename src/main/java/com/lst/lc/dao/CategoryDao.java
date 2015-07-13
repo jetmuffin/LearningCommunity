@@ -17,4 +17,6 @@ public interface CategoryDao {
 	public void delete(int categoryId);
 	
 	public List<Category> getEnabledCategories();
+
+	public List<Category> getCategoriesOfDirection(int directionId);
 }
