@@ -1,5 +1,9 @@
 package com.lst.lc.dao.impl;
 
+import java.util.List;
+
+import org.hibernate.Query;
+
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.entities.Course;
 
@@ -18,6 +22,15 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	@Override
 	public void updateCourse(Course course) {
 		update(course);
+	}
+
+	@Override
+	public List<Course> getEnabledCourses() {
+		String hqlString = "from Courses as course where course.enabled=?";
+		Query query = query(hqlString);
+		query.setString(0, "1");
+		List<Course> ts = query.list();
+		return ts;
 	}
 
 }

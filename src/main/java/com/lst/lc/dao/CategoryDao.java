@@ -3,7 +3,6 @@ package com.lst.lc.dao;
 import java.util.List;
 
 import com.lst.lc.entities.Category;
-import com.lst.lc.entities.Direction;
 
 public interface CategoryDao {
 
@@ -17,5 +16,7 @@ public interface CategoryDao {
 
 	public void delete(int categoryId);
 	
+	public List<Category> getEnabledCategories();
+
 	public List<Category> getCategoriesOfDirection(int directionId);
 }

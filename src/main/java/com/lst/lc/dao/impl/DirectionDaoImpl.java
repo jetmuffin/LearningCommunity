@@ -6,6 +6,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 
 @Repository("directionDao")
@@ -41,5 +42,14 @@ public class DirectionDaoImpl extends BaseDao implements DirectionDao {
 		String hql = "delete Direction as direction where direction.directionId = ?";
 		Query query = query(hql);
 		query.setInteger(0, directionId).executeUpdate();
+	}
+
+	@Override
+	public List<Direction> getEnabledDirections() {
+		String hqlString = "from Direction as direction where direction.enabled=?";
+		Query query = query(hqlString);
+		query.setString(0, "1");
+		List<Direction> ts = query.list();
+		return ts;
 	}
 }

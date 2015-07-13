@@ -16,5 +16,7 @@ public interface DirectionDao {
 			String enabled);
 
 	public void delete(int directionId);
+	
+	public List<Direction> getEnabledDirections();
 
 }
