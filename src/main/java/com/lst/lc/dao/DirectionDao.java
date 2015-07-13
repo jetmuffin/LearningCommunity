@@ -8,8 +8,10 @@ public interface DirectionDao {
 	
 	public void addDirection(Direction direction);
 	
-	public Direction getDirection(String name);
+	public Direction getDirection(int id);
 	
 	public List<Direction> getAllDirections();
+	
+	public void update(Direction direction);
 
 }

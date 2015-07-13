@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.DirectionDao;
 import com.lst.lc.entities.Admin;
@@ -35,11 +37,12 @@ public class DirectionController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpSession session, String name, String description,
-			String enabled) {
+			String enabled, RedirectAttributes redirectAttributes) {
 		Admin admin = (Admin) session.getAttribute("admin");
 		Direction direction = new Direction(admin, name, new Date(),
 				description, enabled);
 		directionDao.addDirection(direction);
+		redirectAttributes.addFlashAttribute("directionMsg", "添加方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
 
@@ -49,5 +52,24 @@ public class DirectionController {
 		model.addAttribute("directions", directions);
 		return "backend/direction/list";
 	}
+	
+	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.GET)
+	public String edit(int directionId, Model model){
+		Direction direction = directionDao.getDirection(directionId);
+		model.addAttribute("direction", direction);
+		return "backend/direction/edit";
+		
+	}
 
+	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.POST)
+	public String edit(@PathVariable int directionId, String name, String description,
+			String enabled, RedirectAttributes redirectAttributes){
+		Direction direction = directionDao.getDirection(directionId);
+		direction.setDirectionName(name);
+		direction.setDescription(description);
+		direction.setEnabled(enabled);
+		directionDao.update(direction);
+		redirectAttributes.addFlashAttribute("directionMsg", "修改方向信息成功");
+		return "redirect:/manage/direction/directions";
+	}
 }
