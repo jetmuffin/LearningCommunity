@@ -51,7 +51,7 @@ public class CategoryController {
 	@RequestMapping(value = "/categories", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Category> categories = categoryDao.getAllCategories();
-		model.addAttribute("categoryies", categories);
+		model.addAttribute("categories", categories);
 		return "backend/category/list";
 	}
 	

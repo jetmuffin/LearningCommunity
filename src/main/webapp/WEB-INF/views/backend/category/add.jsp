@@ -45,7 +45,17 @@
 							<label class="control-label" for="inputNote">分类描述</label>
 							<textarea class="form-control" id="inputNote"  name="description" rows="3"></textarea>
 						</div>
-					</div>					
+					</div>		
+					<div class="col-lg-12 form-group">
+						<div class="margin-right-15 templatemo-inline-block">
+							<input  name="enabled"  type="radio" id="r4" value="1" checked=""> <label
+								for="r4"class="font-weight-400"><span></span>启用</label>
+						</div>
+						<div class="margin-right-15 templatemo-inline-block">
+							<input type="radio"   name="enabled"  id="r5" value="0" >
+							<label for="r5" class="font-weight-400"><span></span>不启用</label>
+						</div>
+					</div>								
 					<div class="form-group text-right">
 						<button type="submit" class="templatemo-blue-button">添加</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
