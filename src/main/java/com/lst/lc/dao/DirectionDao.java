@@ -13,5 +13,7 @@ public interface DirectionDao {
 	public List<Direction> getAllDirections();
 	
 	public void update(Direction direction);
+	
+	public void delete(Direction direction);
 
 }
