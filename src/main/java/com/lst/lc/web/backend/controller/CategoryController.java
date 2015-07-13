@@ -20,6 +20,7 @@ import com.lst.lc.dao.DirectionDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Direction;
+import com.lst.lc.web.bean.CategoryBean;
 
 @Controller
 @RequestMapping("/manage/category")
@@ -92,7 +93,7 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/direction/{directionId}.json", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Category> getCategoriesOfDirection(@PathVariable int directionId){
+	public List<CategoryBean> getCategoriesOfDirection(@PathVariable int directionId){
 		return categoryDao.getCategoriesOfDirection(directionId);
 	}
 }
