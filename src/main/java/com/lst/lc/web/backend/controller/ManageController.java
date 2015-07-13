@@ -39,7 +39,7 @@ public class ManageController {
 			redirectAttributes.addFlashAttribute("loginMsg", "邮箱错误");
 			return "redirect:/manage/login";
 		} else if (admin.getPassword().equals(password)) {
-			session.setAttribute("loginAdmin", admin);
+			session.setAttribute("admin", admin);
 			return "redirect:/manage/index";
 		} else {
 			redirectAttributes.addFlashAttribute("loginMsg", "密码错误");

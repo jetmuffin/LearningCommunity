@@ -16,8 +16,8 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 	}
 
 	@Override
-	public Category getCategory(String name) {
-		return get(Category.class, name);
+	public Category getCategory(int id) {
+		return get(Category.class, id);
 	}
 
 	@Override

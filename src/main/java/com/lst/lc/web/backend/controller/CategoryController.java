@@ -50,5 +50,7 @@ public class CategoryController {
 		model.addAttribute("categorys", categorys);
 		return "backend/category/list";
 	}
+	
+	
 
 }

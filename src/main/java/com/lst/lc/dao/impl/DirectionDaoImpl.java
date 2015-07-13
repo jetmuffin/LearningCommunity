@@ -16,12 +16,17 @@ public class DirectionDaoImpl extends BaseDao implements DirectionDao {
 	}
 
 	@Override
-	public Direction getDirection(String name) {
-		return get(Direction.class, name);
+	public Direction getDirection(int id) {
+		return get(Direction.class, id);
 	}
 
 	@Override
 	public List<Direction> getAllDirections() {
 		return getAll("Direction");
+	}
+
+	@Override
+	public void update(Direction direction) {
+		saveOrUpdate(direction);
 	}
 }
