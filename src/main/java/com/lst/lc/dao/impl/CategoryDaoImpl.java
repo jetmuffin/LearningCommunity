@@ -24,5 +24,10 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 	public List<Category> getAllCategories() {
 		return getAll("Category");
 	}
-
+	
+	@Override
+	public void update(Category category){
+		saveOrUpdate(category);
+	}
+	
 }
