@@ -36,13 +36,13 @@ public class ManageController {
 
 		Admin admin = adminDao.validateAdmin(email, password);
 		if (admin == null) {
-			redirectAttributes.addFlashAttribute("loginInfo", "邮箱错误");
+			redirectAttributes.addFlashAttribute("loginMsg", "邮箱错误");
 			return "redirect:/manage/login";
 		} else if (admin.getPassword().equals(password)) {
 			session.setAttribute("loginAdmin", admin);
 			return "redirect:/manage/index";
 		} else {
-			redirectAttributes.addFlashAttribute("loginInfo", "密码错误");
+			redirectAttributes.addFlashAttribute("loginMsg", "密码错误");
 			return "redirect:/manage/login";
 		}
 	}
