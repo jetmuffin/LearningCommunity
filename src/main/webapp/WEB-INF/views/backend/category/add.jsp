@@ -37,13 +37,13 @@
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
 							<label for="inputName">分类名</label> <input type="text"
-								class="form-control" id="inputName" name="categoryName" placeholder="请输入课程名">
+								class="form-control" id="inputName" name="name" placeholder="请输入课程名">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">分类描述</label>
-							<textarea class="form-control" id="inputNote"  name="categoryDesc" rows="3"></textarea>
+							<textarea class="form-control" id="inputNote"  name="description" rows="3"></textarea>
 						</div>
 					</div>					
 					<div class="form-group text-right">
