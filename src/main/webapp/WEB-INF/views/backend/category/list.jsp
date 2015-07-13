@@ -21,8 +21,8 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="courses"  class="active">课程列表</a></li>
-					<li><a href="categories">分类列表</a></li>
+					<li><a href="courses">课程列表</a></li>
+					<li><a href="categories"   class="active">分类列表</a></li>
 					<li><a href="directions">方向列表</a></li>
 				</ul>
 				</nav>
@@ -142,7 +142,7 @@
 				</div>
 			</div>
 			<div>
-				<div class="text-right"><button onClick="location.href='addCourse'"  class="templatemo-blue-button">添加新课程</button></div>
+				<div class="text-right"><button onClick="location.href='addCategory'"  class="templatemo-blue-button">添加新分类</button></div>
 			</div>
 		</div>
 		          <div class="pagination-wrap">

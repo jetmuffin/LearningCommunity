@@ -63,17 +63,4 @@ public class ManageController {
 		model.addAttribute("module", "user");
 		return "backend/user/add";
 	}
-	
-	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public String course(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/course/list";
-	}
-	
-	@RequestMapping(value = "/addcourse", method = RequestMethod.GET)
-	public String addCourse(Model model) {
-		model.addAttribute("module", "course");
-		return "backend/course/add";
-	}
-
 }

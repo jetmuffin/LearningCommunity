@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台管理 - 添加用户</title>
+<title>后台管理 - 添加课程</title>
 <link href="/LearningCommunity/resources/font/css/font-awesome.min.css"
 	rel="stylesheet">
 <link href="/LearningCommunity/resources/css/bootstrap.min.css"
