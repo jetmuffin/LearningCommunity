@@ -37,12 +37,11 @@ public class DirectionController {
 	public String add(HttpSession session, String name, String description,
 			String enabled) {
 		Admin admin = (Admin) session.getAttribute("admin");
-		Direction direction = new Direction(name, admin, new Date(),
-				description, enabled, null);
-		System.out.println(direction);
+		Direction direction = new Direction(admin, name, new Date(),
+				description, enabled);
+		directionDao.addDirection(direction);
 		return "redirect:/manage/direction/directions";
 	}
-
 
 	@RequestMapping(value = "/directions", method = RequestMethod.GET)
 	public String list(Model model) {

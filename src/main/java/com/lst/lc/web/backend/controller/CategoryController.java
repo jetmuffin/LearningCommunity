@@ -18,7 +18,7 @@ import com.lst.lc.entities.Category;
 
 
 @Controller
-@RequestMapping("/category")
+@RequestMapping("/manage/category")
 public class CategoryController {
 
 	@Autowired
@@ -30,7 +30,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add() {
+	public String add(Model model) {
 		return "backend/category/add";
 	}
 
@@ -38,21 +38,17 @@ public class CategoryController {
 	public String add(HttpSession session, String name, String description,
 			String enabled) {
 		Admin admin = (Admin) session.getAttribute("admin");
-		Category category = new Category(name, admin, new Date(),
-				description, enabled, null);
-		return "redirect:/category/list";
+		Category category = new Category(admin, name, new Date(),
+				description, enabled);
+		categoryDao.addCategory(category);
+		return "redirect:/manage/category/categorys";
 	}
 
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list() {
-		return "backend/category/list";
-	}
-
-	@RequestMapping(value = "/list", method = RequestMethod.POST)
+	@RequestMapping(value = "/categorys", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Category> categorys = categoryDao.getAllCategories();
 		model.addAttribute("categorys", categorys);
-		return "redirect:/category/list";
+		return "backend/category/list";
 	}
 
 }

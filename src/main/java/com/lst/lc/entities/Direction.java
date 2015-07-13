@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 13:31:58 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 14:13:10 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -8,6 +8,8 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,8 +25,9 @@ import javax.persistence.TemporalType;
 @Table(name = "direction", catalog = "LearningCommunity")
 public class Direction implements java.io.Serializable {
 
-	private String directionName;
+	private Integer directionId;
 	private Admin admin;
+	private String directionName;
 	private Date time;
 	private String description;
 	private String enabled;
@@ -33,16 +36,19 @@ public class Direction implements java.io.Serializable {
 	public Direction() {
 	}
 
-	public Direction(String directionName, Admin admin, Date time) {
-		this.directionName = directionName;
+	public Direction(Admin admin, String directionName, Date time,
+			String description, String enabled) {
 		this.admin = admin;
+		this.directionName = directionName;
 		this.time = time;
+		this.description = description;
+		this.enabled = enabled;
 	}
 
-	public Direction(String directionName, Admin admin, Date time,
+	public Direction(Admin admin, String directionName, Date time,
 			String description, String enabled, Set<Course> courses) {
-		this.directionName = directionName;
 		this.admin = admin;
+		this.directionName = directionName;
 		this.time = time;
 		this.description = description;
 		this.enabled = enabled;
@@ -50,13 +56,14 @@ public class Direction implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "directionName", unique = true, nullable = false, length = 20)
-	public String getDirectionName() {
-		return this.directionName;
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "directionId", unique = true, nullable = false)
+	public Integer getDirectionId() {
+		return this.directionId;
 	}
 
-	public void setDirectionName(String directionName) {
-		this.directionName = directionName;
+	public void setDirectionId(Integer directionId) {
+		this.directionId = directionId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
@@ -69,6 +76,15 @@ public class Direction implements java.io.Serializable {
 		this.admin = admin;
 	}
 
+	@Column(name = "directionName", nullable = false, length = 20)
+	public String getDirectionName() {
+		return this.directionName;
+	}
+
+	public void setDirectionName(String directionName) {
+		this.directionName = directionName;
+	}
+
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "time", nullable = false, length = 19)
 	public Date getTime() {
@@ -79,7 +95,7 @@ public class Direction implements java.io.Serializable {
 		this.time = time;
 	}
 
-	@Column(name = "description", length = 65535)
+	@Column(name = "description", nullable = false, length = 65535)
 	public String getDescription() {
 		return this.description;
 	}
@@ -88,7 +104,7 @@ public class Direction implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Column(name = "enabled", length = 10)
+	@Column(name = "enabled", nullable = false, length = 10)
 	public String getEnabled() {
 		return this.enabled;
 	}
