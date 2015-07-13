@@ -74,7 +74,7 @@
 				</div>
 			</div>
 			<div>
-				<div class="text-right"><button onClick="location.href='addCategory'"  class="templatemo-blue-button">添加新分类</button></div>
+				<div class="text-right"><button onClick="location.href='add'"  class="templatemo-blue-button">添加新分类</button></div>
 			</div>
 		</div>
 		          <div class="pagination-wrap">
