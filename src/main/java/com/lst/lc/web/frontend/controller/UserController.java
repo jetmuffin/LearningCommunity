@@ -55,6 +55,8 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String register(String userName, String email, String password,
 			String gender, String avatar, String motto, String city) {
+		
+//		User user = new User(userName, email, password, gender, 0, rank, avatar, "user");
 		return "frontend/user/register";
 	}
 

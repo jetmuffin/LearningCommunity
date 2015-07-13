@@ -8,19 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.AdminDao;
 import com.lst.lc.entities.Admin;
 
 @Controller
-@RequestMapping("/admin")
-public class AdminController {
+@RequestMapping("/manage")
+public class ManageController {
 
 	@Autowired
 	@Qualifier("adminDao")
 	private AdminDao adminDao;
 
-	public AdminController() {
+	public ManageController() {
 		super();
 	}
 
@@ -30,26 +31,29 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session, String email,
-			String password) {
+	public String login(HttpSession session, String email, String password,
+			RedirectAttributes redirectAttributes) {
 
 		Admin admin = adminDao.validateAdmin(email, password);
 		if (admin == null) {
-			session.setAttribute("loginInfo", "邮箱错误");
-			return "backend/admin/login";
-		} else if(admin.getPassword().equals(password)){
+			redirectAttributes.addFlashAttribute("loginInfo", "邮箱错误");
+			return "redirect:/manage/login";
+		} else if (admin.getPassword().equals(password)) {
 			session.setAttribute("loginAdmin", admin);
-			return "backend/admin/index";
-		}else{
-			session.setAttribute("loginInfo", "密码错误");
-			return "backend/admin/login";
+			return "redirect:/manage/index";
+		} else {
+			redirectAttributes.addFlashAttribute("loginInfo", "密码错误");
+			return "redirect:/manage/login";
 		}
-		
 	}
-	
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
 		return "backend/index/index";
 	}
 
+	@RequestMapping(value = "/users", method = RequestMethod.GET)
+	public String user(Model model) {
+		return "backend/user/list";
+	}
 }
