@@ -39,16 +39,13 @@
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">First
-										Name <span class="caret"></span>
+								<td><a href="" class="white-text templatemo-sort-by">课程名称 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">Last
-										Name <span class="caret"></span>
+								<td><a href="" class="white-text templatemo-sort-by">方向<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">User
-										Name <span class="caret"></span>
+								<td><a href="" class="white-text templatemo-sort-by">类别 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">Email
+								<td><a href="" class="white-text templatemo-sort-by">学生人数
 										<span class="caret"></span>
 								</a></td>
 								<td>Edit</td>
@@ -58,84 +55,14 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>1.</td>
-								<td>John</td>
-								<td>Smith</td>
-								<td>@jS</td>
-								<td>js@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>2.</td>
-								<td>Bill</td>
-								<td>Jones</td>
-								<td>@bJ</td>
-								<td>bj@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>3.</td>
-								<td>Mary</td>
-								<td>James</td>
-								<td>@mJ</td>
-								<td>mj@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>4.</td>
-								<td>Steve</td>
-								<td>Bride</td>
-								<td>@sB</td>
-								<td>sb@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>5.</td>
-								<td>Paul</td>
-								<td>Richard</td>
-								<td>@pR</td>
-								<td>pr@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>6.</td>
-								<td>Will</td>
-								<td>Brad</td>
-								<td>@wb</td>
-								<td>wb@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>7.</td>
-								<td>Steven</td>
-								<td>Eric</td>
-								<td>@sE</td>
-								<td>se@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
-							<tr>
-								<td>8.</td>
-								<td>Landi</td>
-								<td>Susan</td>
-								<td>@lS</td>
-								<td>ls@company.com</td>
-								<td><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="" class="templatemo-link">Action</a></td>
-								<td><a href="" class="templatemo-link">Delete</a></td>
+								<td><div class="course-thumb"><img src="/LearningCommunity/resources/images/bicycle.jpg" alt="" /></div></td>
+								<td class="course-td">John</td>
+								<td class="course-td">Smith</td>
+								<td class="course-td">@jS</td>
+								<td class="course-td">js@company.com</td>
+								<td class="course-td"><a href="" class="templatemo-edit-btn">Edit</a></td>
+								<td class="course-td"><a href="" class="templatemo-edit-btn">Action</a></td>
+								<td class="course-td"><a href="" class="templatemo-link">Delete</a></td>
 							</tr>
 						</tbody>
 					</table>

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.DirectionDao;
@@ -71,7 +72,6 @@ public class DirectionController {
 	
 	@RequestMapping(value = "/delete/{directionId}", method = RequestMethod.GET)
 	public String delete(@PathVariable int directionId, RedirectAttributes redirectAttributes){
-		Direction direction = directionDao.getDirection(directionId);
 		directionDao.delete(directionId);
 		redirectAttributes.addFlashAttribute("directionMsg", "删除方向信息成功");
 		return "redirect:/manage/direction/directions";
