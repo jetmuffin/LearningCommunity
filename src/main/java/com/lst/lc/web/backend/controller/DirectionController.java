@@ -42,6 +42,7 @@ public class DirectionController {
 		Direction direction = new Direction(admin, name, new Date(),
 				description, enabled);
 		directionDao.addDirection(direction);
+		
 		redirectAttributes.addFlashAttribute("directionMsg", "添加方向信息成功");
 		return "redirect:/manage/direction/directions";
 	}
@@ -54,11 +55,10 @@ public class DirectionController {
 	}
 	
 	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.GET)
-	public String edit(int directionId, Model model){
+	public String edit(@PathVariable int directionId, Model model){
 		Direction direction = directionDao.getDirection(directionId);
 		model.addAttribute("direction", direction);
 		return "backend/direction/edit";
-		
 	}
 
 	@RequestMapping(value = "/edit/{directionId}", method = RequestMethod.POST)
