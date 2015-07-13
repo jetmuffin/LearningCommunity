@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 13:31:58 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 14:13:10 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -91,7 +91,7 @@ public class Course implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "category", nullable = false)
+	@JoinColumn(name = "categoryId", nullable = false)
 	public Category getCategory() {
 		return this.category;
 	}
@@ -101,7 +101,7 @@ public class Course implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "direction", nullable = false)
+	@JoinColumn(name = "directionId", nullable = false)
 	public Direction getDirection() {
 		return this.direction;
 	}

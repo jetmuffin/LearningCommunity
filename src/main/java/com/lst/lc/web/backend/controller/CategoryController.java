@@ -12,42 +12,43 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.entities.Admin;
-import com.lst.lc.entities.Direction;
+import com.lst.lc.entities.Category;
+
 
 @Controller
-@RequestMapping("/manage/direction")
-public class DirectionController {
+@RequestMapping("/manage/category")
+public class CategoryController {
 
 	@Autowired
-	@Qualifier("directionDao")
-	private DirectionDao directionDao;
+	@Qualifier("categoryDao")
+	private CategoryDao categoryDao;
 
-	public DirectionController() {
+	public CategoryController() {
 		super();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
-		return "backend/direction/add";
+		return "backend/category/add";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpSession session, String name, String description,
 			String enabled) {
 		Admin admin = (Admin) session.getAttribute("admin");
-		Direction direction = new Direction(admin, name, new Date(),
+		Category category = new Category(admin, name, new Date(),
 				description, enabled);
-		directionDao.addDirection(direction);
-		return "redirect:/manage/direction/directions";
+		categoryDao.addCategory(category);
+		return "redirect:/manage/category/categorys";
 	}
 
-	@RequestMapping(value = "/directions", method = RequestMethod.GET)
+	@RequestMapping(value = "/categorys", method = RequestMethod.GET)
 	public String list(Model model) {
-		List<Direction> directions = directionDao.getAllDirections();
-		model.addAttribute("directions", directions);
-		return "backend/direction/list";
+		List<Category> categorys = categoryDao.getAllCategories();
+		model.addAttribute("categorys", categorys);
+		return "backend/category/list";
 	}
 
 }
