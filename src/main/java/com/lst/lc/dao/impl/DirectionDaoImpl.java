@@ -38,7 +38,7 @@ public class DirectionDaoImpl extends BaseDao implements DirectionDao {
 
 	@Override
 	public void delete(int directionId) {
-		String hql = "delete from Direction as direction where direction.directionId = ?";
+		String hql = "delete Direction as direction where direction.directionId = ?";
 		Query query = query(hql);
 		query.setInteger(0, directionId).executeUpdate();
 	}
