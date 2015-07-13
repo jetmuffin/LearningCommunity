@@ -71,7 +71,6 @@ public class DirectionController {
 	
 	@RequestMapping(value = "/delete/{directionId}", method = RequestMethod.GET)
 	public String delete(@PathVariable int directionId, RedirectAttributes redirectAttributes){
-		Direction direction = directionDao.getDirection(directionId);
 		directionDao.delete(directionId);
 		redirectAttributes.addFlashAttribute("directionMsg", "删除方向信息成功");
 		return "redirect:/manage/direction/directions";

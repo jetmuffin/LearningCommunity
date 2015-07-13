@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.CategoryDao;
+import com.lst.lc.dao.DirectionDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Category;
-
+import com.lst.lc.entities.Direction;
 
 @Controller
 @RequestMapping("/manage/category")
@@ -27,23 +28,30 @@ public class CategoryController {
 	@Qualifier("categoryDao")
 	private CategoryDao categoryDao;
 
+	@Autowired
+	@Qualifier("directionDao")
+	private DirectionDao directionDao;
+
 	public CategoryController() {
 		super();
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
+		List<Direction> directions = directionDao.getAllDirections();
+		model.addAttribute("directions", directions);
 		return "backend/category/add";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(HttpSession session, String name, String description,
-			String enabled,RedirectAttributes redirectAttributes) {
+			String enabled, int directionId,
+			RedirectAttributes redirectAttributes) {
 		Admin admin = (Admin) session.getAttribute("admin");
-		Category category = new Category(admin, name, new Date(),
-				description, enabled);
+		Direction direction = directionDao.getDirection(directionId);
+		Category category = new Category(admin, direction, name, new Date(),
+				description, enabled, null);
 		categoryDao.addCategory(category);
-		
 		redirectAttributes.addFlashAttribute("categoryMsg", "添加分类信息成功");
 		return "redirect:/manage/category/categories";
 	}
@@ -54,30 +62,29 @@ public class CategoryController {
 		model.addAttribute("categories", categories);
 		return "backend/category/list";
 	}
-	
+
 	@RequestMapping(value = "/edit/{categoryId}", method = RequestMethod.GET)
-	public String edit(@PathVariable int categoryId, Model model){
+	public String edit(@PathVariable int categoryId, Model model) {
 		Category category = categoryDao.getCategory(categoryId);
 		model.addAttribute("category", category);
+		List<Direction> directions = directionDao.getAllDirections();
+		model.addAttribute("directions", directions);
 		return "backend/category/edit";
 	}
 
 	@RequestMapping(value = "/edit/{categoryId}", method = RequestMethod.POST)
-	public String edit(@PathVariable int categoryId, String name, String description,
-			String enabled, RedirectAttributes redirectAttributes){
-		Category category = categoryDao.getCategory(categoryId);
-		category.setCategoryName(name);
-		category.setDescription(description);
-		category.setEnabled(enabled);
-		categoryDao.update(category);
+	public String edit(@PathVariable int categoryId, String name,
+			String description, String enabled, int directionId,
+			RedirectAttributes redirectAttributes) {
+		categoryDao.update(categoryId, name, description, enabled, directionId);
 		redirectAttributes.addFlashAttribute("categoryMsg", "修改分类信息成功");
 		return "redirect:/manage/category/categories";
 	}
 
 	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.GET)
-	public String delete(@PathVariable int categoryId, RedirectAttributes redirectAttributes){
-		Category category = categoryDao.getCategory(categoryId);
-		categoryDao.delete(category);
+	public String delete(@PathVariable int categoryId,
+			RedirectAttributes redirectAttributes) {
+		categoryDao.delete(categoryId);
 		redirectAttributes.addFlashAttribute("categoryMsg", "删除分类信息成功");
 		return "redirect:/manage/category/categories";
 	}

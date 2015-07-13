@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 14:13:10 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 19:18:52 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Category implements java.io.Serializable {
 
 	private Integer categoryId;
 	private Admin admin;
+	private Direction direction;
 	private String categoryName;
 	private Date time;
 	private String description;
@@ -36,18 +37,20 @@ public class Category implements java.io.Serializable {
 	public Category() {
 	}
 
-	public Category(Admin admin, String categoryName, Date time,
-			String description, String enabled) {
+	public Category(Admin admin, Direction direction, String categoryName,
+			Date time, String description, String enabled) {
 		this.admin = admin;
+		this.direction = direction;
 		this.categoryName = categoryName;
 		this.time = time;
 		this.description = description;
 		this.enabled = enabled;
 	}
 
-	public Category(Admin admin, String categoryName, Date time,
-			String description, String enabled, Set<Course> courses) {
+	public Category(Admin admin, Direction direction, String categoryName,
+			Date time, String description, String enabled, Set<Course> courses) {
 		this.admin = admin;
+		this.direction = direction;
 		this.categoryName = categoryName;
 		this.time = time;
 		this.description = description;
@@ -74,6 +77,16 @@ public class Category implements java.io.Serializable {
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "directionId", nullable = false)
+	public Direction getDirection() {
+		return this.direction;
+	}
+
+	public void setDirection(Direction direction) {
+		this.direction = direction;
 	}
 
 	@Column(name = "categoryName", nullable = false, length = 20)
