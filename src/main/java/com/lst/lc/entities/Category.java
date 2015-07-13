@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 13:03:22 by Hibernate Tools 4.3.1
+// Generated 2015-7-13 13:31:58 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Category implements java.io.Serializable {
 	private Admin admin;
 	private Date time;
 	private String description;
+	private String enabled;
 	private Set<Course> courses = new HashSet<Course>(0);
 
 	public Category() {
@@ -39,11 +40,12 @@ public class Category implements java.io.Serializable {
 	}
 
 	public Category(String categoryName, Admin admin, Date time,
-			String description, Set<Course> courses) {
+			String description, String enabled, Set<Course> courses) {
 		this.categoryName = categoryName;
 		this.admin = admin;
 		this.time = time;
 		this.description = description;
+		this.enabled = enabled;
 		this.courses = courses;
 	}
 
@@ -84,6 +86,15 @@ public class Category implements java.io.Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	@Column(name = "enabled", length = 10)
+	public String getEnabled() {
+		return this.enabled;
+	}
+
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
