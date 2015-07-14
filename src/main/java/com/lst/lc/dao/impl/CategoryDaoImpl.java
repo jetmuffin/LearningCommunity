@@ -1,5 +1,6 @@
 package com.lst.lc.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.entities.Category;
+import com.lst.lc.web.bean.CategoryBean;
 
 @Repository("categoryDao")
 public class CategoryDaoImpl extends BaseDao implements CategoryDao {
@@ -54,14 +56,17 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 	}
 
 	@Override
-	public List<Category> getCategoriesOfDirection(int directionId) {
+	public List<CategoryBean> getCategoriesOfDirection(int directionId) {
 		String hql = "from Category as category where category.direction.directionId = ?";
 		Query query = query(hql);
 		List<Category> categories = query.setInteger(0, directionId).list();
-		for (int i = 0; i < categories.size(); i++) {
-			System.out.println(categories.get(i).getDirection().getDirectionId());
+		List<CategoryBean> categoryBeans = new ArrayList<CategoryBean>();
+		for(int i = 0; i < categories.size(); i++){
+			CategoryBean categoryBean = new CategoryBean();
+			categoryBean.setCategoryId(categories.get(i).getCategoryId());
+			categoryBean.setCategoryName(categories.get(i).getCategoryName());
+			categoryBeans.add(categoryBean);
 		}
-		System.out.println(categories);
-		return categories;
+		return categoryBeans;
 	}
 }

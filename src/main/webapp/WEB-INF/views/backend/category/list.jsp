@@ -30,6 +30,12 @@
 		</div>
 		<!-- Content -->
 		<div class="templatemo-content-container">
+				<c:if test="${not empty categoryMsg}">
+		<div class="alert alert-info templatemo-content-widget" role="alert">
+			<i class="fa fa-times"></i>
+			<p>${categoryMsg}</p>
+		</div>
+		</c:if>
 			<div class="templatemo-content-widget no-padding">
 				<div class="panel panel-default table-responsive">
 					<table
