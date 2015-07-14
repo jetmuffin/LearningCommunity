@@ -21,6 +21,8 @@ import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
+import com.lst.lc.utils.MultipartFileUtils;
+import com.lst.lc.utils.PathUtils;
 
 @Controller
 @RequestMapping("/manage/course")
@@ -67,20 +69,14 @@ public class CourseController {
 			MultipartFile image, RedirectAttributes redirectAttributes) {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
-		Course course = new Course();
-		course.setCategory(category);
-		course.setDirection(direction);
-		course.setStudentNums(0);
-		course.setTitle(title);
-		course.setCreateTime(new Date());
-		course.setDescription(description);
-		course.setDifficulty(difficulty);
-		course.setDuration(0);
-		course.setEnabled("0");
-		course.setImageUrl(imageUrl);
-		course.setIsFinished("0");
+		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", "0");
 		courseDao.addCourse(course);
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
+		
+		//上传文件命名规则：项目路径+directionId
+		String imagePath = PathUtils.getPropertyPath()+"/"+directionId;
+		MultipartFileUtils.saveFile(image, imagePath);
+		
 		return "redirect:/manage/course/courses/1/10";
 	}
 }
