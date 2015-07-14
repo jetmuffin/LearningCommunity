@@ -554,6 +554,17 @@ input[type="radio"]:checked + label span {
 	overflow-y: scroll;	
 }
 
+	td.course-td{
+		line-height:60px !important;
+	}
+	.course-thumb{
+	  width: 100px;
+	  height: 60px;
+	  overflow: hidden;
+	}
+	.course-thumb img{
+	  width: 100px;
+	}
 /* 8. Media Queries
 ------------------------------*/
 @media screen and (max-width: 1199px) and (min-width: 991px) {

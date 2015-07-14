@@ -39,22 +39,22 @@
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">分类名
+								<td><a href="?sortKey=category" class="white-text templatemo-sort-by">分类名
 										 <span class="caret"></span>
 								</a></td>	
-								<td><a href="" class="white-text templatemo-sort-by">创建人
+								<td><a href="?sortKey=direction" class="white-text templatemo-sort-by">方向名
+										 <span class="caret"></span></a></td>
+								<td><a href="?sortKey=admin" class="white-text templatemo-sort-by">创建人
 										 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">创建时间
+								<td><a href="?sortKey=time" class="white-text templatemo-sort-by">创建时间
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">是否启用
+								<td><a href="?sortKey=enabled" class="white-text templatemo-sort-by">是否启用
 										<span class="caret"></span>
 								</a></td>	
-								<td><a href="" class="white-text templatemo-sort-by">编辑
-								</a></td>				
-									<td><a href="" class="white-text templatemo-sort-by">删除
-								</a></td>																								
+								<td>编辑</td>				
+									<td>删除</td>																								
 							</tr>
 						</thead>
 						<tbody>
@@ -62,6 +62,7 @@
 								<tr>
 									<td>${category.categoryId}</td>
 									<td>${category.categoryName}</td>
+									<td>${category.direction.directionName }</td>
 									<td>${category.admin.name}</td>
 									<td>${category.time}</td>
 									<td><c:if test="${category.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>启用</c:if><c:if test="${direction.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未启用</c:if></td>

@@ -46,6 +46,16 @@
 							<textarea class="form-control" id="inputNote"  name="description" rows="3"></textarea>
 						</div>
 					</div>		
+					<div class="row form-group">
+						<div class="col-lg-6 col-md-6 form-group">
+							<label class="control-label templatemo-block">属于方向</label> <select
+								class="form-control" name="directionId">
+								<c:forEach var="direction" items="${directions}">
+									<option value="${direction.directionId}">${direction.directionName}</option>
+								</c:forEach>
+							</select>
+						</div>
+					</div>					
 					<div class="col-lg-12 form-group">
 						<div class="margin-right-15 templatemo-inline-block">
 							<input  name="enabled"  type="radio" id="r4" value="1" checked=""> <label

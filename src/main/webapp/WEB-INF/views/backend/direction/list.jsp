@@ -45,16 +45,16 @@
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">方向名称
+								<td><a href="?sortKey=directionName" class="white-text templatemo-sort-by">方向名称
 										 <span class="caret"></span>
 								</a></td>	
-								<td><a href="" class="white-text templatemo-sort-by">创建人
+								<td><a href="?sortKey=admin" class="white-text templatemo-sort-by">创建人
 										 <span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">创建时间
+								<td><a href="?sortKey=time" class="white-text templatemo-sort-by">创建时间
 										<span class="caret"></span>
 								</a></td>
-								<td><a href="" class="white-text templatemo-sort-by">是否启用
+								<td><a href="?sortKey=enabled" class="white-text templatemo-sort-by">是否启用
 										<span class="caret"></span>
 								</a></td>	
 								<td><a href="" class="white-text templatemo-sort-by">编辑
