@@ -17,9 +17,9 @@ public class PageHandler<T> {
 	private List<T> list;
 
 	public Page<T> getPage(int pageNow, int pageSize, Class<T> c) {
-		int totalRowCount = pageDao.getTotalRowCount(c);
-		int temp = totalRowCount / pageSize;
-		int totalPageCount = (totalRowCount % pageSize) == 0 ? temp : temp + 1;
+		long totalRowCount = pageDao.getTotalRowCount(c);
+		long temp = totalRowCount / pageSize;
+		long totalPageCount = (totalRowCount % pageSize) == 0 ? temp : temp + 1;
 		if(pageNow > totalPageCount)
 			return null;
 		page = new Page<T>();
