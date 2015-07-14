@@ -1,6 +1,6 @@
 package com.lst.lc.web.bean;
 
-public class CategoryBean {
+public class PartCategory {
 	
 	private Integer categoryId;
 	private String categoryName;

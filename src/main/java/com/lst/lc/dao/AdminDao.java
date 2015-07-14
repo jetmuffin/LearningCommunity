@@ -1,7 +1,6 @@
 package com.lst.lc.dao;
 
 import com.lst.lc.entities.Admin;
-
 public interface AdminDao {
 	
 	/**

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.entities.Category;
-import com.lst.lc.web.bean.CategoryBean;
+import com.lst.lc.web.bean.PartCategory;
 
 @Repository("categoryDao")
 public class CategoryDaoImpl extends BaseDao implements CategoryDao {
@@ -56,13 +56,13 @@ public class CategoryDaoImpl extends BaseDao implements CategoryDao {
 	}
 
 	@Override
-	public List<CategoryBean> getCategoriesOfDirection(int directionId) {
+	public List<PartCategory> getCategoriesOfDirection(int directionId) {
 		String hql = "from Category as category where category.direction.directionId = ?";
 		Query query = query(hql);
 		List<Category> categories = query.setInteger(0, directionId).list();
-		List<CategoryBean> categoryBeans = new ArrayList<CategoryBean>();
+		List<PartCategory> categoryBeans = new ArrayList<PartCategory>();
 		for(int i = 0; i < categories.size(); i++){
-			CategoryBean categoryBean = new CategoryBean();
+			PartCategory categoryBean = new PartCategory();
 			categoryBean.setCategoryId(categories.get(i).getCategoryId());
 			categoryBean.setCategoryName(categories.get(i).getCategoryName());
 			categoryBeans.add(categoryBean);
