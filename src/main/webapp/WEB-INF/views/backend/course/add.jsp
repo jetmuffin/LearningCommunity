@@ -69,7 +69,7 @@
 								<label for="r5" class="font-weight-400"><span></span>中级</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="radio" id="r6" value=""> <label
+								<input type="radio" name="difficulty" id="r6" value=""> <label
 									for="r6" class="font-weight-400"><span></span>高级</label>
 							</div>
 						</div>
@@ -90,6 +90,10 @@
 							<p>Maximum upload size is 5 MB.</p>
 						</div>
 					</div>
+                    <div class="margin-right-15 templatemo-inline-block">                      
+                      <input type="checkbox" name="enabled" id="c4" value="">
+                      <label for="c4" class="font-weight-400"><span></span>开放</label>
+                    </div>							
 					<div class="form-group text-right">
 						<button type="submit" class="templatemo-blue-button">添加</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
