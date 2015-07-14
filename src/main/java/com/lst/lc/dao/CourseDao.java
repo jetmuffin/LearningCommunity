@@ -16,8 +16,6 @@ public interface CourseDao {
 	
 	public List<Course> getAllCourses();
 	
-	public List<Course> getCoursesOrderByDate();
-	
 	public List<Course> getCoursesOrderByNums();
 	
 }

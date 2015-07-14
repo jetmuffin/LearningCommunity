@@ -3,6 +3,7 @@ package com.lst.lc.page;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,14 @@ public class PageDao extends BaseDao {
 		criteria.setFirstResult((pageNow-1)*pageSize);
 		criteria.setMaxResults(pageSize);
 		List<T> list = criteria.list();
+		return list;
+	}
+	
+	public <T> List<T> getPageList(int pageSize, int pageNow, String hql){
+		Query query = query(hql);
+		query.setFirstResult((pageNow-1)*pageSize);
+		query.setMaxResults(pageSize);
+		List<T> list = query.list();
 		return list;
 	}
 

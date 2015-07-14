@@ -41,12 +41,6 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	}
 
 	@Override
-	public List<Course> getCoursesOrderByDate() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<Course> getCoursesOrderByNums() {
 		// TODO Auto-generated method stub
 		return null;
