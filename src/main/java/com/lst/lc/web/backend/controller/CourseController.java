@@ -80,7 +80,7 @@ public class CourseController {
 		course.setEnabled("0");
 		course.setImageUrl(imageUrl);
 		course.setIsFinished("0");
-		courseDao.addCourse(course);
+		courseDao.addCourse(course);	
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
 		return "redirect:/manage/course/courses/1/10";
 	}
