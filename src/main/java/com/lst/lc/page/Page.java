@@ -1,4 +1,4 @@
-package com.lst.lc.web.bean;
+package com.lst.lc.page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,12 +32,22 @@ public class Page<T> {
 	}
 	public void setPageNow(int pageNow) {
 		this.pageNow = pageNow;
+		if(pageNow == 1){
+			setHasPre(false);
+		}else{
+			setHasPre(true);
+		}
 	}
 	public int getTotalPageCount() {
 		return totalPageCount;
 	}
 	public void setTotalPageCount(int totalPageCount) {
 		this.totalPageCount = totalPageCount;
+		if(pageNow < totalPageCount){
+			setHasNext(true);
+		}else{
+			setHasNext(false);
+		}
 	}
 	public boolean isHasPre() {
 		return hasPre;
