@@ -32,20 +32,20 @@
 		<div class="templatemo-content-container">
 			<div class="templatemo-content-widget white-bg">
 				<h2 class="margin-bottom-10">添加新课程</h2>
-				<form action="index.html" class="templatemo-login-form"
+				<form action="" class="templatemo-login-form"
 					method="post" enctype="multipart/form-data">
 					<div class="row form-group">
 						<div class="col-lg-8 col-md-8 form-group">
 							<label for="inputName">课程名</label> <input type="text"
-								class="form-control" id="inputName" placeholder="请输入课程名">
+								class="form-control"  name="title" id="inputName" placeholder="请输入课程名">
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程方向</label> <select
-								class="form-control">
-								<c:forEach var="direction" items="${directions}">
-									<option value="${direction.directionId}">${direction.directionName}</option>
+								class="form-control" id="direction-select" name="directionId">
+								<c:forEach var="direction" items="${directions}"  varStatus="status"  >
+									<option value="${direction.directionId}" <c:if test="${status.first eq true}">selected</c:if>>${direction.directionName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -53,10 +53,7 @@
 					<div class="row form-group">
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程分类</label> <select
-								class="form-control">
-								<c:forEach var="category" items="${categories}">
-									<option value="${category.categoryId}">${category.categoryName}</option>
-								</c:forEach>
+								class="form-control" id="category-select" name="categoryId">
 							</select>
 						</div>
 					</div>
@@ -64,11 +61,11 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label templatemo-block">选择课程难度</label>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="radio" id="r4" value=""> <label
+								<input type="radio" name="difficulty" id="r4" value=""> <label
 									for="r4" class="font-weight-400"><span></span>初级</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="radio" id="r5" value="" checked>
+								<input type="radio" name="difficulty" id="r5" value="" checked>
 								<label for="r5" class="font-weight-400"><span></span>中级</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
@@ -80,14 +77,14 @@
 					<div class="row form-group">
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">课程描述</label>
-							<textarea class="form-control" id="inputNote" rows="3"></textarea>
+							<textarea class="form-control" id="inputNote"  name="description" rows="3"></textarea>
 						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col-lg-12">
 							<label class="control-label templatemo-block">课程图片</label>
 							<!-- <input type="file" name="fileToUpload" id="fileToUpload" class="margin-bottom-10"> -->
-							<input type="file" name="fileToUpload" id="fileToUpload"
+							<input type="file" name="image" id="fileToUpload"
 								class="filestyle" data-buttonName="btn-primary"
 								data-buttonBefore="true" data-icon="false">
 							<p>Maximum upload size is 5 MB.</p>

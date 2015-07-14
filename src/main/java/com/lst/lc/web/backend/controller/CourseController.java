@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.DirectionDao;
@@ -46,10 +47,11 @@ public class CourseController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(String title, String description, String difficulty,
-			String imageUrl, String category, String direction) {
-		
+			String imageUrl, String categoryId, int directionId,MultipartFile image) {
+		System.out.println(categoryId);
+		System.out.println(directionId);
+		System.out.println(image.getOriginalFilename());
 		return null;
 	}
-	
 }
 	
