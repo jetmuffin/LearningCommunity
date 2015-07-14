@@ -3,6 +3,8 @@ package com.lst.lc.web.backend.controller;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -72,20 +74,25 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(String title, String description, String difficulty,
-			String imageUrl, int categoryId, int directionId,
-			MultipartFile image, RedirectAttributes redirectAttributes) {
-		
+	public String add(String title, String description, String difficulty, int categoryId, int directionId,
+			MultipartFile image, RedirectAttributes redirectAttributes,HttpSession session) {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
+		
+		
+		//上传文件命名规则：项目路径+directionId
+		String imagePath = session.getServletContext().getRealPath("/")+directionId;
+	
+		System.err.println("imagePath = "+imagePath);
+		
+		String imageUrl = imagePath+"/"+image.getOriginalFilename();
+		MultipartFileUtils.saveFile(image, imagePath);
+
+		System.err.println("imagePath = "+imageUrl);
+		
 		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", "0");
 		courseDao.addCourse(course);
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
-		
-		//上传文件命名规则：项目路径+directionId
-		String imagePath = PathUtils.getPropertyPath()+"/"+directionId;
-		MultipartFileUtils.saveFile(image, imagePath);
-		
 		return "redirect:/manage/course/courses";
 	}
 }
