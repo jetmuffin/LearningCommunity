@@ -21,7 +21,7 @@
 			<div class="row">
 				<nav class="templatemo-top-nav col-lg-12 col-md-12">
 				<ul class="text-uppercase">
-					<li><a href="/LearningCommunity/manage/course/courses">课程列表</a></li>
+					<li><a href="/LearningCommunity/manage/course/courses?pageNum=1&pageSize=5">课程列表</a></li>
 					<li><a href="/LearningCommunity/manage/category/categories"  class="active">分类列表</a></li>
 					<li><a href="/LearningCommunity/manage/direction/directions">方向列表</a></li>
 				</ul>

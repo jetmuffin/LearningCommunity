@@ -45,9 +45,8 @@ public class CourseController {
 		super();
 	}
 
-	@RequestMapping(value = "/courses/{pageNum}/{pageSize}", method = RequestMethod.GET)
-	public String listCourse(Model model, @PathVariable int pageNum,
-			@PathVariable int pageSize) {
+	@RequestMapping(value = "/courses", method = RequestMethod.GET)
+	public String listCourse(Model model, int pageNum,int pageSize) {
 		Page<Course> page = pageHandler
 				.getPage(pageNum, pageSize, Course.class);
 		model.addAttribute("module", "course");
