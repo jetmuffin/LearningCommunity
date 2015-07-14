@@ -46,10 +46,21 @@ public class DirectionDaoImpl extends BaseDao implements DirectionDao {
 
 	@Override
 	public List<Direction> getEnabledDirections() {
-		String hqlString = "from Direction as direction where direction.enabled=?";
+		String hqlString = "from Direction as direction where direction.enabled = ?";
 		Query query = query(hqlString);
 		query.setString(0, "1");
 		List<Direction> ts = query.list();
 		return ts;
+	}
+
+	@Override
+	public Direction getDirectionByName(String name) {
+		String hql = "from Direction as direction where direction.directionName = ?";
+		Query query = query(hql);
+		query.setString(0, name);
+		List<Direction> ts = query.list();
+		if(ts == null)
+			return null;
+		return ts.get(0);
 	}
 }
