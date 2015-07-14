@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,25 +23,20 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<li class="course-nav-item on"><a href="">全部</a></li>
-			            			<li class="course-nav-item"><a href="">前端开发</a></li>
-			            			<li class="course-nav-item"><a href="">后端开发</a></li>
-			            			<li class="course-nav-item"><a href="">数据挖掘</a></li>
-			            			<li class="course-nav-item"><a href="">图像处理</a></li>
+			            			<c:forEach var="direction" items="${directions}">
+			            				<li class="course-nav-item"><a href="">${direction.directionName}</a></li>
+			            			</c:forEach>
 			            		</ul>
-
 				            </div>
 				        </div>
 						<div class="course-nav-base-line">
 				            <label class="hd l">分类：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<li class="course-nav-item on"><a href="">全部</a></li>
-			            			<li class="course-nav-item"><a href="">HTML</a></li>
-			            			<li class="course-nav-item"><a href="">PHP</a></li>
-			            			<li class="course-nav-item"><a href="">Javascript</a></li>
-			            			<li class="course-nav-item"><a href="">Python</a></li>
-			            			<li class="course-nav-item"><a href="">Scala</a></li>			 <li class="course-nav-item"><a href="">Spark</a></li>	           			
-			            			<li class="course-nav-item"><a href="">AngularJs</a></li>			 <li class="course-nav-item"><a href="">Node.Js</a></li>	
+			            			<li class="course-nav-item on"><a href="?direction=${param.direction}&category=&difficulty=${param.difficulty}">全部</a></li>
+			            			<c:forEach var="category" items="${categories}">
+			            				<li class="course-nav-item"><a href="?direction=${param.direction}&category=${category.categoryId}&difficulty=${param.difficulty}">${category.categoryName}</a></li>
+			            			</c:forEach>
 			            		</ul>
 				            </div>
 				        </div>		

@@ -50,9 +50,17 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public String listCourse(Model model, int pageNum,int pageSize) {
+	public String listCourse(Model model, String pageNum,String pageSize) {
+		int pageNow = 1;
+		int pagesize = 10;
+		if(pageSize != null){
+			pagesize = Integer.valueOf(pageSize);
+		}
+		if(pageSize != null){
+			pageNow = Integer.valueOf(pageNum);
+		}
 		Page<Course> page = pageHandler
-				.getPage(pageNum, pageSize, Course.class);
+				.getPage(pageNow, pagesize, Course.class);
 		model.addAttribute("module", "course");
 		model.addAttribute("page", page);
 		return "backend/course/list";

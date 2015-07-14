@@ -90,10 +90,17 @@
 							<p>Maximum upload size is 5 MB.</p>
 						</div>
 					</div>
-                    <div class="margin-right-15 templatemo-inline-block">                      
-                      <input type="checkbox" name="enabled" id="c4" value="">
-                      <label for="c4" class="font-weight-400"><span></span>开放</label>
-                    </div>							
+					<div class="col-lg-12 form-group">
+					<label class="control-label templatemo-block">是否开放</label>
+						<div class="margin-right-15 templatemo-inline-block">
+							<input  name="enabled"  type="radio" id="r1" value="1" checked=""> <label
+								for="r1"class="font-weight-400"><span></span>启用</label>
+						</div>
+						<div class="margin-right-15 templatemo-inline-block">
+							<input type="radio"   name="enabled"  id="r2" value="0" >
+							<label for="r2" class="font-weight-400"><span></span>不启用</label>
+						</div>
+					</div>							
 					<div class="form-group text-right">
 						<button type="submit" class="templatemo-blue-button">添加</button>
 						<button type="reset" class="templatemo-white-button">重置</button>
