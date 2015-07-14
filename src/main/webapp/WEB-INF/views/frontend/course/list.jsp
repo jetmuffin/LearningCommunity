@@ -33,7 +33,7 @@
 				            <label class="hd l">分类：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<li class="course-nav-item on"><a href="?direction=${param.direction}&category=&difficulty=${param.difficulty}">全部</a></li>
+			            			<li class="course-nav-item on"><a href="?direction=${param.direction}&category=all&difficulty=${param.difficulty}">全部</a></li>
 			            			<c:forEach var="category" items="${categories}">
 			            				<li class="course-nav-item"><a href="?direction=${param.direction}&category=${category.categoryId}&difficulty=${param.difficulty}">${category.categoryName}</a></li>
 			            			</c:forEach>

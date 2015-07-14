@@ -266,7 +266,7 @@ h5 {
   height: 30px;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
-  background: url(gsearch-sprite.png) no-repeat 0 0;
+  background: url(/LearningCommunity/resources/images/gsearch-sprite.png) no-repeat 0 0;
 }
 #header #login-area {
   float: right;
