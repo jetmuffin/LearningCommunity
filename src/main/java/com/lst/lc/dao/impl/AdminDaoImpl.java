@@ -27,7 +27,6 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
 		if (admins.size() != 1)
 			return null;
 		Admin admin = admins.get(0);
-		
 		return admin;
 	}
 

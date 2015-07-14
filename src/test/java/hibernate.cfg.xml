@@ -7,9 +7,9 @@
 		<!-- 配置 hibernate 的基本信息 -->
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.password">szq1993721</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/LearningCommunity</property>
-		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">lst</property>
+		<property name="hibernate.connection.url">jdbc:mysql://121.248.199.34:3306/LearningCommunity</property>
+		<property name="hibernate.connection.username">lst</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 
 		<!-- hibernate 所使用的数据库方言 -->
@@ -23,6 +23,26 @@
 
 		<!-- 设置数据隔离级别 -->
 		<property name="connection.isolation">2</property>
+
+		<mapping class="com.lst.lc.entities.Admin" />
+		<mapping class="com.lst.lc.entities.Direction" />
+		<mapping class="com.lst.lc.entities.Category" />
+		<mapping class="com.lst.lc.entities.Blog" />
+		<mapping class="com.lst.lc.entities.BlogComment" />
+		<mapping class="com.lst.lc.entities.Course" />
+		<mapping class="com.lst.lc.entities.CourseLesson" />
+		<mapping class="com.lst.lc.entities.LessonComment" />
+		<mapping class="com.lst.lc.entities.Question" />
+		<mapping class="com.lst.lc.entities.QuestionAnswer" />
+		<mapping class="com.lst.lc.entities.Rank" />
+		<mapping class="com.lst.lc.entities.User" />
+		<mapping class="com.lst.lc.entities.StudyRoute" />
+		<mapping class="com.lst.lc.entities.RelCourseRoute" />
+		<mapping class="com.lst.lc.entities.RelUserCourse" />
+		<mapping class="com.lst.lc.entities.RelUserRoute" />
+		<mapping class="com.lst.lc.entities.RelCourseRouteId" />
+		<mapping class="com.lst.lc.entities.RelUserCourseId" />
+		<mapping class="com.lst.lc.entities.RelUserRouteId" />
 
 	</session-factory>
 </hibernate-configuration>

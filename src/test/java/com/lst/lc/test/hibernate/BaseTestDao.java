@@ -7,10 +7,16 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
+/**
+ * hibernate测试基类，所有hibernate测试类都要继承该类
+ * @author sloriac
+ *
+ */
 public class BaseTestDao {
 	
 	private SessionFactory sessionFactory;
@@ -19,11 +25,9 @@ public class BaseTestDao {
 	
 	public void init() {
 		Configuration configuration = new Configuration().configure();
-		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder()
-				.applySettings(configuration.getProperties())
-				.build();
-
-		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+		StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+        sessionFactory = configuration.buildSessionFactory(ssr);
+        System.out.println(sessionFactory.toString());
 		session = sessionFactory.openSession();
 		transaction = session.beginTransaction();
 	}
