@@ -73,8 +73,18 @@
 					<artifactId>jasper-compiler</artifactId>
 					<groupId>tomcat</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
+
+<dependency>
+	<groupId>javax.servlet</groupId>
+	<artifactId>javax.servlet-api</artifactId>
+	<version>3.0.1</version>
+</dependency>
 
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
@@ -218,6 +228,10 @@
 				<exclusion>
 					<artifactId>jasper-runtime</artifactId>
 					<groupId>tomcat</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>javax.servlet</groupId>
 				</exclusion>
 			</exclusions>
 		</dependency>
