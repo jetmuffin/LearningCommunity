@@ -3,7 +3,6 @@ package com.lst.lc.page;
 import java.util.List;
 
 import org.hibernate.Criteria;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +15,8 @@ public class PageDao extends BaseDao {
 		return getSession().createCriteria(c);
 	}
 	
-	public <T> int getTotalRowCount(Class<T> c) {
-		return (int) getCriteria(c).setProjection(Projections.rowCount())
+	public <T> long getTotalRowCount(Class<T> c) {
+		return (long) getCriteria(c).setProjection(Projections.rowCount())
 				.uniqueResult();
 	}
 	
