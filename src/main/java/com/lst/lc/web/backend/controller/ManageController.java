@@ -47,6 +47,13 @@ public class ManageController {
 		}
 	}
 
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session,RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("logoutMsg", "退出成功");
+		session.setAttribute("admin", null);
+		return "redirect:/manage/login";
+	}
+	
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index(Model model) {
 		return "backend/index/index";
@@ -63,4 +70,6 @@ public class ManageController {
 		model.addAttribute("module", "user");
 		return "backend/user/add";
 	}
+	
+	
 }

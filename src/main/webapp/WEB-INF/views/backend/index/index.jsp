@@ -24,7 +24,7 @@
 					<li><a href="" class="active">Admin panel</a></li>
 					<li><a href="">Dashboard</a></li>
 					<li><a href="">Overview</a></li>
-					<li><a href="login.html">Sign in form</a></li>
+					<li><a href="/LearningCommunity/manage/logout">Sign in form</a></li>
 				</ul>
 				</nav>
 			</div>
