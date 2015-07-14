@@ -3,10 +3,12 @@ package com.lst.lc.dao.impl;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.entities.Course;
 
+@Repository("courseDao")
 public class CourseDaoImpl extends BaseDao implements CourseDao {
 
 	@Override
@@ -31,6 +33,11 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		query.setString(0, "1");
 		List<Course> ts = query.list();
 		return ts;
+	}
+
+	@Override
+	public List<Course> getAllCourses() {
+		return getAll("Course");
 	}
 
 }

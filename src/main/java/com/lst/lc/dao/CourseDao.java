@@ -14,4 +14,6 @@ public interface CourseDao {
 	
 	public List<Course> getEnabledCourses();
 	
+	public List<Course> getAllCourses();
+	
 }
