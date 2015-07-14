@@ -86,6 +86,6 @@ public class CourseController {
 		String imagePath = PathUtils.getPropertyPath()+"/"+directionId;
 		MultipartFileUtils.saveFile(image, imagePath);
 		
-		return "redirect:/manage/course/courses/1/10";
+		return "redirect:/manage/course/courses";
 	}
 }

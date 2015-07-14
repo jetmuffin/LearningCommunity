@@ -35,6 +35,7 @@
 					<table
 						class="table table-striped table-bordered templatemo-user-table">
 						<thead>
+
 							<tr>
 								<td><a href="" class="white-text templatemo-sort-by">#
 										<span class="caret"></span>
@@ -49,21 +50,23 @@
 										<span class="caret"></span>
 								</a></td>
 								<td>Edit</td>
-								<td>Action</td>
+								<td>View</td>
 								<td>Delete</td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><div class="course-thumb"><img src="/LearningCommunity/resources/images/bicycle.jpg" alt="" /></div></td>
-								<td class="course-td">John</td>
-								<td class="course-td">Smith</td>
-								<td class="course-td">@jS</td>
-								<td class="course-td"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>开放</td>
-								<td class="course-td"><a href="" class="templatemo-edit-btn">Edit</a></td>
-								<td class="course-td"><a href="" class="templatemo-edit-btn">Action</a></td>
-								<td class="course-td"><a href="" class="templatemo-link">Delete</a></td>
-							</tr>
+							<c:forEach var="course" items="${page.list}">
+								<tr>
+									<td><div class="course-thumb"><img src="${course.imageUrl }" alt="" /></div></td>
+									<td>${course.title}</td>
+									<td>${course.direction.directionName}</td>
+									<td>${course.category.categoryName}</td>
+									<td><c:if test="${course.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>开放</c:if><c:if test="${course.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未开放</c:if></td>
+								<td class="course-td"><a href="edit/${course.courseId}"  class="templatemo-edit-btn">Edit</a></td>
+								<td class="course-td"><a href="view/${course.courseId}"  class="templatemo-edit-btn">View</a></td>
+								<td class="course-td"><a href="delete/${course.courseId}" class="templatemo-link">Delete</a></td>								
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
