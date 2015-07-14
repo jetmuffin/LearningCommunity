@@ -17,7 +17,6 @@ public class Page<T> {
 	List<T> list = new ArrayList<T>();
 	public Page() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Page(int pageNow, int totalPageCount, boolean hasPre,
 			boolean hasNext, List<T> list) {

@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 19:59:48 by Hibernate Tools 4.3.1
+// Generated 2015-7-14 10:29:11 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -38,7 +37,7 @@ public class User implements java.io.Serializable {
 	private Set<Question> questions = new HashSet<Question>(0);
 	private Set<LessonComment> lessonComments = new HashSet<LessonComment>(0);
 	private Set<Blog> blogs = new HashSet<Blog>(0);
-	private RelUserCourse relUserCourse;
+	private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(0);
 
 	public User() {
 	}
@@ -61,7 +60,7 @@ public class User implements java.io.Serializable {
 			Set<RelUserRoute> relUserRoutes,
 			Set<QuestionAnswer> questionAnswers, Set<Question> questions,
 			Set<LessonComment> lessonComments, Set<Blog> blogs,
-			RelUserCourse relUserCourse) {
+			Set<RelUserCourse> relUserCourses) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -78,7 +77,7 @@ public class User implements java.io.Serializable {
 		this.questions = questions;
 		this.lessonComments = lessonComments;
 		this.blogs = blogs;
-		this.relUserCourse = relUserCourse;
+		this.relUserCourses = relUserCourses;
 	}
 
 	@Id
@@ -236,13 +235,13 @@ public class User implements java.io.Serializable {
 		this.blogs = blogs;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "user")
-	public RelUserCourse getRelUserCourse() {
-		return this.relUserCourse;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<RelUserCourse> getRelUserCourses() {
+		return this.relUserCourses;
 	}
 
-	public void setRelUserCourse(RelUserCourse relUserCourse) {
-		this.relUserCourse = relUserCourse;
+	public void setRelUserCourses(Set<RelUserCourse> relUserCourses) {
+		this.relUserCourses = relUserCourses;
 	}
 
 }

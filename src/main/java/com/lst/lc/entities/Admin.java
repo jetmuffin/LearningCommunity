@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-13 19:59:48 by Hibernate Tools 4.3.1
+// Generated 2015-7-14 10:29:11 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
