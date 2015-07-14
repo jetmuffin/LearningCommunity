@@ -17,4 +17,7 @@ $(document).ready(function(){
 			$(this).hide();
 		});
 	});
+	
+	/* get the host of website */
+	host = window.location.host;
 });

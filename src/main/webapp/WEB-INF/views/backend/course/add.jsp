@@ -43,9 +43,9 @@
 					<div class="row form-group">
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程方向</label> <select
-								class="form-control">
-								<c:forEach var="direction" items="${directions}">
-									<option value="${direction.directionId}">${direction.directionName}</option>
+								class="form-control" id="direction-select">
+								<c:forEach var="direction" items="${directions}"  varStatus="status"  >
+									<option value="${direction.directionId}" <c:if test="${status.first eq true}">selected</c:if>>${direction.directionName}</option>
 								</c:forEach>
 							</select>
 						</div>
@@ -53,10 +53,7 @@
 					<div class="row form-group">
 						<div class="col-lg-6 col-md-6 form-group">
 							<label class="control-label templatemo-block">选择课程分类</label> <select
-								class="form-control">
-								<c:forEach var="category" items="${categories}">
-									<option value="${category.categoryId}">${category.categoryName}</option>
-								</c:forEach>
+								class="form-control" id="category-select">
 							</select>
 						</div>
 					</div>
