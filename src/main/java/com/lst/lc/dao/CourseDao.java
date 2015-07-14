@@ -2,6 +2,8 @@ package com.lst.lc.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
+
 import com.lst.lc.entities.Course;
 
 public interface CourseDao {
@@ -17,5 +19,9 @@ public interface CourseDao {
 	public List<Course> getAllCourses();
 	
 	public List<Course> getCoursesOrderByNums();
+	
+	public Query getAllCoursesOfCategory(int categoryId);
+	
+	public Query getAllCoursesOfCategoryByNums(int categoryId);
 	
 }

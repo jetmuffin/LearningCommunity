@@ -42,8 +42,23 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 
 	@Override
 	public List<Course> getCoursesOrderByNums() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Query getAllCoursesOfCategory(int categoryId) {
+		String hql = "from Course as course where course.category.categoryId = ?";
+		Query query = query(hql);
+		query.setInteger(0, categoryId);
+		return query;
+	}
+
+	@Override
+	public Query getAllCoursesOfCategoryByNums(int categoryId) {
+		String hql = "from Course as course where course.category.categoryId = ? order by course.studentNums desc";
+		Query query = query(hql);
+		query.setInteger(0, categoryId);
+		return query;
 	}
 
 }

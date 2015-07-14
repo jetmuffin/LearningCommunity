@@ -12,6 +12,11 @@ import com.lst.lc.dao.impl.BaseDao;
 @Repository("pageDao")
 public class PageDao extends BaseDao {
 
+	/**
+	 * 创建Criteria对象
+	 * @param c
+	 * @return
+	 */
 	public <T> Criteria getCriteria(Class<T> c) {
 		return getSession().createCriteria(c);
 	}
@@ -29,8 +34,7 @@ public class PageDao extends BaseDao {
 		return list;
 	}
 	
-	public <T> List<T> getPageList(int pageSize, int pageNow, String hql){
-		Query query = query(hql);
+	public <T> List<T> getPageList(int pageSize, int pageNow, Query query){
 		query.setFirstResult((pageNow-1)*pageSize);
 		query.setMaxResults(pageSize);
 		List<T> list = query.list();
