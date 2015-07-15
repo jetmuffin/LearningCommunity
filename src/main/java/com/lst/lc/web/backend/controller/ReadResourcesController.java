@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.github.bingoohuang.patchca.service.Captcha;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.entities.Course;
 import com.lst.lc.web.bean.MyCaptcha;

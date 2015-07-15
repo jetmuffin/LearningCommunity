@@ -31,6 +31,7 @@ public class PageDao extends BaseDao {
 		criteria.setFirstResult((pageNow-1)*pageSize);
 		criteria.setMaxResults(pageSize);
 		List<T> list = criteria.list();
+		System.out.println("list" + list.size());
 		return list;
 	}
 	
@@ -38,6 +39,7 @@ public class PageDao extends BaseDao {
 		query.setFirstResult((pageNow-1)*pageSize);
 		query.setMaxResults(pageSize);
 		List<T> list = query.list();
+		System.out.println("list" + list.size());
 		return list;
 	}
 
