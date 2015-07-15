@@ -57,7 +57,7 @@
 						<tbody>
 							<c:forEach var="course" items="${page.list}">
 								<tr>
-									<td><div class="course-thumb"><img src="${course.imageUrl }" alt="" /></div></td>
+									<td><div class="course-thumb"><img src="/LearningCommunity/manage/read/photo/${course.courseId }" alt="" /></div></td>
 									<td>${course.title}</td>
 									<td>${course.direction.directionName}</td>
 									<td>${course.category.categoryName}</td>
