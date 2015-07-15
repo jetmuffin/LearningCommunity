@@ -314,7 +314,9 @@ footer { padding: 15px; }
 	border: 1px solid #ccc;
 	padding: 3px;
 }
-
+.course-table tbody td{
+	line-height:60px !important;
+}
 /* 4. Charts & Maps - http://codepen.io/shoogledesigns/pen/BfLkA
 ----------------------------------------------------------------*/
 .templatemo-chart {
@@ -384,6 +386,7 @@ footer { padding: 15px; }
 	padding: 15px;
 	text-align: center;
 }
+
 .templatemo-register-widget p {	margin-bottom: 0; }
 .checkbox label { padding-left: 0; }
 .font-weight-400 { font-weight: 400; }

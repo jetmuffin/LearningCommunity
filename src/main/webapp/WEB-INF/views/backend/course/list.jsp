@@ -33,7 +33,7 @@
 			<div class="templatemo-content-widget no-padding">
 				<div class="panel panel-default table-responsive">
 					<table
-						class="table table-striped table-bordered templatemo-user-table">
+						class="table table-striped table-bordered templatemo-user-table course-table">
 						<thead>
 
 							<tr>
