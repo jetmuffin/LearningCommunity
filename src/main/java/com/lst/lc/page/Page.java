@@ -81,4 +81,12 @@ public class Page<T> {
 		this.list = list;
 	}
 
+	@Override
+	public String toString() {
+		return "Page [pageNow=" + pageNow + ", totalPageCount="
+				+ totalPageCount + ", hasPre=" + hasPre + ", hasNext="
+				+ hasNext + ", list=" + list + "]";
+	}
+	
+
 }
