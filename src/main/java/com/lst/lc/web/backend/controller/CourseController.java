@@ -100,4 +100,19 @@ public class CourseController {
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
 		return "redirect:/manage/course/courses";
 	}
+	
+	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.GET)
+	public String edit(@PathVariable int courseId, Model model) {
+		Course course = courseDao.getCourse(courseId);
+		model.addAttribute("course", course);
+		return "backend/course/edit";
+	}
+	
+	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.POST)
+	public String edit(@PathVariable int courseId,String title, String description, String difficulty, int categoryId, int directionId,
+			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session){
+		courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
+		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
+		return "redirect:/manage/course/courses";
+	}
 }

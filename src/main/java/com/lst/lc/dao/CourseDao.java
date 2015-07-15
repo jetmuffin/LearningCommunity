@@ -23,5 +23,8 @@ public interface CourseDao {
 	public Query getAllCoursesOfCategory(int categoryId);
 	
 	public Query getAllCoursesOfCategoryByNums(int categoryId);
+
+	void update(int courseId, String title, String description,
+			String difficulty, int categoryId, int directionId, String enabled);
 	
 }
