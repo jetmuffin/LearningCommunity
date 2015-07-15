@@ -37,6 +37,7 @@ public class LessonController {
 	public String listCourse(Model model, String pageNum) {
 		List<Direction> directions = directionDao.getEnabledDirections();
 		List<Category> categories = categoryDao.getEnabledCategories();
+		
 		model.addAttribute("directions", directions);
 		model.addAttribute("categories",categories);
 		return "frontend/course/list";

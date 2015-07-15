@@ -447,6 +447,164 @@ h5 {
   text-align: center;
   font-size: 13px;
 }
+.modal {
+  position: fixed;
+  left: 35%;
+  width: 350px;
+  background-color: #fff;
+  z-index: 2001;
+  top: 80px;
+  border: 1px solid #999;
+  -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+.modal .modal-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+.modal .modal-header .register {
+  color: #999;
+}
+.modal .modal-header .register strong {
+  font-weight: bold;
+  color: #49d;
+}
+.modal .modal-body {
+  padding: 15px 0 20px 0;
+}
+.modal .modal-body .control-group {
+  padding: 10px 25px;
+  -webkit-transition: all 0.1s ease 0.1s;
+  transition: all 0.1s ease 0.1s;
+}
+.modal .modal-body .control-group.active {
+  border-left: 4px solid #37a0fd;
+  background-color: #f1f1f1;
+}
+.modal .modal-body .control-group.active input {
+  background-color: #fff;
+  padding: 0 0 0 40px;
+}
+.modal .modal-body .control-group.active .user-id input {
+  background-position: 8px -264px;
+}
+.modal .modal-body .control-group.active .user-pw input {
+  background-position: 8px -182px;
+}
+.modal .modal-body .control-group.active .user-nkn input {
+  background-position: 8px -102px;
+}
+.modal .modal-body .control-group.error {
+  background-color: #f1f1f1;
+  border-left: 4px solid red;
+}
+.modal .modal-body .control-group input {
+  width: 265px;
+  height: 35px;
+  border: 1px solid #ccc;
+  padding: 0 0 0 40px;
+  font-size: 14px;
+  background: url(/LearningCommunity/resources/images/login_icon.png) no-repeat;
+  border-radius: 2px;
+  color: #999;
+  -webkit-transition: all 0.1s ease 0.1s;
+  transition: all 0.1s ease 0.1s;
+}
+.modal .modal-body .control-group input#remember {
+  width: 15px;
+  height: 15px;
+  padding-top: 5px;
+}
+.modal .modal-body .control-group .btn-login {
+  width: 300px;
+  padding: 8px 18px;
+  font-weight: bold;
+}
+.modal .modal-body .control-group .btn-login:hover {
+  background-color: #37a0fd;
+}
+.modal .modal-body .control-group .btn-register {
+  width: 300px;
+  padding: 8px 18px;
+  font-weight: bold;
+}
+.modal .modal-body .control-group .btn-register:hover {
+  background-color: #37a0fd;
+}
+.modal .modal-body .control-group .user-id input {
+  background-position: 8px -224px;
+}
+.modal .modal-body .control-group .user-pw input {
+  background-position: 8px -142px;
+}
+.modal .modal-body .control-group .user-nkn input {
+  background-position: 8px -62px;
+}
+.modal .modal-body .control-group .user-vldtcd .verify-img {
+  width: 80px;
+  height: 35px;
+  vertical-align: top;
+}
+.modal .modal-body .control-group .user-vldtcd .verify-extra {
+  line-height: 20px;
+}
+.modal .modal-body .control-group .user-vldtcd .verify-extra a {
+  color: #49d;
+}
+.modal .modal-body .control-group .user-vldtcd input {
+  margin-right: 10px;
+  background: #fff;
+  width: 140px;
+  padding: 0 0 0 10px;
+}
+.modal .modal-footer {
+  padding: 0 25px 20px;
+}
+.modal .modal-footer .line-area {
+  border-top: #E0E0E0  1px solid;
+  color: #aaa;
+  clear: both;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 25px;
+  height: 0;
+  line-height: 0;
+}
+.modal .modal-footer .outside-login h4 {
+  color: #666;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 18px;
+  padding: 10px 0;
+}
+.modal .modal-footer .outside-login .outside-list {
+  padding: 8px 0 0 0;
+  margin: 0;
+}
+.modal .modal-footer .outside-login .outside-list li {
+  margin: 0 10px 0 0;
+}
+.modal .modal-footer .outside-login .outside-list li a {
+  display: inline-block;
+  background: url(/LearningCommunity/resources/images/outside_icon_30.png) no-repeat;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  outline: none;
+}
+.modal .modal-footer .outside-login .outside-list li a.icon-outside-weibo {
+  background-position: 0 -40px;
+}
+.modal .modal-footer .outside-login .outside-list li a.icon-outside-weibo:hover {
+  background-position: 0px 0px;
+}
+.modal .modal-footer .outside-login .outside-list li a.icon-outside-qq {
+  background-position: -80px -40px;
+}
+.modal .modal-footer .outside-login .outside-list li a.icon-outside-qq:hover {
+  background-position: -80px 0px;
+}
 .container {
   display: block;
   margin-left: auto;
@@ -454,7 +612,6 @@ h5 {
   width: 1050px;
 }
 .btn {
-  position: absolute;
   right: 15px;
   bottom: 15px;
   padding: 5px 10px;
@@ -462,6 +619,7 @@ h5 {
   line-height: 1.5;
   border-radius: 3px;
   color: #fff !important;
+  cursor: pointer;
 }
 .btn-primary {
   border-color: #49d;
