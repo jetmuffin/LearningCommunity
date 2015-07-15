@@ -112,8 +112,11 @@ public class CourseController {
 			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session){
 		Course course = courseDao.getCourse(courseId);
 		if(image == null){
+			System.err.println("Nooooooooooooooo update image !!!!!!!!!");
 			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
 		} else{
+			
+			System.err.println("update image !!!!!!!!!");
 			MultipartFileUtils.removeFile(course.getImageUrl());
 			
 			String imagePath = "/tmp/LearningCommunity/thumb";
@@ -122,6 +125,8 @@ public class CourseController {
 			String imageUrl = imagePath+"/"+imageName;
 			
 			MultipartFileUtils.saveFile(image, imagePath, imageName);
+			
+			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled, imageUrl);
 			
 		}
 		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
