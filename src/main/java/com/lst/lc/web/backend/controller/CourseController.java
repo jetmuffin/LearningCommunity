@@ -101,7 +101,9 @@ public class CourseController {
 	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.GET)
 	public String edit(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
+		List <Direction> directions = directionDao.getEnabledDirections();
 		model.addAttribute("course", course);
+		model.addAttribute("directions",directions);
 		return "backend/course/edit";
 	}
 	
