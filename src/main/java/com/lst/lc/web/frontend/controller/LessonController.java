@@ -17,7 +17,7 @@ import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.web.bean.CourseMenu;
-import com.lst.lc.web.handler.CourseMenuHandler;
+import com.lst.lc.web.service.CourseMenuHandler;
 
 @Controller
 @RequestMapping("/course")
