@@ -18,11 +18,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
+import com.lst.lc.utils.HashUtils;
 import com.lst.lc.utils.MultipartFileUtils;
 import com.lst.lc.utils.PathUtils;
 
@@ -75,22 +77,25 @@ public class CourseController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(String title, String description, String difficulty, int categoryId, int directionId,
-			MultipartFile image, RedirectAttributes redirectAttributes,HttpSession session) {
+			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session) {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
 		
 		
 		//上传文件命名规则：项目路径+directionId
-		String imagePath = session.getServletContext().getRealPath("/")+directionId;
+		String imagePath = "/tmp/LearningCommunity/thumb/"+directionId;
 	
 		System.err.println("imagePath = "+imagePath);
 		
-		String imageUrl = imagePath+"/"+image.getOriginalFilename();
-		MultipartFileUtils.saveFile(image, imagePath);
+		Admin admin = (Admin) session.getAttribute("admin");
+		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
+		String imageUrl = imagePath+"/"+imageName;
+		
+		MultipartFileUtils.saveFile(image, imagePath, imageName);
 
 		System.err.println("imagePath = "+imageUrl);
 		
-		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", "0");
+		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", enabled);
 		courseDao.addCourse(course);
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
 		return "redirect:/manage/course/courses";

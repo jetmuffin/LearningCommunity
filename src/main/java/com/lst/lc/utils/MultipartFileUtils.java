@@ -8,8 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MultipartFileUtils {
 
-	public static void saveFile(MultipartFile multipartFile,String path){
-		String filename = multipartFile.getOriginalFilename();
+	public static void saveFile(MultipartFile multipartFile,String path, String name){
 		File file = null;
 		try {
 			file = new File(path);
@@ -17,7 +16,7 @@ public class MultipartFileUtils {
 				file.mkdirs();
 			}
 			byte[] buffer = multipartFile.getBytes();
-			FileOutputStream fStream = new FileOutputStream(path+"/"+filename);
+			FileOutputStream fStream = new FileOutputStream(path+"/"+name);
 			fStream.write(buffer);
 			fStream.close();
 		} catch (IOException e) {
