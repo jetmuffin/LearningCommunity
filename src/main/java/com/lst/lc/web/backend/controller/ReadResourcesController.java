@@ -53,6 +53,12 @@ public class ReadResourcesController {
 					os.flush();
 				}
 			} catch (Exception e) {
+				try {
+					response.getWriter().write("改资源不存在");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			} finally {
 				try {
 					if (is != null) {
@@ -64,6 +70,13 @@ public class ReadResourcesController {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+			}
+		}else{
+			try {
+				response.getWriter().write("改资源不存在");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 	}

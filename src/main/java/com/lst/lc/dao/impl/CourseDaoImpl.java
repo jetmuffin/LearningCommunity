@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.entities.Course;
@@ -45,6 +46,13 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		return null;
 	}
 
+	@Override
+	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled){
+		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.categoryId = ?, course.directionId = ?, course.enabled = ? where course.courseId = ?";
+		Query query = query(hql);
+		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).executeUpdate();
+	}
+	
 	@Override
 	public Query getAllCoursesOfCategory(int categoryId) {
 		String hql = "from Course as course where course.category.categoryId = ?";
