@@ -28,5 +28,9 @@ public interface CourseDao {
 			String difficulty, int categoryId, int directionId, String enabled);
 	
 	public Query getQuery(String hql);
+
+	void update(int courseId, String title, String description,
+			String difficulty, int categoryId, int directionId, String enabled,
+			String imageUrl);
 	
 }

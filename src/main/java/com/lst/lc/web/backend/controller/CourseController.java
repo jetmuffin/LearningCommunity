@@ -82,10 +82,8 @@ public class CourseController {
 		Direction direction = directionDao.getDirection(directionId);
 		
 		
-		//上传文件命名规则：项目路径+directionId
-		String imagePath = "/tmp/LearningCommunity/thumb/"+directionId;
+		String imagePath = "/tmp/LearningCommunity/thumb";
 	
-		System.err.println("imagePath = "+imagePath);
 		
 		Admin admin = (Admin) session.getAttribute("admin");
 		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
@@ -93,7 +91,6 @@ public class CourseController {
 		
 		MultipartFileUtils.saveFile(image, imagePath, imageName);
 
-		System.err.println("imagePath = "+imageUrl);
 		
 		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", enabled);
 		courseDao.addCourse(course);
@@ -113,7 +110,25 @@ public class CourseController {
 	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.POST)
 	public String edit(@PathVariable int courseId,String title, String description, String difficulty, int categoryId, int directionId,
 			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session){
-		courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
+		Course course = courseDao.getCourse(courseId);
+		if(image == null){
+			System.err.println("Nooooooooooooooo update image !!!!!!!!!");
+			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
+		} else{
+			
+			System.err.println("update image !!!!!!!!!");
+			MultipartFileUtils.removeFile(course.getImageUrl());
+			
+			String imagePath = "/tmp/LearningCommunity/thumb";
+			Admin admin = (Admin) session.getAttribute("admin");
+			String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
+			String imageUrl = imagePath+"/"+imageName;
+			
+			MultipartFileUtils.saveFile(image, imagePath, imageName);
+			
+			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled, imageUrl);
+			
+		}
 		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
 		return "redirect:/manage/course/courses";
 	}
