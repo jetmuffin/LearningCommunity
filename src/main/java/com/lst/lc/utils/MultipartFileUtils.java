@@ -23,4 +23,12 @@ public class MultipartFileUtils {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void removeFile(String path){
+		File file = null;
+		file = new File(path);
+		if(file.exists()){
+			file.delete();
+		}
+	}
 }

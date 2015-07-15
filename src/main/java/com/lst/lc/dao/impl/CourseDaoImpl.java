@@ -50,7 +50,14 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled){
 		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.categoryId = ?, course.directionId = ?, course.enabled = ? where course.courseId = ?";
 		Query query = query(hql);
-		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).executeUpdate();
+		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).setInteger(6, courseId).executeUpdate();
+	}
+	
+	@Override
+	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled,String imageUrl){
+		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.categoryId = ?, course.directionId = ?, course.enabled = ?, course.imageUrl = ? where course.courseId = ?";
+		Query query = query(hql);
+		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).setString(6, imageUrl).setInteger(7, courseId).executeUpdate();
 	}
 	
 	@Override
