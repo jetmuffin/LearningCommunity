@@ -398,6 +398,9 @@ h5 {
   font-size: 13px;
   color: #999;
 }
+#main .course-list .all-course-list .course-item .widget-course .widget-course-info .btn{
+	position:absolute;
+}
 #main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
   line-height: 20px;
 }
