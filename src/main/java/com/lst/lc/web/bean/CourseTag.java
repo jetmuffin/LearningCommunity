@@ -23,7 +23,7 @@ public class CourseTag {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isActive() {
+	public boolean getIsActive() {
 		return isActive;
 	}
 	public void setActive(boolean isActive) {
