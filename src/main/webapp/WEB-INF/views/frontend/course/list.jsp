@@ -57,7 +57,7 @@
 				</div>		
 				<div class="course-list">
 					<div class="all-course-list">
-						<c:forEach var="course" items="${page.list}">
+						<c:forEach var="course" items="${courseMenu.page.list}">
 							<div class="course-item">
 								<div class="widget-course">
 									<a href=""><img src="/LearningCommunity/manage/read/photo/${course.courseId }" class="widget-course-banner" alt=""></a>
