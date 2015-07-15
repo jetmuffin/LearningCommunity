@@ -23,7 +23,7 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<c:forEach var="directionTag" items="${courseMenu.directionTags}">
-			            				<li class="course-nav-item <c:if test="${directionTag.isActive}">on</c:if>"><a href="">${directionTag.name}</a></li>
+			            				<li class="course-nav-item <c:if test="${directionTag.isActive}">on</c:if>"><a href="?directionId=${directionTag.id}">${directionTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -33,7 +33,7 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<c:forEach var="categoryTag" items="${courseMenu.categoryTags}">
-			            				<li class="course-nav-item <c:if test="${categoryTag.isActive}">on</c:if>"><a href="">${categoryTag.name}</a></li>
+			            				<li class="course-nav-item <c:if test="${categoryTag.isActive}">on</c:if>"><a href="?categoryId=${categoryTag.id}">${categoryTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -42,8 +42,8 @@
 				            <label class="hd l">难度：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<c:forEach var="difficultyTag" items="${courseMenu.difficultyTags}">
-			            				<li class="course-nav-item <c:if test="${difficultyTag.isActive}">on</c:if>"><a href="">${difficultyTag.name}</a></li>
+			            			<c:forEach var="difficultyTag" items="${courseMenu.difficultyTags}" >
+			            				<li class="course-nav-item <c:if test="${difficultyTag.isActive}">on</c:if>"><a href="?difficulty=${difficultTag}">${difficultyTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -51,8 +51,8 @@
 				</div>
 				<div class="course-tool-bar clearfix">
 					<div class="tool-left l">
-                        <a href="" class="sort-item active">最新</a>
-                        <a href="" class="sort-item">最热</a>
+						<a href="/LearningCommuinity/course/courses" class="sort-item" id="sortByTime">最新</a>
+						<a href="/LearningCommuinity/course/courses" class="sort-item" id="sortByHeat">最热</a>
                     </div>
 				</div>		
 				<div class="course-list">

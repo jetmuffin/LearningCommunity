@@ -1,8 +1,5 @@
 $(function(){
-	var login_btn = $('#js-signin-btn');
-	console.log(login_btn);
-
-
+	console.log(window.location.search);
 });
 
 function loginInputFocus(input){
