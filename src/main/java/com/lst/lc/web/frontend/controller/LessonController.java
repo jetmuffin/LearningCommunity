@@ -16,6 +16,8 @@ import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
+import com.lst.lc.web.bean.CourseMenu;
+import com.lst.lc.web.handler.CourseMenuHandler;
 
 @Controller
 @RequestMapping("/course")
@@ -33,12 +35,15 @@ public class LessonController {
 	@Qualifier("courseDao")
 	private CourseDao courseDao;
 	
+	@Autowired
+	private CourseMenuHandler courseMenuHandler;
+
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public String listCourse(Model model, String pageNum) {
-		List<Direction> directions = directionDao.getEnabledDirections();
-		List<Category> categories = categoryDao.getEnabledCategories();
-		model.addAttribute("directions", directions);
-		model.addAttribute("categories",categories);
+	public String listCourse(Model model, String directionId,
+			String categoryId, String difficulty, String type, String pageNum,
+			String pageSize) {
+		CourseMenu courseMenu = courseMenuHandler.getCourseMenu(directionId, categoryId, difficulty, type, pageNum, pageSize);
+		model.addAttribute("courseMenu", courseMenu);
 		return "frontend/course/list";
 	}
 }

@@ -24,4 +24,6 @@ public interface CourseDao {
 	
 	public Query getAllCoursesOfCategoryByNums(int categoryId);
 	
+	public Query getQuery(String hql);
+	
 }
