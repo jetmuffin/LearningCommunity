@@ -22,9 +22,8 @@
 				            <label class="hd l">方向：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<li class="course-nav-item on"><a href="">全部</a></li>
-			            			<c:forEach var="direction" items="${directions}">
-			            				<li class="course-nav-item"><a href="">${direction.directionName}</a></li>
+			            			<c:forEach var="directionTag" items="${courseMenu.directionTags}">
+			            				<li class="course-nav-item <c:if test="${directionTag.isActive}">on</c:if>"><a href="">${directionTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -33,9 +32,8 @@
 				            <label class="hd l">分类：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<li class="course-nav-item on"><a href="?direction=${param.direction}&category=all&difficulty=${param.difficulty}">全部</a></li>
-			            			<c:forEach var="category" items="${categories}">
-			            				<li class="course-nav-item"><a href="?direction=${param.direction}&category=${category.categoryId}&difficulty=${param.difficulty}">${category.categoryName}</a></li>
+			            			<c:forEach var="categoryTag" items="${courseMenu.categoryTags}">
+			            				<li class="course-nav-item <c:if test="${categoryTag.isActive}">on</c:if>"><a href="">${categoryTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -44,10 +42,9 @@
 				            <label class="hd l">难度：</label>
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
-			            			<li class="course-nav-item on"><a href="">全部</a></li>
-			            			<li class="course-nav-item"><a href="">初级</a></li>
-			            			<li class="course-nav-item"><a href="">中级</a></li>
-			            			<li class="course-nav-item"><a href="">高级</a></li>
+			            			<c:forEach var="difficultyTag" items="${courseMenu.difficultyTags}">
+			            				<li class="course-nav-item <c:if test="${difficultyTag.isActive}">on</c:if>"><a href="">${difficultyTag.name}</a></li>
+			            			</c:forEach>
 			            		</ul>
 				            </div>
 				        </div>				        		        
@@ -60,75 +57,21 @@
 				</div>		
 				<div class="course-list">
 					<div class="all-course-list">
-						<div class="course-item">
-							<div class="widget-course">
-								<a href=""><img src="test.jpg" class="widget-course-banner" alt=""></a>
-							<div class="widget-course-info">
-            					<h2 class="h4 title"><a href="">2015 台湾大学黑客马拉松</a></h2>
-            					<ul class="widget-course-meta">
-					                <li>课程描述描述描述</li>
-					                <li class="course-student-number">学生人数：200</li>
-					            </ul>
-                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
-                            </div>									
-							</div>
-						</div>
-						<div class="course-item">
-							<div class="widget-course">
-								<a href=""><img src="test.jpg" class="widget-course-banner" alt=""></a>
-							<div class="widget-course-info">
-            					<h2 class="h4 title"><a href="">2015 台湾大学黑客马拉松</a></h2>
-            					<ul class="widget-course-meta">
-					                <li>课程描述描述描述</li>
-					                <li class="course-student-number">学生人数：200</li>
-					            </ul>
-                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
-                            </div>	
-							</div>
-			
-						</div>
-						<div class="course-item">
-							<div class="widget-course">
-								<a href=""><img src="test.jpg" class="widget-course-banner" alt=""></a>
-							<div class="widget-course-info">
-            					<h2 class="h4 title"><a href="">2015 台湾大学黑客马拉松</a></h2>
-            					<ul class="widget-course-meta">
-					                <li>课程描述描述描述</li>
-					                <li class="course-student-number">学生人数：200</li>
-					            </ul>
-                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
-                            </div>
-							</div>
-				
-						</div>
-						<div class="course-item">
-							<div class="widget-course">
-								<a href=""><img src="test.jpg" class="widget-course-banner" alt=""></a>
-							<div class="widget-course-info">
-            					<h2 class="h4 title"><a href="">2015 台湾大学黑客马拉松</a></h2>
-            					<ul class="widget-course-meta">
-					                <li>课程描述描述描述</li>
-					                <li class="course-student-number">学生人数：200</li>
-					            </ul>
-                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
-                            </div>	
-							</div>
-			
-						</div>
-						<div class="course-item">
-							<div class="widget-course">
-								<a href=""><img src="test.jpg" class="widget-course-banner" alt=""></a>
-							<div class="widget-course-info">
-            					<h2 class="h4 title"><a href="">2015 台湾大学黑客马拉松</a></h2>
-            					<ul class="widget-course-meta">
-					                <li>课程描述描述描述</li>
-					                <li class="course-student-number">学生人数：200</li>
-					            </ul>
-                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
-                            </div>	
-							</div>
-			
-						</div> 			
+						<c:forEach var="course" items="${page.list}">
+							<div class="course-item">
+								<div class="widget-course">
+									<a href=""><img src="/LearningCommunity/manage/read/photo/${course.courseId }" class="widget-course-banner" alt=""></a>
+								<div class="widget-course-info">
+	            					<h2 class="h4 title"><a href="">${course.title}</a></h2>
+	            					<ul class="widget-course-meta">
+						                <li>${course.description}</li>
+						                <li class="course-student-number">学生人数：${course.studentNums}</li>
+						            </ul>
+	                                <a href="" class="btn btn-primary btn-sm">立即学习</a>
+	                            </div>									
+								</div>
+							</div>						
+						</c:forEach>
 					</div>					
 				</div>		
 			</div>
