@@ -37,5 +37,11 @@ public class CourseTag {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	@Override
+	public String toString() {
+		return "CourseTag [id=" + id + ", name=" + name + ", isActive="
+				+ isActive + "]";
+	}
 	
 }

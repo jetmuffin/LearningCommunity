@@ -36,5 +36,10 @@ public class CourseMenu {
 	public void setPage(Page<Course> page) {
 		this.page = page;
 	}
-	
+	@Override
+	public String toString() {
+		return "CourseMenu [directionTags=" + directionTags + ", categoryTags="
+				+ categoryTags + ", difficultyTags=" + difficultyTags
+				+ ", page=" + page + "]";
+	}
 }
