@@ -86,7 +86,8 @@ public class CourseController {
 	
 		
 		Admin admin = (Admin) session.getAttribute("admin");
-		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
+		long unixTime = System.currentTimeMillis();
+		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename()+unixTime);
 		String imageUrl = imagePath+"/"+imageName;
 		
 		MultipartFileUtils.saveFile(image, imagePath, imageName);
