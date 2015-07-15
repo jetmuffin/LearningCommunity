@@ -111,12 +111,12 @@ public class CourseController {
 	public String edit(@PathVariable int courseId,String title, String description, String difficulty, int categoryId, int directionId,
 			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session){
 		Course course = courseDao.getCourse(courseId);
-		if(image == null){
-			System.err.println("Nooooooooooooooo update image !!!!!!!!!");
+		
+
+		
+		if(image.getSize() == 0){
 			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
 		} else{
-			
-			System.err.println("update image !!!!!!!!!");
 			MultipartFileUtils.removeFile(course.getImageUrl());
 			
 			String imagePath = "/tmp/LearningCommunity/thumb";
