@@ -80,11 +80,11 @@
 			</exclusions>
 		</dependency>
 
-<dependency>
-	<groupId>javax.servlet</groupId>
-	<artifactId>javax.servlet-api</artifactId>
-	<version>3.0.1</version>
-</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
@@ -269,6 +269,13 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.35</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.bingoohuang</groupId>
+			<artifactId>patchca</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+
 
 	</dependencies>
 </project>

@@ -68,5 +68,10 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		query.setInteger(0, categoryId);
 		return query;
 	}
+	
+	@Override
+	public Query getQuery(String hql){
+		return query(hql);
+	}
 
 }

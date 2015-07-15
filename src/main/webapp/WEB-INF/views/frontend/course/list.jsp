@@ -72,7 +72,6 @@
                                 <a href="" class="btn btn-primary btn-sm">立即学习</a>
                             </div>									
 							</div>
-			
 						</div>
 						<div class="course-item">
 							<div class="widget-course">
@@ -149,5 +148,8 @@
 	</div>
 	<div class="clearfix"></div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
+	<script type="text/javascript"
+		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+		<script src="/LearningCommunity/resources/js/frontend/course/main.js"></script>
 </body>
 </html>

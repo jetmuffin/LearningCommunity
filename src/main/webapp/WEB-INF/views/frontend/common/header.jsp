@@ -17,8 +17,8 @@
 
 			<div id="login-area">
 				<ul class="header-unlogin">
-					<li class="header-signin"><a href="#" id="js-signin-btn">登录</a></li>
-					<li class="header-signup"><a href="#" id="js-signup-btn">注册</a></li>
+					<li class="header-signin"><a href="javascript:showLoginBox()" id="js-signin-btn">登录</a></li>
+					<li class="header-signup"><a href="javascript:hideLoginBox()" id="js-signup-btn">注册</a></li>
 				</ul>
 			</div>
 			<div id="search-area">
