@@ -76,4 +76,11 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		return query(hql);
 	}
 
+	@Override
+	public void delete(int courseId) {
+		String hql = "delete Course as course where course.courseId = ?";
+		Query query = query(hql);
+		query.setInteger(0, courseId).executeUpdate();
+	}
+
 }

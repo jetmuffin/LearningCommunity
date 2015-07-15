@@ -86,7 +86,8 @@ public class CourseController {
 	
 		
 		Admin admin = (Admin) session.getAttribute("admin");
-		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
+		long unixTime = System.currentTimeMillis();
+		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename()+unixTime);
 		String imageUrl = imagePath+"/"+imageName;
 		
 		MultipartFileUtils.saveFile(image, imagePath, imageName);
@@ -130,6 +131,15 @@ public class CourseController {
 			
 		}
 		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
+		return "redirect:/manage/course/courses";
+	}
+	
+	@RequestMapping(value = "/delete/{courseId}", method = RequestMethod.GET)
+	public String delete(@PathVariable int courseId, Model model) {
+		Course course = courseDao.getCourse(courseId);
+		MultipartFileUtils.removeFile(course.getImageUrl());
+		courseDao.delete(courseId);
+		
 		return "redirect:/manage/course/courses";
 	}
 }
