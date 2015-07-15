@@ -32,5 +32,7 @@ public interface CourseDao {
 	void update(int courseId, String title, String description,
 			String difficulty, int categoryId, int directionId, String enabled,
 			String imageUrl);
+
+	public void delete(int courseId);
 	
 }

@@ -132,4 +132,13 @@ public class CourseController {
 		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
 		return "redirect:/manage/course/courses";
 	}
+	
+	@RequestMapping(value = "/delete/{courseId}", method = RequestMethod.GET)
+	public String delete(@PathVariable int courseId, Model model) {
+		Course course = courseDao.getCourse(courseId);
+		MultipartFileUtils.removeFile(course.getImageUrl());
+		courseDao.delete(courseId);
+		
+		return "redirect:/manage/course/courses";
+	}
 }
