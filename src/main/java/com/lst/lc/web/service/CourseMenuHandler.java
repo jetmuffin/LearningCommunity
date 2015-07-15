@@ -61,9 +61,11 @@ public class CourseMenuHandler {
 		if (directionId == null && categoryId == null) {
 			return getCourseMenuDefault(difficulty, type, pageNow, pagesize);
 		} else if (directionId != null) {
-			return getCourseMenuByDirection(directionId, difficulty, type, pageNow, pagesize);
+			return getCourseMenuByDirection(directionId, difficulty, type,
+					pageNow, pagesize);
 		} else {
-			return getCourseMenuByCategory(categoryId, difficulty, type, pageNow, pagesize);
+			return getCourseMenuByCategory(categoryId, difficulty, type,
+					pageNow, pagesize);
 		}
 
 	}
@@ -82,7 +84,7 @@ public class CourseMenuHandler {
 		/*
 		 * ＂全部＂标记为活跃
 		 */
-		CourseTag allTag = new CourseTag("全部", true);
+		CourseTag allTag = new CourseTag(0, "全部", true);
 		directionTags.add(allTag);
 		categoryTags.add(allTag);
 		/*
@@ -90,18 +92,20 @@ public class CourseMenuHandler {
 		 */
 		for (int i = 0; i < directions.size(); i++) {
 			CourseTag courseTag = new CourseTag(directions.get(i)
-					.getDirectionName(), false);
+					.getDirectionId(), directions.get(i).getDirectionName(),
+					false);
 			directionTags.add(courseTag);
 		}
 		for (int i = 0; i < categories.size(); i++) {
 			CourseTag courseTag = new CourseTag(categories.get(i)
-					.getCategoryName(), false);
+					.getCategoryId(), categories.get(i).getCategoryName(),
+					false);
 			categoryTags.add(courseTag);
 		}
 
 		difficultyTags.add(allTag);
 		for (int i = 0; i < 3; i++) {
-			CourseTag courseTag1 = new CourseTag(difficulties[i], false);
+			CourseTag courseTag1 = new CourseTag(0, difficulties[i], false);
 			difficultyTags.add(courseTag1);
 		}
 
@@ -133,6 +137,7 @@ public class CourseMenuHandler {
 			query.setString(0, difficulties[Integer.valueOf(difficulty)]);
 			page = pageHandler.getPage(pageNum, pageSize, Course.class, query);
 		}
+		System.out.println("page" + page.toString());
 		courseMenu.setPage(page);
 		return courseMenu;
 	}
@@ -151,10 +156,11 @@ public class CourseMenuHandler {
 		List<PartCategory> categories = categoryDao
 				.getCategoriesOfDirection(directionid);
 
-		CourseTag allTag = new CourseTag("全部", false);
+		CourseTag allTag = new CourseTag(0, "全部", false);
 		directionTags.add(allTag);
 		for (int i = 0; i < directions.size(); i++) {
 			CourseTag courseTag = new CourseTag();
+			courseTag.setId(directions.get(i).getDirectionId());
 			courseTag.setName(directions.get(i).getDirectionName());
 			if (directions.get(i).getDirectionId() == activeDirection
 					.getDirectionId()) {
@@ -168,13 +174,15 @@ public class CourseMenuHandler {
 		allTag.setActive(true);
 		categoryTags.add(allTag);
 		for (int i = 0; i < categories.size(); i++) {
-			CourseTag courseTag = new CourseTag(categories.get(i).getCategoryName(), false);
+			CourseTag courseTag = new CourseTag(categories.get(i)
+					.getCategoryId(), categories.get(i).getCategoryName(),
+					false);
 			categoryTags.add(courseTag);
 		}
-		
+
 		difficultyTags.add(allTag);
 		for (int i = 0; i < 3; i++) {
-			CourseTag courseTag1 = new CourseTag(difficulties[i], false);
+			CourseTag courseTag1 = new CourseTag(0, difficulties[i], false);
 			difficultyTags.add(courseTag1);
 		}
 
@@ -183,7 +191,7 @@ public class CourseMenuHandler {
 			int index = Integer.valueOf(difficulty);
 			difficultyTags.get(index).setActive(true);
 		}
-		
+
 		courseMenu.setCategoryTags(categoryTags);
 		courseMenu.setDifficultyTags(difficultyTags);
 		courseMenu.setDirectionTags(directionTags);
@@ -215,28 +223,29 @@ public class CourseMenuHandler {
 		courseMenu.setPage(page);
 		return courseMenu;
 	}
-	
+
 	public CourseMenu getCourseMenuByCategory(String categoryId,
 			String difficulty, String type, int pageNum, int pageSize) {
-		
+
 		CourseMenu courseMenu = new CourseMenu();
 		List<CourseTag> directionTags = new ArrayList<CourseTag>();
 		List<CourseTag> categoryTags = new ArrayList<CourseTag>();
 		List<CourseTag> difficultyTags = new ArrayList<CourseTag>();
-		
+
 		int categoryid = Integer.valueOf(categoryId);
 		Category category = categoryDao.getCategory(categoryid);
 		int directionid = category.getDirection().getDirectionId();
 		List<Direction> directions = directionDao.getAllDirections();
 		List<PartCategory> categories = categoryDao
 				.getCategoriesOfDirection(directionid);
-		
-		CourseTag allTag = new CourseTag("全部", false);
+
+		CourseTag allTag = new CourseTag(0, "全部", false);
 		directionTags.add(allTag);
 		categoryTags.add(allTag);
-		
+
 		for (int i = 0; i < directions.size(); i++) {
 			CourseTag courseTag = new CourseTag();
+			courseTag.setId(directions.get(i).getDirectionId());
 			courseTag.setName(directions.get(i).getDirectionName());
 			if (directions.get(i).getDirectionId() == directionid) {
 				courseTag.setActive(true);
@@ -245,23 +254,24 @@ public class CourseMenuHandler {
 			}
 			directionTags.add(courseTag);
 		}
-		
-		for(int i = 0; i < categories.size(); i++){
+
+		for (int i = 0; i < categories.size(); i++) {
 			CourseTag courseTag = new CourseTag();
+			courseTag.setId(categories.get(i).getCategoryId());
 			courseTag.setName(categories.get(i).getCategoryName());
-			if(categories.get(i).getCategoryId() == categoryid){
+			if (categories.get(i).getCategoryId() == categoryid) {
 				courseTag.setActive(true);
-			}else{
+			} else {
 				courseTag.setActive(false);
 			}
 			categoryTags.add(courseTag);
 		}
-		
+
 		allTag.setActive(true);
-		
+
 		difficultyTags.add(allTag);
 		for (int i = 0; i < 3; i++) {
-			CourseTag courseTag1 = new CourseTag(difficulties[i], false);
+			CourseTag courseTag1 = new CourseTag(0, difficulties[i], false);
 			difficultyTags.add(courseTag1);
 		}
 
@@ -270,7 +280,7 @@ public class CourseMenuHandler {
 			int index = Integer.valueOf(difficulty);
 			difficultyTags.get(index).setActive(true);
 		}
-		
+
 		courseMenu.setCategoryTags(categoryTags);
 		courseMenu.setDifficultyTags(difficultyTags);
 		courseMenu.setDirectionTags(directionTags);
