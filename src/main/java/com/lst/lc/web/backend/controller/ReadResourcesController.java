@@ -53,7 +53,7 @@ public class ReadResourcesController {
 				}
 			} catch (Exception e) {
 				try {
-					response.getWriter().write("改资源不存在");
+					response.getWriter().write("Can't read the Photo!");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -72,7 +72,7 @@ public class ReadResourcesController {
 			}
 		}else{
 			try {
-				response.getWriter().write("改资源不存在");
+				response.getWriter().write("Not Found the Photo!");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -99,6 +99,15 @@ public class CourseController {
 		return "redirect:/manage/course/courses";
 	}
 	
+	@RequestMapping(value = "/view/{courseId}", method = RequestMethod.GET)
+	public String view(@PathVariable int courseId, Model model) {
+		Course course = courseDao.getCourse(courseId);
+		List <Direction> directions = directionDao.getEnabledDirections();
+		model.addAttribute("course", course);
+		model.addAttribute("directions",directions);
+		return "backend/course/view";
+	}
+	
 	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.GET)
 	public String edit(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
