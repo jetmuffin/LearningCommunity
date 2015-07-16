@@ -177,4 +177,11 @@ public class CourseController {
 		//应该重定向
 		return null;
 	}
+	
+	@RequestMapping(value = "/{courseId}/details", method = RequestMethod.GET)
+	public String detail(@PathVariable int courseId){
+		
+		
+		return "backend/course/detail";
+	}
 }
