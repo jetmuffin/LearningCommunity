@@ -10,6 +10,8 @@
 <body>
 
 	课程名称：${course.title}
+	</br>
+	章节列表：
 	<br />
 	<c:forEach var="lesson" items="${lessons}">
 		<tr>
@@ -18,6 +20,7 @@
 			<td class="course-td"><a href="editlesson/${lesson.lessonId}"
 				class="templatemo-edit-btn">编辑</a></td>
 		</tr>
+		<br/>
 	</c:forEach>
 
 

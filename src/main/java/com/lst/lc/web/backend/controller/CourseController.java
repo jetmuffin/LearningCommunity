@@ -103,8 +103,10 @@ public class CourseController {
 	public String view(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
 		List <Direction> directions = directionDao.getEnabledDirections();
+		List<CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		model.addAttribute("course", course);
 		model.addAttribute("directions",directions);
+		model.addAttribute("lessons", lessons);
 		return "backend/course/view";
 	}
 	
@@ -176,13 +178,13 @@ public class CourseController {
 		}
 		lessonDao.addLesson(courseLesson);
 		//应该重定向
-		return "redirect:/manage/course/"+courseId+"/details";
+		return "redirect:/manage/course/view"+courseId;
 	}
 	
-	@RequestMapping(value = "/{courseId}/details", method = RequestMethod.GET)
-	public String detail(@PathVariable int courseId,Model model){
-		
-		
-		return "backend/course/detail";
+	@RequestMapping(value = "/view/editlesson/{lessonId}", method = RequestMethod.GET)
+	public String editLesson(@PathVariable int lessonId, Model model){
+		CourseLesson lesson = lessonDao.getLesson(lessonId);
+		model.addAttribute("lesson", lesson);
+		return "backend/course/editlesson";
 	}
 }
