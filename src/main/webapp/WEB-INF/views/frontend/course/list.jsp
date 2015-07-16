@@ -23,7 +23,7 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<c:forEach var="directionTag" items="${courseMenu.directionTags}">
-			            				<li class="course-nav-item <c:if test="${directionTag.isActive}">on</c:if>"><a href="?directionId=${directionTag.id}&categoryId=${param.categoryId}&difficulty=${param.difficulty}&sort=${param.sort}">${directionTag.name}</a></li>
+			            				<li class="course-nav-item <c:if test="${directionTag.isActive}">on</c:if>"><a href="?directionId=${directionTag.id}&categoryId=${param.categoryId}&difficulty=${param.difficulty}&type=${param.sort}">${directionTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -33,7 +33,7 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<c:forEach var="categoryTag" items="${courseMenu.categoryTags}">
-			            				<li class="course-nav-item <c:if test="${categoryTag.isActive}">on</c:if>"><a href="?directionId=${param.directionId}&categoryId=${categoryTag.id}&difficulty=${param.directionId}&sort=${param.sort}">${categoryTag.name}</a></li>
+			            				<li class="course-nav-item <c:if test="${categoryTag.isActive}">on</c:if>"><a href="?directionId=${param.directionId}&categoryId=${categoryTag.id}&difficulty=${param.difficulty}&type=${param.sort}">${categoryTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -43,7 +43,7 @@
 			            	<div class="bd" id="searchingType" type="radio">
 			            		<ul>
 			            			<c:forEach var="difficultyTag" items="${courseMenu.difficultyTags}" >
-			            				<li class="course-nav-item <c:if test="${difficultyTag.isActive}">on</c:if>"><a href="?directionId=${param.directionId}&categoryId=${param.categoryId}&difficulty=${difficultTag.id}&sort=${param.sort}">${difficultyTag.name}</a></li>
+			            				<li class="course-nav-item <c:if test="${difficultyTag.isActive}">on</c:if>"><a href="?directionId=${param.directionId}&categoryId=${param.categoryId}&difficulty=${difficultyTag.id}&type=${param.sort}">${difficultyTag.name}</a></li>
 			            			</c:forEach>
 			            		</ul>
 				            </div>
@@ -52,7 +52,7 @@
 				<div class="course-tool-bar clearfix">
 					<div class="tool-left l">
 						<a href="?directionId=${param.directionId}&categoryId=${param.categoryId}&difficulty=${param.difficulty}" class="sort-item" id="sortByTime">最新</a>
-						<a href="?directionId=${param.directionId}&categoryId=${param.categoryId}&difficulty=${param.difficulty}&sort=heat" class="sort-item" id="sortByHeat">最热</a>
+						<a href="?directionId=${param.directionId}&categoryId=${param.categoryId}&difficulty=${param.difficulty}&type=heat" class="sort-item" id="sortByHeat">最热</a>
                     </div>
 				</div>		
 				<div class="course-list">

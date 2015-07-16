@@ -42,11 +42,6 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	}
 
 	@Override
-	public List<Course> getCoursesOrderByNums() {
-		return null;
-	}
-
-	@Override
 	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled){
 		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.category.categoryId = ?, course.direction.directionId = ?, course.enabled = ? where course.courseId = ?";
 		Query query = query(hql);

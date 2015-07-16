@@ -43,6 +43,7 @@ public class LessonController {
 			String categoryId, String difficulty, String type, String pageNum,
 			String pageSize) {
 		CourseMenu courseMenu = courseMenuHandler.getCourseMenu(directionId, categoryId, difficulty, type, pageNum, pageSize);
+		System.out.println(courseMenu);
 		model.addAttribute("courseMenu", courseMenu);
 		return "frontend/course/list";
 	}

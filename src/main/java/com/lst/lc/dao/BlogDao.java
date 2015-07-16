@@ -1,5 +1,7 @@
 package com.lst.lc.dao;
 
+import java.util.List;
+
 import com.lst.lc.entities.Blog;
 
 /**
@@ -25,4 +27,17 @@ public interface BlogDao {
 	 * @param blogId
 	 */
 	public Blog getBlog(int blogId);
+	
+	/**
+	 * 根据主键删除blog
+	 * @param blogId
+	 */
+	public void deleteBlog(int blogId);
+	
+	/**
+	 * 获得某个用户的博客
+	 * @param userId
+	 * @return
+	 */
+	public List<Blog> getBlogsOfUser(int userId);
 }
