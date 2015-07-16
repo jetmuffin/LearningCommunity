@@ -62,11 +62,11 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label templatemo-block">选择章节类型</label>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="type" id="r4" value="">
+								<input type="radio" name="type" id="r4" value="video">
 								<label for="r4" class="font-weight-400"><span></span>视频</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="type" id="r5" value="" checked>
+								<input type="radio" name="type" id="r5" value="text" checked>
 								<label for="r5" class="font-weight-400"><span></span>文本</label>
 							</div>
 						</div>

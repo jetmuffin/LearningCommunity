@@ -8,7 +8,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MultipartFileUtils {
 
-	public static void saveFile(MultipartFile multipartFile,String path, String name){
+	public static String saveFile(MultipartFile multipartFile,String path){
+		
+		long unixTime = System.currentTimeMillis();
+		String name = HashUtils.HashPath(multipartFile.getOriginalFilename()+unixTime);
+		
+		String multipartUrl = path+"/"+name;
+		
 		File file = null;
 		try {
 			file = new File(path);
@@ -16,12 +22,14 @@ public class MultipartFileUtils {
 				file.mkdirs();
 			}
 			byte[] buffer = multipartFile.getBytes();
-			FileOutputStream fStream = new FileOutputStream(path+"/"+name);
+			FileOutputStream fStream = new FileOutputStream(multipartUrl);
 			fStream.write(buffer);
 			fStream.close();
 		} catch (IOException e) {
+			multipartUrl = "";
 			e.printStackTrace();
 		}
+		return multipartUrl;
 	}
 	
 	public static void removeFile(String path){
