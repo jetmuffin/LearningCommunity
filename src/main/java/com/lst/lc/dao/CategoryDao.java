@@ -19,6 +19,8 @@ public interface CategoryDao {
 	
 	public List<PartCategory> getCategoriesOfDirection(int directionId);
 	
+	public List<Category> getCategories(int directionId);
+	
 	public List<Category> getEnabledCategories();
 
 }
