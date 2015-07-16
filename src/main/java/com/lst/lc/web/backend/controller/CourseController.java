@@ -19,16 +19,13 @@ import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
 import com.lst.lc.dao.LessonDao;
-import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.CourseLesson;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
-import com.lst.lc.utils.HashUtils;
 import com.lst.lc.utils.MultipartFileUtils;
-import com.lst.lc.utils.PathUtils;
 
 @Controller
 @RequestMapping("/manage/course")
@@ -169,9 +166,7 @@ public class CourseController {
 			courseLesson.setContent(content);
 		}else{
 			String videoPath = "/tmp/LearningCommunity/thumb/"+courseId;
-
 			String videoUrl = MultipartFileUtils.saveFile(video, videoPath);
-			
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
@@ -181,7 +176,6 @@ public class CourseController {
 	
 	@RequestMapping(value = "/{courseId}/details", method = RequestMethod.GET)
 	public String detail(@PathVariable int courseId,Model model){
-		
 		
 		return "backend/course/detail";
 	}

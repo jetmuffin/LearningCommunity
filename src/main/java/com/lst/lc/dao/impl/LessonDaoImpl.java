@@ -34,4 +34,9 @@ public class LessonDaoImpl extends BaseDao implements LessonDao {
 		return query.list();
 	}
 
+	public void update(int lessonId,String title, String summary,String type, String videoUrl, String content){
+		String hql = "update CourseLesson as lesson set lesson.title = ?, lesson.summary = ?, lesson.type = ?, lesson.videoUrl = ?, lesson.content = ? where lesson.lessonId = ?";
+		Query query = query(hql);
+		query.setString(0, title).setString(1, summary).setString(2, type).setString(3, videoUrl).setString(4, content).setInteger(5, lessonId).executeUpdate();
+	}
 }
