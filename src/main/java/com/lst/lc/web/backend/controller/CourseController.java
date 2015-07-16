@@ -18,9 +18,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.dao.LessonDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.CourseLesson;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
@@ -45,6 +47,10 @@ public class CourseController {
 	private CourseDao courseDao;
 
 	@Autowired
+	@Qualifier("lessonDao")
+	private LessonDao lessonDao;
+
+	@Autowired
 	private PageHandler<Course> pageHandler;
 
 	public CourseController() {
@@ -52,13 +58,13 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
-	public String listCourse(Model model, String pageNum,String pageSize) {
+	public String listCourse(Model model, String pageNum, String pageSize) {
 		int pageNow = 1;
 		int pagesize = 10;
-		if(pageSize != null){
+		if (pageSize != null) {
 			pagesize = Integer.valueOf(pageSize);
 		}
-		if(pageSize != null){
+		if (pageSize != null) {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		Page<Course> page = pageHandler
@@ -76,24 +82,25 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(String title, String description, String difficulty, int categoryId, int directionId,
-			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session) {
+	public String add(String title, String description, String difficulty,
+			int categoryId, int directionId, MultipartFile image,
+			String enabled, RedirectAttributes redirectAttributes,
+			HttpSession session) {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
-		
-		
+
 		String imagePath = "/tmp/LearningCommunity/thumb";
-	
-		
+
 		Admin admin = (Admin) session.getAttribute("admin");
 		long unixTime = System.currentTimeMillis();
-		String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename()+unixTime);
-		String imageUrl = imagePath+"/"+imageName;
-		
+		String imageName = HashUtils.HashPath(admin.getEmail()
+				+ image.getOriginalFilename() + unixTime);
+		String imageUrl = imagePath + "/" + imageName;
+
 		MultipartFileUtils.saveFile(image, imagePath, imageName);
 
-		
-		Course course = new Course(category, direction, title, description, 0, 0, new Date(), difficulty, imageUrl, "0", enabled);
+		Course course = new Course(category, direction, title, description, 0,
+				0, new Date(), difficulty, imageUrl, "0", enabled);
 		courseDao.addCourse(course);
 		redirectAttributes.addFlashAttribute("courseMsg", "添加课程信息成功");
 		return "redirect:/manage/course/courses";
@@ -111,44 +118,63 @@ public class CourseController {
 	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.GET)
 	public String edit(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
-		List <Direction> directions = directionDao.getEnabledDirections();
+		List<Direction> directions = directionDao.getEnabledDirections();
 		model.addAttribute("course", course);
-		model.addAttribute("directions",directions);
+		model.addAttribute("directions", directions);
 		return "backend/course/edit";
 	}
-	
-	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.POST)
-	public String edit(@PathVariable int courseId,String title, String description, String difficulty, int categoryId, int directionId,
-			MultipartFile image, String enabled, RedirectAttributes redirectAttributes,HttpSession session){
-		Course course = courseDao.getCourse(courseId);
-		
 
-		
-		if(image.getSize() == 0){
-			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled);
-		} else{
+	@RequestMapping(value = "/edit/{courseId}", method = RequestMethod.POST)
+	public String edit(@PathVariable int courseId, String title,
+			String description, String difficulty, int categoryId,
+			int directionId, MultipartFile image, String enabled,
+			RedirectAttributes redirectAttributes, HttpSession session) {
+		Course course = courseDao.getCourse(courseId);
+
+		if (image.getSize() == 0) {
+			courseDao.update(courseId, title, description, difficulty,
+					categoryId, directionId, enabled);
+		} else {
 			MultipartFileUtils.removeFile(course.getImageUrl());
-			
+
 			String imagePath = "/tmp/LearningCommunity/thumb";
 			Admin admin = (Admin) session.getAttribute("admin");
-			String imageName = HashUtils.HashPath(admin.getEmail()+image.getOriginalFilename());
-			String imageUrl = imagePath+"/"+imageName;
-			
+			String imageName = HashUtils.HashPath(admin.getEmail()
+					+ image.getOriginalFilename());
+			String imageUrl = imagePath + "/" + imageName;
+
 			MultipartFileUtils.saveFile(image, imagePath, imageName);
-			
-			courseDao.update(courseId, title, description, difficulty, categoryId, directionId, enabled, imageUrl);
-			
+
+			courseDao.update(courseId, title, description, difficulty,
+					categoryId, directionId, enabled, imageUrl);
+
 		}
 		redirectAttributes.addFlashAttribute("courseMsg", "修改课程信息成功");
 		return "redirect:/manage/course/courses";
 	}
-	
+
 	@RequestMapping(value = "/delete/{courseId}", method = RequestMethod.GET)
 	public String delete(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
 		MultipartFileUtils.removeFile(course.getImageUrl());
 		courseDao.delete(courseId);
-		
 		return "redirect:/manage/course/courses";
+	}
+
+	@RequestMapping(value = "/{courseId}/addlesson", method = RequestMethod.GET)
+	public String addLesson(@PathVariable int courseId, Model model) {
+		Course course = courseDao.getCourse(courseId);
+		model.addAttribute("course", course);
+		return "backend/course/addlesson";
+	}
+
+	@RequestMapping(value = "/{courseId}/addlesson", method = RequestMethod.POST)
+	public String addLesson(@PathVariable int courseId, Model model,
+			String title, String summary, String type, String content,
+			MultipartFile vedio, RedirectAttributes redirectAttributes,
+			HttpSession session) {
+		
+		//应该重定向
+		return null;
 	}
 }
