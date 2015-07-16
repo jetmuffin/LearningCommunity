@@ -16,8 +16,9 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(String title, String tag, String content){
-		return "frontend/question/index";
+	public String add(Model model, String title, String tag, String content){
+		return "frontend/question/view";
 	}
+	
 
 }
