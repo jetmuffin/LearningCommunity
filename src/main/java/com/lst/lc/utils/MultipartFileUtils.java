@@ -40,6 +40,17 @@ public class MultipartFileUtils {
 		return multipartUrl;
 	}
 	
+	public static String updateFile(MultipartFile multipartFile, String path){
+		removeFile(path);
+		int lastIndex = path.lastIndexOf("/");
+		path = path.substring(0, lastIndex);
+		long unixTime = System.currentTimeMillis();
+		path += HashUtils.HashPath(multipartFile.getOriginalFilename()+unixTime);
+		String multipartUrl = saveFile(multipartFile, path);
+		
+		return multipartUrl;
+	}
+	
 	/**
 	 * 删除文件
 	 * @param path	待删除的文件路径

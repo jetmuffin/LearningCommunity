@@ -34,6 +34,7 @@ public class LessonDaoImpl extends BaseDao implements LessonDao {
 		return query.list();
 	}
 
+	@Override
 	public void update(int lessonId,String title, String summary,String type, String videoUrl, String content){
 		String hql = "update CourseLesson as lesson set lesson.title = ?, lesson.summary = ?, lesson.type = ?, lesson.videoUrl = ?, lesson.content = ? where lesson.lessonId = ?";
 		Query query = query(hql);

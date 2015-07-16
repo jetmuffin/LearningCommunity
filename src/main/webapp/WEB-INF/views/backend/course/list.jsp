@@ -62,9 +62,9 @@
 									<td>${course.direction.directionName}</td>
 									<td>${course.category.categoryName}</td>
 									<td><c:if test="${course.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>开放</c:if><c:if test="${course.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未开放</c:if></td>
-								<td class="course-td"><a href="edit/${course.courseId}"  class="templatemo-edit-btn">Edit</a></td>
-								<td class="course-td"><a href="view/${course.courseId}"  class="templatemo-edit-btn">View</a></td>
-								<td class="course-td"><a href="delete/${course.courseId}" class="templatemo-link">Delete</a></td>								
+								<td class="course-td"><a href="edit/${course.courseId}"  class="templatemo-edit-btn">编辑</a></td>
+								<td class="course-td"><a href="view/${course.courseId}"  class="templatemo-edit-btn">详情</a></td>
+								<td class="course-td"><a href="delete/${course.courseId}" class="templatemo-link">删除</a></td>								
 								</tr>
 							</c:forEach>
 						</tbody>

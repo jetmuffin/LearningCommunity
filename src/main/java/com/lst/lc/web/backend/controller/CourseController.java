@@ -100,8 +100,10 @@ public class CourseController {
 	public String view(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
 		List <Direction> directions = directionDao.getEnabledDirections();
+		List<CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		model.addAttribute("course", course);
 		model.addAttribute("directions",directions);
+		model.addAttribute("lessons", lessons);
 		return "backend/course/view";
 	}
 	
@@ -125,11 +127,8 @@ public class CourseController {
 			courseDao.update(courseId, title, description, difficulty,
 					categoryId, directionId, enabled);
 		} else {
-			MultipartFileUtils.removeFile(course.getImageUrl());
-
-			String imagePath = "/tmp/LearningCommunity/thumb";
-
-			String imageUrl = MultipartFileUtils.saveFile(image, imagePath);
+			String imagePath = course.getImageUrl();
+			String imageUrl = MultipartFileUtils.updateFile(image, imagePath);
 
 			courseDao.update(courseId, title, description, difficulty,
 					categoryId, directionId, enabled, imageUrl);
@@ -170,13 +169,33 @@ public class CourseController {
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
-		//应该重定向
-		return "redirect:/manage/course/"+courseId+"/details";
+		redirectAttributes.addAttribute("lessonMsg", "添加课程成功");
+		return "redirect:/manage/course/view"+courseId;
 	}
 	
-	@RequestMapping(value = "/{courseId}/details", method = RequestMethod.GET)
-	public String detail(@PathVariable int courseId,Model model){
-		
-		return "backend/course/detail";
+	@RequestMapping(value = "/view/editlesson/{lessonId}", method = RequestMethod.GET)
+	public String editLesson(@PathVariable int lessonId, Model model){
+		CourseLesson lesson = lessonDao.getLesson(lessonId);
+		model.addAttribute("lesson", lesson);
+		return "backend/course/editlesson";
+	}
+	
+	@RequestMapping(value = "/view/editlesson/{lessonId}", method = RequestMethod.POST)
+	public String editLesson(@PathVariable int lessonId, Model model, String title, String summary, String type, String content,
+			MultipartFile video, RedirectAttributes redirectAttributes){
+		CourseLesson lesson = lessonDao.getLesson(lessonId);
+		String oldType = lesson.getType();
+		String videoUrl = null;
+		if(oldType.equals("video") && (video.getSize() != 0 || type.equals("text"))){
+			String videoPath = lesson.getVideoUrl();
+			if(type.equals("text")){
+				MultipartFileUtils.removeFile(videoPath);
+			}else{
+				videoUrl = MultipartFileUtils.updateFile(video, videoPath);
+			}
+		}
+		lessonDao.update(lessonId, title, summary, type, videoUrl, content);
+		redirectAttributes.addAttribute("lessonMsg", "修改课程成功");
+		return "backend/course/editlesson";
 	}
 }
