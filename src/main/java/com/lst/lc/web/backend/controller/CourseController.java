@@ -84,20 +84,13 @@ public class CourseController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(String title, String description, String difficulty,
 			int categoryId, int directionId, MultipartFile image,
-			String enabled, RedirectAttributes redirectAttributes,
-			HttpSession session) {
+			String enabled, RedirectAttributes redirectAttributes) {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
 
 		String imagePath = "/tmp/LearningCommunity/thumb";
 
-		Admin admin = (Admin) session.getAttribute("admin");
-		long unixTime = System.currentTimeMillis();
-		String imageName = HashUtils.HashPath(admin.getEmail()
-				+ image.getOriginalFilename() + unixTime);
-		String imageUrl = imagePath + "/" + imageName;
-
-		MultipartFileUtils.saveFile(image, imagePath, imageName);
+		String imageUrl = MultipartFileUtils.saveFile(image, imagePath);
 
 		Course course = new Course(category, direction, title, description, 0,
 				0, new Date(), difficulty, imageUrl, "0", enabled);
@@ -128,7 +121,7 @@ public class CourseController {
 	public String edit(@PathVariable int courseId, String title,
 			String description, String difficulty, int categoryId,
 			int directionId, MultipartFile image, String enabled,
-			RedirectAttributes redirectAttributes, HttpSession session) {
+			RedirectAttributes redirectAttributes) {
 		Course course = courseDao.getCourse(courseId);
 
 		if (image.getSize() == 0) {
@@ -138,12 +131,8 @@ public class CourseController {
 			MultipartFileUtils.removeFile(course.getImageUrl());
 
 			String imagePath = "/tmp/LearningCommunity/thumb";
-			Admin admin = (Admin) session.getAttribute("admin");
-			String imageName = HashUtils.HashPath(admin.getEmail()
-					+ image.getOriginalFilename());
-			String imageUrl = imagePath + "/" + imageName;
 
-			MultipartFileUtils.saveFile(image, imagePath, imageName);
+			String imageUrl = MultipartFileUtils.saveFile(image, imagePath);
 
 			courseDao.update(courseId, title, description, difficulty,
 					categoryId, directionId, enabled, imageUrl);
@@ -171,15 +160,27 @@ public class CourseController {
 	@RequestMapping(value = "/{courseId}/addlesson", method = RequestMethod.POST)
 	public String addLesson(@PathVariable int courseId, Model model,
 			String title, String summary, String type, String content,
-			MultipartFile vedio, RedirectAttributes redirectAttributes,
+			MultipartFile video, RedirectAttributes redirectAttributes,
 			HttpSession session) {
-		
+		Course course = courseDao.getCourse(courseId);
+		CourseLesson courseLesson = new CourseLesson(course, title, summary, type);
+		if(type.equals("text")){
+			System.out.println(content);
+			courseLesson.setContent(content);
+		}else{
+			String videoPath = "/tmp/LearningCommunity/thumb/"+courseId;
+
+			String videoUrl = MultipartFileUtils.saveFile(video, videoPath);
+			
+			courseLesson.setVideoUrl(videoUrl);
+		}
+		lessonDao.addLesson(courseLesson);
 		//应该重定向
-		return null;
+		return "redirect:/manage/course/"+courseId+"/details";
 	}
 	
 	@RequestMapping(value = "/{courseId}/details", method = RequestMethod.GET)
-	public String detail(@PathVariable int courseId){
+	public String detail(@PathVariable int courseId,Model model){
 		
 		
 		return "backend/course/detail";

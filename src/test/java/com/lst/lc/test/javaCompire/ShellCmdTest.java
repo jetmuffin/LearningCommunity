@@ -37,6 +37,15 @@ public class ShellCmdTest {
 	}
 
 	public String compireJava(String source,String stdin,String name){
+		String ans;
+		if(stdin == null){
+			stdin = "";
+		}
+		if(name == null || source == null){
+			ans = "Please enter the correct code !!!";
+			return ans;
+		}
+		
 		File pathFile = null;
 		FileOutputStream fileSource = null;
 		FileOutputStream fileStdin = null;
@@ -62,7 +71,7 @@ public class ShellCmdTest {
 				e.printStackTrace();
 			}
 		}
-		String ans = exec(cmd).toString();
+		ans = exec(cmd).toString();
 		deleteFile(pathFile);
 		return ans;
 	}
