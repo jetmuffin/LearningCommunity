@@ -54,6 +54,7 @@ public class UserController {
 	public String index(Model model) {
 		
 		
+		
 		return "frontend/user/index";
 	}
 

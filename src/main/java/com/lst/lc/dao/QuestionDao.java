@@ -13,4 +13,5 @@ public interface QuestionDao {
 	public void updateQuestion(Question question);
 	
 	public Question getQuestion(int questionId);
+	
 }
