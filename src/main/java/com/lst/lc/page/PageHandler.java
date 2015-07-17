@@ -44,15 +44,20 @@ public class PageHandler<T> {
 
 	/**
 	 * 获取分页page，自定义排序
-	 * @param pageNow 页码
-	 * @param pageSize 每页数据数量
-	 * @param c 类
-	 * @param query 自定义查询
+	 * 
+	 * @param pageNow
+	 *            页码
+	 * @param pageSize
+	 *            每页数据数量
+	 * @param c
+	 *            类
+	 * @param query
+	 *            自定义查询
 	 * @return
 	 */
 	public Page<T> getPage(int pageNow, int pageSize, Class<T> c, Query query) {
 		Page<T> page = initPage(pageNow, pageSize, c);
-		if(page == null)
+		if (page == null)
 			return null;
 		List<T> list = pageDao.getPageList(pageSize, pageNow, query);
 		page.setList(list);
@@ -61,9 +66,13 @@ public class PageHandler<T> {
 
 	/**
 	 * 初始化分页page的页码相关信息
-	 * @param pageNow　页码
-	 * @param pageSize 每页数据数量
-	 * @param c　类
+	 * 
+	 * @param pageNow
+	 *            　页码
+	 * @param pageSize
+	 *            每页数据数量
+	 * @param c
+	 *            　类
 	 * @return
 	 */
 	public Page<T> initPage(int pageNow, int pageSize, Class<T> c) {
@@ -71,7 +80,7 @@ public class PageHandler<T> {
 		long totalRowCount = pageDao.getTotalRowCount(c);
 		if (totalRowCount == 0)
 			return null;
-		if(pageSize == 0)
+		if (pageSize == 0)
 			return null;
 		/*
 		 * 计算页码数

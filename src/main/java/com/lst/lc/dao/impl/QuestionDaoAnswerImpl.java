@@ -1,5 +1,7 @@
 package com.lst.lc.dao.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.QuestionAnswerDao;
 import com.lst.lc.entities.QuestionAnswer;
+import com.lst.lc.entities.User;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 @Repository("questionAnswerDao")
 public class QuestionDaoAnswerImpl extends BaseDao implements QuestionAnswerDao {
@@ -34,5 +38,4 @@ public class QuestionDaoAnswerImpl extends BaseDao implements QuestionAnswerDao 
 		query.setInteger(0, questionId);
 		return query.list();
 	}
-
 }
