@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-14 10:29:11 by Hibernate Tools 4.3.1
+// Generated 2015-7-17 15:14:15 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
