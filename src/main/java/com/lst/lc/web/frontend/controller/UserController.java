@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
@@ -31,25 +32,34 @@ public class UserController {
 	public String login(Model model) {
 		return "frontend/user/login";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(HttpSession session, String email, String password,
+			RedirectAttributes redirectAttributes) {
+
+		User user = userDao.validateUser(email, password);
+		if (user == null) {
+			redirectAttributes.addFlashAttribute("loginMsg", "邮箱错误");
+			return "redirect:/user/login";
+		} else if (user.getPassword().equals(password)) {
+			session.setAttribute("user", user);
+			return "redirect:/user/index/"+user.getUserId();
+		} else {
+			redirectAttributes.addFlashAttribute("loginMsg", "密码错误");
+			return "redirect:/user/login";
+		}
+	}
+	
+	@RequestMapping(value = "/index/{userId}", method = RequestMethod.GET)
+	public String index(Model model) {
+		
+		
+		return "frontend/user/index";
+	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register(Model model) {
 		return "frontend/user/register";
-	}
-
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpSession session, String email, String password) {
-		User user = userDao.validateUser(email, password);
-		if (user == null) {
-			session.setAttribute("loginInfo", "邮箱错误");
-			return "backend/user/login";
-		} else if (user.getPassword().equals(password)) {
-			session.setAttribute("loginUser", user);
-			return "backend/user/index";
-		} else {
-			session.setAttribute("loginInfo", "密码错误");
-			return "backend/user/login";
-		}
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
