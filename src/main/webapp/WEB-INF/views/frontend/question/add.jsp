@@ -12,7 +12,7 @@
 	<form action="add" method="POST">
 		标题： <input type="text" name="title"><br /> 标签： <input
 			type="text" name="tag"><br /> 内容:
-		<textarea name="content" id="content" rows="10" cols="60">
+		<textarea name="content" id="content" rows="60" cols="60">
             </textarea>
 		<script>
 			CKEDITOR.replace('content');
