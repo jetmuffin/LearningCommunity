@@ -39,27 +39,18 @@ public class QuestionController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(Model model, String title, String tag, String content,HttpSession session,RedirectAttributes redirectAttributes){
-		
-		
-		//User user = (User) session.getAttribute("user");
-		
-		User user = new User();
-		
-		//添加问题的方法
+		User user = (User) session.getAttribute("user");
 		Question question = new Question(user, title, content, new Date(), 0, 0, tag, null);
-		
 		questionDao.addQuestion(question);
-		//然后question放在model里面
 		model.addAttribute("question",question);
-		//一般删除更新添加操作，要给结果信息
 		redirectAttributes.addFlashAttribute("questionMsg", "问题发布成功");
-		return "frontend/question/view";
+		return "redirect:/question/view/"+question.getQuestionId();
 	}
 	
 	
 	@RequestMapping(value = "/view/{questionId}", method = RequestMethod.GET)
-	public String detail(Model model, int questionId){
-		
+	public String detail(Model model,@PathVariable int questionId){
+		System.err.println("questionId"+questionId);
 		//获取question放进model
 		Question question = questionDao.getQuestion(questionId);
 		//questiongAnswear
