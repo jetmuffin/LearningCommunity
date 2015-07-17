@@ -85,10 +85,12 @@ public class QuestionController {
 
 	/**
 	 * 问题列表
+	 * 
 	 * @param model
 	 * @param pageNum
 	 * @param pageSize
-	 * @param type　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
+	 * @param type
+	 *            　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
 	 * @return
 	 */
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
@@ -117,5 +119,13 @@ public class QuestionController {
 		model.addAttribute("question", question);
 		return "frontend/question/edit";
 	}
-	
+
+	@RequestMapping(value = "/edit/{questionId}", method = RequestMethod.POST)
+	public String edit(@PathVariable int questionId, Model model, String title,
+			String tag, String content, RedirectAttributes redirectAttributes) {
+		questionDao.update(questionId, title, tag, content);
+		redirectAttributes.addFlashAttribute("questionMsg", "问题修改成功");
+		return "redirect:/question/view/" + questionId;
+	}
+
 }
