@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-17 15:14:15 by Hibernate Tools 4.3.1
+// Generated 2015-7-17 15:33:27 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -25,15 +25,18 @@ public class Feedback implements java.io.Serializable {
 	private Integer feedbackId;
 	private User user;
 	private Date time;
+	private String title;
 	private String content;
 	private int isHandled;
 
 	public Feedback() {
 	}
 
-	public Feedback(User user, Date time, String content, int isHandled) {
+	public Feedback(User user, Date time, String title, String content,
+			int isHandled) {
 		this.user = user;
 		this.time = time;
+		this.title = title;
 		this.content = content;
 		this.isHandled = isHandled;
 	}
@@ -67,6 +70,15 @@ public class Feedback implements java.io.Serializable {
 
 	public void setTime(Date time) {
 		this.time = time;
+	}
+
+	@Column(name = "title", nullable = false, length = 200)
+	public String getTitle() {
+		return this.title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Column(name = "content", nullable = false, length = 65535)
