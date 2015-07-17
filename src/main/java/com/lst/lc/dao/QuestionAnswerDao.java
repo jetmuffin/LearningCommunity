@@ -1,5 +1,7 @@
 package com.lst.lc.dao;
 
+import java.util.List;
+
 import com.lst.lc.entities.QuestionAnswer;
 
 /**
@@ -13,4 +15,6 @@ public interface QuestionAnswerDao {
 	public void updateQuestionAnswer(QuestionAnswer questionAnswer);
 	
 	public QuestionAnswer getQuestionAnswer(int answerId);
+
+	List<QuestionAnswer> getAllQuestionAnswers(int questionId);
 }
