@@ -17,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.QuestionAnswerDao;
 import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.entities.Question;
-import com.lst.lc.entities.QuestionAnswer;
 import com.lst.lc.entities.User;
+import com.lst.lc.web.bean.Answer;
 
 @Controller
 @RequestMapping("/question")
@@ -50,11 +50,10 @@ public class QuestionController {
 	
 	@RequestMapping(value = "/view/{questionId}", method = RequestMethod.GET)
 	public String detail(Model model,@PathVariable int questionId){
-		System.err.println("questionId"+questionId);
 		//获取question放进model
 		Question question = questionDao.getQuestion(questionId);
 		//questiongAnswear
-		List<QuestionAnswer> answers = questionAnswerDao.getAllQuestionAnswers(questionId);
+		List<Answer> answers = questionAnswerDao.getAllAnswers(questionId);
 		
 		model.addAttribute("question", question);
 		model.addAttribute("answers",answers);
