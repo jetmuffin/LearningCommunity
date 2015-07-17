@@ -14,7 +14,7 @@
 	<br /> 标签：${question.tag }
 	<br /> 阅读数：${question.readNums }
 	<br /> 回答数：${question.answerNums }
-	<br /> 回复：
+	<br /> 回复：${question.user.userName }
 
 	<c:forEach var="answer" items="${answers}">
 	${answer.userName} 回复：${answer.content}
