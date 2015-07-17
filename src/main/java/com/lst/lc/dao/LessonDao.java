@@ -14,4 +14,7 @@ public interface LessonDao {
 	
 	public List<CourseLesson> getLessonsOfCourse(int courseId);
 
+	void update(int lessonId, String title, String summary, String type,
+			String videoUrl, String content);
+
 }
