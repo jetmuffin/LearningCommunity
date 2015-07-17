@@ -7,6 +7,16 @@
 <title>反馈</title>
 </head>
 <body>
-
+	<form action="add" method="POST">
+		标题： 
+		<input type="text" name="title" ><br />
+		反馈内容:
+		<textarea name="content" id="content" rows="20" cols="60">
+            </textarea>
+		<script>
+			CKEDITOR.replace('content');
+		</script>
+		<button type="submit">提交</button>
+	</form>
 </body>
 </html>
