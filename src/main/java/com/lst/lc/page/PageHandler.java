@@ -52,6 +52,8 @@ public class PageHandler<T> {
 	 */
 	public Page<T> getPage(int pageNow, int pageSize, Class<T> c, Query query) {
 		Page<T> page = initPage(pageNow, pageSize, c);
+		if(page == null)
+			return null;
 		List<T> list = pageDao.getPageList(pageSize, pageNow, query);
 		page.setList(list);
 		return page;
@@ -68,6 +70,8 @@ public class PageHandler<T> {
 		// 获取全部数据数
 		long totalRowCount = pageDao.getTotalRowCount(c);
 		if (totalRowCount == 0)
+			return null;
+		if(pageSize == 0)
 			return null;
 		/*
 		 * 计算页码数
