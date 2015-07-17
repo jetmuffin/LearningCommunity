@@ -10,9 +10,12 @@
 </head>
 <body>
 	<form action="add" method="POST">
-		标题： <input type="text" name="title"><br /> 标签： <input
-			type="text" name="tag"><br /> 内容:
-		<textarea name="content" id="content" rows="60" cols="60">
+		标题： 
+		<input type="text" name="title" value="${blog.title }"><br />
+		标签： 
+		<input type="text" name="tag"value="${blog.tag }"><br /> 
+		内容:
+		<textarea name="content" id="content" rows="60" cols="60" value="${blog.content }">
             </textarea>
 		<script>
 			CKEDITOR.replace('content');
