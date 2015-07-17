@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-14 10:29:11 by Hibernate Tools 4.3.1
+// Generated 2015-7-17 15:14:15 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -38,6 +38,7 @@ public class User implements java.io.Serializable {
 	private Set<LessonComment> lessonComments = new HashSet<LessonComment>(0);
 	private Set<Blog> blogs = new HashSet<Blog>(0);
 	private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(0);
+	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
 
 	public User() {
 	}
@@ -60,7 +61,7 @@ public class User implements java.io.Serializable {
 			Set<RelUserRoute> relUserRoutes,
 			Set<QuestionAnswer> questionAnswers, Set<Question> questions,
 			Set<LessonComment> lessonComments, Set<Blog> blogs,
-			Set<RelUserCourse> relUserCourses) {
+			Set<RelUserCourse> relUserCourses, Set<Feedback> feedbacks) {
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
@@ -78,6 +79,7 @@ public class User implements java.io.Serializable {
 		this.lessonComments = lessonComments;
 		this.blogs = blogs;
 		this.relUserCourses = relUserCourses;
+		this.feedbacks = feedbacks;
 	}
 
 	@Id
@@ -242,6 +244,15 @@ public class User implements java.io.Serializable {
 
 	public void setRelUserCourses(Set<RelUserCourse> relUserCourses) {
 		this.relUserCourses = relUserCourses;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	public Set<Feedback> getFeedbacks() {
+		return this.feedbacks;
+	}
+
+	public void setFeedbacks(Set<Feedback> feedbacks) {
+		this.feedbacks = feedbacks;
 	}
 
 }
