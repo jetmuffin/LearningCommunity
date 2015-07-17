@@ -1,10 +1,8 @@
 package com.lst.lc.web.frontend.controller;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,9 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.BlogCommentDao;
 import com.lst.lc.dao.BlogDao;
 import com.lst.lc.entities.Blog;
-import com.lst.lc.entities.BlogComment;
+import com.lst.lc.entities.Question;
 import com.lst.lc.entities.User;
-import com.lst.lc.web.bean.BComment;
+import com.lst.lc.web.service.BlogPageHandler;
 
 @Controller
 @RequestMapping("/blog")
@@ -33,6 +31,10 @@ public class BlogController {
 	@Autowired
 	@Qualifier("blogCommentDao")
 	private BlogCommentDao blogCommentDao;
+	
+	@Autowired
+	@Qualifier("blogPageHandler")
+	private BlogPageHandler blogPageHandler;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
@@ -51,16 +53,54 @@ public class BlogController {
 	
 	
 	@RequestMapping(value = "/view/{blogId}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable int blogId){
+	public String detail(Model model, @PathVariable int blogId, String pageNum, String pageSize){
+		
+		int pageNow = 1;
+		int pagesize = 10;
+		if (pageSize != null) {
+			pagesize = Integer.valueOf(pageSize);
+		}
+		if (pageSize != null) {
+			pageNow = Integer.valueOf(pageNum);
+		}
 		Blog blog = blogDao.getBlog(blogId);
-		//获取blog放进model，名字叫blog
-		//获取该blog的评论放进取，评论也需要封装一些，用web.bean下面的BComment，名字叫comments
-		List<BComment> comments = blogCommentDao.getAllBComments(blogId);
-		
 		model.addAttribute("blog", blog);
-		model.addAttribute("comments", comments);
-		
+		model.addAttribute("comments", blogPageHandler.getComments(blogId, pageNow, pagesize));
 		return "frontend/blog/view";
 	}
+	
+	/**
+	 * 博客列表
+	 * @param model
+	 * @param pageNum
+	 * @param pageSize
+	 * @param type　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
+	 * @return
+	 */
+	@RequestMapping(value = "/blos", method = RequestMethod.GET)
+	public String list(Model model, String pageNum, String pageSize, String type) {
+		int pageNow = 1;
+		int pagesize = 10;
+		int sorttype = 1;
+		if (pageSize != null) {
+			pagesize = Integer.valueOf(pageSize);
+		}
+		if (pageSize != null) {
+			pageNow = Integer.valueOf(pageNum);
+		}
+		if (type != null) {
+			sorttype = Integer.valueOf(type);
+		}
+		model.addAttribute("page",
+				blogPageHandler.getBlogs(pageNow, pagesize, sorttype));
 
+		return "frontend/blog/list";
+	}
+
+	@RequestMapping(value = "/edit/{blogId}", method = RequestMethod.GET)
+	public String edit(@PathVariable int blogId, Model model) {
+		Blog blog = blogDao.getBlog(blogId);
+		model.addAttribute("blog", blog);
+		return "frontend/question/edit";
+	}
 }
