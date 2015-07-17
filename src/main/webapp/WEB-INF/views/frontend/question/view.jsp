@@ -9,17 +9,17 @@
 </head>
 <body>
 
-标题：${question.title}
-<br/>
-描述：${question.content }
-<br/>
-标签：${question.tag }
-<br/>
-阅读数：${question.readNums }
-<br/>
-回答数：${question.answerNums }
-<br/>
-回复：
+	标题：${question.title}
+	<br /> 描述：${question.content }
+	<br /> 标签：${question.tag }
+	<br /> 阅读数：${question.readNums }
+	<br /> 回答数：${question.answerNums }
+	<br /> 回复：
+
+	<c:forEach var="answer" items="${answers}">
+	${answer.userName} 回复：${answer.content}
+	<br />
+	</c:forEach>
 
 
 </body>
