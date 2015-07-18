@@ -1,6 +1,9 @@
 package com.lst.lc.web.frontend.controller;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -15,46 +18,68 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.BlogCommentDao;
 import com.lst.lc.dao.BlogDao;
+import com.lst.lc.dao.BlogTagDao;
 import com.lst.lc.entities.Blog;
-import com.lst.lc.entities.Question;
+import com.lst.lc.entities.BlogTag;
 import com.lst.lc.entities.User;
+import com.lst.lc.utils.StringUtils;
 import com.lst.lc.web.service.BlogPageHandler;
 
 @Controller
 @RequestMapping("/blog")
 public class BlogController {
-	
+
 	@Autowired
 	@Qualifier("blogDao")
 	private BlogDao blogDao;
-	
+
+	@Autowired
+	@Qualifier("blogTagDao")
+	private BlogTagDao blogTagDao;
+
 	@Autowired
 	@Qualifier("blogCommentDao")
 	private BlogCommentDao blogCommentDao;
-	
+
 	@Autowired
 	@Qualifier("blogPageHandler")
 	private BlogPageHandler blogPageHandler;
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
 		return "frontend/blog/add";
 	}
-	
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String add(Model model, String title, String tag, String content,RedirectAttributes redirectAttributes, HttpSession session){
+	public String add(Model model, String title, String tag, String content,
+			RedirectAttributes redirectAttributes, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		Blog blog = new Blog(user, title, content, new Date(), 0, 0);
-		model.addAttribute("blog", blog);
+
+		Set<BlogTag> tagSet = new HashSet<BlogTag>();
+		List<String> tags = StringUtils.stringSplit(tag);
+		for (int i = 0; i < tags.size(); i++) {
+			BlogTag blogTag = blogTagDao.getTagByName(tags.get(i));
+			if (blogTag == null) {
+				blogTag = new BlogTag(tags.get(i), 1);
+			} else {
+				// 数量加１
+				int number = blogTag.getNumber() + 1;
+				blogTag.setNumber(number);
+			}
+			tagSet.add(blogTag);
+		}
+
+		Blog blog = new Blog(user, title, content, new Date(), 0, 0, tag,
+				tagSet, null);
 		blogDao.addBlog(blog);
 		redirectAttributes.addFlashAttribute("blogMsg", "博客发布成功");
-		return "redirect:/blog/view/"+blog.getBlogId();
+		return "redirect:/blog/view/" + blog.getBlogId();
 	}
-	
-	
+
 	@RequestMapping(value = "/view/{blogId}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable int blogId, String pageNum, String pageSize){
-		
+	public String detail(Model model, @PathVariable int blogId, String pageNum,
+			String pageSize) {
+
 		int pageNow = 1;
 		int pagesize = 10;
 		if (pageSize != null) {
@@ -65,12 +90,14 @@ public class BlogController {
 		}
 		Blog blog = blogDao.getBlog(blogId);
 		model.addAttribute("blog", blog);
-		model.addAttribute("comments", blogPageHandler.getComments(blogId, pageNow, pagesize));
+		model.addAttribute("comments",
+				blogPageHandler.getComments(blogId, pageNow, pagesize));
 		return "frontend/blog/view";
 	}
-	
+
 	/**
 	 * 博客列表
+	 * 
 	 * @param model
 	 * @param pageNum
 	 * @param pageSize

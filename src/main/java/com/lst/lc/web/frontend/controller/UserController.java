@@ -37,7 +37,8 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public StatusMessage login(HttpSession session, String email, String password) {
+	public StatusMessage login(HttpSession session, String email,
+			String password) {
 
 		User user = userDao.validateUser(email, password);
 		StatusMessage statusMessage;
@@ -64,16 +65,29 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public StatusMessage register(String userName, String email, String password,
-			String captcha,HttpSession session) {
-		
-		System.out.println(session.getAttribute("validationCode"));
-		System.out.println(captcha);
-		//TODO 验证邮箱是否存在
-		//User user = new User(userName, email, password, "男", 0, "0", " ", "1");
-		//userDao.addUser(user);
-		String message = "注册成功";
-		StatusMessage statusMessage = new StatusMessage(1, message);
+	public StatusMessage register(String userName, String email,
+			String password, String captcha, HttpSession session) {
+
+		StatusMessage statusMessage;
+		String message = null;
+
+		// 先判断邮箱是否已经被注册
+		if (userDao.ifEmailExisted(email)) {
+			message = "该邮箱已被注册";
+			statusMessage = new StatusMessage(0, message);
+		}
+		// 判断验证码
+		else if (!captcha.equals(session.getAttribute("validationCode"))) {
+			message = "验证码错误";
+			statusMessage = new StatusMessage(0, message);
+		} else {
+			User user = new User(userName, email, password, "未知", 10, "菜鸟",
+					"", "user");
+			userDao.addUser(user);
+			message = "注册成功，您已登录";
+			statusMessage = new StatusMessage(1, message);
+			session.setAttribute("loginUser", user);
+		}
 		return statusMessage;
 	}
 }

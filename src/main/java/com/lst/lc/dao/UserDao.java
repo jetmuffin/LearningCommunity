@@ -36,4 +36,18 @@ public interface UserDao {
 	 * @return
 	 */
 	public User validateUser(String email, String password);
+	
+	/**
+	 * 用户增加积分
+	 * @param userId
+	 * @param integral
+	 */
+	public void addIntegral(int userId, int integral);
+	
+	/**
+	 * 判断注册邮箱是否存在
+	 * @param email
+	 * @return
+	 */
+	public boolean ifEmailExisted(String email);
 }
