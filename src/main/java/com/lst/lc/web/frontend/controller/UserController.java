@@ -40,16 +40,19 @@ public class UserController {
 	public LoginUser login(HttpSession session, String email, String password) {
 
 		User user = userDao.validateUser(email, password);
-		String loginMsg = null;
+		LoginUser loginUser;
+		String msg = null;
 		if (user == null) {
-			loginMsg = "邮箱错误";
+			msg = "邮箱错误";
+			loginUser = new LoginUser(0, msg);
 		} else if (user.getPassword().equals(password)) {
-			loginMsg = "登录成功";
+			msg = "登录成功";
 			session.setAttribute("loginUser", user);
+			loginUser = new LoginUser(1, msg);
 		} else {
-			loginMsg = "密码错误";
+			msg = "密码错误";
+			loginUser = new LoginUser(0, msg);
 		}
-		LoginUser loginUser = new LoginUser(user, loginMsg);
 		return loginUser;
 	}
 

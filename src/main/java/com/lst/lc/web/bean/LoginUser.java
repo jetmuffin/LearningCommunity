@@ -4,29 +4,27 @@ import com.lst.lc.entities.User;
 
 public class LoginUser {
 
-	private User user;
-	private String loginMsg;
+	private int state;
+	private String msg;
 	public LoginUser() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public LoginUser(User user, String loginMsg) {
+	public LoginUser(int state, String loginMsg) {
 		super();
-		this.user = user;
-		this.loginMsg = loginMsg;
+		this.state = state;
+		this.msg = loginMsg;
 	}
-	public User getUser() {
-		return user;
+	public int getState() {
+		return state;
 	}
-	public void setUser(User user) {
-		this.user = user;
+	public void setState(int state) {
+		this.state = state;
 	}
 	public String getLoginMsg() {
-		return loginMsg;
+		return msg;
 	}
 	public void setLoginMsg(String loginMsg) {
-		this.loginMsg = loginMsg;
+		this.msg = loginMsg;
 	}
-	
 	
 }
