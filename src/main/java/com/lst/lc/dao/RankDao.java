@@ -9,5 +9,7 @@ public interface RankDao {
 	public Rank getRank(String name);
 	
 	public void updateRank(int integral, String name);
+	
+	public String getRank(int integral);
 
 }
