@@ -266,7 +266,7 @@ h5 {
   height: 30px;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
-  background: url(/LearningCommunity/resources/images/gsearch-sprite.png) no-repeat 0 0;
+  background: url(gsearch-sprite.png) no-repeat 0 0;
 }
 #header #login-area {
   float: right;
@@ -392,17 +392,22 @@ h5 {
   color: #000;
   font-weight: bold;
 }
+#main .course-list .all-course-list .course-item .widget-course .widget-course-info #join-right-now {
+  position: absolute;
+}
 #main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta {
   padding: 0;
   margin: 8px 0 0;
   font-size: 13px;
   color: #999;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .btn{
-	position:absolute;
-}
 #main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
   line-height: 20px;
+}
+#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 40px;
 }
 #main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-student-number {
   color: #787d82;
@@ -503,12 +508,12 @@ h5 {
   border-left: 4px solid red;
 }
 .modal .modal-body .control-group input {
-  width: 260px;
+  width: 265px;
   height: 35px;
   border: 1px solid #ccc;
   padding: 0 0 0 40px;
   font-size: 14px;
-  background: url(/LearningCommunity/resources/images/login_icon.png) no-repeat;
+  background: url(login_icon.png) no-repeat;
   border-radius: 2px;
   color: #999;
   -webkit-transition: all 0.1s ease 0.1s;
@@ -590,7 +595,7 @@ h5 {
 }
 .modal .modal-footer .outside-login .outside-list li a {
   display: inline-block;
-  background: url(/LearningCommunity/resources/images/outside_icon_30.png) no-repeat;
+  background: url(outside_icon_30.png) no-repeat;
   vertical-align: middle;
   width: 30px;
   height: 30px;
@@ -607,6 +612,291 @@ h5 {
 }
 .modal .modal-footer .outside-login .outside-list li a.icon-outside-qq:hover {
   background-position: -80px 0px;
+}
+#subheader {
+  padding: 15px 0;
+  background: #f6f6f6;
+}
+#subheader .breadcrumb {
+  margin: 0 0 10px;
+  padding: 0;
+  background-color: transparent;
+}
+#subheader .breadcrumb li {
+  font-size: 13px;
+  display: inline-block;
+}
+#subheader .breadcrumb li a {
+  color: #333;
+}
+#subheader .breadcrumb li.active a {
+  color: #777;
+}
+#subheader .breadcrumb li + li:before {
+  content: "";
+  display: inline-block;
+  margin: 0 10px 0 5px;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-width: 1px 1px 0 0;
+  width: 8px;
+  height: 8px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+#subheader .title {
+  margin: 0;
+}
+#subheader .title a {
+  color: #333;
+  font-size: 24px;
+}
+#view-main {
+  margin-top: 30px;
+}
+#view-main .course-summary {
+  margin: 0;
+  background: #f3f3f3;
+}
+#view-main .course-summary .course-summary-pic {
+  width: 50%;
+  float: left;
+  padding: 0 15px;
+}
+#view-main .course-summary .course-summary-pic img {
+  width: 100%;
+}
+#view-main .course-summary .course-summary-info {
+  width: 25%;
+  float: left;
+  min-height: 210px;
+  padding: 25px  15px 0 15px;
+}
+#view-main .course-summary .course-summary-info th {
+  width: 75px;
+  color: #666;
+  font-weight: normal;
+}
+#view-main .course-summary .course-summary-info td {
+  color: #333333;
+  vertical-align: top;
+}
+#view-main .course-summary .course-summary-statics {
+  width: 16%;
+  float: left;
+  padding: 25px 15px;
+}
+#view-main .course-summary .course-summary-statics .statics-group .statics-num {
+  margin: 13px 0;
+  color: #6699ff;
+}
+#view-main .course-summary .course-summary-statics .statics-group .statics-num span {
+  font-size: 40px;
+}
+#view-main .course-summary .course-summary-more {
+  float: left;
+  width: 45%;
+}
+#view-main .course-summary .course-summary-more #join-right-now {
+  margin-left: 15px;
+}
+#view-main .course-summary .course-summary-more .share {
+  overflow: hidden;
+  height: 24px;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+#view-main .course-summary .course-summary-more .share .d {
+  float: left;
+  font-size: 14px;
+  color: #828282;
+  line-height: 24px;
+}
+#view-main .course-summary .course-summary-more .share a {
+  font-size: 12px;
+  color: #999;
+  float: left;
+  line-height: 20px;
+  cursor: pointer;
+  background: none;
+  padding-left: 0;
+  width: 27px;
+  height: 22px;
+  border: 1px solid #E4E4E4;
+  margin: 0 0 0 -1px;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(/LearningCommunity/resources/images/school.png);
+}
+#view-main .course-summary .course-summary-more .share a.bds_qzone {
+  background-position: -615px -58px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_qzone:hover {
+  background-position: -673px -58px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_renren {
+  background-position: -485px -83px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_renren:hover {
+  background-position: -369px -83px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_tsina {
+  background-position: -456px -83px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_tsina:hover {
+  background-position: -664px -32px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_weixin {
+  background-position: -427px -83px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_weixin:hover {
+  background-position: -398px -83px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_more {
+  background-position: -693px -32px;
+}
+#view-main .course-summary .course-summary-more .share a.bds_more:hover {
+  background-position: -644px -58px;
+}
+#view-main .course-content {
+  margin-top: 20px;
+}
+#view-main .course-content .content-area {
+  padding: 0 20px 20px;
+  background: #f3f3f3;
+  width: 720px;
+  min-height: 600px;
+  float: left;
+}
+#view-main .course-content .content-area .course-menu {
+  border-bottom: 1px solid #D1D6DA;
+  height: 50px;
+  line-height: 50px;
+  margin-bottom: 20px;
+}
+#view-main .course-content .content-area .course-menu li {
+  float: left;
+  height: 100%;
+  text-align: center;
+  width: 120px;
+}
+#view-main .course-content .content-area .course-menu li a {
+  display: block;
+  font-size: 14px;
+}
+#view-main .course-content .content-area .course-menu li a.ui-tabs-active {
+  color: #3689b3;
+  border-bottom: 2px solid #3689b3;
+}
+#view-main .course-content .content-area .course-chapter-list {
+  padding: 0 20px;
+}
+#view-main .course-content .content-area .course-chapter-list h3 {
+  background: #D6E1E8;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 10px;
+  color: #303538;
+}
+#view-main .course-content .content-area .course-chapter-list h3:hover {
+  background-color: #dddce0;
+}
+#view-main .course-content .content-area .course-chapter-list h3 span {
+  display: block;
+  float: right;
+  width: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #b4bbbf;
+  text-align: center;
+  margin-right: 15px;
+}
+#view-main .course-content .content-area .course-chapter-list h3 strong {
+  cursor: pointer;
+  display: block;
+  float: left;
+  padding: 0 0 0 20px;
+  width: 345px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#view-main .course-content .content-area .course-chapter-list .chapter a {
+  cursor: pointer;
+}
+#view-main .course-content .content-area .course-chapter-list .chapter li {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 40px;
+  margin-bottom: 2px;
+}
+#view-main .course-content .content-area .course-chapter-list .chapter li .chapter-item {
+  color: #60686b;
+  height: 40px;
+  overflow: hidden;
+  padding: 0 0 0 28px;
+  word-break: break-all;
+  border-bottom: 1px solid #eee;
+}
+#view-main .course-content .content-area .course-chapter-list .chapter li .chapter-item span.lock {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  background: url(login_icon.png) no-repeat;
+  background-position: 0 -150px;
+}
+#view-main .course-content .sidebar {
+  width: 260px;
+  float: right;
+  min-height: 600px;
+}
+#view-main .course-content .sidebar dl {
+  margin-bottom: 20px;
+  background-color: #f3f3f3;
+  padding: 0 20px 1px;
+}
+#view-main .course-content .sidebar dl dt {
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #333;
+  border-bottom: 1px solid #e3e6e8;
+}
+#view-main .course-content .sidebar dl dd {
+  color: #656e7e;
+  font-size: 12px;
+  line-height: 2em;
+  word-break: break-all;
+  white-space: normal;
+  margin: 20px 0;
+}
+#view-main .course-content .sidebar dl dd .course-name {
+  float: right;
+  width: 102px;
+  font-size: 12px;
+  color: #60696b;
+  line-height: 20px;
+  word-break: break-all;
+  word-wrap: break-all;
+}
+#view-main .course-content .sidebar dl dd ul li {
+  height: 54px;
+  margin: 12px 0;
+}
+#view-main .course-content .sidebar dl dd ul li img {
+  float: left;
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+}
+#view-main .course-content .sidebar dl dd ul li h3 {
+  margin-left: 50px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .container {
   display: block;
@@ -629,4 +919,10 @@ h5 {
   background-color: #49d;
   -webkit-box-shadow: none;
   box-shadow: none;
+}
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 3px;
 }
