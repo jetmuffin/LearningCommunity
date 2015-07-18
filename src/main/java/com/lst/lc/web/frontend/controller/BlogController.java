@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.BlogDao;
+import com.lst.lc.dao.BlogTagDao;
 
 @Controller
 @RequestMapping("/blog")
