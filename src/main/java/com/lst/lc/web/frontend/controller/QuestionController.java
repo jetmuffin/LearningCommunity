@@ -1,7 +1,9 @@
 package com.lst.lc.web.frontend.controller;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,13 +20,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.QueryDao;
 import com.lst.lc.dao.QuestionAnswerDao;
 import com.lst.lc.dao.QuestionDao;
+import com.lst.lc.dao.QuestionTagDao;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.entities.Question;
 import com.lst.lc.entities.QuestionAnswer;
+import com.lst.lc.entities.QuestionTag;
 import com.lst.lc.entities.User;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
+import com.lst.lc.utils.StringUtils;
 import com.lst.lc.web.service.QuestionPageHandler;
 
 @Controller
@@ -38,6 +43,10 @@ public class QuestionController {
 	@Autowired
 	@Qualifier("questionAnswerDao")
 	private QuestionAnswerDao questionAnswerDao;
+	
+	@Autowired
+	@Qualifier("questionTagDao")
+	private QuestionTagDao questionTagDao;
 
 	@Autowired
 	@Qualifier("queryDao")
@@ -55,8 +64,23 @@ public class QuestionController {
 	public String add(Model model, String title, String tag, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("user");
+		
+		Set<QuestionTag> tagSet = new HashSet<QuestionTag>(); 
+		List<String> tags = StringUtils.stringSplit(tag);
+		for(int i = 0; i < tags.size(); i++){
+			QuestionTag questionTag = questionTagDao.getTagByName(tags.get(i));
+			if(questionTag == null){
+				questionTag = new QuestionTag(tags.get(i), 1);
+			} else {
+				//数量加１
+				int number = questionTag.getNumber() + 1;
+				questionTag.setNumber(number);
+			}
+			tagSet.add(questionTag);
+		}
+		
 		Question question = new Question(user, title, content, new Date(), 0,
-				0, tag, null);
+				0, tag, tagSet, null);
 		questionDao.addQuestion(question);
 		model.addAttribute("question", question);
 		redirectAttributes.addFlashAttribute("questionMsg", "问题发布成功");

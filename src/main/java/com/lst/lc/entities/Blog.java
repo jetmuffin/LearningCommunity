@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-17 15:33:27 by Hibernate Tools 4.3.1
+// Generated 2015-7-18 9:37:36 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,6 +34,7 @@ public class Blog implements java.io.Serializable {
 	private int commentNums;
 	private int readNums;
 	private String tag;
+	private Set<BlogTag> blogTags = new HashSet<BlogTag>(0);
 	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
 
 	public Blog() {
@@ -49,7 +51,7 @@ public class Blog implements java.io.Serializable {
 	}
 
 	public Blog(User user, String title, String content, Date time,
-			int commentNums, int readNums, String tag,
+			int commentNums, int readNums, String tag, Set<BlogTag> blogTags,
 			Set<BlogComment> blogComments) {
 		this.user = user;
 		this.title = title;
@@ -58,6 +60,7 @@ public class Blog implements java.io.Serializable {
 		this.commentNums = commentNums;
 		this.readNums = readNums;
 		this.tag = tag;
+		this.blogTags = blogTags;
 		this.blogComments = blogComments;
 	}
 
@@ -135,6 +138,15 @@ public class Blog implements java.io.Serializable {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "blogs")
+	public Set<BlogTag> getBlogTags() {
+		return this.blogTags;
+	}
+
+	public void setBlogTags(Set<BlogTag> blogTags) {
+		this.blogTags = blogTags;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "blog")

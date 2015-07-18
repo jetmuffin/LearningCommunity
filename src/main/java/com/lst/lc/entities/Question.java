@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-17 15:33:27 by Hibernate Tools 4.3.1
+// Generated 2015-7-18 9:37:36 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -33,6 +34,7 @@ public class Question implements java.io.Serializable {
 	private int readNums;
 	private int answerNums;
 	private String tag;
+	private Set<QuestionTag> questionTags = new HashSet<QuestionTag>(0);
 	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>(0);
 
 	public Question() {
@@ -50,7 +52,7 @@ public class Question implements java.io.Serializable {
 
 	public Question(User user, String title, String content, Date time,
 			int readNums, int answerNums, String tag,
-			Set<QuestionAnswer> questionAnswers) {
+			Set<QuestionTag> questionTags, Set<QuestionAnswer> questionAnswers) {
 		this.user = user;
 		this.title = title;
 		this.content = content;
@@ -58,6 +60,7 @@ public class Question implements java.io.Serializable {
 		this.readNums = readNums;
 		this.answerNums = answerNums;
 		this.tag = tag;
+		this.questionTags = questionTags;
 		this.questionAnswers = questionAnswers;
 	}
 
@@ -135,6 +138,15 @@ public class Question implements java.io.Serializable {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "questions")
+	public Set<QuestionTag> getQuestionTags() {
+		return this.questionTags;
+	}
+
+	public void setQuestionTags(Set<QuestionTag> questionTags) {
+		this.questionTags = questionTags;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
