@@ -51,4 +51,14 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		query.executeUpdate();
 	}
 
+	@Override
+	public boolean ifEmailExisted(String email) {
+		String hql = "from User as user where user.email = ?";
+		Query query = query(hql).setString(0, email);
+		List<User> users = query.list();
+		if(users.size() != 0)
+			return true;
+		return false;
+	}
+
 }

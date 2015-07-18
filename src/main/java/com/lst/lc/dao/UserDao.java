@@ -43,4 +43,11 @@ public interface UserDao {
 	 * @param integral
 	 */
 	public void addIntegral(int userId, int integral);
+	
+	/**
+	 * 判断注册邮箱是否存在
+	 * @param email
+	 * @return
+	 */
+	public boolean ifEmailExisted(String email);
 }
