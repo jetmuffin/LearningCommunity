@@ -70,6 +70,4 @@ public class ManageController {
 		model.addAttribute("module", "user");
 		return "backend/user/add";
 	}
-	
-	
 }

@@ -60,7 +60,7 @@
 						<c:forEach var="course" items="${courseMenu.page.list}">
 							<div class="course-item">
 								<div class="widget-course">
-									<a href="/LearningCommunity/course/view/${course.courseId}"><img src="/LearningCommunity/manage/read/photo/${course.courseId }" class="widget-course-banner" alt=""></a>
+									<a href="/LearningCommunity/course/view/${course.courseId}"><img src="/LearningCommunity/read/photo/${course.courseId }" class="widget-course-banner" alt=""></a>
 								<div class="widget-course-info">
 	            					<h2 class="h4 title"><a href="">${course.title}</a></h2>
 	            					<ul class="widget-course-meta">

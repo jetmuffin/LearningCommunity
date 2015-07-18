@@ -25,7 +25,7 @@
     <div id="view-main">
     	<div class="container">
     		<div class="course-summary clearfix">
-    			<div class="course-summary-pic"><a href=""><img src="/LearningCommunity/manage/read/photo/${course.courseId }" alt=""></a></div>
+    			<div class="course-summary-pic"><a href=""><img src="/LearningCommunity/read/photo/${course.courseId }" alt=""></a></div>
     			<div class="course-summary-info">
     				<table class="clearfix">
     					<tr><th>开课时间:</th><td>${course.createTime}</td></tr>
@@ -125,5 +125,9 @@
     </div>
 	<div class="clearfix"></div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
+		<script type="text/javascript"
+		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+		<script src="/LearningCommunity/resources/js/frontend/course/main.js"></script>
+		
 </body>
 </html>

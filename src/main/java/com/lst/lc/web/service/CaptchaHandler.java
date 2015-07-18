@@ -80,8 +80,8 @@ public class CaptchaHandler {
         textRenderer.setTopMargin(3);  
         configurableCaptchaService.setTextRenderer(textRenderer);  
         // 验证码图片的大小  
-        configurableCaptchaService.setWidth(82);  
-        configurableCaptchaService.setHeight(32);  
+        configurableCaptchaService.setWidth(80);  
+        configurableCaptchaService.setHeight(35);  
 	}
 	
 }
