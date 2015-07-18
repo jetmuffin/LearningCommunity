@@ -61,15 +61,15 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label templatemo-block">选择课程难度</label>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="difficulty" id="r4" value=""> <label
+								<input type="radio" name="difficulty" id="r4" value="1"> <label
 									for="r4" class="font-weight-400"><span></span>初级</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="difficulty" id="r5" value="" checked>
+								<input type="radio" name="difficulty" id="r5" value="2" checked>
 								<label for="r5" class="font-weight-400"><span></span>中级</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="difficulty" id="r6" value=""> <label
+								<input type="radio" name="difficulty" id="r6" value="3"> <label
 									for="r6" class="font-weight-400"><span></span>高级</label>
 							</div>
 						</div>

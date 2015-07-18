@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,5 +47,12 @@ public class LessonController {
 		System.out.println(courseMenu);
 		model.addAttribute("courseMenu", courseMenu);
 		return "frontend/course/list";
+	}
+	
+	@RequestMapping(value = "/view/{courseId}", method = RequestMethod.GET)
+	public String viewCourse(Model model, @PathVariable int courseId){
+		Course course = courseDao.getCourse(courseId);
+		model.addAttribute("course", course);
+		return "frontend/course/view";
 	}
 }

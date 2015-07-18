@@ -1,5 +1,5 @@
 $(function(){
-	console.log(window.location.search);
+
 });
 
 function loginInputFocus(input){
@@ -26,4 +26,18 @@ function showRegisterBox(){
 
 function hideRegisterBox(){
 	$("#register-modal").remove();
+}
+
+function collapseChapter(div){
+	var d = $(div).next('ul');
+	d.slideToggle('300');
+	collapseChaterButton();
+}
+
+function collapseChaterButton(){
+	var btn = $('#collapse-btn');
+	if(btn.html() == '+'){
+		btn.html('-');
+	}else if(btn.html() == '-')
+		btn.html('+');
 }

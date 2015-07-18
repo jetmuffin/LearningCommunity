@@ -36,4 +36,11 @@ public interface UserDao {
 	 * @return
 	 */
 	public User validateUser(String email, String password);
+	
+	/**
+	 * 用户增加积分
+	 * @param userId
+	 * @param integral
+	 */
+	public void addIntegral(int userId, int integral);
 }
