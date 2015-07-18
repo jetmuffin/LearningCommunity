@@ -85,7 +85,7 @@ public class CourseController {
 		Category category = categoryDao.getCategory(categoryId);
 		Direction direction = directionDao.getDirection(directionId);
 
-		String imagePath = "/tmp/LearningCommunity/thumb";
+		String imagePath = "/opt/LearningCommunity/thumb";
 
 		String imageUrl = MultipartFileUtils.saveFile(image, imagePath);
 
@@ -139,10 +139,11 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/delete/{courseId}", method = RequestMethod.GET)
-	public String delete(@PathVariable int courseId, Model model) {
+	public String delete(@PathVariable int courseId, Model model,RedirectAttributes redirectAttributes) {
 		Course course = courseDao.getCourse(courseId);
 		MultipartFileUtils.removeFile(course.getImageUrl());
 		courseDao.delete(courseId);
+		redirectAttributes.addFlashAttribute("courseMsg", "删除课程成功");
 		return "redirect:/manage/course/courses";
 	}
 

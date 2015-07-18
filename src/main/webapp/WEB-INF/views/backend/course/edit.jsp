@@ -83,7 +83,7 @@
 					<div class="row form-group">
 						<div class="col-lg-12">
 							<label class="control-label templatemo-block">课程图片</label>
-							<img src="/LearningCommunity/manage/read/photo/${course.courseId }">
+							<img src="/LearningCommunity/read/photo/${course.courseId }">
 							<!-- <input type="file" name="fileToUpload" id="fileToUpload" class="margin-bottom-10"> -->
 							<label class="control-label templatemo-block">修改图片</label>
 							<input type="file" name="image" id="fileToUpload"

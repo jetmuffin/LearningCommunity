@@ -16,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.User;
-import com.lst.lc.web.bean.LoginUser;
+import com.lst.lc.web.bean.StatusMessage;
 
 @Controller
 @RequestMapping("/user")
@@ -37,23 +37,23 @@ public class UserController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public LoginUser login(HttpSession session, String email, String password) {
+	public StatusMessage login(HttpSession session, String email, String password) {
 
 		User user = userDao.validateUser(email, password);
-		LoginUser loginUser;
-		String msg = null;
+		StatusMessage statusMessage;
+		String message = null;
 		if (user == null) {
-			msg = "邮箱错误";
-			loginUser = new LoginUser(0, msg);
+			message = "邮箱错误";
+			statusMessage = new StatusMessage(0, message);
 		} else if (user.getPassword().equals(password)) {
-			msg = "登录成功";
+			message = "登录成功";
 			session.setAttribute("loginUser", user);
-			loginUser = new LoginUser(1, msg);
+			statusMessage = new StatusMessage(1, message);
 		} else {
-			msg = "密码错误";
-			loginUser = new LoginUser(0, msg);
+			message = "密码错误";
+			statusMessage = new StatusMessage(0, message);
 		}
-		return loginUser;
+		return statusMessage;
 	}
 
 	@RequestMapping(value = "/index/{userId}", method = RequestMethod.GET)
@@ -62,18 +62,18 @@ public class UserController {
 		return "frontend/user/index";
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register(Model model) {
-		return "frontend/user/register";
-	}
-
+	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String register(String userName, String email, String password,
-			String gender, String avatar, String motto, String city) {
-
-		// User user = new User(userName, email, password, gender, 0, rank,
-		// avatar, "user");
-		return "frontend/user/register";
+	public StatusMessage register(String userName, String email, String password,
+			String captcha,HttpSession session) {
+		
+		System.out.println(session.getAttribute("validationCode"));
+		System.out.println(captcha);
+		//TODO 验证邮箱是否存在
+		//User user = new User(userName, email, password, "男", 0, "0", " ", "1");
+		//userDao.addUser(user);
+		String message = "注册成功";
+		StatusMessage statusMessage = new StatusMessage(1, message);
+		return statusMessage;
 	}
-
 }

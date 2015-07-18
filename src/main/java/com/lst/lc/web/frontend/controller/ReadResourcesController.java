@@ -1,4 +1,4 @@
-package com.lst.lc.web.backend.controller;
+package com.lst.lc.web.frontend.controller;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,7 +24,7 @@ import com.lst.lc.web.bean.MyCaptcha;
 import com.lst.lc.web.service.CaptchaHandler;
 
 @Controller
-@RequestMapping("/manage/read")
+@RequestMapping("/read")
 public class ReadResourcesController {
 
 	@Autowired
