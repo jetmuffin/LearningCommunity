@@ -20,7 +20,10 @@ import com.lst.lc.dao.BlogCommentDao;
 import com.lst.lc.dao.BlogDao;
 import com.lst.lc.dao.BlogTagDao;
 import com.lst.lc.entities.Blog;
+import com.lst.lc.entities.BlogComment;
 import com.lst.lc.entities.BlogTag;
+import com.lst.lc.entities.Question;
+import com.lst.lc.entities.QuestionAnswer;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.StringUtils;
 import com.lst.lc.web.service.BlogPageHandler;
@@ -57,7 +60,7 @@ public class BlogController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(Model model, String title, String tag, String content,
 			RedirectAttributes redirectAttributes, HttpSession session) {
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("loginUser");
 
 		Set<BlogTag> tagSet = new HashSet<BlogTag>();
 		List<String> tags = StringUtils.stringSplit(tag);
@@ -112,7 +115,7 @@ public class BlogController {
 	 * @param type　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
 	 * @return
 	 */
-	@RequestMapping(value = "/blos", method = RequestMethod.GET)
+	@RequestMapping(value = "/blogs", method = RequestMethod.GET)
 	public String list(Model model, String pageNum, String pageSize, String type) {
 		int pageNow = 1;
 		int pagesize = 10;
@@ -137,5 +140,22 @@ public class BlogController {
 		Blog blog = blogDao.getBlog(blogId);
 		model.addAttribute("blog", blog);
 		return "frontend/question/edit";
+	}
+	
+	
+	@RequestMapping(value = "/comment", method = RequestMethod.POST)
+	public String comment(Model model, int blogId, String head, String content,
+			HttpSession session, RedirectAttributes redirectAttributes) {
+		
+		User user = (User) session.getAttribute("loginUser");
+		Blog blog = blogDao.getBlog(blogId);
+		BlogComment comment = new BlogComment(blog, user, new Date(), content, head);
+		blogCommentDao.addBlogComment(comment);
+		//写入日志
+		logHandler.toLog(user, "回复了博客:"+ blogId);
+		logHandler.updateIntegral(user.getUserId(), "commentBlog");
+		
+		redirectAttributes.addFlashAttribute("blogMsg", "评论成功");
+		return "redirect:/blog/view/" + blogId;
 	}
 }

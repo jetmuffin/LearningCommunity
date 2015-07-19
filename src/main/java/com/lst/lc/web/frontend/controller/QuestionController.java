@@ -50,10 +50,6 @@ public class QuestionController {
 	private QuestionTagDao questionTagDao;
 
 	@Autowired
-	@Qualifier("queryDao")
-	private QueryDao queryDao;
-
-	@Autowired
 	private QuestionPageHandler questionPageHandler;
 	
 	@Autowired
@@ -67,7 +63,7 @@ public class QuestionController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(Model model, String title, String tag, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
-		User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("loginUser");
 		
 		Set<QuestionTag> tagSet = new HashSet<QuestionTag>(); 
 		List<String> tags = StringUtils.stringSplit(tag);
@@ -160,4 +156,19 @@ public class QuestionController {
 		return "redirect:/question/view/" + questionId;
 	}
 
+	@RequestMapping(value = "/answer", method = RequestMethod.POST)
+	public String answer(Model model, int questionId, String head, String content,
+			HttpSession session, RedirectAttributes redirectAttributes) {
+		
+		User user = (User) session.getAttribute("loginUser");
+		Question question = questionDao.getQuestion(questionId);
+		QuestionAnswer answer = new QuestionAnswer(question, user, new Date(), content, head);
+		questionAnswerDao.addQuestionAnswer(answer);
+		//写入日志
+		logHandler.toLog(user, "回答了问题:"+ questionId);
+		logHandler.updateIntegral(user.getUserId(), "answerQuestion");
+		
+		redirectAttributes.addFlashAttribute("questionMsg", "回答成功");
+		return "redirect:/question/view/" + questionId;
+	}
 }
