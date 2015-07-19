@@ -170,6 +170,7 @@ public class CourseController {
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
+		
 		redirectAttributes.addAttribute("courseMsg", "添加课程成功");
 		return "redirect:/manage/course/view"+courseId;
 	}
