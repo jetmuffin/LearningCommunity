@@ -24,6 +24,7 @@ import com.lst.lc.entities.BlogTag;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.StringUtils;
 import com.lst.lc.web.service.BlogPageHandler;
+import com.lst.lc.web.service.LogHandler;
 
 @Controller
 @RequestMapping("/blog")
@@ -44,6 +45,9 @@ public class BlogController {
 	@Autowired
 	@Qualifier("blogPageHandler")
 	private BlogPageHandler blogPageHandler;
+	
+	@Autowired
+	private LogHandler logHandler;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
@@ -72,6 +76,10 @@ public class BlogController {
 		Blog blog = new Blog(user, title, content, new Date(), 0, 0, tag,
 				tagSet, null);
 		blogDao.addBlog(blog);
+		//写入日志，用户加积分
+		logHandler.toLog(user, "发布博客:"+blog.getBlogId());
+		logHandler.updateIntegral(user.getUserId(), "addBlog");
+		
 		redirectAttributes.addFlashAttribute("blogMsg", "博客发布成功");
 		return "redirect:/blog/view/" + blog.getBlogId();
 	}

@@ -17,6 +17,7 @@ import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.User;
 import com.lst.lc.web.bean.StatusMessage;
+import com.lst.lc.web.service.LogHandler;
 
 @Controller
 @RequestMapping("/user")
@@ -25,6 +26,9 @@ public class UserController {
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao userDao;
+	
+	@Autowired
+	private LogHandler logHandler;
 
 	public UserController() {
 		super();
@@ -50,6 +54,10 @@ public class UserController {
 			message = "登录成功";
 			session.setAttribute("loginUser", user);
 			statusMessage = new StatusMessage(1, message);
+			//写进日志，积分加1
+			logHandler.toLog(user, "登录网站");
+			logHandler.updateIntegral(user.getUserId(), "login");
+			
 		} else {
 			message = "密码错误";
 			statusMessage = new StatusMessage(0, message);

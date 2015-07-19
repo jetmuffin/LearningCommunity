@@ -44,16 +44,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		List<User> users = query(hql).setString(0, email).list();
 		if (users.size() != 1)
 			return null;
-		User user = users.get(0);
-		if (user.getPassword().equals(password))
-			return user;
 		else
-			return null;
+			return users.get(0);
 	}
 
 	@Override
 	public void addIntegral(int userId, int integral) {
-		String hql = "update User as user set user.integral = user.integral + ?, set user.rank = ? where user.userId = ?";
+		String hql = "update User as user set user.integral = user.integral + ?, user.rank = ? where user.userId = ?";
 		String rank = rankDao.getRank(integral);
 		Query query = query(hql).setInteger(0, integral).setString(1, rank).setInteger(2, userId);
 		query.executeUpdate();

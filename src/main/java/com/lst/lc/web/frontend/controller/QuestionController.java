@@ -30,6 +30,7 @@ import com.lst.lc.entities.User;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
 import com.lst.lc.utils.StringUtils;
+import com.lst.lc.web.service.LogHandler;
 import com.lst.lc.web.service.QuestionPageHandler;
 
 @Controller
@@ -54,6 +55,9 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionPageHandler questionPageHandler;
+	
+	@Autowired
+	private LogHandler logHandler;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
@@ -82,6 +86,11 @@ public class QuestionController {
 		Question question = new Question(user, title, content, new Date(), 0,
 				0, tag, tagSet, null);
 		questionDao.addQuestion(question);
+		question.getQuestionId();
+		//写入日志，用户增加积分
+		logHandler.toLog(user, "发布问题:"+ question.getQuestionId());
+		logHandler.updateIntegral(user.getUserId(), "addQuestion");
+		
 		model.addAttribute("question", question);
 		redirectAttributes.addFlashAttribute("questionMsg", "问题发布成功");
 		return "redirect:/question/view/" + question.getQuestionId();
@@ -113,8 +122,7 @@ public class QuestionController {
 	 * @param model
 	 * @param pageNum
 	 * @param pageSize
-	 * @param type
-	 *            　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
+	 * @param type　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
 	 * @return
 	 */
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
