@@ -68,11 +68,11 @@
     				</div>
     				<div class="course-chapter-list">
     					<div class="chapter">
-    						<a  onclick="collapseChapter(this)"><h3><strong>这是章节的标题哦</strong><span id="collapse-btn">-</span></h3></a>
+    						<!--  <a  onclick="collapseChapter(this)"><h3><strong>这是章节的标题哦</strong><span id="collapse-btn">-</span></h3></a> -->
 							<ul>
-							    <li><a href="" target="_blank" class="chapter-item">第一章<span class="lock r"></span></a></li>
-							    <li><a href="" target="_blank" class="chapter-item">第二章<span class="lock r"></span></a></li>
-							    <li><a href="" target="_blank" class="chapter-item">第三章<span class="lock r"></span></a></li>
+								<c:forEach var="lesson" items="${lessons}" varStatus="status">
+									<li><a href="" target="_blank" class="chapter-item locked">第${status.count}章 ${lesson.title}<span class="lock r"></span></a></li>
+								</c:forEach>
 							</ul>    						
     					</div>
     				</div>

@@ -32,7 +32,6 @@
 		<!-- Content -->
 
 		<div class="templatemo-content-container">
-			<h2>这是个残次品，js什么的没有写</h2>
 			<div class="templatemo-content-widget white-bg">
 
 				<form action="" class="templatemo-login-form" method="post"
@@ -48,7 +47,7 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">章节概要</label>
 							<textarea class="form-control" id="inputNote" name="summary"
-								rows="3" value="${lesson.summary}"></textarea>
+								rows="3" >${lesson.summary}</textarea>
 						</div>
 					</div>
 
@@ -56,12 +55,12 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label templatemo-block">选择章节类型</label>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="type" id="r4" value="video"> <label
-									for="r4" class="font-weight-400"><span></span>视频</label>
+								<input type="radio" name="type" id="r4" value="video" <c:if test="${lesson.type eq 'video' }">checked</c:if>> <label
+									for="r4" class="font-weight-400"  ><span></span>视频</label>
 							</div>
 							<div class="margin-right-15 templatemo-inline-block">
-								<input type="radio" name="type" id="r5" value="text" checked>
-								<label for="r5" class="font-weight-400"><span></span>文本</label>
+								<input type="radio" name="type" id="r5" value="text" <c:if test="${lesson.type eq 'text' }">checked</c:if>>
+								<label for="r5" class="font-weight-400"  ><span></span>文本</label>
 							</div>
 						</div>
 					</div>
@@ -69,7 +68,7 @@
 						<div class="col-lg-12 form-group">
 							<label class="control-label" for="inputNote">章节内容</label>
 							<textarea class="form-control" id="inputNote" name="content"
-								rows="8" value="${lesson.content}"></textarea>
+								rows="8" >${lesson.content}</textarea>
 						</div>
 					</div>
 					<div class="row form-group">

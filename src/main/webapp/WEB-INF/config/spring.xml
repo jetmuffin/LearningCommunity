@@ -89,12 +89,13 @@
 		<value>var</value>
 	</util:list>
 
+<!-- 
 	<bean id="createHbase" class="com.lst.lc.hbase.service.CreateHbaseTable">
 		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>
 		<constructor-arg name="mNameList" ref="hbaseTableNames"></constructor-arg>
 		<constructor-arg name="mColumnList" ref="hbaseTableColumnNames"></constructor-arg>
 	</bean>
-
+ -->
 	<!-- Hbase基本操作 -->
 	<bean id="hbaseOperation" class="com.lst.lc.hbase.service.HbaseOperation">
 		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>

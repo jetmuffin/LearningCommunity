@@ -48,7 +48,7 @@ public class LessonController {
 	@Autowired
 	@Qualifier("lessonDao")
 	private LessonDao lessonDao;
-
+	
 	@Autowired
 	private CourseMenuHandler courseMenuHandler;
 	
@@ -68,9 +68,9 @@ public class LessonController {
 	@RequestMapping(value = "/view/{courseId}", method = RequestMethod.GET)
 	public String viewCourse(Model model, @PathVariable int courseId) {
 		Course course = courseDao.getCourse(courseId);
+		List <CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		model.addAttribute("course", course);
-		List<CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
-		model.addAttribute("lessons", lessons);
+		model.addAttribute("lessons",lessons);
 		return "frontend/course/view";
 	}
 

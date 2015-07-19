@@ -95,6 +95,17 @@ footer { padding: 15px; }
 	height: 15px;
 	border-radius: 50%;
 }
+.info-group{
+	padding: 10px 20px;
+}
+.info-group h3{
+	  color: #222;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.info-group p{
+	color:#666;
+}
 .templatemo-site-header { margin: 25px 30px; }
 .templatemo-site-header h1 {
 	color: white;
