@@ -57,6 +57,7 @@ public class QuestionController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
+		model.addAttribute("module", "question");
 		return "frontend/question/add";
 	}
 
@@ -109,6 +110,7 @@ public class QuestionController {
 		model.addAttribute("question", question);
 		model.addAttribute("answers",
 				questionPageHandler.getAnswers(questionId, pageNow, pagesize));
+		model.addAttribute("module", "question");
 		return "frontend/question/view";
 	}
 
@@ -137,7 +139,7 @@ public class QuestionController {
 		}
 		model.addAttribute("page",
 				questionPageHandler.getQuestions(pageNow, pagesize, sorttype));
-
+		model.addAttribute("module", "question");
 		return "frontend/question/list";
 	}
 
@@ -145,6 +147,7 @@ public class QuestionController {
 	public String edit(@PathVariable int questionId, Model model) {
 		Question question = questionDao.getQuestion(questionId);
 		model.addAttribute("question", question);
+		model.addAttribute("module", "question");
 		return "frontend/question/edit";
 	}
 

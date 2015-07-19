@@ -62,6 +62,7 @@ public class LessonController {
 		CourseMenu courseMenu = courseMenuHandler.getCourseMenu(directionId,
 				categoryId, difficulty, type, pageNum, pageSize);
 		model.addAttribute("courseMenu", courseMenu);
+		model.addAttribute("module", "course");
 		return "frontend/course/list";
 	}
 
@@ -71,6 +72,7 @@ public class LessonController {
 		List <CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		model.addAttribute("course", course);
 		model.addAttribute("lessons",lessons);
+		model.addAttribute("module", "course");
 		return "frontend/course/view";
 	}
 
@@ -92,6 +94,7 @@ public class LessonController {
 
 		model.addAttribute("lesson", lesson);
 		model.addAttribute("page", page);
+		model.addAttribute("module", "course");
 		return "frontend/course/lesson";
 	}
 
@@ -103,6 +106,7 @@ public class LessonController {
 		LessonComment comment = new LessonComment(lesson, user, content,
 				new Date(), head);
 		lessonDao.addLesson(lesson);
+		model.addAttribute("module", "course");
 		redirectAttributes.addAttribute("lessonMsg", "评论成功");
 		return "redirect:/course/lesson/view" + lessonId;
 	}

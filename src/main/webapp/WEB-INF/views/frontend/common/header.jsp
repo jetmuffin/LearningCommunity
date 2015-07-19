@@ -9,9 +9,9 @@
 			</div>
 			<div class="header-menu">
 				<ul class="nav-item">
-					<li><a href="/LearningCommunity/course/courses" class="active">课程</a></li>
-					<li><a href="">计划</a></li>
-					<li><a href="">分享</a></li>
+					<li><a href="/LearningCommunity/course/courses" <c:if test="${module eq 'course'}">class="active"</c:if> >课程</a></li>
+					<li><a href="" <c:if test="${module eq 'plan'}">class="active"</c:if>>计划</a></li>
+					<li><a href="/LearningCommunity/question/questions" <c:if test="${module eq 'question'}">class="active"</c:if>>讨论</a></li>
 					<li><a href="">社区</a></li>
 				</ul>
 			</div>
