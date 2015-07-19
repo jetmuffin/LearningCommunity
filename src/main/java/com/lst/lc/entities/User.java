@@ -40,7 +40,7 @@ public class User implements java.io.Serializable {
 	private Set<Blog> blogs = new HashSet<Blog>(0);
 	private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(0);
 	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
-
+	
 	public User() {
 	}
 

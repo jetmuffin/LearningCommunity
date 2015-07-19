@@ -50,4 +50,5 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean ifEmailExisted(String email);
+	
 }
