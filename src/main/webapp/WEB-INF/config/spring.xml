@@ -73,21 +73,14 @@
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
 
-	<!-- <hdp:configuration resources="classpath:/hbase-site.xml" /> <hdp:hbase-configuration 
-		configuration-ref="hadoopConfiguration" /> <bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate" 
-		p:configuration-ref="hbaseConfiguration" /> -->
+	<hdp:configuration resources="/WEB-INF/config/hbase-site.xml" />
+	<hdp:hbase-configuration configuration-ref="hadoopConfiguration" />
+	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate"
+		p:configuration-ref="hbaseConfiguration" />
 
 	<!-- 表名配置 -->
 	<util:list id="hbaseTableNames">
-		<value>cloud_user</value>
-		<value>cloud_hd</value>
-		<value>cloud_image</value>
-		<value>cloud_log</value>
-		<value>cloud_mapfile</value>
-		<value>cloud_pano</value>
-		<value>cloud_space</value>
-		<value>cloud_threeD</value>
-		<value>cloud_dustbin</value>
+		<value>log</value>
 	</util:list>
 
 	<!-- 列族名配置 -->
@@ -95,10 +88,16 @@
 		<value>attr</value>
 		<value>var</value>
 	</util:list>
-	<!-- <bean id="createHbase" class="com.lst.learningCommunity.hbase.CreateHbaseTable"> 
-		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg> 
-		<constructor-arg name="mNameList" ref="hbaseTableNames"></constructor-arg> 
-		<constructor-arg name="mColumnList" ref="hbaseTableColumnNames"></constructor-arg> 
-		</bean> -->
+
+	<bean id="createHbase" class="com.lst.lc.hbase.service.CreateHbaseTable">
+		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>
+		<constructor-arg name="mNameList" ref="hbaseTableNames"></constructor-arg>
+		<constructor-arg name="mColumnList" ref="hbaseTableColumnNames"></constructor-arg>
+	</bean>
+
+	<!-- Hbase基本操作 -->
+	<bean id="hbaseOperation" class="com.lst.lc.hbase.service.HbaseOperation">
+		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>
+	</bean>
 </beans>
 
