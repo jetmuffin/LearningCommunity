@@ -106,5 +106,5 @@ public class LessonController {
 		redirectAttributes.addAttribute("lessonMsg", "评论成功");
 		return "redirect:/course/lesson/view" + lessonId;
 	}
-
+	
 }
