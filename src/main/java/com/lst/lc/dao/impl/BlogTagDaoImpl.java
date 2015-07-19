@@ -40,7 +40,7 @@ public class BlogTagDaoImpl extends BaseDao implements BlogTagDao {
 	@Override
 	public List<BlogTag> getTagsOrderByNum() {
 		String hql = "from BlogTag as tag order by tag.number desc";
-		Query query = query(hql);
+		Query query = query(hql).setMaxResults(20);
 		return query.list();
 	}
 
