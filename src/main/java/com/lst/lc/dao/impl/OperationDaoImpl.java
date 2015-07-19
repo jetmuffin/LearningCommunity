@@ -3,11 +3,13 @@ package com.lst.lc.dao.impl;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.OperationDao;
 import com.lst.lc.entities.Operation;
 import com.lst.lc.utils.ListUtils;
 
+@Repository("operationDao")
 public class OperationDaoImpl extends BaseDao implements OperationDao {
 
 	@Override
