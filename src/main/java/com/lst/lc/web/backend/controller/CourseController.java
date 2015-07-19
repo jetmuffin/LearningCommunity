@@ -147,14 +147,14 @@ public class CourseController {
 		return "redirect:/manage/course/courses";
 	}
 
-	@RequestMapping(value = "/{courseId}/addlesson", method = RequestMethod.GET)
+	@RequestMapping(value = "/addlesson/{courseId}", method = RequestMethod.GET)
 	public String addLesson(@PathVariable int courseId, Model model) {
 		Course course = courseDao.getCourse(courseId);
 		model.addAttribute("course", course);
 		return "backend/course/addlesson";
 	}
 
-	@RequestMapping(value = "/{courseId}/addlesson", method = RequestMethod.POST)
+	@RequestMapping(value = "/addlesson/{courseId}", method = RequestMethod.POST)
 	public String addLesson(@PathVariable int courseId, Model model,
 			String title, String summary, String type, String content,
 			MultipartFile video, RedirectAttributes redirectAttributes,
@@ -165,16 +165,16 @@ public class CourseController {
 			System.out.println(content);
 			courseLesson.setContent(content);
 		}else{
-			String videoPath = "/tmp/LearningCommunity/thumb/"+courseId;
+			String videoPath = "/opt/LearningCommunity/thumb/"+courseId;
 			String videoUrl = MultipartFileUtils.saveFile(video, videoPath);
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
 		redirectAttributes.addAttribute("lessonMsg", "添加课程成功");
-		return "redirect:/manage/course/view"+courseId;
+		return "redirect:/manage/course/view/"+courseId;
 	}
 	
-	@RequestMapping(value = "/view/editlesson/{lessonId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/editlesson/{lessonId}", method = RequestMethod.GET)
 	public String editLesson(@PathVariable int lessonId, Model model){
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
 		model.addAttribute("lesson", lesson);

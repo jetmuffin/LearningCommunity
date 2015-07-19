@@ -1,5 +1,6 @@
 package com.lst.lc.web.frontend.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.dao.LessonDao;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.CourseLesson;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.page.Page;
 import com.lst.lc.web.bean.CourseMenu;
@@ -37,6 +40,10 @@ public class LessonController {
 	private CourseDao courseDao;
 	
 	@Autowired
+	@Qualifier("lessonDao")
+	private LessonDao lessonDao;
+	
+	@Autowired
 	private CourseMenuHandler courseMenuHandler;
 
 	@RequestMapping(value = "/courses", method = RequestMethod.GET)
@@ -52,7 +59,9 @@ public class LessonController {
 	@RequestMapping(value = "/view/{courseId}", method = RequestMethod.GET)
 	public String viewCourse(Model model, @PathVariable int courseId){
 		Course course = courseDao.getCourse(courseId);
+		List <CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		model.addAttribute("course", course);
+		model.addAttribute("lessons",lessons);
 		return "frontend/course/view";
 	}
 }
