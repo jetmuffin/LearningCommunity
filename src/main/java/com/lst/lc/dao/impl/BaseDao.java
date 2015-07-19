@@ -3,7 +3,9 @@ package com.lst.lc.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +95,8 @@ public class BaseDao {
 		List<T> ts = query.list();
 		return ts;
 	}
-
+	
+	public SQLQuery sqlQuery(String query){
+		return getSession().createSQLQuery(query);
+	}
 }

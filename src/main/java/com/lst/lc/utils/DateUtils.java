@@ -7,7 +7,7 @@ import java.util.Date;
 public class DateUtils {
 	
 	public static String getDateString(Date date){
-		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd");
+		SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
 		return sdf.format(date);
 	}
 
@@ -128,4 +128,10 @@ public class DateUtils {
 		return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
 	}
 
+    public static Date getDateBefore(Date d, int day) {  
+        Calendar now = Calendar.getInstance();  
+        now.setTime(d);  
+        now.set(Calendar.DATE, now.get(Calendar.DATE) - day);  
+        return now.getTime();  
+    }    
 }
