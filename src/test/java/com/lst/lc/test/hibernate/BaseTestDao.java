@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -110,5 +111,9 @@ public class BaseTestDao {
 		@SuppressWarnings("unchecked")
 		List<T> ts = query.list();
 		return ts;
+	}
+	
+	public SQLQuery sqlQuery(String query){
+		return getSession().createSQLQuery(query);
 	}
 }

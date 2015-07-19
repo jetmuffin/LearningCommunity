@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.AdminDao;
 import com.lst.lc.entities.Admin;
+import com.lst.lc.utils.EncryptUtils;
 
 @Controller
 @RequestMapping("/manage")
@@ -32,8 +33,8 @@ public class ManageController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, String email, String password,
-			RedirectAttributes redirectAttributes) {
-
+			RedirectAttributes redirectAttributes) throws Exception {
+		password = EncryptUtils.encryptMD5(password.getBytes());
 		Admin admin = adminDao.validateAdmin(email, password);
 		if (admin == null) {
 			redirectAttributes.addFlashAttribute("loginMsg", "邮箱错误");

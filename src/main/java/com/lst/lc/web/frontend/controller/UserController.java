@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.User;
+import com.lst.lc.utils.EncryptUtils;
 import com.lst.lc.web.bean.StatusMessage;
 import com.lst.lc.web.service.LogHandler;
 
@@ -42,8 +43,8 @@ public class UserController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
 	public StatusMessage login(HttpSession session, String email,
-			String password) {
-
+			String password) throws Exception {
+		password = EncryptUtils.encryptMD5(password.getBytes());
 		User user = userDao.validateUser(email, password);
 		StatusMessage statusMessage;
 		String message = null;
@@ -74,7 +75,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public StatusMessage register(String userName, String email,
-			String password, String captcha, HttpSession session) {
+			String password, String captcha, HttpSession session) throws Exception {
 
 		StatusMessage statusMessage;
 		String message = null;
@@ -89,7 +90,7 @@ public class UserController {
 			message = "验证码错误";
 			statusMessage = new StatusMessage(0, message);
 		} else {
-			User user = new User(userName, email, password, "未知", 10, "菜鸟",
+			User user = new User(userName, email, EncryptUtils.encryptMD5(password.getBytes()), "未知", 10, "菜鸟",
 					"", "user");
 			userDao.addUser(user);
 			message = "注册成功，您已登录";
