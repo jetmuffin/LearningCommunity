@@ -34,7 +34,7 @@
 				<div class="main-list">
 					<c:forEach var="question" items="${page.list}">
 						<div class="question-item clearfix">
-							<a href="" target="_blank" class="replynumber  <c:if test="${question.answerNums gt 0}">hasanswer</c:if> <c:if test="${question.answerNums eq 0}">noanswernum</c:if>">
+							<a href="/LearningCommunity/question/view/${question.questionId}"  target="_blank" class="replynumber  <c:if test="${question.answerNums gt 0}">hasanswer</c:if> <c:if test="${question.answerNums eq 0}">noanswernum</c:if>">
 								<div class="ys l">
 									<div class="number">
 										<span>${question.answerNums }</span>
@@ -49,7 +49,7 @@
 								</div>
 							</a>
 							<div class="question-title">
-								<a href="">${question.title}</a>
+								<a href="/LearningCommunity/question/view/${question.questionId}" >${question.title}</a>
 							</div>
 							<div class="question-footer clearfix">
 								<div class="question-author l">
