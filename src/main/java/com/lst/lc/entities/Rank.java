@@ -1,9 +1,11 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-18 14:50:41 by Hibernate Tools 4.3.1
+// Generated 2015-7-18 14:55:52 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 @Table(name = "rank", catalog = "LearningCommunity")
 public class Rank implements java.io.Serializable {
 
+	private Integer rankId;
 	private String rankName;
 	private int integral;
 
@@ -26,7 +29,17 @@ public class Rank implements java.io.Serializable {
 	}
 
 	@Id
-	@Column(name = "rankName", unique = true, nullable = false, length = 50)
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "rankId", unique = true, nullable = false)
+	public Integer getRankId() {
+		return this.rankId;
+	}
+
+	public void setRankId(Integer rankId) {
+		this.rankId = rankId;
+	}
+
+	@Column(name = "rankName", nullable = false, length = 50)
 	public String getRankName() {
 		return this.rankName;
 	}

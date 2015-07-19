@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-18 14:50:41 by Hibernate Tools 4.3.1
+// Generated 2015-7-18 14:55:52 by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;

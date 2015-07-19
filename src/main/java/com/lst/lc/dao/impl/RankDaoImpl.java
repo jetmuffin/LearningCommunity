@@ -17,22 +17,20 @@ public class RankDaoImpl extends BaseDao implements RankDao {
 	}
 
 	@Override
-	public Rank getRank(String name) {
-		return get(Rank.class, name);
+	public Rank get(int rankId) {
+		return get(Rank.class, rankId);
 	}
 
 	@Override
-	public void updateRank(int integral, String name) {
-		String hql = "update Rank as rank set rank.integral = ? where rank.rankName = ?";
+	public void updateRank(int rankId, int integral, String name) {
+		String hql = "update Rank as rank set rank.integral = ?, rank.rankName = ? where rank.rankId = ?";
 		Query query = query(hql);
-		query.setInteger(0, integral).setString(1, name).executeUpdate();
+		query.setInteger(0, integral).setString(1, name).setInteger(2, rankId).executeUpdate();
 	}
 
 	@Override
 	public String getRank(int integral) {
-		String hql = "from Rank as rank order by rank.integral desc";
-		Query query = query(hql);
-		List<Rank> ranks = query.list();
+		List<Rank> ranks = getRanks();
 		for (int i = 0; i < ranks.size() - 1; i++) {
 			if (integral >= ranks.get(i).getIntegral()
 					&& integral <= ranks.get(i + 1).getIntegral()) {
@@ -40,6 +38,14 @@ public class RankDaoImpl extends BaseDao implements RankDao {
 			}
 		}
 		return ranks.get(ranks.size() - 1).getRankName();
+	}
+
+	@Override
+	public List<Rank> getRanks() {
+		String hql = "from Rank as rank order by rank.integral";
+		Query query = query(hql);
+		List<Rank> ranks = query.list();
+		return ranks;
 	}
 
 }

@@ -1,9 +1,11 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-18 14:50:41 by Hibernate Tools 4.3.1
+// Generated 2015-7-18 14:55:52 by Hibernate Tools 4.3.1
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,25 +16,36 @@ import javax.persistence.Table;
 @Table(name = "operation", catalog = "LearningCommunity")
 public class Operation implements java.io.Serializable {
 
-	private String operaiton;
+	private Integer operationId;
+	private String operation;
 	private int integral;
 
 	public Operation() {
 	}
 
-	public Operation(String operaiton, int integral) {
-		this.operaiton = operaiton;
+	public Operation(String operation, int integral) {
+		this.operation = operation;
 		this.integral = integral;
 	}
 
 	@Id
-	@Column(name = "operaiton", unique = true, nullable = false, length = 200)
-	public String getOperaiton() {
-		return this.operaiton;
+	@GeneratedValue(strategy = IDENTITY)
+	@Column(name = "operationId", unique = true, nullable = false)
+	public Integer getOperationId() {
+		return this.operationId;
 	}
 
-	public void setOperaiton(String operaiton) {
-		this.operaiton = operaiton;
+	public void setOperationId(Integer operationId) {
+		this.operationId = operationId;
+	}
+
+	@Column(name = "operation", nullable = false, length = 200)
+	public String getOperation() {
+		return this.operation;
+	}
+
+	public void setOperation(String operation) {
+		this.operation = operation;
 	}
 
 	@Column(name = "integral", nullable = false)
