@@ -170,8 +170,13 @@ public class CourseController {
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
+<<<<<<< HEAD
 		redirectAttributes.addAttribute("lessonMsg", "添加课程成功");
 		return "redirect:/manage/course/view/"+courseId;
+=======
+		redirectAttributes.addAttribute("courseMsg", "添加课程成功");
+		return "redirect:/manage/course/view"+courseId;
+>>>>>>> 96d9bdbe2fe9f2df7c021f0cdc94c1311fc79e61
 	}
 	
 	@RequestMapping(value = "/editlesson/{lessonId}", method = RequestMethod.GET)
@@ -196,7 +201,9 @@ public class CourseController {
 			}
 		}
 		lessonDao.update(lessonId, title, summary, type, videoUrl, content);
-		redirectAttributes.addAttribute("lessonMsg", "修改课程成功");
+		redirectAttributes.addAttribute("courseMsg", "修改课程成功");
 		return "backend/course/editlesson";
 	}
+	
+	
 }
