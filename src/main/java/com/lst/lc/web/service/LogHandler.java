@@ -31,8 +31,8 @@ public class LogHandler {
 	 * @param operation
 	 */
 	public void toLog(User user, String operation){
-		Log log = new Log(user.getEmail(), operation);
-		logOperation.add(log);
+//		Log log = new Log(user.getEmail(), operation);
+//		logOperation.add(log);
 	}
 	
 	/**
