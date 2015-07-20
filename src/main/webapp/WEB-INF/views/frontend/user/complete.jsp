@@ -35,9 +35,9 @@
     				</div>
     				<div class="file-form-group">
     					<label for="gender">性别</label>
-    					<label><input type="radio" hidefocus="true" value="0" checked="checked" name="gender">保密</label>
-    					<label><input type="radio" hidefocus="true" value="1" checked="checked" name="gender">男</label>
-    					<label><input type="radio" hidefocus="true" value="2" checked="checked" name="gender">女</label>        					    					
+    					<label><input type="radio" hidefocus="true" value="未知" checked="checked" name="gender">保密</label>
+    					<label><input type="radio" hidefocus="true" value="男" checked="checked" name="gender">男</label>
+    					<label><input type="radio" hidefocus="true" value="女" checked="checked" name="gender">女</label>        					    					
     				</div>    
     				<div class="file-form-group">
     					<label for="city">城市</label>
