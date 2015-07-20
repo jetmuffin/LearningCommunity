@@ -42,7 +42,7 @@ public class QuestionController {
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao userDao;
-	
+
 	@Autowired
 	@Qualifier("questionDao")
 	private QuestionDao questionDao;
@@ -78,6 +78,7 @@ public class QuestionController {
 			QuestionTag questionTag = questionTagDao.getTagByName(tags.get(i));
 			if (questionTag == null) {
 				questionTag = new QuestionTag(tags.get(i), 1);
+				questionTagDao.addTag(questionTag);
 			} else {
 				// 数量加１
 				int number = questionTag.getNumber() + 1;
@@ -121,8 +122,8 @@ public class QuestionController {
 			questionSide = new QuestionSide(false, 0, 0, tags, questions);
 		} else {
 			User u = userDao.getById(user.getUserId());
-			questionSide = new QuestionSide(true, u.getQuestions().size(),
-					u.getQuestionAnswers().size(), tags, questions);
+			questionSide = new QuestionSide(true, u.getQuestions().size(), u
+					.getQuestionAnswers().size(), tags, questions);
 		}
 		model.addAttribute("questionSide", questionSide);
 		model.addAttribute("question", question);
@@ -143,7 +144,8 @@ public class QuestionController {
 	 * @return
 	 */
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
-	public String list(Model model, String pageNum, String pageSize, String type) {
+	public String list(HttpSession session, Model model, String pageNum,
+			String pageSize, String type) {
 		int pageNow = 1;
 		int pagesize = 10;
 		int sorttype = 1;
@@ -156,6 +158,18 @@ public class QuestionController {
 		if (type != null) {
 			sorttype = Integer.valueOf(type);
 		}
+		User user = (User) session.getAttribute("loginUser");
+		QuestionSide questionSide;
+		List<QuestionTag> tags = questionTagDao.getTagsOrderByNum();
+		List<Question> questions = questionDao.getTopFiveRecently();
+		if (user == null) {
+			questionSide = new QuestionSide(false, 0, 0, tags, questions);
+		} else {
+			User u = userDao.getById(user.getUserId());
+			questionSide = new QuestionSide(true, u.getQuestions().size(), u
+					.getQuestionAnswers().size(), tags, questions);
+		}
+		model.addAttribute("questionSide", questionSide);
 		model.addAttribute("page",
 				questionPageHandler.getQuestions(pageNow, pagesize, sorttype));
 		model.addAttribute("module", "question");
@@ -179,9 +193,10 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "/answer/{questionId}", method = RequestMethod.POST)
-	public String answer(Model model, @PathVariable int questionId, String head, String content,
-			HttpSession session, RedirectAttributes redirectAttributes) {
-		
+	public String answer(Model model, @PathVariable int questionId,
+			String head, String content, HttpSession session,
+			RedirectAttributes redirectAttributes) {
+
 		User user = (User) session.getAttribute("loginUser");
 		Question question = questionDao.getQuestion(questionId);
 		QuestionAnswer answer = new QuestionAnswer(question, user, new Date(),

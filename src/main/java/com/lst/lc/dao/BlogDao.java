@@ -3,6 +3,7 @@ package com.lst.lc.dao;
 import java.util.List;
 
 import com.lst.lc.entities.Blog;
+import com.lst.lc.entities.Question;
 
 /**
  * @author innerac
@@ -40,4 +41,8 @@ public interface BlogDao {
 	 * @return
 	 */
 	public List<Blog> getBlogsOfUser(int userId);
+	
+	public List<Blog> getTopFiveRecently();
+	
+	public void addReadNums(int blogId);
 }
