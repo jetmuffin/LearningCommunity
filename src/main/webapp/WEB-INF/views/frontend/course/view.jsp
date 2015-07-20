@@ -72,7 +72,7 @@
     						<!--  <a  onclick="collapseChapter(this)"><h3><strong>这是章节的标题哦</strong><span id="collapse-btn">-</span></h3></a> -->
 							<ul>
 								<c:forEach var="lesson" items="${lessons}" varStatus="status">
-									<li><a href="" target="_blank" class="chapter-item locked">第${status.count}章 ${lesson.title}<span class="lock r"></span></a></li>
+									<li><a href="/LearningCommunity/course/view/lesson/${lesson.lessonId}" target="_blank" class="chapter-item locked">第${status.count}章 ${lesson.title}<span class="lock r"></span></a></li>
 								</c:forEach>
 							</ul>    						
     					</div>

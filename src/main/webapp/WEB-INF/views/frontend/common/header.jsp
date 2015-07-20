@@ -28,12 +28,12 @@
 						<ul class="header-login">
 							<li class="notification"><a href=""></a></li>
 											<li class="user-avatar-list">
-						<a href="" class="user-avatar"><img class="avatar-32" src="default.png" alt="" width="32" height="32"></a>
+						<a href="" class="user-avatar"><img class="avatar-32" src="/LearningCommunity/read/avatar/${loginUser.userId }" alt="" width="32" height="32"></a>
 						<div class="user-card">
 							<div class="card-inner clearfix">
 								<div class="card-top clearfix">
-									<img src="default.png" alt="" class="avatar-40">
-									<span class="name">jsdds</span>
+									<img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt="" class="avatar-40">
+									<span class="name">${loginUser.userName}</span>
 								</div>
 								<ul class="card-link">
 									<li><a href="">个人中心</a></li>

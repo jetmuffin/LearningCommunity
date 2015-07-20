@@ -85,7 +85,7 @@
 					<h3 class="item-title">作者</h3>
 					<ul class="blog-hot-author">
 						<li class="author-item clearfix">
-							<a href="" class="l user-avatar"><img src="default.png" alt="" class="avatar-40"></a>
+							<a href="" class="l user-avatar"><img src="/LearningCommunity/read/avatar/${blog.user.userId }" alt="" class="avatar-40"></a>
 							<div class="author-info clearfix">
 								<strong><a href="">${blog.user.userName }</a></strong>
 								<p class="text-muted">${blog.user.rank }</p>

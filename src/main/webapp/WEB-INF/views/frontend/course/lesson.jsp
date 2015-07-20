@@ -17,7 +17,7 @@
 				<video id="learn-video" class="video-js vjs-default-skin" controls preload="none" width="1200" height="533"
 				      poster="http://video-js.zencoder.com/oceans-clip.png"
 				      data-setup="{}">
-				    <source src="/LearningCommunity/resources/js/videojs/1.mp4" type='video/mp4' />
+				    <source src="/LearningCommunity/read/video/${lesson.lessonId}" type='video/mp4' />
     			<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
  			 </video>			
 			</div>
@@ -30,14 +30,32 @@
 				<div class="content-area">
 					<div class="course-menu">
 						<ul class="course-menu clearfix">
-							<li><a class="ui-tabs-active" id="learnOn" href=""><span>章节</span></a></li>
+							<li><a class="ui-tabs-active" id="learnOn" href=""><span>评论</span></a></li>
 							<li><a id="commentOn" href=""><span>评论</span></a></li>
 							<li><a id="qaOn" href=""><span>问答</span></a></li>
 						</ul>
 					</div>
-					<div class="course-chapter-list">
-						<div class="chapter">
 							<!--  <a  onclick="collapseChapter(this)"><h3><strong>这是章节的标题哦</strong><span id="collapse-btn">-</span></h3></a> -->
+							<div class="lesson-comment">
+								<div class="publish clearfix">
+									<div class="publish-wrapper">
+										<textarea name="" id=""  placeholder="发表你对这门课的看法！"></textarea>
+										<a href="" class="btn btn-primary  r">发表评论</a>
+									</div>
+								</div>
+								<div class="comment-list">
+									<ul>
+										<li>
+											<div class="user-avater"><a href=""><img src="" alt=""  class="avatar-40"/></a></div>
+											<div class="comment-content">
+												<a href="">dsjkf</a>
+												<p>wejlrkwjekl</p>
+												<div class="comment-addon"><span>1小时前</span></div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
 							<ul>
 								<c:forEach var="lesson" items="${lessons}" varStatus="status">
 									<li><a href="" target="_blank" class="chapter-item locked">第${status.count}章
@@ -45,31 +63,11 @@
 									</a></li>
 								</c:forEach>
 							</ul>
-						</div>
-					</div>
 				</div>
 				<div class="sidebar">
 					<dl class="course-desc clear-fix">
 						<dt>课程介绍</dt>
 						<dd>${course.description }</dd>
-					</dl>
-					<dl class="course-relation clear-fix">
-						<dt>相关课程</dt>
-						<dd class="course-list-relation">
-							<a href="" class="course-cover"> <img src="" width="108"
-								height="60" alt=""> <span class="course-name">恶化呵呵大</span>
-							</a>
-						</dd>
-						<dd class="course-list-relation">
-							<a href="" class="course-cover"> <img src="" width="108"
-								height="60" alt=""> <span class="course-name">恶化呵呵大</span>
-							</a>
-						</dd>
-						<dd class="course-list-relation">
-							<a href="" class="course-cover"> <img src="" width="108"
-								height="60" alt=""> <span class="course-name">恶化呵呵大</span>
-							</a>
-						</dd>
 					</dl>
 					<dl>
 						<dt>参与的学生</dt>

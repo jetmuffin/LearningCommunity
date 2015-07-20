@@ -46,7 +46,7 @@
 							</div>
 							<div class="blog-footer clearfix">
 								<div class="blog-author l">
-									<a href=""><img src="default.png" class="avatar-20" alt="">${blog.user.userName}</a>
+									<a href=""><img src="/LearningCommunity/read/avatar/${blog.user.userId }" class="avatar-20" alt="">${blog.user.userName}</a>
 								</div>
 								<div class="blog-time l">${blog.time}</div>
 								<div class="blog-tag-list l">

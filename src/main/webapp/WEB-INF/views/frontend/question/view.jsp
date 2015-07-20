@@ -29,11 +29,11 @@
 				<div class="qa-item">
 					<div class="qa-header">
 						<div class="qa-header-right r">#1</div>
-						<a href="" class="qa-author"><img src="default.png"
+						<a href="" class="qa-author"><img src="/LearningCommunity/read/avatar/${question.user.userId }"
 							class="avatar-32" alt="">${question.user.userName }</a>
 					</div>
-					<div class="qa-content rich-text">
-						<div class="qa-content-inner">${question.content }</div>
+					<div class="qa-content">
+						<div class="qa-content-inner rich-text">${question.content }</div>
 						<div class="qa-content-addon clearfix">
 							<span class="qa-createtime l">${question.time}</span>
 							<div class="taglist l">

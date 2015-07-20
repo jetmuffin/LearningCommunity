@@ -182,7 +182,7 @@ public class CourseController {
 		return "backend/course/editlesson";
 	}
 	
-	@RequestMapping(value = "/view/editlesson/{lessonId}", method = RequestMethod.POST)
+	@RequestMapping(value = "/editlesson/{lessonId}", method = RequestMethod.POST)
 	public String editLesson(@PathVariable int lessonId, Model model, String title, String summary, String type, String content,
 			MultipartFile video, RedirectAttributes redirectAttributes){
 		CourseLesson lesson = lessonDao.getLesson(lessonId);

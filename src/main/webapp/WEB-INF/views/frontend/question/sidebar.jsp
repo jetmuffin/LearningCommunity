@@ -8,7 +8,7 @@
 		</h3>
 		<div class="user-info clearfix">
 			<div class="user-img l text-center">
-				<a href=""><img src="default.png" alt=""></a>
+				<a href=""><img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt=""></a>
 				<p class="username">${user.userName}</p>
 			</div>
 			<div class="user-statics l text-center statics-mid">

@@ -127,6 +127,6 @@ public class UserController {
 		String avatarUrl = MultipartFileUtils.saveFile(avatar, avatarPath);
 		userDao.update(user.getUserId(), gender, avatarUrl, motto, city);
 		redirectAttributes.addFlashAttribute("userMsg", "信息完善成功");
-		return "redirect:/user/completeInfo";
+		return "redirect:/course/courses";
 	}
 }
