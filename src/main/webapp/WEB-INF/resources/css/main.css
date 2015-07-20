@@ -1527,6 +1527,140 @@ h5 {
 #blog .blog-main .main-list .blog-item .blog-footer .blog-tag-list .list-tag:hover {
   background-color: #d0d6d9;
 }
+#blog .blog-main .blog-content {
+  padding: 0 10px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper {
+  margin: 30px 0 20px 0;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon {
+  margin-top: 10px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .taglist li {
+  display: inline-block;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .taglist .tag {
+  height: 20px;
+  line-height: 20px;
+  margin-top: 6px;
+  margin-right: 5px;
+  padding: 0 10px;
+  background: #edf1f2;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+  color: #787d82;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon span{
+	margin-right:5px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .taglist .tag:hover {
+  background-color: #d0d6d9;
+  color: #787d82;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share {
+  overflow: hidden;
+  height: 24px;
+  margin-top: 8px;
+  margin-right: 10px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share .d {
+  float: left;
+  font-size: 14px;
+  color: #828282;
+  line-height: 24px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a {
+  font-size: 12px;
+  color: #999;
+  float: left;
+  line-height: 20px;
+  cursor: pointer;
+  background: none;
+  padding-left: 0;
+  width: 27px;
+  height: 22px;
+  border: 1px solid #E4E4E4;
+  margin: 0 0 0 -1px;
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url(/LearningCommunity/resources/images/school.png);
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_qzone {
+  background-position: -615px -58px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_qzone:hover {
+  background-position: -673px -58px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_renren {
+  background-position: -485px -83px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_renren:hover {
+  background-position: -369px -83px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_tsina {
+  background-position: -456px -83px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_tsina:hover {
+  background-position: -664px -32px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_weixin {
+  background-position: -427px -83px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_weixin:hover {
+  background-position: -398px -83px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_more {
+  background-position: -693px -32px;
+}
+#blog .blog-main .blog-content .blog-content-wrapper .blog-content-addon .share a.bds_more:hover {
+  background-position: -644px -58px;
+}
+#blog .blog-main .blog-comment .blog-comment-title {
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  border-bottom: 2px solid #ccc;
+  color: #333;
+  font-weight: bold;
+}
+#blog .blog-main .blog-comment .blog-comment-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-header {
+  position: relative;
+  height: 40px;
+  padding-top: 20px;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-header .blog-comment-author {
+  font-weight: bold;
+  color: #3689b3;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-header .answer-time {
+  margin-left: 5px;
+  color: #777;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-header img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 7px;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-content {
+  margin-top: 10px;
+}
+#blog .blog-main .blog-comment .blog-comment-item .blog-comment-content .blog-comment-content-addon {
+  color: #999;
+}
+#blog .blog-main .blog-write .blog-write-header h2{
+	margin: 10px 0;
+}
+#blog .blog-main .blog-write .blog-write-content button{
+	  margin-top: 10px;
+}
 #blog .blog-sidebar {
   width: 260px;
   float: right;

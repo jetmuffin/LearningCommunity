@@ -69,6 +69,7 @@ public class BlogController {
 			BlogTag blogTag = blogTagDao.getTagByName(tags.get(i));
 			if (blogTag == null) {
 				blogTag = new BlogTag(tags.get(i), 1);
+				blogTagDao.addTag(blogTag);
 			} else {
 				// 数量加１
 				int number = blogTag.getNumber() + 1;
@@ -146,8 +147,8 @@ public class BlogController {
 	}
 	
 	
-	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	public String comment(Model model, int blogId, String head, String content,
+	@RequestMapping(value = "/comment/{blogId}", method = RequestMethod.POST)
+	public String comment(Model model, @PathVariable int blogId, String head, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		User user = (User) session.getAttribute("loginUser");

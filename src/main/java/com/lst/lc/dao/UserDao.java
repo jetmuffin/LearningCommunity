@@ -1,5 +1,7 @@
 package com.lst.lc.dao;
 
+import java.util.List;
+
 import com.lst.lc.entities.User;
 
 public interface UserDao {
@@ -62,4 +64,6 @@ public interface UserDao {
 	 * @param courseId
 	 */
 	public void learn(int userId, int courseId);
+	
+	public List<User> getTopFive();
 }
