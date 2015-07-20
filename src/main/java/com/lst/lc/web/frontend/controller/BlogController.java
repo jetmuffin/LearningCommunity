@@ -146,8 +146,8 @@ public class BlogController {
 	}
 	
 	
-	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	public String comment(Model model, int blogId, String head, String content,
+	@RequestMapping(value = "/comment/{blogId}", method = RequestMethod.POST)
+	public String comment(Model model, @PathVariable int blogId, String head, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		User user = (User) session.getAttribute("loginUser");
