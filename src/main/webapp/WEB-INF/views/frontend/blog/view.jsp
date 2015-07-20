@@ -27,7 +27,7 @@
     		<div class="blog-main">
     			<div class="blog-content">
     				<div class="blog-content-wrapper clearfix">
-    					<div class="blog-content-inner">
+    					<div class="blog-content-inner  rich-text">
     						${blog.content}
     					</div>
     					<div class="blog-content-addon">
@@ -57,7 +57,7 @@
 							<div class="blog-comment-header-right r">#${status.count +1}</div>
 						</div>
 						<div class="blog-comment-content">
-							<div class="blog-comment-content-inner">
+							<div class="blog-comment-content-inner  rich-text">
 								${comment.content}
 							</div>
 							<div class="blog-comment-content-addon r">

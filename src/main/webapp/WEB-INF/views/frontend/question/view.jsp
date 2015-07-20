@@ -58,7 +58,7 @@
 									<div class="qa-answer-header-right r">#${status.count }</div>
 								</div>
 								<div class="qa-answer-content">
-									<div class="qa-answer-content-inner">${answer.content}</div>
+									<div class="qa-answer-content-inner  rich-text">${answer.content}</div>
 									<div class="qa-answer-content-addon r">
 										<a href="">回复</a>
 									</div>

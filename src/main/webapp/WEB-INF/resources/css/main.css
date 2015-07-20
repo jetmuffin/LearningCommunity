@@ -1741,6 +1741,17 @@ h5 {
   line-height: 20px;
   color: #777;
 }
+#learn .bg-wrapper{
+	width: 100%;
+	min-height:533px;
+	background: url('/LearningCommunity/resources/images/bg_ceping.png') repeat;
+}
+#learn #learn-video{
+	width:1200px;
+	height:533px;
+	margin-left:auto;
+	margin-right:auto;
+}
 .container {
   display: block;
   margin-left: auto;
@@ -1788,4 +1799,58 @@ h5 {
   height: 40px;
   border-radius: 3px;
 }
-
+.rich-text html,.rich-text address,.rich-text blockquote,.rich-text body,.rich-text dd,.rich-text div,
+.rich-text dl,.rich-text dt,.rich-text fieldset,.rich-text form,.rich-text frame,.rich-text frameset,
+.rich-text h1,.rich-text h2,.rich-text h3,.rich-text h4,.rich-text h5,.rich-text h6,.rich-text noframes,
+.rich-text ol,.rich-text p,.rich-text ul,.rich-text center,.rich-text dir,.rich-text hr,.rich-text menu, 
+.rich-text pre { display: block }
+.rich-text li { display: list-item }
+.rich-text head { display: none }
+.rich-text table { display: table }
+.rich-text tr { display: table-row }
+.rich-text thead { display: table-header-group }
+.rich-text tbody { display: table-row-group }
+.rich-text tfoot { display: table-footer-group }
+.rich-text col { display: table-column }
+.rich-text colgroup { display: table-column-group }
+.rich-text td,.rich-text  th { display: table-cell; }
+.rich-text caption { display: table-caption }
+.rich-text th { font-weight: bolder; text-align: center }
+.rich-text caption { text-align: center }
+.rich-text body { margin: 8px; line-height: 1.12 }
+.rich-text h1 { font-size: 2em; margin: .67em 0;line-height: 1.5em }
+.rich-text h2 { font-size: 1.5em; margin: .75em 0;line-height: 1.5em }
+.rich-text h3 { font-size: 1.17em; margin: .83em 0;line-height: 1.5em }
+.rich-text h4 { font-size: 1.09em; margin: 1.12em 0;line-height: 1.5em }
+.rich-text h4,.rich-text p,.rich-text blockquote,.rich-text ul,.rich-text fieldset, .rich-text form,.rich-text ol,.rich-text dl,.rich-text dir,.rich-text menu { margin: 1.12em 0 }
+.rich-text h5 { font-size: .83em; margin: 1.5em 0;line-height: 1.5em }
+.rich-text h6 { font-size: .75em; margin: 1.67em 0;line-height: 1.5em }
+.rich-text h1, .rich-text h2, .rich-text h3, .rich-text h4, .rich-text h5, .rich-text h6, .rich-text b,.rich-text strong { font-weight: bolder }
+.rich-text blockquote { margin-left: 40px; margin-right: 40px }
+.rich-text i, .rich-text cite, .rich-text em,.rich-text var,.rich-text address { font-style: italic }
+.rich-text pre, .rich-text tt,.rich-text  code,.rich-text  kbd,.rich-text samp { font-family: monospace }
+.rich-text pre { white-space: pre }
+.rich-text button,.rich-text textarea,.rich-text input,.rich-text object,.rich-text select { display:inline-block; }
+.rich-text big { font-size: 1.17em }
+.rich-text small, .rich-text sub, .rich-text sup { font-size: .83em }
+.rich-text sub { vertical-align: sub }
+.rich-text sup { vertical-align: super }
+.rich-text table { border-spacing: 2px; }
+.rich-text thead, .rich-text tbody,.rich-text tfoot { vertical-align: middle }
+.rich-text td, .rich-text th { vertical-align: inherit }
+.rich-text s, .rich-text strike,.rich-text  del { text-decoration: line-through }
+.rich-text hr { border: 1px inset }
+.rich-text ol, .rich-text ul,.rich-text  dir, .rich-text menu, .rich-text dd { margin-left: 40px }
+.rich-text ol { list-style-type: decimal }
+.rich-text ol ul,.rich-text ul ol, .rich-text ul ul, .rich-text ol ol { margin-top: 0; margin-bottom: 0 }
+.rich-text u,.rich-text ins { text-decoration: underline }
+.rich-text br:before { content: "A" }
+.rich-text :before, .rich-text :after { white-space: pre-line }
+.rich-text center { text-align: center }
+.rich-text abbr,.rich-text acronym { font-variant: small-caps; letter-spacing: 0.1em }
+.rich-text :link,.rich-text :visited { text-decoration: underline }
+.rich-text :focus { outline: thin dotted invert }
+.rich-text BDO[DIR="ltr"] { direction: ltr; unicode-bidi: bidi-override }
+.rich-text BDO[DIR="rtl"] { direction: rtl; unicode-bidi: bidi-override }
+.rich-text *[DIR="ltr"] { direction: ltr; unicode-bidi: embed }
+.rich-text *[DIR="rtl"] { direction: rtl; unicode-bidi: embed }

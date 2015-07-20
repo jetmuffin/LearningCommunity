@@ -46,7 +46,8 @@
 					</div>					
     			</div>
     			<div class="course-summary-more clearfix">
-    				<a href="" class="btn btn-primary btn-lg l" id="join-right-now">立即学习</a>
+    			<c:if test="${not status.ifLearn}"><button  class="btn btn-primary btn-lg l" id="join-right-now" onclick="javascript:location.href='/LearningCommunity/course/learn/${course.courseId}'">立即学习</button></c:if>
+    				<c:if test="${status.ifLearn}"><button  class="btn btn-primary btn-lg l" id="join-right-now" disabled>立即学习</button></c:if>
 					<div class="share bdsharebuttonbox bdshare-button-style0-16 r" data-tag="top-share" data-bd-bind="1436963543170">
 		                <div class="d">分享课程到：</div>
 		                <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
