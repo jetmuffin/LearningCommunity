@@ -99,4 +99,11 @@ public class UserController {
 		}
 		return statusMessage;
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session,RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("logoutMsg", "退出成功");
+		session.removeAttribute("loginUser");
+		return "redirect:/user/login";
+	}
 }
