@@ -24,7 +24,7 @@
 		<div class="container">
 			<div class="question-main">
 				<p class="main-title">
-					今天，你在学习时遇到了什么问题呢？ <a id="goAsk" href="/ask"
+					今天，你在学习时遇到了什么问题呢？ <a id="goAsk" href="/LearningCommunity/question/ask"
 						class="btn btn-primary btn-lg">我要提问</a>
 				</p>
 				<div class="main-tab">
@@ -57,10 +57,7 @@
 								</div>
 								<div class="question-time l">${question.time}</div>
 								<div class="question-tag-list l">
-									<a href="" target="_blank" class="list-tag">Html</a> <a href=""
-										target="_blank" class="list-tag">CSS</a> <a href=""
-										target="_blank" class="list-tag">Java</a>
-
+									<a href="" target="_blank" class="list-tag">${question.tag}</a> 
 								</div>
 							</div>
 						</div>

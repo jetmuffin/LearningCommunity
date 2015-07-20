@@ -72,8 +72,8 @@
 							<h2>撰写答案</h2>
 						</div>
 						<div class="qa-write-content clearfix">
-							<form action="">
-								<textarea name="content" id="content" rows="60" cols="60"></textarea>
+							<form action="/LearningCommunity/question//answer/${questionId}" method="post">
+								<textarea name="content" id="content" rows="60" cols="60" name="content"></textarea>
 								<button type="submit" class="btn btn-primary btn-lg r">提交回答</button>
 							</form>
 						</div>

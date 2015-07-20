@@ -97,8 +97,10 @@
 	</bean>
  -->
 	<!-- Hbase基本操作 -->
+	
 	<bean id="hbaseOperation" class="com.lst.lc.hbase.service.HbaseOperation">
 		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>
 	</bean>
+	 
 </beans>
 

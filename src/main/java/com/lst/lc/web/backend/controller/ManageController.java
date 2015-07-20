@@ -34,7 +34,6 @@ public class ManageController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(HttpSession session, String email, String password,
 			RedirectAttributes redirectAttributes) throws Exception {
-		password = EncryptUtils.encryptMD5(password.getBytes());
 		Admin admin = adminDao.validateAdmin(email, password);
 		if (admin == null) {
 			redirectAttributes.addFlashAttribute("loginMsg", "邮箱错误");

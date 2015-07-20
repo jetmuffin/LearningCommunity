@@ -165,14 +165,14 @@ public class CourseController {
 			System.out.println(content);
 			courseLesson.setContent(content);
 		}else{
-			String videoPath = "/opt/LearningCommunity/thumb/"+courseId;
+			String videoPath = "/opt/LearningCommunity/video/"+courseId;
 			String videoUrl = MultipartFileUtils.saveFile(video, videoPath);
 			courseLesson.setVideoUrl(videoUrl);
 		}
 		lessonDao.addLesson(courseLesson);
 		
 		redirectAttributes.addAttribute("courseMsg", "添加课程成功");
-		return "redirect:/manage/course/view"+courseId;
+		return "redirect:/manage/course/view/"+courseId;
 	}
 	
 	@RequestMapping(value = "/editlesson/{lessonId}", method = RequestMethod.GET)

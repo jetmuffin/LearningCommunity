@@ -55,13 +55,13 @@ public class QuestionController {
 	@Autowired
 	private LogHandler logHandler;
 
-	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/ask", method = RequestMethod.GET)
 	public String add(Model model) {
 		model.addAttribute("module", "question");
 		return "frontend/question/add";
 	}
 
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/ask", method = RequestMethod.POST)
 	public String add(Model model, String title, String tag, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
@@ -159,8 +159,8 @@ public class QuestionController {
 		return "redirect:/question/view/" + questionId;
 	}
 
-	@RequestMapping(value = "/answer", method = RequestMethod.POST)
-	public String answer(Model model, int questionId, String head, String content,
+	@RequestMapping(value = "/answer/{questionId}", method = RequestMethod.POST)
+	public String answer(Model model, @PathVariable int questionId, String head, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		
 		User user = (User) session.getAttribute("loginUser");

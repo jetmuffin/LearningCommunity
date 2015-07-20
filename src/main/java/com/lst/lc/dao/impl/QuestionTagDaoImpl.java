@@ -32,7 +32,7 @@ public class QuestionTagDaoImpl extends BaseDao implements QuestionTagDao {
 		Query query = query(hql);
 		query.setString(0, name);
 		List<QuestionTag> tags = query.list();
-		if(tags != null)
+		if(tags.size() != 0)
 			return tags.get(0);
 		return null;
 	}
