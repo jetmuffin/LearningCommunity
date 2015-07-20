@@ -51,4 +51,9 @@ public interface UserDao {
 	 */
 	public boolean ifEmailExisted(String email);
 	
+	/**
+	 * 更新用户信息
+	 */
+	public void update(int userId, String gender, String avatar, String motto, String city);
+	
 }
