@@ -102,7 +102,8 @@ public class LessonController {
 				.getPage(pageNow, pagesize, LessonComment.class);
 		
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
-
+		Course course = lesson.getCourse();
+		model.addAttribute("course", course);
 		model.addAttribute("lesson", lesson);
 		model.addAttribute("page", page);
 		model.addAttribute("module", "course");
