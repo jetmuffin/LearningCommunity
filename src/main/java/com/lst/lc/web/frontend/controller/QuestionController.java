@@ -78,6 +78,7 @@ public class QuestionController {
 			QuestionTag questionTag = questionTagDao.getTagByName(tags.get(i));
 			if (questionTag == null) {
 				questionTag = new QuestionTag(tags.get(i), 1);
+				questionTagDao.addTag(questionTag);
 			} else {
 				// 数量加１
 				int number = questionTag.getNumber() + 1;

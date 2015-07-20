@@ -27,7 +27,7 @@
 		</h3>
 		<ul class="taglist clearfix">
 			<c:forEach var="tag" items="${questionSide.tags}">
-				<li class="tag l"><a href="">tag.tagName</a></li>
+				<li class="tag l"><a href="">${tag.tagName}</a></li>
 			</c:forEach>
 		</ul>
 	</div>
