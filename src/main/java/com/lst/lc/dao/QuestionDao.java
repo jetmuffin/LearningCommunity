@@ -19,4 +19,7 @@ public interface QuestionDao {
 	public void update(int questionId, String title, String tag, String content);
 	
 	public List<Question> getTopFiveRecently();
+	
+	public void addReadNums(int questionId);
+
 }

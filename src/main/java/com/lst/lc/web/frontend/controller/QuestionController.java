@@ -21,6 +21,7 @@ import com.lst.lc.dao.QueryDao;
 import com.lst.lc.dao.QuestionAnswerDao;
 import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.QuestionTagDao;
+import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Direction;
 import com.lst.lc.entities.Question;
@@ -38,6 +39,10 @@ import com.lst.lc.web.service.QuestionPageHandler;
 @RequestMapping("/question")
 public class QuestionController {
 
+	@Autowired
+	@Qualifier("userDao")
+	private UserDao userDao;
+	
 	@Autowired
 	@Qualifier("questionDao")
 	private QuestionDao questionDao;
@@ -107,7 +112,7 @@ public class QuestionController {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		Question question = questionDao.getQuestion(questionId);
-
+		questionDao.addReadNums(questionId);
 		User user = (User) session.getAttribute("loginUser");
 		QuestionSide questionSide;
 		List<QuestionTag> tags = questionTagDao.getTagsOrderByNum();
@@ -115,9 +120,9 @@ public class QuestionController {
 		if (user == null) {
 			questionSide = new QuestionSide(false, 0, 0, tags, questions);
 		} else {
-			questionSide = new QuestionSide(true, user.getQuestions().size(),
-					user.getQuestionAnswers().size(), tags, questions);
-			model.addAttribute("user", user);
+			User u = userDao.getById(user.getUserId());
+			questionSide = new QuestionSide(true, u.getQuestions().size(),
+					u.getQuestionAnswers().size(), tags, questions);
 		}
 		model.addAttribute("questionSide", questionSide);
 		model.addAttribute("question", question);

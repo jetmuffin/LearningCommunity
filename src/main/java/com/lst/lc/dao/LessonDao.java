@@ -19,4 +19,5 @@ public interface LessonDao {
 			String videoUrl, String content);
 
 	public LearnStatus learnStatus(int userId, int courseId);
+	
 }
