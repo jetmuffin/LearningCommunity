@@ -20,7 +20,7 @@
     </div>
     <div id="complete">
     	<div class="container">
-    		<form action="" id="info-form" class="clearfix">
+    		<form action="" id="info-form" class="clearfix" method="post" enctype="multipart/form-data">
     			<div class="avatar-wrap l">
     				<div class="avatar-inner clearfix">
     					<img src="/LearningCommunity/resources/images/default.png" alt="" id="user-avatar-thumb">
