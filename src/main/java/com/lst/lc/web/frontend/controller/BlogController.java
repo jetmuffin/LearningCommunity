@@ -54,6 +54,7 @@ public class BlogController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Model model) {
+		model.addAttribute("module", "blog");
 		return "frontend/blog/add";
 	}
 
@@ -103,6 +104,7 @@ public class BlogController {
 		model.addAttribute("blog", blog);
 		model.addAttribute("comments",
 				blogPageHandler.getComments(blogId, pageNow, pagesize));
+		model.addAttribute("module", "blog");
 		return "frontend/blog/view";
 	}
 
@@ -131,7 +133,7 @@ public class BlogController {
 		}
 		model.addAttribute("page",
 				blogPageHandler.getBlogs(pageNow, pagesize, sorttype));
-
+		model.addAttribute("module", "blog");
 		return "frontend/blog/list";
 	}
 
@@ -139,6 +141,7 @@ public class BlogController {
 	public String edit(@PathVariable int blogId, Model model) {
 		Blog blog = blogDao.getBlog(blogId);
 		model.addAttribute("blog", blog);
+		model.addAttribute("module", "blog");
 		return "frontend/question/edit";
 	}
 	

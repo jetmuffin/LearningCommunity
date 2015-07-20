@@ -69,7 +69,7 @@ function userRegister(){
         data: $("#registerForm").serialize(),    
         success: function(data) {
         	if(data.status == 1){
-        		location.reload();
+        		window.location.href = "/LearningCommunity/user/completeInfo";
         	}else{
         		$(".errorMsg").html(data.message);
         	}
@@ -78,4 +78,31 @@ function userRegister(){
         	console.log(data);
         }
     })	
+}
+
+function loadImageFile(input){
+	var path = $(input).val();
+	var pos = path.lastIndexOf(".");   
+    var lastname = path.substring(pos, path.length)   
+	if (lastname.toLowerCase() == ".jpg" || lastname.toLowerCase() == ".png" || lastname.toLowerCase() == ".gif") {   
+		var objUrl = getObjectURL(input.files[0]) ;
+		if (objUrl) {
+			$("#user-avatar-thumb").attr("src", objUrl) ;
+		}  
+    } else{
+        alert("您上传的文件类型为" + lastname + "，必须为图片类型才可作为头像！");   
+        return false;     	
+    }
+}
+
+function getObjectURL(file) {
+	var url = null ; 
+	if (window.createObjectURL!=undefined) { // basic
+		url = window.createObjectURL(file) ;
+	} else if (window.URL!=undefined) { // mozilla(firefox)
+		url = window.URL.createObjectURL(file) ;
+	} else if (window.webkitURL!=undefined) { // webkit or chrome
+		url = window.webkitURL.createObjectURL(file) ;
+	}
+	return url ;
 }

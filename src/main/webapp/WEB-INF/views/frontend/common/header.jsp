@@ -12,7 +12,7 @@
 					<li><a href="/LearningCommunity/course/courses" <c:if test="${module eq 'course'}">class="active"</c:if> >课程</a></li>
 					<li><a href="" <c:if test="${module eq 'plan'}">class="active"</c:if>>计划</a></li>
 					<li><a href="/LearningCommunity/question/questions" <c:if test="${module eq 'question'}">class="active"</c:if>>讨论</a></li>
-					<li><a href="">社区</a></li>
+					<li><a href="/LearningCommunity/blog/blogs"  <c:if test="${module eq 'blog'}">class="active"</c:if>>文章</a></li>
 				</ul>
 			</div>
 
@@ -37,8 +37,8 @@
 								</div>
 								<ul class="card-link">
 									<li><a href="">个人中心</a></li>
-									<li><a href="">建议反馈</a></li>
-									<li><a href="">退出登录</a></li>
+									<li><a href="/LearningCommunity/feedback/add">建议反馈</a></li>
+									<li><a href="/LearningCommunity/user/logout">退出登录</a></li>
 								</ul>
 								<i class="card-arr"></i>
 							</div>

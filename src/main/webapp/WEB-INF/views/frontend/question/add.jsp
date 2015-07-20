@@ -31,6 +31,7 @@
         </form>
       </div>
     </div>
+    <div class="clearfix"></div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>

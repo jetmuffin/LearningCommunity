@@ -106,4 +106,9 @@ public class UserController {
 		session.removeAttribute("loginUser");
 		return "redirect:/user/login";
 	}
+	
+	@RequestMapping(value = "/completeInfo", method = RequestMethod.GET)
+	public String completeInfo(Model model,HttpSession session){
+		return "frontend/user/complete";
+	}
 }
