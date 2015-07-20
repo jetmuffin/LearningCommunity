@@ -15,7 +15,9 @@ public class QuestionDaoTest extends BaseTestDao {
 	
 	@Test
 	public void test(){
-		System.out.println(getTopFiveRecently().size());
+		init();
+		addReadNums(1);
+		destroy();
 	}
 
 	public List<Question> getTopFiveRecently() {
@@ -25,5 +27,11 @@ public class QuestionDaoTest extends BaseTestDao {
 		query.setDate(0, end);
 		List<Question> lists = query.list();
 		return lists;
+	}
+	
+	public void addReadNums(int questionId) {
+		String hql = "update Question as question set question.readNums = 1 where question.questionId = ?";
+		Query query = query(hql).setInteger(0, questionId);
+		query.executeUpdate();
 	}
 }

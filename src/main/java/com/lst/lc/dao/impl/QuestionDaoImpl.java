@@ -52,4 +52,11 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		return lists;
 	}
 
+	@Override
+	public void addReadNums(int questionId) {
+		String hql = "update Question as question set question.readNums = question.readNums + 1 where question.questionId = ?";
+		Query query = query(hql).setInteger(0, questionId);
+		query.executeUpdate();
+	}
+
 }
