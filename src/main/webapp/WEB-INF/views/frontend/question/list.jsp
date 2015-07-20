@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,7 +25,8 @@
 		<div class="container">
 			<div class="question-main">
 				<p class="main-title">
-					今天，你在学习时遇到了什么问题呢？ <a id="goAsk" href="/LearningCommunity/question/ask"
+					今天，你在学习时遇到了什么问题呢？ <a id="goAsk"
+						href="/LearningCommunity/question/ask"
 						class="btn btn-primary btn-lg">我要提问</a>
 				</p>
 				<div class="main-tab">
@@ -34,7 +36,9 @@
 				<div class="main-list">
 					<c:forEach var="question" items="${page.list}">
 						<div class="question-item clearfix">
-							<a href="/LearningCommunity/question/view/${question.questionId}"  target="_blank" class="replynumber  <c:if test="${question.answerNums gt 0}">hasanswer</c:if> <c:if test="${question.answerNums eq 0}">noanswernum</c:if>">
+							<a href="/LearningCommunity/question/view/${question.questionId}"
+								target="_blank"
+								class="replynumber  <c:if test="${question.answerNums gt 0}">hasanswer</c:if> <c:if test="${question.answerNums eq 0}">noanswernum</c:if>">
 								<div class="ys l">
 									<div class="number">
 										<span>${question.answerNums }</span>
@@ -49,7 +53,8 @@
 								</div>
 							</a>
 							<div class="question-title">
-								<a href="/LearningCommunity/question/view/${question.questionId}" >${question.title}</a>
+								<a
+									href="/LearningCommunity/question/view/${question.questionId}">${question.title}</a>
 							</div>
 							<div class="question-footer clearfix">
 								<div class="question-author l">
@@ -57,7 +62,9 @@
 								</div>
 								<div class="question-time l">${question.time}</div>
 								<div class="question-tag-list l">
-									<a href="" target="_blank" class="list-tag">${question.tag}</a> 
+									<c:forEach var="tag" items="${st.stringSplit(question.tag)}">
+										<a href="" target="_blank" class="list-tag">${tag}</a>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
