@@ -90,4 +90,11 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		save(userCourse);
 	}
 
+	@Override
+	public List<User> getTopFive() {
+		String hql = "from User as user order by user.blogs.size desc";
+		Query query = query(hql).setMaxResults(5);
+		return query.list();
+	}
+
 }

@@ -69,6 +69,7 @@ public class BlogController {
 			BlogTag blogTag = blogTagDao.getTagByName(tags.get(i));
 			if (blogTag == null) {
 				blogTag = new BlogTag(tags.get(i), 1);
+				blogTagDao.addTag(blogTag);
 			} else {
 				// 数量加１
 				int number = blogTag.getNumber() + 1;
