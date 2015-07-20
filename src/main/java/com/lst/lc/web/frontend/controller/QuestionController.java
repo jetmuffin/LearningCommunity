@@ -30,6 +30,7 @@ import com.lst.lc.entities.User;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
 import com.lst.lc.utils.StringUtils;
+import com.lst.lc.web.bean.QuestionSide;
 import com.lst.lc.web.service.LogHandler;
 import com.lst.lc.web.service.QuestionPageHandler;
 
@@ -44,14 +45,14 @@ public class QuestionController {
 	@Autowired
 	@Qualifier("questionAnswerDao")
 	private QuestionAnswerDao questionAnswerDao;
-	
+
 	@Autowired
 	@Qualifier("questionTagDao")
 	private QuestionTagDao questionTagDao;
 
 	@Autowired
 	private QuestionPageHandler questionPageHandler;
-	
+
 	@Autowired
 	private LogHandler logHandler;
 
@@ -65,37 +66,37 @@ public class QuestionController {
 	public String add(Model model, String title, String tag, String content,
 			HttpSession session, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
-		
-		Set<QuestionTag> tagSet = new HashSet<QuestionTag>(); 
+
+		Set<QuestionTag> tagSet = new HashSet<QuestionTag>();
 		List<String> tags = StringUtils.stringSplit(tag);
-		for(int i = 0; i < tags.size(); i++){
+		for (int i = 0; i < tags.size(); i++) {
 			QuestionTag questionTag = questionTagDao.getTagByName(tags.get(i));
-			if(questionTag == null){
+			if (questionTag == null) {
 				questionTag = new QuestionTag(tags.get(i), 1);
 			} else {
-				//数量加１
+				// 数量加１
 				int number = questionTag.getNumber() + 1;
 				questionTag.setNumber(number);
 			}
 			tagSet.add(questionTag);
 		}
-		
+
 		Question question = new Question(user, title, content, new Date(), 0,
 				0, tag, tagSet, null);
 		questionDao.addQuestion(question);
 		question.getQuestionId();
-		//写入日志，用户增加积分
-		logHandler.toLog(user, "发布问题:"+ question.getQuestionId());
+		// 写入日志，用户增加积分
+		logHandler.toLog(user, "发布问题:" + question.getQuestionId());
 		logHandler.updateIntegral(user.getUserId(), "addQuestion");
-		
+
 		model.addAttribute("question", question);
 		redirectAttributes.addFlashAttribute("questionMsg", "问题发布成功");
 		return "redirect:/question/view/" + question.getQuestionId();
 	}
 
 	@RequestMapping(value = "/view/{questionId}", method = RequestMethod.GET)
-	public String detail(Model model, @PathVariable int questionId,
-			String pageNum, String pageSize) {
+	public String detail(HttpSession session, Model model,
+			@PathVariable int questionId, String pageNum, String pageSize) {
 
 		int pageNow = 1;
 		int pagesize = 10;
@@ -107,6 +108,18 @@ public class QuestionController {
 		}
 		Question question = questionDao.getQuestion(questionId);
 
+		User user = (User) session.getAttribute("loginUser");
+		QuestionSide questionSide;
+		List<QuestionTag> tags = questionTagDao.getTagsOrderByNum();
+		List<Question> questions = questionDao.getTopFiveRecently();
+		if (user == null) {
+			questionSide = new QuestionSide(false, 0, 0, tags, questions);
+		} else {
+			questionSide = new QuestionSide(true, user.getQuestions().size(),
+					user.getQuestionAnswers().size(), tags, questions);
+			model.addAttribute("user", user);
+		}
+		model.addAttribute("questionSide", questionSide);
 		model.addAttribute("question", question);
 		model.addAttribute("answers",
 				questionPageHandler.getAnswers(questionId, pageNow, pagesize));
@@ -120,7 +133,8 @@ public class QuestionController {
 	 * @param model
 	 * @param pageNum
 	 * @param pageSize
-	 * @param type　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
+	 * @param type
+	 *            　排序类型，取指1,2,3，１表示按照回答数排序，2表示按照阅读数排序，3表示按照时间排序
 	 * @return
 	 */
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
@@ -165,12 +179,13 @@ public class QuestionController {
 		
 		User user = (User) session.getAttribute("loginUser");
 		Question question = questionDao.getQuestion(questionId);
-		QuestionAnswer answer = new QuestionAnswer(question, user, new Date(), content, head);
+		QuestionAnswer answer = new QuestionAnswer(question, user, new Date(),
+				content, head);
 		questionAnswerDao.addQuestionAnswer(answer);
-		//写入日志
-		logHandler.toLog(user, "回答了问题:"+ questionId);
+		// 写入日志
+		logHandler.toLog(user, "回答了问题:" + questionId);
 		logHandler.updateIntegral(user.getUserId(), "answerQuestion");
-		
+
 		redirectAttributes.addFlashAttribute("questionMsg", "回答成功");
 		return "redirect:/question/view/" + questionId;
 	}
