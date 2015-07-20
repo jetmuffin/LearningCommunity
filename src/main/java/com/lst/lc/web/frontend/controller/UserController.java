@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
+import com.lst.lc.utils.MultipartFileUtils;
 import com.lst.lc.web.bean.StatusMessage;
 import com.lst.lc.web.service.LogHandler;
 
@@ -119,10 +121,11 @@ public class UserController {
 
 	@RequestMapping(value = "/completeInfo", method = RequestMethod.POST)
 	public String complete(Model model, HttpSession session, String gender,
-			String avatar, String motto, String city, RedirectAttributes redirectAttributes) {
-		
+			MultipartFile avatar, String motto, String city, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
-		userDao.update(user.getUserId(), gender, avatar, motto, city);
+		String avatarPath = "/opt/LearningCommunity/avatar";
+		String avatarUrl = MultipartFileUtils.saveFile(avatar, avatarPath);
+		userDao.update(user.getUserId(), gender, avatarUrl, motto, city);
 		redirectAttributes.addFlashAttribute("userMsg", "信息完善成功");
 		return "redirect:/user/completeInfo";
 	}

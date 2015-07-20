@@ -74,7 +74,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	@Override
 	public void update(int userId, String gender, String avatar, String motto,
 			String city) {
-		String hql = "update User as user set user.gender = ?, user.avater = ?, user.motto = ?, user.city = ? where user.userId = ?";
+		String hql = "update User as user set user.gender = ?, user.avatar = ?, user.motto = ?, user.city = ? where user.userId = ?";
 		Query query = query(hql);
 		query.setString(0, gender).setString(1, avatar).setString(2, motto)
 				.setString(3, city).setInteger(4, userId).executeUpdate();
