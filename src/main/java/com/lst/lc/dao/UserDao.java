@@ -56,4 +56,10 @@ public interface UserDao {
 	 */
 	public void update(int userId, String gender, String avatar, String motto, String city);
 	
+	/**
+	 * 用户学习某课程
+	 * @param userId
+	 * @param courseId
+	 */
+	public void learn(int userId, int courseId);
 }

@@ -3,6 +3,7 @@ package com.lst.lc.dao;
 import java.util.List;
 
 import com.lst.lc.entities.CourseLesson;
+import com.lst.lc.web.bean.LearnStatus;
 
 public interface LessonDao {
 	
@@ -17,4 +18,5 @@ public interface LessonDao {
 	void update(int lessonId, String title, String summary, String type,
 			String videoUrl, String content);
 
+	public LearnStatus learnStatus(int userId, int courseId);
 }
