@@ -27,7 +27,7 @@ public class UserController {
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao userDao;
-	
+
 	@Autowired
 	private LogHandler logHandler;
 
@@ -55,10 +55,10 @@ public class UserController {
 			message = "登录成功";
 			session.setAttribute("loginUser", user);
 			statusMessage = new StatusMessage(1, message);
-			//写进日志，积分加1
+			// 写进日志，积分加1
 			logHandler.toLog(user, "登录网站");
 			logHandler.updateIntegral(user.getUserId(), "login");
-			
+
 		} else {
 			message = "密码错误";
 			statusMessage = new StatusMessage(0, message);
@@ -75,7 +75,8 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public StatusMessage register(String userName, String email,
-			String password, String captcha, HttpSession session) throws Exception {
+			String password, String captcha, HttpSession session)
+			throws Exception {
 
 		StatusMessage statusMessage;
 		String message = null;
@@ -90,8 +91,9 @@ public class UserController {
 			message = "验证码错误";
 			statusMessage = new StatusMessage(0, message);
 		} else {
-			User user = new User(userName, email, EncryptUtils.encryptMD5(password.getBytes()), "未知", 10, "菜鸟",
-					"", "user");
+			User user = new User(userName, email,
+					EncryptUtils.encryptMD5(password.getBytes()), "未知", 10,
+					"菜鸟", "", "user");
 			userDao.addUser(user);
 			message = "注册成功，您已登录";
 			statusMessage = new StatusMessage(1, message);
@@ -99,16 +101,29 @@ public class UserController {
 		}
 		return statusMessage;
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logout(HttpSession session,RedirectAttributes redirectAttributes) {
+	public String logout(HttpSession session,
+			RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("logoutMsg", "退出成功");
 		session.removeAttribute("loginUser");
 		return "redirect:/user/login";
 	}
-	
+
 	@RequestMapping(value = "/completeInfo", method = RequestMethod.GET)
-	public String completeInfo(Model model,HttpSession session){
+	public String completeInfo(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		model.addAttribute("user", user);
 		return "frontend/user/complete";
+	}
+
+	@RequestMapping(value = "/completeInfo", method = RequestMethod.POST)
+	public String complete(Model model, HttpSession session, String gender,
+			String avatar, String motto, String city, RedirectAttributes redirectAttributes) {
+		
+		User user = (User) session.getAttribute("loginUser");
+		userDao.update(user.getUserId(), gender, avatar, motto, city);
+		redirectAttributes.addFlashAttribute("userMsg", "信息完善成功");
+		return "redirect:/user/completeInfo";
 	}
 }
