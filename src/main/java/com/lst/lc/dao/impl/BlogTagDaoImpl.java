@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.BlogTagDao;
 import com.lst.lc.entities.BlogTag;
+import com.lst.lc.utils.ListUtils;
 
 @Repository("blogTagDao")
 public class BlogTagDaoImpl extends BaseDao implements BlogTagDao {
@@ -32,7 +33,7 @@ public class BlogTagDaoImpl extends BaseDao implements BlogTagDao {
 		Query query = query(hql);
 		query.setString(0, name);
 		List<BlogTag> tags = query.list();
-		if(tags != null)
+		if(!ListUtils.isNull(tags))
 			return tags.get(0);
 		return null;
 	}

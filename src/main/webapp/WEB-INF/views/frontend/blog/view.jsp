@@ -13,7 +13,7 @@
 	<br /> 描述：${blog.content }
 	<br /> 标签：${blog.tag }
 	<br /> 阅读数：${blog.readNums }
-	<br /> 回答数：${blog.answerNums }
+	<br /> 回答数：${blog.commentNums }
 	<br /> 回复：
 	<br />
 	<c:forEach var="comment" items="${comments.list}">
