@@ -1,5 +1,6 @@
 package com.lst.lc.dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.RankDao;
 import com.lst.lc.dao.UserDao;
+import com.lst.lc.entities.Course;
+import com.lst.lc.entities.RelUserCourse;
+import com.lst.lc.entities.RelUserCourseId;
 import com.lst.lc.entities.User;
 
 @Repository("userDao")
@@ -75,6 +79,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		query.setString(0, gender).setString(1, avatar).setString(2, motto)
 				.setString(3, city).setInteger(4, userId).executeUpdate();
 
+	}
+
+	@Override
+	public void learn(int userId, int courseId) {
+		User user = get(User.class, userId);
+		Course course = get(Course.class, courseId);
+		RelUserCourseId id = new RelUserCourseId(userId, courseId);
+		RelUserCourse userCourse = new RelUserCourse(id, course, user, new Date(), 0);
+		save(userCourse);
 	}
 
 }

@@ -18,6 +18,7 @@ import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
 import com.lst.lc.dao.LessonDao;
+import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Category;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.CourseLesson;
@@ -27,12 +28,17 @@ import com.lst.lc.entities.User;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
 import com.lst.lc.web.bean.CourseMenu;
+import com.lst.lc.web.bean.LearnStatus;
 import com.lst.lc.web.service.CourseMenuHandler;
 
 @Controller
 @RequestMapping("/course")
 public class LessonController {
 
+	@Autowired
+	@Qualifier("userDao")
+	private UserDao userDao;
+	
 	@Autowired
 	@Qualifier("categoryDao")
 	private CategoryDao categoryDao;
@@ -67,9 +73,14 @@ public class LessonController {
 	}
 
 	@RequestMapping(value = "/view/{courseId}", method = RequestMethod.GET)
-	public String viewCourse(Model model, @PathVariable int courseId) {
+	public String viewCourse(HttpSession session, Model model, @PathVariable int courseId) {
 		Course course = courseDao.getCourse(courseId);
 		List <CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
+		
+		User user = (User) session.getAttribute("loginUser");
+		LearnStatus status = lessonDao.learnStatus(user.getUserId(), courseId);
+		
+		model.addAttribute("status", status);
 		model.addAttribute("course", course);
 		model.addAttribute("lessons",lessons);
 		model.addAttribute("module", "course");
@@ -109,6 +120,13 @@ public class LessonController {
 		model.addAttribute("module", "course");
 		redirectAttributes.addAttribute("lessonMsg", "评论成功");
 		return "redirect:/course/lesson/view" + lessonId;
+	}
+	
+	@RequestMapping(value = "/learn/{courseId}", method = RequestMethod.GET)
+	public String learn(HttpSession session, Model model, @PathVariable int courseId) {
+		User user = (User) session.getAttribute("loginUser");
+		userDao.learn(user.getUserId(), courseId);
+		return "redirect:/course/view" + courseId;
 	}
 	
 }
