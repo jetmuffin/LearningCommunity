@@ -13,7 +13,7 @@ import com.lst.lc.entities.User;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao implements UserDao {
-	
+
 	@Autowired
 	@Qualifier("rankDao")
 	private RankDao rankDao;
@@ -52,7 +52,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 	public void addIntegral(int userId, int integral) {
 		String hql = "update User as user set user.integral = user.integral + ?, user.rank = ? where user.userId = ?";
 		String rank = rankDao.getRank(integral);
-		Query query = query(hql).setInteger(0, integral).setString(1, rank).setInteger(2, userId);
+		Query query = query(hql).setInteger(0, integral).setString(1, rank)
+				.setInteger(2, userId);
 		query.executeUpdate();
 	}
 
@@ -61,9 +62,19 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		String hql = "from User as user where user.email = ?";
 		Query query = query(hql).setString(0, email);
 		List<User> users = query.list();
-		if(users.size() != 0)
+		if (users.size() != 0)
 			return true;
 		return false;
+	}
+
+	@Override
+	public void update(int userId, String gender, String avatar, String motto,
+			String city) {
+		String hql = "update User as user set user.gender = ?, user.avater = ?, user.motto = ?, user.city = ? where user.userId = ?";
+		Query query = query(hql);
+		query.setString(0, gender).setString(1, avatar).setString(2, motto)
+				.setString(3, city).setInteger(4, userId).executeUpdate();
+
 	}
 
 }

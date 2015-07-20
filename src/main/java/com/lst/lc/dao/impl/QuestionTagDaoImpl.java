@@ -39,8 +39,9 @@ public class QuestionTagDaoImpl extends BaseDao implements QuestionTagDao {
 
 	@Override
 	public List<QuestionTag> getTagsOrderByNum() {
-		// TODO Auto-generated method stub
-		return null;
+		String hql = "from QuestionTag as tag order by tag.number desc";
+		Query query = query(hql).setMaxResults(20);
+		return query.list();
 	}
 
 }
