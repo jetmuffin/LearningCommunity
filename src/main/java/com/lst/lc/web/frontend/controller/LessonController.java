@@ -120,14 +120,14 @@ public class LessonController {
 		lessonDao.addLesson(lesson);
 		model.addAttribute("module", "course");
 		redirectAttributes.addAttribute("lessonMsg", "评论成功");
-		return "redirect:/course/lesson/view" + lessonId;
+		return "redirect:/course/lesson/view/" + lessonId;
 	}
 	
 	@RequestMapping(value = "/learn/{courseId}", method = RequestMethod.GET)
 	public String learn(HttpSession session, Model model, @PathVariable int courseId) {
 		User user = (User) session.getAttribute("loginUser");
 		userDao.learn(user.getUserId(), courseId);
-		return "redirect:/course/view" + courseId;
+		return "redirect:/course/view/" + courseId;
 	}
 	
 }
