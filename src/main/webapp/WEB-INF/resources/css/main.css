@@ -296,6 +296,63 @@ h5 {
 #header #login-area .header-login li {
   float: left;
 }
+#header #login-area .header-login .user-card {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 140px;
+  padding-top: 10px;
+  z-index: 1000;
+  text-align: center;
+  visibility: hidden;
+}
+#header #login-area .header-login .user-card .card-inner {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#header #login-area .header-login .user-card .card-inner .card-top {
+  padding: 10px 20px;
+  background: url(/LearningCommunity/resources/images/223.jpg);
+  background-position: -46px -6px;
+}
+#header #login-area .header-login .user-card .card-inner .card-top img {
+  float: left;
+  margin-right: 10px;
+}
+#header #login-area .header-login .user-card .card-inner .card-top span {
+  display: block;
+  color: #fff;
+  padding-top: 3px;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li {
+  border-bottom: 1px solid #edf1f2;
+  float: none;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li a {
+  padding: 10px 20px;
+  display: block;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li a:hover {
+  color: #5e5e5e;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li:hover {
+  background-color: #efefef;
+}
+#header #login-area .header-login .user-card .card-inner .card-arr {
+  position: absolute;
+  right: 40px;
+  top: 2px;
+  border-width: 0 7px 8px 7px;
+  border-color: transparent transparent #88cbf5 transparent;
+  border-style: solid;
+}
+#header #login-area .header-login .user-avatar-list:hover .user-card {
+  visibility: visible;
+}
 #header #login-area .header-login .user-avatar {
   display: block;
   height: 60px;
@@ -1332,7 +1389,7 @@ h5 {
   line-height: 1.33;
   border-radius: 3px;
 }
-avatar-32 {
+.avatar-32 {
   width: 32px;
   height: 32px;
   border-radius: 3px;
