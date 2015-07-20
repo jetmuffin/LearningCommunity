@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lst.lc.dao.CourseDao;
+import com.lst.lc.dao.LessonDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.User;
@@ -39,6 +40,10 @@ public class ReadResourcesController {
 	private UserDao userDao;
 	
 	@Autowired
+	@Qualifier("lessonDao")
+	private LessonDao lessonDao;
+	
+	@Autowired
 	private CaptchaHandler captchaHandler;
 
 	@RequestMapping(value = "/photo/{courseId}", method = RequestMethod.GET)
@@ -55,6 +60,13 @@ public class ReadResourcesController {
 		User user = userDao.getById(userId);
 		String avatarPath = user.getAvatar();
 		PathUtils.readPhoto(avatarPath, response);
+	}
+	
+	@RequestMapping(value = "/video/{lessonId}", method = RequestMethod.GET)
+	public void readVideo(@PathVariable int lessonId,
+			HttpServletResponse response){
+		String videoPath = lessonDao.getLesson(lessonId).getVideoUrl();
+		PathUtils.readPhoto(videoPath, response);
 	}
 	
 	@RequestMapping(value = "/captcha", method = RequestMethod.GET)
