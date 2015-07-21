@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.BlogCommentDao;
 import com.lst.lc.dao.BlogDao;
 import com.lst.lc.dao.BlogTagDao;
+import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Blog;
 import com.lst.lc.entities.BlogComment;
 import com.lst.lc.entities.BlogTag;
@@ -36,6 +37,10 @@ public class BlogController {
 	@Autowired
 	@Qualifier("blogDao")
 	private BlogDao blogDao;
+	
+	@Autowired
+	@Qualifier("userDao")
+	private UserDao userDao;
 
 	@Autowired
 	@Qualifier("blogTagDao")
@@ -135,6 +140,11 @@ public class BlogController {
 		if (type != null) {
 			sorttype = Integer.valueOf(type);
 		}
+		
+		List<User> users = userDao.getTopFive();
+		model.addAttribute("users", users);
+		List<BlogTag> tags = blogTagDao.getTagsOrderByNum();
+		model.addAttribute("tags", tags);
 		model.addAttribute("page",
 				blogPageHandler.getBlogs(pageNow, pagesize, sorttype));
 		model.addAttribute("module", "blog");
