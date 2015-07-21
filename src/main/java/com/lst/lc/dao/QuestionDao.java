@@ -21,5 +21,7 @@ public interface QuestionDao {
 	public List<Question> getTopFiveRecently();
 	
 	public void addReadNums(int questionId);
+	
+	public List<Question> search(String key);
 
 }

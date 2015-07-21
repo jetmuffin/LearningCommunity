@@ -74,4 +74,11 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
 		return query.list();
 	}
 
+	@Override
+	public List<Blog> search(String key) {
+		String hql = "from Blog as blog where blog.title like ?";
+		Query query = query(hql).setString(0, "%" + key + "%");
+		return query.list();
+	}
+
 }

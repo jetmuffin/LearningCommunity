@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.junit.Test;
 
+import com.lst.lc.entities.Course;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.RelUserCourseId;
 import com.lst.lc.utils.ListUtils;
@@ -28,4 +29,5 @@ public class LessonDaoTest extends BaseTestDao {
 		}
 		return status;
 	}
+	
 }
