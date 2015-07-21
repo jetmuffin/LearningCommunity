@@ -46,7 +46,9 @@
 							</div>
 							<div class="blog-footer clearfix">
 								<div class="blog-author l">
-									<a href=""><img src="/LearningCommunity/read/avatar/${blog.user.userId }" class="avatar-20" alt="">${blog.user.userName}</a>
+									<a href=""><img
+										src="/LearningCommunity/read/avatar/${blog.user.userId }"
+										class="avatar-20" alt="">${blog.user.userName}</a>
 								</div>
 								<div class="blog-time l">${blog.time}</div>
 								<div class="blog-tag-list l">
@@ -98,20 +100,16 @@
 						热门作者<a>»</a>
 					</h3>
 					<ul class="blog-hot-author">
-						<li class="author-item clearfix"><a href=""
-							class="l user-avatar"><img src="default.png" alt=""
-								class="avatar-40"></a>
-							<div class="author-info">
-								<strong><a href="">123</a></strong>
-								<p class="text-muted">最近获得 39 个赞</p>
-							</div></li>
-						<li class="author-item clearfix"><a href=""
-							class="l user-avatar"><img src="default.png" alt=""
-								class="avatar-40"></a>
-							<div class="author-info">
-								<strong><a href="">123</a></strong>
-								<p class="text-muted">最近获得 39 个赞</p>
-							</div></li>
+						<c:forEach var="user" items="${users}">
+							<li class="author-item clearfix"><a
+								href="/LearningCommunity/user/index/${user.userId }"
+								class="l user-avatar"><img
+									src="/LearningCommunity/read/avatar/${user.userId }" alt=""
+									class="avatar-40"></a>
+								<div class="author-info">
+									<strong><a href="">${user.userName}</a></strong>
+								</div></li>
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="sidebar-item">
@@ -119,13 +117,9 @@
 						热门标签<a>»</a>
 					</h3>
 					<ul class="taglist clearfix">
-						<li><a class="tag" href="">php</a><span>x 1501</span></li>
-						<li><a class="tag" href="">python</a><span>x 1501</span></li>
-						<li><a class="tag" href="">css</a><span>x 1501</span></li>
-						<li><a class="tag" href="">html5</a><span>x 1501</span></li>
-						<li><a class="tag" href="">android</a><span>x 1501</span></li>
-						<li><a class="tag" href="">ios</a><span>x 1501</span></li>
-						<li><a class="tag" href="">go</a><span>x 1501</span></li>
+						<c:forEach var="tag" items="${tags}">
+							<li><a class="tag" href="">${tag.tagName }</a></li>
+						</c:forEach>
 					</ul>
 				</div>
 

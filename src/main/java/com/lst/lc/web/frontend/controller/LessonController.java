@@ -78,7 +78,12 @@ public class LessonController {
 		List <CourseLesson> lessons = lessonDao.getLessonsOfCourse(courseId);
 		
 		User user = (User) session.getAttribute("loginUser");
-		LearnStatus status = lessonDao.learnStatus(user.getUserId(), courseId);
+		LearnStatus status;
+		if(user == null){
+			status = new LearnStatus(false, courseId);
+		} else {
+			status = lessonDao.learnStatus(user.getUserId(), courseId);
+		}
 		
 		model.addAttribute("status", status);
 		model.addAttribute("course", course);

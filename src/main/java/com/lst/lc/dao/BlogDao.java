@@ -45,4 +45,6 @@ public interface BlogDao {
 	public List<Blog> getTopFiveRecently();
 	
 	public void addReadNums(int blogId);
+	
+	public List<Blog> getOtherBlogs(int userId, int blogId);
 }

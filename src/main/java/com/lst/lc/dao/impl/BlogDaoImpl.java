@@ -67,4 +67,11 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
 		query.executeUpdate();
 	}
 
+	@Override
+	public List<Blog> getOtherBlogs(int userId, int blogId) {
+		String hql = "from Blog as blog where blog.user.userId = ? and blog.blogId <> ?";
+		Query query = query(hql).setInteger(0, userId).setInteger(1, blogId).setMaxResults(5);
+		return query.list();
+	}
+
 }
