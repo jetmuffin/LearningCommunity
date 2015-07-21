@@ -90,24 +90,32 @@ public class LessonController {
 	@RequestMapping(value = "/view/lesson/{lessonId}", method = RequestMethod.GET)
 	public String viewLesson(Model model, @PathVariable int lessonId,
 			String pageNum, String pageSize) {
-		int pageNow = 1;
-		int pagesize = 10;
-		if (pageSize != null) {
-			pagesize = Integer.valueOf(pageSize);
-		}
-		if (pageSize != null) {
-			pageNow = Integer.valueOf(pageNum);
-		}
-		Page<LessonComment> page = pageHandler
-				.getPage(pageNow, pagesize, LessonComment.class);
 		
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
 		Course course = lesson.getCourse();
 		model.addAttribute("course", course);
 		model.addAttribute("lesson", lesson);
-		model.addAttribute("page", page);
 		model.addAttribute("module", "course");
-		return "frontend/course/lesson";
+		if(lesson.getType().equals("text")){
+			if(course.getCategory().getCategoryName().equals("HTML"))
+				return "frontend/course/html-editor"; 
+			else {
+				return "frontend/course/java-editor";
+			}
+		}else{
+			int pageNow = 1;
+			int pagesize = 10;
+			if (pageSize != null) {
+				pagesize = Integer.valueOf(pageSize);
+			}
+			if (pageSize != null) {
+				pageNow = Integer.valueOf(pageNum);
+			}
+			Page<LessonComment> page = pageHandler
+					.getPage(pageNow, pagesize, LessonComment.class);
+			model.addAttribute("page", page);
+			return "frontend/course/lesson";			
+		}
 	}
 
 	@RequestMapping(value = "/comment", method = RequestMethod.POST)

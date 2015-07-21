@@ -73,6 +73,18 @@ public class UserController {
 
 		return "frontend/user/index";
 	}
+	
+	@RequestMapping(value = "/center", method = RequestMethod.GET)
+	public String center(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		if(user == null){
+			return "redirect:/course/courses";
+		}else{
+			user = userDao.getById(user.getUserId());
+			model.addAttribute("user",user);
+			return "frontend/user/center";
+		}
+	}
 
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
