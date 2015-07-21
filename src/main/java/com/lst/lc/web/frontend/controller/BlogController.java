@@ -102,7 +102,10 @@ public class BlogController {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		Blog blog = blogDao.getBlog(blogId);
+		
+		List<Blog> blogs = blogDao.getOtherBlogs(blog.getUser().getUserId(), blogId);
 		model.addAttribute("blog", blog);
+		model.addAttribute("otherBlogs", blogs);
 		model.addAttribute("comments",
 				blogPageHandler.getComments(blogId, pageNow, pagesize));
 		model.addAttribute("module", "blog");

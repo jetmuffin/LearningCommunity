@@ -66,4 +66,5 @@ public interface UserDao {
 	public void learn(int userId, int courseId);
 	
 	public List<User> getTopFive();
+	
 }
