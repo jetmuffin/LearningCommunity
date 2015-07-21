@@ -59,4 +59,11 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		query.executeUpdate();
 	}
 
+	@Override
+	public List<Question> search(String key) {
+		String hql = "from Question as question where question.title like ?";
+		Query query = query(hql).setString(0, "%" + key + "%");
+		return query.list();
+	}
+
 }

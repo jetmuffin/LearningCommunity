@@ -42,19 +42,28 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	}
 
 	@Override
-	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled){
+	public void update(int courseId, String title, String description,
+			String difficulty, int categoryId, int directionId, String enabled) {
 		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.category.categoryId = ?, course.direction.directionId = ?, course.enabled = ? where course.courseId = ?";
 		Query query = query(hql);
-		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).setInteger(6, courseId).executeUpdate();
+		query.setString(0, title).setString(1, description)
+				.setString(2, difficulty).setInteger(3, categoryId)
+				.setInteger(4, directionId).setString(5, enabled)
+				.setInteger(6, courseId).executeUpdate();
 	}
-	
+
 	@Override
-	public void update(int courseId,String title, String description, String difficulty, int categoryId, int directionId, String enabled,String imageUrl){
+	public void update(int courseId, String title, String description,
+			String difficulty, int categoryId, int directionId, String enabled,
+			String imageUrl) {
 		String hql = "update Course as course set course.title = ?, course.description = ?, course.difficulty = ?, course.category.categoryId = ?, course.direction.directionId = ?, course.enabled = ?, course.imageUrl = ? where course.courseId = ?";
 		Query query = query(hql);
-		query.setString(0, title).setString(1, description).setString(2, difficulty).setInteger(3, categoryId).setInteger(4, directionId).setString(5, enabled).setString(6, imageUrl).setInteger(7, courseId).executeUpdate();
+		query.setString(0, title).setString(1, description)
+				.setString(2, difficulty).setInteger(3, categoryId)
+				.setInteger(4, directionId).setString(5, enabled)
+				.setString(6, imageUrl).setInteger(7, courseId).executeUpdate();
 	}
-	
+
 	@Override
 	public Query getAllCoursesOfCategory(int categoryId) {
 		String hql = "from Course as course where course.category.categoryId = ?";
@@ -70,9 +79,9 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		query.setInteger(0, categoryId);
 		return query;
 	}
-	
+
 	@Override
-	public Query getQuery(String hql){
+	public Query getQuery(String hql) {
 		return query(hql);
 	}
 
@@ -81,6 +90,13 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		String hql = "delete Course as course where course.courseId = ?";
 		Query query = query(hql);
 		query.setInteger(0, courseId).executeUpdate();
+	}
+
+	@Override
+	public List<Course> search(String key) {
+		String hql = "from Course as course where course.title like ?";
+		Query query = query(hql).setString(0, "%" + key + "%");
+		return query.list();
 	}
 
 }

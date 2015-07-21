@@ -33,4 +33,6 @@ public interface CourseDao {
 
 	public void delete(int courseId);
 	
+	public List<Course> search(String key);
+	
 }
