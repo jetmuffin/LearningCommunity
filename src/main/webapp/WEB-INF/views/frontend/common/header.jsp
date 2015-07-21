@@ -36,7 +36,7 @@
 									<span class="name">${loginUser.userName}</span>
 								</div>
 								<ul class="card-link">
-									<li><a href="">个人中心</a></li>
+									<li><a href="/LearningCommunity/user/center">个人中心</a></li>
 									<li><a href="/LearningCommunity/feedback/add">建议反馈</a></li>
 									<li><a href="/LearningCommunity/user/logout">退出登录</a></li>
 								</ul>

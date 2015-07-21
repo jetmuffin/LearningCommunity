@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="public/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="public/codemirror/theme/monokai.css">
+  <link rel="stylesheet" href="public/style.css">
+</head>
+<body>
+<div id="laboratory"></div>
+<script src="/public/jquery-2.0.0.min.js"></script>
+<script src="/public/codemirror/lib/codemirror.js"></script>
+<script src="/public/codemirror/mode/clike/clike.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var Editor = function(options){
+       
+        var self = this,
+            def = {
+                query:{
+                    image:'c:latest'
+                },
+                host:'localhost:8000',
+                root:'laboratory'
+        };
+        def = $.extend(true,def,options);
+        var root = $(document.getElementById(def.root));
+        var tmp = {
+            operate     :   '<div class="lab-operate"></div>',
+            subBtn      :   '<button id="submit" type="button" class="btn btn-primary new_btn"> \
+                                <span class="glyphicon glyphicon-cloud-upload"></span> 提交运行\
+                            </button>',
+            clearBtn    :   '<button id="clear" type="button" class="btn btn-default new_btn">\
+                                <span class="glyphicon glyphicon-trash"></span> 清除结果\
+                             </button>',
+            header      :   '<div class="lab-header">',
+            output      :   '<div class="terminal"></div>',
+            content     :   '<textarea id="editor"></textarea>'
+        };
+        //自定义样式
+        def.style && root.addClass(def.style);
+        root.append(tmp.header).append(tmp.content);
+        this.subBtn = $(tmp.subBtn).bind('click',function(){
+            self.submit();
+            def.onRun&&def.onRun(self.editor.getValue());
+        });
+        this.clearBtn = $(tmp.clearBtn).bind('click',function(){ self.clear(); });
+        this.output = $(tmp.output).appendTo(root);
+        $(tmp.operate).append(this.subBtn).append(this.clearBtn).appendTo(root);
+
+        self.editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+            mode: "text/x-java",
+            theme:'monokai',
+            lineNumbers: true,
+            lineWrapping: true,
+            matchBrackets: true,
+            continueComments: "Enter",
+            foldGutter: true,
+            extraKeys: {"Ctrl-Q": function(cm){ cm.foldCode(cm.getCursor()); }},
+            gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"]
+        });
+        var socket = io.connect(def.host ,{query: def.query });
+        socket.on('connect',function(){
+            self.write('服务器连接成功....');
+            socket.on('DATA',function(packet){
+                self.onMessage(packet);
+            });
+            socket.on('disconnect',function(){
+                self.write('服务器连接断开....');
+            });
+        });
+        socket.on('connect_failed',function(){
+            self.write('服务器连接失败....');
+        });
+        socket.on('error',function(err){
+            self.write(err);
+        });
+        this.socket = socket;
+    };
+    Editor.prototype.constructor = Editor;
+    Editor.prototype.send = function(cmd,data){
+        if(this.socket){
+            this.socket.emit('DATA',{ cmd: cmd, data:data });
+            console.log('laboratory.send==>{cmd:'+cmd+',data:'+data+'}');
+        }else{
+            console.log('laboratory.send==>socket is null.');
+        }
+    };
+    Editor.prototype.clear  = function(){
+        this.output.empty();
+    };
+    Editor.prototype.submit = function(){
+        var content = this.editor.getValue();
+        if(content.length>0){
+            this.send('input',content);
+        }else{
+            this.write('请勿提交空内容...');
+        }
+    };
+    Editor.prototype.setValue = function(data){
+        this.editor.setValue(data);
+    };
+    Editor.prototype.write = function(data){
+        if(data){
+            this.output.append('<pre>> '+data+'</pre>');
+            this.output[0].scrollTop = this.output[0].scrollHeight;
+        }
+    };
+    Editor.prototype.onMessage = function(packet){
+        console.log('receive:'+JSON.stringify(packet));
+        var str;
+        switch (packet.cmd.replace(/.*\./,'')){
+            case 'connected':
+                // this.send('read');
+                break;
+            case 'read':
+                this.setValue(packet.data);
+                break;
+            case 'save':
+                if(packet.data){
+                    str = '保存失败:'+ JSON.stringify(packet.data);
+                }else{
+                    str = '保存成功，开始编译....';
+                }
+                this.write(str);
+                break;
+            case 'build':
+                if(packet.stderr){
+                    str = '编译错误\n'+JSON.stringify(packet.data.stderr);
+                    this.write(str);
+                }else{
+                    str = '编译完成...\n';
+                    if(packet.stderr){
+                       str +=JSON.stringify(packet.stderr);
+                    }
+                    if(packet.stdout){
+                       str +=JSON.stringify(packet.stdout);
+                    }
+                    this.write(str);
+                }
+                break;
+            case 'stdout':
+                this.write('运行结果:\n'+packet.data);
+                break;
+            case 'write':
+                this.write(packet.data);
+                break;
+            default :
+                break;
+        }
+    };
+
+    var editor = new Editor();
+</script>
+
+</body>
+</html>

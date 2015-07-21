@@ -1783,6 +1783,93 @@ h5 {
 #view-main .lesson-comment .comment-list .comment-content{
 	margin-left:60px;
 }
+#usercenter{
+	margin-top:20px;
+}
+#usercenter .profile-header{
+padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  -moz-border-radius: 3px 3px 0 0;
+  -webkit-border-radius: 3px;
+  border-radius: 3px 3px 0 0;
+    width:300px;	
+} 
+
+#usercenter  .media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+#usercenter  .profile-header h4 {
+  margin: 15px 0 5px;
+  font-size: 20px;
+}
+#usercenter .profile-header .user-avatar{
+	margin-right:10px;
+}
+#usercenter .profile{
+	width:320px;
+}
+#usercenter .profile .profile-rank{
+	margin: -1px 0 0;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  width: 100%;
+  text-align: center;
+}
+#usercenter .profile .profile-rank li {
+  float: left;
+  width: 159px;
+  padding: 10px 0;
+  margin: 0;
+  line-height: 1.2;
+  border-left: 1px dotted #ddd;
+}
+#usercenter .sidebar{
+	width:322px;
+}
+#usercenter .profile .profile-rank li:first-child {
+  border-left: none;
+}
+#usercenter  .profile .profile-rank li strong {
+  display: block;
+  font-size: 16px;
+  margin-bottom:5px;
+}
+#usercenter .nav li a{
+	  display: block;
+  padding: 10px 30px;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+#usercenter .usercenter-main{
+	width:700px;
+}
+#usercenter .usercenter-main .main-title h1{
+	font-size: 19px;
+  padding: 10px;
+}
+#usercenter .usercenter-main .course-tool-bar {
+  position: relative;
+  margin-top: -1px;
+  padding-right: 15px;
+  height: 40px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #d0d6d9;
+  font-size: 12px;
+}
+#usercenter .usercenter-main .course-tool-bar .tool-left > a {
+  margin: 0 20px;
+  line-height: 40px;
+  color: #787d82;
+  position: relative;
+}
+.text-muted {
+  color: #777;
+}
+.no-padding{
+	padding-bottom:0 !important;
+}
 .container {
   display: block;
   margin-left: auto;
@@ -1834,6 +1921,11 @@ h5 {
   width: 40px;
   height: 40px;
   border-radius: 3px;
+}
+.avatar-128{
+	width:128px;
+	height:128px;
+	border-radius: 5px;
 }
 .rich-text html,.rich-text address,.rich-text blockquote,.rich-text body,.rich-text dd,.rich-text div,
 .rich-text dl,.rich-text dt,.rich-text fieldset,.rich-text form,.rich-text frame,.rich-text frameset,

@@ -5,3 +5,4 @@ target/*
 /target/
 src/main/webapp/WEB-INF/config/mysql.properties
 src/main/webapp/WEB-INF/resources/upload
+socket/classes/*

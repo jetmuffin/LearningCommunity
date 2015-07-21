@@ -55,7 +55,7 @@
 									</c:forEach>
 								</div>
 								<div class="blog-addon r">
-									<span>点赞 10</span> <span>评论 2</span>
+									<span>浏览 ${blog.readNums }</span> <span>评论 ${blog.commentNums }</span>
 								</div>
 							</div>
 						</div>
