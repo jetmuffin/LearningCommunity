@@ -47,14 +47,17 @@
 								</div>
 								<div class="comment-list">
 									<ul>
-										<li>
-											<div class="user-avater"><a href=""><img src="" alt=""  class="avatar-40"/></a></div>
+										<c:forEach var="comment" items="${page.list}" >
+											<li>
+											<div class="user-avater"><a href=""><img src="/LearningCommunity/read/avatar/${comment.user.userId }" alt=""  class="avatar-40"/></a></div>
 											<div class="comment-content">
-												<a href="">dsjkf</a>
-												<p>wejlrkwjekl</p>
-												<div class="comment-addon"><span>1小时前</span></div>
+												<a href="">${comment.user.userName }</a>
+												<p>${comment.content}</p>
+												<div class="comment-addon"><span>${comment.time }</span></div>
 											</div>
-										</li>
+										</li>									
+										</c:forEach>
+
 									</ul>
 								</div>
 							</div>

@@ -98,15 +98,10 @@
 						<dt>参与的学生</dt>
 						<dd>
 							<ul class="users">
-								<li><a href="" target="_blank"><img src="" alt=""></a>
-									<h3><a href="">呵呵</a></h3>
-								</li>
-								<li><a href="" target="_blank"><img src="" alt=""></a>
-									<h3><a href="">呵呵</a></h3>
-								</li>
-								<li><a href="" target="_blank"><img src="" alt=""></a>
-									<h3><a href="">呵呵</a></h3>
-								</li>																
+								<c:forEach var="user" items="${users}" >
+									<li><a href="" target="_blank"><img src="/LearningCommunity/read/avatar/${user.userId }" alt=""></a>
+									<h3><a href="">${user.userName }</a></h3>
+								</c:forEach>
 							</ul> 
 						</dd>
 					</dl>
