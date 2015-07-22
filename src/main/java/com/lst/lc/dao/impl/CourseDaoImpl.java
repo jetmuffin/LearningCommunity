@@ -135,4 +135,10 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		return users;
 	}
 
+	@Override
+	public List<Course> getCourseOfUser(int userId) {
+		return null;
+	}
+	
+
 }
