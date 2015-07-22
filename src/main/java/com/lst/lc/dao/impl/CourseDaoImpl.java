@@ -101,7 +101,7 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 
 	@Override
 	public List<Course> getOtherCourses(int courseId, int directionId) {
-		String hql = "from Course as course where course.courseId <> courseId and course.direction.directionId = ? order by course.studentNums desc";
+		String hql = "from Course as course where course.courseId <> ? and course.direction.directionId = ? order by course.studentNums desc";
 		Query query = query(hql).setInteger(0, courseId).setInteger(1, directionId).setMaxResults(5);
 		return query.list();
 	}

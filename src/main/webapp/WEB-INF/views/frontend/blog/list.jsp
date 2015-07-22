@@ -84,8 +84,8 @@
 					</h3>
 					<div class="user-info clearfix">
 						<div class="user-img  text-center clearfix">
-							<a href="" class=""><img src="default.png" alt=""></a>
-							<p class="username ">kdsksa</p>
+							<a href="" class=""><img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt=""></a>
+							<p class="username ">${loginUser.userName}</p>
 						</div>
 						<div class="user-statics l text-center statics-mid">
 							<a href="">我的文章</a>
@@ -125,7 +125,6 @@
 
 			</div>
 		</div>
-
 	</div>
 	<div class="clearfix"></div>
 	<jsp:include page="../common/footer.jsp"></jsp:include>

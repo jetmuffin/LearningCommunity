@@ -85,24 +85,14 @@
     				</dl>
     				<dl class="course-relation clear-fix">
     					<dt>相关课程</dt>
-    					<dd class="course-list-relation">
-    						<a href="" class="course-cover">
-    							<img src="" width="108" height="60" alt="">
-    							<span class="course-name">恶化呵呵大</span>
+    					<c:forEach var="course" items="${courses}">
+      					<dd class="course-list-relation">
+    						<a href="/LearningCommunity/course/view/${course.courseId}" class="course-cover">
+    							<img src="/LearningCommunity/read/photo/${course.courseId}" width="108" height="60" alt="">
+    							<span class="course-name">${course.title}</span>
     						</a>
-    					</dd>
-    					<dd class="course-list-relation">
-    						<a href="" class="course-cover">
-    							<img src="" width="108" height="60" alt="">
-    							<span class="course-name">恶化呵呵大</span>
-    						</a>
-    					</dd>
-    					<dd class="course-list-relation">
-    						<a href="" class="course-cover">
-    							<img src="" width="108" height="60" alt="">
-    							<span class="course-name">恶化呵呵大</span>
-    						</a>
-    					</dd> 		
+    					</dd>  					
+    					</c:forEach>
     				</dl>
 					<dl>
 						<dt>参与的学生</dt>

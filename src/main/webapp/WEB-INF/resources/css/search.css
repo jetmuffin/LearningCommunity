@@ -1,0 +1,575 @@
+/* common-style */
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+fieldset,
+img {
+  border: 0;
+}
+:focus {
+  outline: 0;
+}
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+strong,
+th,
+var,
+optgroup {
+  font-style: normal;
+  font-weight: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+  font-family: "Microsoft YaHei";
+}
+abbr,
+acronym {
+  border: 0;
+  font-variant: normal;
+}
+code,
+kbd,
+samp,
+tt {
+  font-size: 100%;
+}
+input,
+button,
+textarea,
+select {
+  *font-size: 100%;
+  border: none;
+}
+body {
+  background: #fff;
+  color: #5e5e5e;
+  font: 14px/2em Microsoft YaHei, SimSun, Arial;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption,
+th {
+  text-align: left;
+}
+sup,
+sub {
+  font-size: 100%;
+  vertical-align: baseline;
+}
+:link,
+:visited,
+ins {
+  text-decoration: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+a:link,
+a:visited {
+  color: #5e5e5e;
+}
+a:hover {
+  color: #3689b3;
+}
+a:active {
+  color: #666;
+}
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.clearfix {
+  *zoom: 1;
+}
+.l {
+  float: left;
+}
+.r {
+  float: right;
+}
+.clear {
+  height: 0;
+  overflow: hidden;
+  clear: both;
+}
+.hide {
+  display: none;
+}
+.btn.hide {
+  display: none;
+}
+a.hidefocus {
+  outline: none;
+}
+button.hidefocus::-moz-focus-inner {
+  border: none;
+}
+a:focus {
+  outline: none;
+  -moz-outline: none;
+}
+input,
+textarea {
+  outline: none;
+}
+h2 {
+  font-size: 20px;
+}
+h3 {
+  font-size: 16px;
+  line-height: 32px;
+}
+h5 {
+  font-size: 14px;
+  line-height: 28px;
+}
+/*border && padding*/
+.img_border {
+  border: 4px solid #fff;
+  border-radius: 1px;
+}
+.bb {
+  border-bottom: 1px solid #d2d2d2;
+}
+.bt {
+  border-top: 1px solid #d2d2d2;
+}
+.pt15 {
+  padding-top: 15px;
+}
+.pb15 {
+  padding-bottom: 15px;
+}
+.p15 {
+  padding: 0 15px;
+}
+/* css3 style */
+.text-center {
+  text-align: center;
+}
+/* header */
+#header {
+  background-color: #303a40;
+  min-height: 60px;
+  -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+#header #logo {
+  margin: 0 20px 0 0;
+  float: left;
+}
+#header .header-menu .nav-item li {
+  float: left;
+  width: 80px;
+}
+#header .header-menu .nav-item li a {
+  position: relative;
+  display: block;
+  color: #787d82;
+  text-align: center;
+  font-size: 14px;
+  height: 60px;
+  line-height: 60px;
+}
+#header .header-menu .nav-item li a.active {
+  color: #fff;
+  background-color: #3689b3;
+}
+#header .header-menu .nav-item li a:hover {
+  color: #fff;
+  background-color: #425a66;
+}
+#header #search-area {
+  float: right;
+  position: relative;
+  width: 240px;
+  height: 30px;
+  margin: 15px 0;
+  margin-right: 20px;
+  background: #3f4f49;
+}
+#header #search-area .search-input {
+  padding: 5px 10px;
+  width: 190px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  float: left;
+  border: 0;
+  background: #3f4f49;
+  color: #14191e;
+  color: #fff;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+#header #search-area .search-input:focus {
+  background: #52605b;
+}
+#header #search-area .btn_search {
+  float: right;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+  background: url(/LearningCommunity/resources/images/gsearch-sprite.png) no-repeat 0 0;
+}
+#header #login-area {
+  float: right;
+  position: relative;
+}
+#header #login-area .header-unlogin li {
+  float: left;
+  width: 80px;
+}
+#header #login-area .header-unlogin li a {
+  position: relative;
+  display: block;
+  color: #787d82;
+  text-align: center;
+  font-size: 14px;
+  height: 60px;
+  line-height: 60px;
+}
+#header #login-area .header-unlogin li a.active {
+  color: #fff;
+  background-color: #3689b3;
+}
+#header #login-area .header-unlogin li a:hover {
+  color: #fff;
+  background-color: #425a66;
+}
+#header #login-area .header-login li {
+  float: left;
+}
+#header #login-area .header-login .user-card {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 140px;
+  padding-top: 10px;
+  z-index: 1000;
+  text-align: center;
+  visibility: hidden;
+}
+#header #login-area .header-login .user-card .card-inner {
+  background-color: #fff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+#header #login-area .header-login .user-card .card-inner .card-top {
+  padding: 10px 20px;
+  background: url(/LearningCommunity/resources/images/223.jpg);
+  background-position: -46px -6px;
+}
+#header #login-area .header-login .user-card .card-inner .card-top img {
+  float: left;
+  margin-right: 10px;
+}
+#header #login-area .header-login .user-card .card-inner .card-top span {
+  display: block;
+  color: #fff;
+  padding-top: 3px;
+  font-size: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li {
+  border-bottom: 1px solid #edf1f2;
+  float: none;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li a {
+  padding: 10px 20px;
+  display: block;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li a:hover {
+  color: #5e5e5e;
+}
+#header #login-area .header-login .user-card .card-inner .card-link li:hover {
+  background-color: #efefef;
+}
+#header #login-area .header-login .user-card .card-inner .card-arr {
+  position: absolute;
+  right: 40px;
+  top: 2px;
+  border-width: 0 7px 8px 7px;
+  border-color: transparent transparent #88cbf5 transparent;
+  border-style: solid;
+}
+#header #login-area .header-login .user-avatar-list:hover .user-card {
+  visibility: visible;
+}
+#header #login-area .header-login .user-avatar {
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  width: 60px;
+  color: #787d82;
+  text-align: center;
+  float: left;
+}
+#header #login-area .header-login .user-avatar img {
+  border: 1px solid #adb0b1;
+  vertical-align: middle;
+  display: inline-block;
+}
+#header #login-area .header-login .notification {
+  float: left;
+}
+#header #login-area .header-login .notification a {
+  background: url(/LearningCommunity/resources/images/login_icon.png) no-repeat;
+  background-position: 18px -212px;
+  height: 60px;
+  line-height: 60px;
+  width: 60px;
+  display: block;
+}
+#header #login-area .header-login .notification:hover {
+  background-color: #425a66;
+}
+#main {
+  margin-top: 20px;
+}
+#main .result {
+  display: block;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  width: 700px;
+  min-height: 700px;
+  background: #fff;
+  padding-bottom: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#main .result .search-question li {
+  border-bottom: solid 1px #edf0f2;
+  padding: 30px 0 30px 20px;
+  font-size: 12px;
+}
+#main .result .search-question .tip {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  padding-left: 20px;
+  border-bottom: solid 1px #edf0f2;
+}
+#main .result .search-question .user-thumb {
+  width: 120px;
+  text-align: center;
+  padding-top: 5px;
+}
+#main .result .search-question .user-thumb p {
+  height: 16px;
+  line-height: 16px;
+}
+#main .result .search-question .user-thumb .question-box {
+  width: 736px;
+}
+#main .result .search-question .user-thumb .question-box .title {
+  font-size: 14px;
+  line-height: 25px;
+  margin-bottom: 5px;
+}
+#main .result .search-question .user-thumb .question-box .summary {
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+#main .result .search-course li {
+  border-bottom: solid 1px #edf0f2;
+}
+#main .result .search-course .tip {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  padding-left: 20px;
+  border-bottom: solid 1px #edf0f2;
+}
+#main .result .search-course .course {
+  padding: 30px 20px;
+}
+#main .result .search-course .course .title {
+  font-size: 18px;
+  font-weight: bold;
+}
+#main .result .search-course .postil {
+  color: #969b92;
+}
+#main .result .search-course .postil span {
+  margin-right: 20px;
+}
+#main .result .search-course .content {
+  margin-top: 20px;
+}
+#main .result .search-course .content .thumbnail {
+  width: 200px;
+  overflow: hidden;
+  float: left;
+  height: 120px;
+}
+#main .result .search-course .content .thumbnail img {
+  min-width: 200px;
+  height: 120px;
+}
+#main .result .search-course .content .intro {
+  width: 500px;
+  margin-left: 210px;
+  font-size: 14px;
+  line-height: 24px;
+}
+#main .sidebar {
+  margin-left: 20px;
+  width: 220px;
+}
+#main .sidebar .nav {
+  margin-top: 60px;
+  box-shadow: 0 1px 2px #c5c5c5;
+}
+#main .sidebar .nav li {
+  list-style: none;
+}
+#main .sidebar .nav li a {
+  padding: 10px 30px;
+  display: block;
+  border: 1px solid #ddd;
+  border-top: none;
+}
+#main .sidebar .nav li.active {
+  border-right: 2px solid #3689B3;
+}
+#main .sidebar .nav li.active a {
+  color: #3689B3;
+}
+#main .sidebar .nav li:first-child a {
+  border-top: 1px solid #ddd;
+}
+#main .sidebar .popular-search {
+  box-shadow: 0 1px 2px #c5c5c5;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border: 1px solid #ddd;
+}
+#main .sidebar .popular-search dl {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#main .sidebar .popular-search dt {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: solid 1px #edf0f2;
+}
+#main .sidebar .popular-search dd a {
+  display: block;
+  float: left;
+  height: 36px;
+  width: 33.3%;
+  text-align: center;
+  line-height: 36px;
+}
+.container {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1050px;
+}
+.btn {
+  right: 15px;
+  bottom: 15px;
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+  color: #fff !important;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-default {
+  color: #000 !important;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+.btn-default:hover {
+  background-color: #ddd;
+}
+.btn-primary {
+  border-color: #49d;
+  background-color: #49d;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 3px;
+}
+.avatar-20 {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+.avatar-32 {
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+}
+.avatar-40 {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+}

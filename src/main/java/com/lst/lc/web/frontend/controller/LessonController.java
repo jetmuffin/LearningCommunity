@@ -124,8 +124,8 @@ public class LessonController {
 		}
 	}
 
-	@RequestMapping(value = "/comment", method = RequestMethod.POST)
-	public String comment(HttpSession session, Model model, int lessonId,
+	@RequestMapping(value = "/comment/{lessonId}", method = RequestMethod.POST)
+	public String comment(HttpSession session, Model model,@PathVariable int lessonId,
 			String head, String content, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
@@ -134,7 +134,7 @@ public class LessonController {
 		lessonDao.addLesson(lesson);
 		model.addAttribute("module", "course");
 		redirectAttributes.addAttribute("lessonMsg", "评论成功");
-		return "redirect:/course/lesson/view/" + lessonId;
+		return "redirect:/course/view/lesson/" + lessonId;
 	}
 	
 	@RequestMapping(value = "/learn/{courseId}", method = RequestMethod.GET)

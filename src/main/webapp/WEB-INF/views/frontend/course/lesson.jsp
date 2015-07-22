@@ -39,8 +39,10 @@
 							<div class="lesson-comment">
 								<div class="publish clearfix">
 									<div class="publish-wrapper">
-										<textarea name="" id=""  placeholder="发表你对这门课的看法！"></textarea>
-										<a href="" class="btn btn-primary  r">发表评论</a>
+									<form action="/LearningCommunity/course/comment/${lesson.lessonId}" method="post">
+										<textarea name="content" id=""  placeholder="发表你对这门课的看法！"></textarea>
+										<button type="submit" class="btn btn-primary  r">发表评论</button>
+										</form>
 									</div>
 								</div>
 								<div class="comment-list">

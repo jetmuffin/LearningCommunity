@@ -35,7 +35,7 @@ public class SearchController {
 	@Qualifier("questionDao")
 	private QuestionDao questionDao;
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String add(Model model, String key, String type) {
 		SearchResult results;
 		if (type.equals("blog")) {
@@ -46,7 +46,6 @@ public class SearchController {
 			results = new SearchResult<Course>("course", courseDao.search(key));
 		}
 		model.addAttribute("results", results);
-		return "frontend/search/list";
+		return "frontend/search/result";
 	}
-
 }

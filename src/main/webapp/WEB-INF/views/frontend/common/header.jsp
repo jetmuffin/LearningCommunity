@@ -10,7 +10,7 @@
 			<div class="header-menu">
 				<ul class="nav-item">
 					<li><a href="/LearningCommunity/course/courses" <c:if test="${module eq 'course'}">class="active"</c:if> >课程</a></li>
-					<li><a href="" <c:if test="${module eq 'plan'}">class="active"</c:if>>计划</a></li>
+					<li><a href="" <c:if test="${module eq 'plan'}">class="active"</c:if>>路线</a></li>
 					<li><a href="/LearningCommunity/question/questions" <c:if test="${module eq 'question'}">class="active"</c:if>>讨论</a></li>
 					<li><a href="/LearningCommunity/blog/blogs"  <c:if test="${module eq 'blog'}">class="active"</c:if>>文章</a></li>
 				</ul>
@@ -49,9 +49,10 @@
 				</c:choose>
 			</div>
 			<div id="search-area">
-	            <form action="/index/search" name="search-form" method="get">
-		            <input class="js-input-keyword search-input" placeholder="搜索课程、问答" type="text" autocomplete="off" name="words" value="">
-		            <input type="button" class="btn_search js-btn-search">
+	            <form action="/LearningCommunity/search/search" name="search-form" method="get">
+		            <input class="js-input-keyword search-input" placeholder="搜索课程、问答" type="text" autocomplete="off" name="key" value="">
+		            <input type="text" name="type" value="course"  style="display: none;"/>
+		            <input type="submit"  value="" class="btn_search js-btn-search">
 		            <dl class="search-area-result" style="display: none;"></dl>
 	            </form>
 	        </div>
