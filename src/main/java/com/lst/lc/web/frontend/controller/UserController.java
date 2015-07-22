@@ -19,9 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lst.lc.dao.BlogDao;
+import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
+import com.lst.lc.entities.Blog;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.Question;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
@@ -38,6 +42,14 @@ public class UserController {
 	@Qualifier("userDao")
 	private UserDao userDao;
 
+	@Autowired
+	@Qualifier("blogDao")
+	private BlogDao blogDao;
+	
+	@Autowired
+	@Qualifier("questionDao")
+	private QuestionDao questionDao;
+	
 	@Autowired
 	private LogHandler logHandler;
 	
@@ -122,6 +134,11 @@ public class UserController {
 				courses.add(course);
 			}
 			model.addAttribute("courses", courses);
+			
+			List<Blog> blogs = blogDao.getBlogsOfUser(user.getUserId());
+			List<Question> questions = questionDao.getQuestionOfUser(user.getUserId());
+			model.addAttribute("blogs", blogs);
+			model.addAttribute("questions", questions);
 			return "frontend/user/center";
 		}
 	}

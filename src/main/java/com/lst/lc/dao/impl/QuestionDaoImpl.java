@@ -66,4 +66,12 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		return query.list();
 	}
 
+	@Override
+	public List<Question> getQuestionOfUser(int userId) {
+		String hql = "from Question as question where question.user.userId = ?";
+		Query query = query(hql);
+		query.setInteger(0, userId);
+		return query.list();
+	}
+
 }

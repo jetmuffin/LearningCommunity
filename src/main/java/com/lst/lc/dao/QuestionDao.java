@@ -23,5 +23,7 @@ public interface QuestionDao {
 	public void addReadNums(int questionId);
 	
 	public List<Question> search(String key);
+	
+	public List<Question> getQuestionOfUser(int userId);
 
 }
