@@ -133,8 +133,9 @@ public class LessonController {
 	public String comment(HttpSession session, Model model, int lessonId,
 			String head, String content, RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
+		User u = userDao.getById(user.getUserId());
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
-		LessonComment comment = new LessonComment(lesson, user, content,
+		LessonComment comment = new LessonComment(lesson, u, content,
 				new Date(), head);
 		lessonDao.addLesson(lesson);
 		model.addAttribute("module", "course");
