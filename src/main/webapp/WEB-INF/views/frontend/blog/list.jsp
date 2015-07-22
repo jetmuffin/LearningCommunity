@@ -40,9 +40,7 @@
 								<a href="/LearningCommunity/blog/view/${blog.blogId}">${blog.title}</a>
 							</div>
 							<div class="blog-summary">
-								<p>kingshard简介 kingshard是一个由Go开发高性能MySQL
-									Proxy项目，kingshard在满足基本的读写分离的功能上，致力于简化MySQL分库分表操作；能够让DBA通过kingshard轻松平滑地实现MySQL数据库扩容。
-									主要功能： {代...</p>
+								<p>${st.getSummary(blog.content, 200) }</p>
 							</div>
 							<div class="blog-footer clearfix">
 								<div class="blog-author l">

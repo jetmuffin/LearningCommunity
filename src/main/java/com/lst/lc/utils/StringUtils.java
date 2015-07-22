@@ -25,4 +25,12 @@ public class StringUtils {
 		return list;
 	}
 	
+	public static String getSummary(String str, int length){
+		String content = HTMLUtils.delHTMLTag(str);
+		int l = content.length();
+		if(length > l)
+			length = l;
+		return content.substring(0, length-1);
+	}
+	
 }
