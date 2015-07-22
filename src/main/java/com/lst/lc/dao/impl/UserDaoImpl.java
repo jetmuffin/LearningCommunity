@@ -88,6 +88,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		RelUserCourseId id = new RelUserCourseId(userId, courseId);
 		RelUserCourse userCourse = new RelUserCourse(id, course, user, new Date(), 0);
 		save(userCourse);
+		getSession().flush();
 	}
 
 	@Override

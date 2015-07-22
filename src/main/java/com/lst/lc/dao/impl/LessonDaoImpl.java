@@ -22,6 +22,7 @@ public class LessonDaoImpl extends BaseDao implements LessonDao {
 	@Override
 	public void addLesson(CourseLesson courseLesson) {
 		save(courseLesson);
+		getSession().flush();
 	}
 
 	@Override
@@ -52,12 +53,12 @@ public class LessonDaoImpl extends BaseDao implements LessonDao {
 	@Override
 	public LearnStatus learnStatus(int userId, int courseId) {
 		RelUserCourseId id = new RelUserCourseId(userId, courseId);
-		List<RelUserCourse> rels = get(RelUserCourse.class, id);
+		RelUserCourse rels = get(RelUserCourse.class, id);
 		LearnStatus status;
-		if(ListUtils.isNull(rels)){
+		if(rels == null){
 			status = new LearnStatus(false, 0);
 		} else {
-			status = new LearnStatus(true, rels.get(0).getProgress());
+			status = new LearnStatus(true, rels.getProgress());
 		}
 		return status;
 	}
