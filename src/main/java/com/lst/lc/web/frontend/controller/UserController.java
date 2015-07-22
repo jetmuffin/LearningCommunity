@@ -20,6 +20,7 @@ import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
 import com.lst.lc.utils.MultipartFileUtils;
 import com.lst.lc.web.bean.StatusMessage;
+import com.lst.lc.web.service.BlogPageHandler;
 import com.lst.lc.web.service.LogHandler;
 
 @Controller
@@ -32,6 +33,10 @@ public class UserController {
 
 	@Autowired
 	private LogHandler logHandler;
+	
+	@Autowired
+	@Qualifier("blogPageHandler")
+	private BlogPageHandler blogPageHandler;
 
 	public UserController() {
 		super();
@@ -68,10 +73,29 @@ public class UserController {
 		return statusMessage;
 	}
 
-	@RequestMapping(value = "/index/{userId}", method = RequestMethod.GET)
-	public String index(Model model) {
+	@RequestMapping(value = "/zone/{userId}", method = RequestMethod.GET)
+	public String index(Model model, @PathVariable int userId, String pageNum, String pageSize, String type) {
 
-		return "frontend/user/index";
+		User user = userDao.getById(userId);
+		model.addAttribute("user", user);
+		
+		int pageNow = 1;
+		int pagesize = 10;
+		int sorttype = 1;
+		if (pageSize != null) {
+			pagesize = Integer.valueOf(pageSize);
+		}
+		if (pageSize != null) {
+			pageNow = Integer.valueOf(pageNum);
+		}
+		if (type != null) {
+			sorttype = Integer.valueOf(type);
+		}
+		
+		model.addAttribute("page",
+				blogPageHandler.getBlogs(pageNow, pagesize, sorttype));
+		
+		return "frontend/user/zone";
 	}
 	
 	@RequestMapping(value = "/center", method = RequestMethod.GET)
