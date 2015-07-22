@@ -41,4 +41,6 @@ public interface CourseDao {
 	public void addNums(int courseId);
 	
 	public List<User> getUsers(int courseId);
+	
+	public List<Course> getCourseOfUser(int userId);
 }

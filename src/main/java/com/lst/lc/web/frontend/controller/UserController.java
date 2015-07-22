@@ -1,5 +1,10 @@
 package com.lst.lc.web.frontend.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
+import com.lst.lc.entities.Course;
+import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
 import com.lst.lc.utils.MultipartFileUtils;
@@ -106,6 +113,15 @@ public class UserController {
 		}else{
 			user = userDao.getById(user.getUserId());
 			model.addAttribute("user",user);
+			Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
+			Iterator<RelUserCourse> iterator = relUserCourses.iterator();
+			List<Course> courses = new ArrayList<Course>();
+			while(iterator.hasNext()){
+				RelUserCourse relUserCourse = iterator.next();
+				Course course = relUserCourse.getCourse();
+				courses.add(course);
+			}
+			model.addAttribute("courses", courses);
 			return "frontend/user/center";
 		}
 	}
