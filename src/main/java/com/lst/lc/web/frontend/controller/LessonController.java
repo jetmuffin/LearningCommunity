@@ -122,6 +122,9 @@ public class LessonController {
 			Page<LessonComment> page = pageHandler
 					.getPage(pageNow, pagesize, LessonComment.class);
 			model.addAttribute("page", page);
+			List<User> users = courseDao.getUsers(lesson.getCourse().getCourseId());
+			model.addAttribute("users", users);
+			
 			return "frontend/course/lesson";			
 		}
 	}

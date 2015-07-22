@@ -1,14 +1,18 @@
 package com.lst.lc.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.LessonDao;
+import com.lst.lc.entities.Course;
 import com.lst.lc.entities.CourseLesson;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.RelUserCourseId;
+import com.lst.lc.entities.User;
 import com.lst.lc.utils.ListUtils;
 import com.lst.lc.web.bean.LearnStatus;
 
@@ -57,4 +61,5 @@ public class LessonDaoImpl extends BaseDao implements LessonDao {
 		}
 		return status;
 	}
+
 }
