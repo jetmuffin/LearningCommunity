@@ -15,7 +15,7 @@
 		<div class="bg-wrapper">
 			<div class="video-box">
 				<video id="learn-video" class="video-js vjs-default-skin" controls preload="none" width="1200" height="533"
-				      poster="http://video-js.zencoder.com/oceans-clip.png"
+				      poster="/LearningCommunity/resources/images/videobg.png"
 				      data-setup="{}">
 				    <source src="/LearningCommunity/read/video/${lesson.lessonId}" type='video/mp4' />
     			<p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
@@ -31,8 +31,6 @@
 					<div class="course-menu">
 						<ul class="course-menu clearfix">
 							<li><a class="ui-tabs-active" id="learnOn" href=""><span>评论</span></a></li>
-							<li><a id="commentOn" href=""><span>评论</span></a></li>
-							<li><a id="qaOn" href=""><span>问答</span></a></li>
 						</ul>
 					</div>
 							<!--  <a  onclick="collapseChapter(this)"><h3><strong>这是章节的标题哦</strong><span id="collapse-btn">-</span></h3></a> -->
@@ -78,18 +76,13 @@
 						<dt>参与的学生</dt>
 						<dd>
 							<ul class="users">
-								<li><a href="" target="_blank"><img src="" alt=""></a>
+							<c:forEach var="user" items="${users}">
+								<li><a href="" target="_blank"><img src="/LearningCommunity/read/avatar/${user.userId }" alt=""></a>
 									<h3>
-										<a href="">呵呵</a>
-									</h3></li>
-								<li><a href="" target="_blank"><img src="" alt=""></a>
-									<h3>
-										<a href="">呵呵</a>
-									</h3></li>
-								<li><a href="" target="_blank"><img src="" alt=""></a>
-									<h3>
-										<a href="">呵呵</a>
-									</h3></li>
+										<a href="">${user.userName }</a>
+									</h3></li>							
+							</c:forEach>
+
 							</ul>
 						</dd>
 					</dl>

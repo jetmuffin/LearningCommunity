@@ -448,21 +448,21 @@ h5 {
 #main .course-nav-box .course-nav-base-line .bd li:hover a {
   color: #5e5e5e;
 }
-#main .course-list {
+ .course-list {
   margin-top: 20px;
 }
-#main .course-list .all-course-list {
+ .course-list .all-course-list {
   margin-left: -10px;
   margin-right: -10px;
   position: relative;
 }
-#main .course-list .all-course-list .course-item {
+ .course-list .all-course-list .course-item {
   padding-left: 10px;
   padding-right: 10px;
   width: 23%;
   float: left;
 }
-#main .course-list .all-course-list .course-item .widget-course {
+ .course-list .all-course-list .course-item .widget-course {
   position: relative;
   margin-bottom: 20px;
   border: 1px solid #eee;
@@ -471,43 +471,43 @@ h5 {
   border-radius: 2px;
   overflow: hidden;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-banner {
+ .course-list .all-course-list .course-item .widget-course .widget-course-banner {
   border-bottom: 1px solid #eee;
   width: 100%;
   background-color: #fff;
   height: 135px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info {
   padding: 1px 15px 0;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .title {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .title {
   margin: 0;
   font-size: 16px;
   max-height: 38px;
   overflow: hidden;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .title a {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .title a {
   color: #000;
   font-weight: bold;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info #join-right-now {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info #join-right-now {
   position: absolute;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta {
   padding: 0;
   margin: 8px 0 0;
   font-size: 13px;
   color: #999;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
   line-height: 20px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-desc {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-desc {
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 40px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-student-number {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-student-number {
   color: #787d82;
 }
 .pagination {
@@ -1123,6 +1123,73 @@ h5 {
   font-size: 13px;
   color: #999;
 }
+.all-course-list .question-item {
+  padding: 10px;
+  border-bottom: 1px solid #e3e5e5;
+  position: relative;
+}
+.all-course-list .question-item .replynumber {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 51px;
+  text-align: center;
+}
+.all-course-list .question-item .replynumber.noanswernum {
+  color: #787d82;
+}
+.all-course-list .question-item .replynumber.hasanswer .ys {
+  color: #009a61;
+}
+.all-course-list .question-item .replynumber .ys {
+  width: 50px;
+  height: 31px;
+  margin: 10px 0;
+}
+.all-course-list .question-item .replynumber .ys .number {
+  line-height: 12px;
+  height: 12px;
+  padding-bottom: 7px;
+}
+.all-course-list .question-item .question-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+.all-course-list .question-item .question-title a {
+  color: #333;
+}
+.all-course-list .question-item .question-footer {
+  padding: 10px 0;
+  color: #999;
+  line-height: 24px;
+}
+.all-course-list .question-item .question-footer .question-author {
+  margin-right: 10px;
+}
+.all-course-list .question-item .question-footer .question-time {
+  margin-right: 10px;
+}
+.all-course-list .question-item .question-footer .question-tag-list .list-tag {
+  color: #787d82;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding: 0 10px;
+  display: inline-block;
+  background: #edf1f2;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.all-course-list .question-item .question-footer .question-tag-list .list-tag:hover {
+  background-color: #d0d6d9;
+}
 #question .question-main .qa-content .qa-content-addon .qa-createtime {
   margin-right: 20px;
   color: #999;
@@ -1525,6 +1592,83 @@ h5 {
   transition: all 0.25s;
 }
 #blog .blog-main .main-list .blog-item .blog-footer .blog-tag-list .list-tag:hover {
+  background-color: #d0d6d9;
+}
+.all-course-list .blog-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e3e5e5;
+  position: relative;
+}
+.all-course-list .blog-item .replynumber {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 51px;
+  text-align: center;
+}
+.all-course-list .blog-item .replynumber.noanswernum {
+  color: #787d82;
+}
+.all-course-list .blog-item .replynumber.hasanswer .ys {
+  color: #009a61;
+}
+.all-course-list .blog-item .replynumber .ys {
+  width: 50px;
+  height: 31px;
+  margin: 10px 0;
+}
+.all-course-list .blog-item .replynumber .ys .number {
+  line-height: 12px;
+  height: 12px;
+  padding-bottom: 7px;
+}
+.all-course-list .blog-item .blog-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+.all-course-list .blog-item .blog-title a {
+  color: #333;
+}
+.all-course-list .blog-item .blog-footer {
+  padding: 10px 0;
+  color: #999;
+  line-height: 24px;
+}
+.all-course-list .blog-item .blog-footer .blog-author {
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-author img {
+  float: left;
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-addon {
+  font-size: 12px;
+}
+.all-course-list .blog-item .blog-footer .blog-addon span {
+  margin-right: 5px;
+}
+.all-course-list .blog-item .blog-footer .blog-time {
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-tag-list .list-tag {
+  color: #787d82;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding: 0 10px;
+  display: inline-block;
+  background: #edf1f2;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.all-course-list .blog-item .blog-footer .blog-tag-list .list-tag:hover {
   background-color: #d0d6d9;
 }
 #blog .blog-main .blog-content {

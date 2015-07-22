@@ -14,12 +14,8 @@
 	<jsp:include page="../common/header.jsp"></jsp:include>
 	<div id="run" class="clearfix">
 		<div id="text" class="l">
-			<div class="textbody">
-				<div class="page-header">
-					<h3>在线实例</h3>
-					<p>本教程将介绍bootstrap的内容</p>
-					<p>你可以进行在线调试</p>
-				</div>
+			<div class="textbody rich-text">
+				${course.content}
 			</div>
 		</div>
 	<div id="editor" class=" clearfix l">
