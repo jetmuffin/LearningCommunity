@@ -84,7 +84,8 @@ public class LessonController {
 		} else {
 			status = lessonDao.learnStatus(user.getUserId(), courseId);
 		}
-		
+		List<Course> courses = courseDao.getOtherCourses(course.getCourseId(), course.getDirection().getDirectionId());
+		model.addAttribute("courses", courses);
 		model.addAttribute("status", status);
 		model.addAttribute("course", course);
 		model.addAttribute("lessons",lessons);
@@ -140,6 +141,7 @@ public class LessonController {
 	public String learn(HttpSession session, Model model, @PathVariable int courseId) {
 		User user = (User) session.getAttribute("loginUser");
 		userDao.learn(user.getUserId(), courseId);
+		courseDao.addNums(courseId);
 		return "redirect:/course/view/" + courseId;
 	}
 	

@@ -99,4 +99,18 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		return query.list();
 	}
 
+	@Override
+	public List<Course> getOtherCourses(int courseId, int directionId) {
+		String hql = "from Course as course where course.courseId <> courseId and course.direction.directionId = ? order by course.studentNums desc";
+		Query query = query(hql).setInteger(0, courseId).setInteger(1, directionId).setMaxResults(5);
+		return query.list();
+	}
+
+	@Override
+	public void addNums(int courseId) {
+		String hql = "update Course as course set course.studentNums = course.studentNums + 1 where course.courseId = ?";
+		Query query = query(hql).setInteger(0, courseId);
+		query.executeUpdate();
+	}
+
 }

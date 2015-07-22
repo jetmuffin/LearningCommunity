@@ -35,4 +35,7 @@ public interface CourseDao {
 	
 	public List<Course> search(String key);
 	
+	public List<Course> getOtherCourses(int courseId, int directionId);
+	
+	public void addNums(int courseId);
 }
