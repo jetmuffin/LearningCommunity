@@ -1,6 +1,9 @@
 package com.lst.lc.dao.impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
@@ -8,6 +11,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.RelUserCourse;
+import com.lst.lc.entities.User;
 
 @Repository("courseDao")
 public class CourseDaoImpl extends BaseDao implements CourseDao {
@@ -111,6 +116,23 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 		String hql = "update Course as course set course.studentNums = course.studentNums + 1 where course.courseId = ?";
 		Query query = query(hql).setInteger(0, courseId);
 		query.executeUpdate();
+	}
+
+	@Override
+	public List<User> getUsers(int courseId) {
+		List<User> users = new ArrayList<User>();
+		Course course = get(Course.class, courseId);
+		Set<RelUserCourse> ruc = course.getRelUserCourses();
+		Object[] rucs = ruc.toArray();
+		int length = rucs.length / 2;
+		if(length == 0)
+			return users;
+		if(length > 5)
+			length = 5;
+		for(int i = 0; i < length; i++){
+			users.add(((RelUserCourse)rucs[i]).getUser());
+		}
+		return users;
 	}
 
 }

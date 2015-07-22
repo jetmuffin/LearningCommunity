@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.User;
 
 public interface CourseDao {
 	
@@ -38,4 +39,6 @@ public interface CourseDao {
 	public List<Course> getOtherCourses(int courseId, int directionId);
 	
 	public void addNums(int courseId);
+	
+	public List<User> getUsers(int courseId);
 }

@@ -85,6 +85,8 @@ public class LessonController {
 			status = lessonDao.learnStatus(user.getUserId(), courseId);
 		}
 		List<Course> courses = courseDao.getOtherCourses(course.getCourseId(), course.getDirection().getDirectionId());
+		List<User> users = courseDao.getUsers(courseId);
+		model.addAttribute("users", users);
 		model.addAttribute("courses", courses);
 		model.addAttribute("status", status);
 		model.addAttribute("course", course);
