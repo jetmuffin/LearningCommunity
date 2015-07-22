@@ -52,7 +52,7 @@
 						<c:forEach var="answer" items="${answers.list}" varStatus="status">
 							<div class="qa-answer-item clearfix">
 								<div class="qa-answer-header">
-									<a href="" class="qa-author"><img src="default.png"
+									<a href="" class="qa-author"><img src="/LearningCommunity/read/avatar/${answer.user.userId }"
 										class="avatar-32" alt="">${answer.user.userName}</a> <span
 										class="answer-time">${answer.time} 回答</span>
 									<div class="qa-answer-header-right r">#${status.count }</div>

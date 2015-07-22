@@ -21,7 +21,7 @@
 		<div class="templatemo-content-widget templatemo-login-widget white-bg">
 			<header class="text-center">
 	          <div class="square"></div>
-	          <h1>Visual Admin</h1>
+	          <h1>LST Admin</h1>
 	        </header>
 	        <form action="login" method="post" class="templatemo-login-form">
 	        	<div class="form-group">

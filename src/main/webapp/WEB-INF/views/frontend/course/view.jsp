@@ -41,8 +41,8 @@
 						<div class="statics-num"><span>${course.studentNums }</span></div>
 					</div>
 					<div class="statics-group">
-						<div class="statics-title">课程时长</div>
-						<div class="statics-num"><span>7</span>h<span>35</span>min</div>
+						<div class="statics-title">章节</div>
+						<div class="statics-num"><span>${lessons.size() }</span>节</div>
 					</div>					
     			</div>
     			<div class="course-summary-more clearfix">

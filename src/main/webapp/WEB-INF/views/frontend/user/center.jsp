@@ -24,7 +24,7 @@
 
 			<div class="sidebar l">
 			<div class="profile-header media clearfix">
-				<a href="" class="l user-avatar"><img src="/LearningCommunity/read/avatar/${user.avatar}" class="avatar-128" alt="" /></a>
+				<a href="" class="l user-avatar"><img src="/LearningCommunity/read/avatar/${user.userId}" class="avatar-128" alt="" /></a>
 				<div class="media-body">
                         <h4 class="media-heading">${user.userName}</h4>
                   </div>

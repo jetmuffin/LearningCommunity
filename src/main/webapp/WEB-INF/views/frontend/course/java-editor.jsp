@@ -20,9 +20,11 @@
 		</div>
 		  <div id="editor" class=" clearfix l">
     <div id="laboratory">
-      <iframe src="http://localhost:8000/" id="java-lab" frameborder="0"></iframe>
+      <iframe src="http://121.248.199.29:8000/" id="java-lab" frameborder="0"></iframe>
     </div>
   </div>
   </div>
 </body>
+	<script src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+	
 </html>
