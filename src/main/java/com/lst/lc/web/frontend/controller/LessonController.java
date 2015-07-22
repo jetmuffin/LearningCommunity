@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.lst.lc.dao.CategoryDao;
 import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.DirectionDao;
+import com.lst.lc.dao.LessonCommentDao;
 import com.lst.lc.dao.LessonDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Category;
@@ -55,6 +56,9 @@ public class LessonController {
 	@Qualifier("lessonDao")
 	private LessonDao lessonDao;
 	
+	@Autowired
+	@Qualifier("lessonCommentDao")
+	private LessonCommentDao lessonCommentDao;
 	@Autowired
 	private CourseMenuHandler courseMenuHandler;
 	
@@ -137,7 +141,7 @@ public class LessonController {
 		CourseLesson lesson = lessonDao.getLesson(lessonId);
 		LessonComment comment = new LessonComment(lesson, u, content,
 				new Date(), head);
-		lessonDao.addLesson(lesson);
+		lessonCommentDao.addLessonComment(comment);
 		model.addAttribute("module", "course");
 		return "redirect:/course/view/lesson/" + lessonId;
 	}
