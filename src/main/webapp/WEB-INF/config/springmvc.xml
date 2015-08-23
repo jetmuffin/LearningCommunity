@@ -45,4 +45,23 @@
 		<property name="resolveLazily" value="true" />
 		<property name="maxInMemorySize" value="4096" />
 	</bean>
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 需拦截的地址 -->
+			<mvc:mapping path="/user/*" />
+			<mvc:mapping path="/user/zone/*" />
+			<mvc:mapping path="/blog/add" />
+			<mvc:mapping path="/blog/comment/*" />
+			<mvc:mapping path="/question/ask" />
+                        <mvc:mapping path="/question/edit/*" />
+                        <mvc:mapping path="/question/answer/*" />
+                        <mvc:mapping path="/course/learn/*" />
+			<!-- 需排除拦截的地址 -->
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/user/register" />
+			<bean class="com.lst.lc.interceptor.UserInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>
