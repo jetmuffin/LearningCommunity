@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.lst.lc.dao.RankDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.RelUser;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.RelUserCourseId;
+import com.lst.lc.entities.RelUserId;
 import com.lst.lc.entities.User;
 
 @Repository("userDao")
@@ -97,5 +99,16 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		Query query = query(hql).setMaxResults(5);
 		return query.list();
 	}
+
+        @Override
+        public void addRel(int uid1, int uid2) {
+                System.out.println("ddd");
+               RelUserId id = new RelUserId(uid1, uid2);
+               User user1 = getById(uid1);
+               User user2 = getById(uid2);
+               RelUser relUser = new RelUser(id, user1, user2, new Date());
+               save(relUser);
+               getSession().flush();
+        }
 
 }
