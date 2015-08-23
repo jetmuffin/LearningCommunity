@@ -100,7 +100,7 @@
 							<ul class="users">
 								<c:forEach var="user" items="${users}" >
 									<li><a href="" target="_blank"><img src="/LearningCommunity/read/avatar/${user.userId }" alt=""></a>
-									<h3><a href="">${user.userName }</a></h3>
+									<h3><a href="/LearningCommunity/user/zone/${user.userId}">${user.userName }</a></h3>
 								</c:forEach>
 							</ul> 
 						</dd>
