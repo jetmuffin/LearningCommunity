@@ -143,7 +143,6 @@ public class LessonController {
 				new Date(), head);
 		lessonCommentDao.addLessonComment(comment);
 		model.addAttribute("module", "course");
-		redirectAttributes.addAttribute("lessonMsg", "评论成功");
 		return "redirect:/course/view/lesson/" + lessonId;
 	}
 	

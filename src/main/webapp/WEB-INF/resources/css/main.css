@@ -448,21 +448,21 @@ h5 {
 #main .course-nav-box .course-nav-base-line .bd li:hover a {
   color: #5e5e5e;
 }
-#main .course-list {
+ .course-list {
   margin-top: 20px;
 }
-#main .course-list .all-course-list {
+ .course-list .all-course-list {
   margin-left: -10px;
   margin-right: -10px;
   position: relative;
 }
-#main .course-list .all-course-list .course-item {
+ .course-list .all-course-list .course-item {
   padding-left: 10px;
   padding-right: 10px;
   width: 23%;
   float: left;
 }
-#main .course-list .all-course-list .course-item .widget-course {
+ .course-list .all-course-list .course-item .widget-course {
   position: relative;
   margin-bottom: 20px;
   border: 1px solid #eee;
@@ -471,43 +471,43 @@ h5 {
   border-radius: 2px;
   overflow: hidden;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-banner {
+ .course-list .all-course-list .course-item .widget-course .widget-course-banner {
   border-bottom: 1px solid #eee;
   width: 100%;
   background-color: #fff;
   height: 135px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info {
   padding: 1px 15px 0;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .title {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .title {
   margin: 0;
   font-size: 16px;
   max-height: 38px;
   overflow: hidden;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .title a {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .title a {
   color: #000;
   font-weight: bold;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info #join-right-now {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info #join-right-now {
   position: absolute;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta {
   padding: 0;
   margin: 8px 0 0;
   font-size: 13px;
   color: #999;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li {
   line-height: 20px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-desc {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-desc {
   overflow: hidden;
   text-overflow: ellipsis;
   max-height: 40px;
 }
-#main .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-student-number {
+ .course-list .all-course-list .course-item .widget-course .widget-course-info .widget-course-meta li.course-student-number {
   color: #787d82;
 }
 .pagination {
@@ -767,6 +767,8 @@ h5 {
   width: 50%;
   float: left;
   padding: 0 15px;
+  height:300px;
+  overflow:hidden;
 }
 #view-main .course-summary .course-summary-pic img {
   width: 100%;
@@ -870,7 +872,7 @@ h5 {
   padding: 0 20px 20px;
   background: #f3f3f3;
   width: 720px;
-  min-height: 600px;
+  min-height: 500px;
   float: left;
 }
 #view-main .course-content .content-area .course-menu {
@@ -1123,6 +1125,73 @@ h5 {
   font-size: 13px;
   color: #999;
 }
+.all-course-list .question-item {
+  padding: 10px;
+  border-bottom: 1px solid #e3e5e5;
+  position: relative;
+}
+.all-course-list .question-item .replynumber {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 51px;
+  text-align: center;
+}
+.all-course-list .question-item .replynumber.noanswernum {
+  color: #787d82;
+}
+.all-course-list .question-item .replynumber.hasanswer .ys {
+  color: #009a61;
+}
+.all-course-list .question-item .replynumber .ys {
+  width: 50px;
+  height: 31px;
+  margin: 10px 0;
+}
+.all-course-list .question-item .replynumber .ys .number {
+  line-height: 12px;
+  height: 12px;
+  padding-bottom: 7px;
+}
+.all-course-list .question-item .question-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+.all-course-list .question-item .question-title a {
+  color: #333;
+}
+.all-course-list .question-item .question-footer {
+  padding: 10px 0;
+  color: #999;
+  line-height: 24px;
+}
+.all-course-list .question-item .question-footer .question-author {
+  margin-right: 10px;
+}
+.all-course-list .question-item .question-footer .question-time {
+  margin-right: 10px;
+}
+.all-course-list .question-item .question-footer .question-tag-list .list-tag {
+  color: #787d82;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding: 0 10px;
+  display: inline-block;
+  background: #edf1f2;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.all-course-list .question-item .question-footer .question-tag-list .list-tag:hover {
+  background-color: #d0d6d9;
+}
 #question .question-main .qa-content .qa-content-addon .qa-createtime {
   margin-right: 20px;
   color: #999;
@@ -1362,6 +1431,49 @@ h5 {
 #ask form #btn-ask {
   margin-top: 10px;
 }
+#feedback h4 {
+  font-size: 18px;
+  margin: 20px 0 10px 0;
+}
+#feedback form {
+  position: relative;
+}
+
+#feedback form .feedback-input,#feedback form #myTitle {
+  display: block;
+  width: 97%;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  height: 20px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 3px;
+  margin-bottom: 15px;
+}
+#feedback form .bootstrap-tagsinput {
+  width: 99%;
+  height: 25px;
+}
+#feedback form .bootstrap-tagsinput .tag {
+  color: #0798BA;
+  background-color: #E7F2ED;
+  display: inline-block;
+  padding: 0 8px;
+  height: 24px;
+  line-height: 24px;
+  font-weight: normal;
+  font-size: 13px;
+  text-align: center;
+}
+#feedback form #cke_content {
+  width: 100%;
+}
+#feedback form #btn-ask {
+  margin-top: 10px;
+}
 #complete .container #info-form {
   width: 650px;
   margin-top: 50px;
@@ -1427,6 +1539,9 @@ h5 {
 #blog .blog-main {
   width: 720px;
   float: left;
+}
+#blog .blog-summary{
+	overflow:hidden;
 }
 #blog .blog-main .main-title {
   margin: 30px 0 25px;
@@ -1525,6 +1640,83 @@ h5 {
   transition: all 0.25s;
 }
 #blog .blog-main .main-list .blog-item .blog-footer .blog-tag-list .list-tag:hover {
+  background-color: #d0d6d9;
+}
+.all-course-list .blog-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e3e5e5;
+  position: relative;
+}
+.all-course-list .blog-item .replynumber {
+  font-size: 12px;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  height: 51px;
+  text-align: center;
+}
+.all-course-list .blog-item .replynumber.noanswernum {
+  color: #787d82;
+}
+.all-course-list .blog-item .replynumber.hasanswer .ys {
+  color: #009a61;
+}
+.all-course-list .blog-item .replynumber .ys {
+  width: 50px;
+  height: 31px;
+  margin: 10px 0;
+}
+.all-course-list .blog-item .replynumber .ys .number {
+  line-height: 12px;
+  height: 12px;
+  padding-bottom: 7px;
+}
+.all-course-list .blog-item .blog-title {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+.all-course-list .blog-item .blog-title a {
+  color: #333;
+}
+.all-course-list .blog-item .blog-footer {
+  padding: 10px 0;
+  color: #999;
+  line-height: 24px;
+}
+.all-course-list .blog-item .blog-footer .blog-author {
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-author img {
+  float: left;
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-addon {
+  font-size: 12px;
+}
+.all-course-list .blog-item .blog-footer .blog-addon span {
+  margin-right: 5px;
+}
+.all-course-list .blog-item .blog-footer .blog-time {
+  margin-right: 10px;
+}
+.all-course-list .blog-item .blog-footer .blog-tag-list .list-tag {
+  color: #787d82;
+  height: 20px;
+  line-height: 20px;
+  margin-top: 2px;
+  margin-right: 10px;
+  padding: 0 10px;
+  display: inline-block;
+  background: #edf1f2;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+.all-course-list .blog-item .blog-footer .blog-tag-list .list-tag:hover {
   background-color: #d0d6d9;
 }
 #blog .blog-main .blog-content {
@@ -1741,6 +1933,50 @@ h5 {
   line-height: 20px;
   color: #777;
 }
+#lab{
+	  width: 100%;
+  position: absolute;
+  top: 60px;
+  bottom: 0;
+  max-height: 100%;
+  overflow: hidden;
+}
+#lab .left{
+	height: 100%;
+  float:left;
+  width: 20%;
+  background-color: #F8F8F8;
+}
+#lab .left .header{
+	padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+}
+#lab .left .nav{
+}
+#lab .left .nav li a{
+	display: block;
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  cursor:pointer;
+}
+#lab .left .nav li a:hover{
+	background:#3689B3;
+	color:#fff;
+}
+#lab .right{
+	height:100%;
+	float:left;
+	width: 80%;
+	
+	}
+	#lab .right  iframe{
+		width:100%;
+		height:100%;
+	}
 #learn .bg-wrapper{
 	width: 100%;
 	min-height:533px;

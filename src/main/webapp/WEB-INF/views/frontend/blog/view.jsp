@@ -53,7 +53,7 @@
 						<div class="blog-comment-item clearfix">
 							<div class="blog-comment-header">
 								<a href="" class="blog-comment-author"><img
-									src="default.png" class="avatar-32" alt="">${comment.user.userName}</a>
+									src="/LearningCommunity/read/avatar/${comment.user.userId }" class="avatar-32" alt="">${comment.user.userName}</a>
 								<span class="answer-time">${comment.time} 回答</span>
 								<div class="blog-comment-header-right r">#${status.count
 									+1}</div>
