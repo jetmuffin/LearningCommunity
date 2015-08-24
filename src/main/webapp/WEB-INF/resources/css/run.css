@@ -362,6 +362,7 @@ h5 {
   color: #787d82;
   text-align: center;
   float: left;
+    margin-top: 15px;
 }
 #header #login-area .header-login .user-avatar img {
   border: 1px solid #adb0b1;
