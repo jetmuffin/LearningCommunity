@@ -114,6 +114,5 @@
 		<script type="text/javascript"
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 		<script src="/LearningCommunity/resources/js/frontend/course/main.js"></script>
-		
 </body>
 </html>

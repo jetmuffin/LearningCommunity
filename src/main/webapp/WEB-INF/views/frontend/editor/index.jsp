@@ -35,9 +35,9 @@
 			{
 			case "html": url = "/LearningCommunity/editor/html";
 			  break;
-			case "java":url = "http://121.248.199.29:8000";
+			case "java":url = "http://localhost:8000";
 				break;
-			case "cpp":url = "http://121.248.199.29:8001";
+			case "cpp":url = "http://localhost:8001";
 			  break;
 			default: url = "/LearningCommunity/editor/html";
 			}
