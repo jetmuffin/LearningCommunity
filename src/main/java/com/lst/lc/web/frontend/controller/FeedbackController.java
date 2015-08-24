@@ -17,7 +17,7 @@ import com.lst.lc.entities.Feedback;
 import com.lst.lc.entities.User;
 
 @Controller
-@RequestMapping("/manage/feedback")
+@RequestMapping("/feedback")
 public class FeedbackController {
         
         @Autowired
