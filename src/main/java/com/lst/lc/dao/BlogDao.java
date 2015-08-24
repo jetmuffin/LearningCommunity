@@ -51,4 +51,8 @@ public interface BlogDao {
 	public List<Blog> getOtherBlogs(int userId, int blogId);
 	
 	public List<Blog> search(String key);
+	
+	public long count();
+	
+	public long userCount();
 }

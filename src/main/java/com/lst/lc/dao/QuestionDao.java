@@ -10,22 +10,27 @@ import com.lst.lc.entities.Question;
  */
 public interface QuestionDao {
 
-	public void addQuestion(Question question);
-	
-	public void updateQuestion(Question question);
+        public void addQuestion(Question question);
 
-	public Question getQuestion(int questionId);
-	
-	public void update(int questionId, String title, String tag, String content);
-	
-	public List<Question> getTopFiveRecently(int id);
-	
-	public void addReadNums(int questionId);
-	
-	public void addAnswerNums(int questionId);
-	
-	public List<Question> search(String key);
-	
-	public List<Question> getQuestionOfUser(int userId);
+        public void updateQuestion(Question question);
+
+        public Question getQuestion(int questionId);
+
+        public void update(int questionId, String title, String tag,
+                        String content);
+
+        public List<Question> getTopFiveRecently(int id);
+
+        public void addReadNums(int questionId);
+
+        public void addAnswerNums(int questionId);
+
+        public List<Question> search(String key);
+
+        public List<Question> getQuestionOfUser(int userId);
+
+        public long count();
+
+        public long userCount();
 
 }

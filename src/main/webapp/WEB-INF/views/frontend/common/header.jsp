@@ -5,7 +5,7 @@
 	<div id="header">
 		<div class="container">
 			<div id="logo">
-			<a href="/LearningCommunity/index/index"><img src="/LearningCommunity/resources/images/lstlogo.png" alt="LOGO" width="140" height="60"></a>
+			<a href="/LearningCommunity/index"><img src="/LearningCommunity/resources/images/lstlogo.png" alt="LOGO" width="140" height="60"></a>
 				
 			</div>
 			<div class="header-menu">

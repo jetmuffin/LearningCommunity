@@ -20,7 +20,7 @@
             <li><a href="/LearningCommunity/manage/index"  <c:if test="${module eq 'index'}">class="active"</c:if>  ><i class="fa fa-home fa-fw"></i>首页</a></li>
             <li><a href="/LearningCommunity/manage/users"  <c:if test="${module eq 'user'}">class="active"</c:if> ><i class="fa fa-bar-chart fa-fw"></i>用户管理</a></li>
             <li><a href="/LearningCommunity/manage/course/courses"  <c:if test="${module eq 'course'}">class="active"</c:if> ><i class="fa fa-database fa-fw"></i>课程管理</a></li>
-              <li><a href="/LearningCommunity/index/index"  ><i class="fa fa-database fa-fw"></i>回到前台</a></li>
+              <li><a href="/LearningCommunity/index"  ><i class="fa fa-database fa-fw"></i>回到前台</a></li>
           </ul>  
         </nav>
       </div>
