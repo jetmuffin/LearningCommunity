@@ -117,7 +117,7 @@ public class QuestionController {
 		User user = (User) session.getAttribute("loginUser");
 		QuestionSide questionSide;
 		List<QuestionTag> tags = questionTagDao.getTagsOrderByNum();
-		List<Question> questions = questionDao.getTopFiveRecently();
+		List<Question> questions = questionDao.getTopFiveRecently(questionId);
 		if (user == null) {
 			questionSide = new QuestionSide(false, 0, 0, tags, questions);
 		} else {
@@ -161,7 +161,8 @@ public class QuestionController {
 		User user = (User) session.getAttribute("loginUser");
 		QuestionSide questionSide;
 		List<QuestionTag> tags = questionTagDao.getTagsOrderByNum();
-		List<Question> questions = questionDao.getTopFiveRecently();
+		int arg = 0;
+		List<Question> questions = questionDao.getTopFiveRecently(arg);
 		if (user == null) {
 			questionSide = new QuestionSide(false, 0, 0, tags, questions);
 		} else {

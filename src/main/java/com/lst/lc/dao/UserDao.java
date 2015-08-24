@@ -67,4 +67,14 @@ public interface UserDao {
 	
 	public List<User> getTopFive();
 	
+	public void addRel(int uid1, int uid2);
+	
+	public List<User> getFriends(int uid);
+	
+	public List<User> getValidateFriends(int uid);
+	
+	public void validateFriend(int uid1, int uid2, int state);
+	
+	public boolean ifFriend(int uid1, int uid2);
+	
 }

@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-7-18 14:55:52 by Hibernate Tools 4.3.1
+// Generated 2015-8-24 10:07:51 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,240 +20,272 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "user", catalog = "LearningCommunity", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements java.io.Serializable {
+        
+        private static final long serialVersionUID = 1L;
 
-	private Integer userId;
-	private String userName;
-	private String email;
-	private String password;
-	private String gender;
-	private int integral;
-	private String rank;
-	private String avatar;
-	private String type;
-	private String motto;
-	private String city;
-	private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
-	private Set<RelUserRoute> relUserRoutes = new HashSet<RelUserRoute>(0);
-	private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>(0);
-	private Set<Question> questions = new HashSet<Question>(0);
-	private Set<LessonComment> lessonComments = new HashSet<LessonComment>(0);
-	private Set<Blog> blogs = new HashSet<Blog>(0);
-	private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(0);
-	private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
-	
-	public User() {
-	}
+        private Integer userId;
+        private String userName;
+        private String email;
+        private String password;
+        private String gender;
+        private int integral;
+        private String rank;
+        private String avatar;
+        private String type;
+        private String motto;
+        private String city;
+        private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
+        private Set<RelUserRoute> relUserRoutes = new HashSet<RelUserRoute>(0);
+        private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>(
+                        0);
+        private Set<Question> questions = new HashSet<Question>(0);
+        private Set<LessonComment> lessonComments = new HashSet<LessonComment>(
+                        0);
+        private Set<Blog> blogs = new HashSet<Blog>(0);
+        private Set<RelUser> relUsersForUserId1 = new HashSet<RelUser>(0);
+        private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(
+                        0);
+        private Set<RelUser> relUsersForUserId2 = new HashSet<RelUser>(0);
+        private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
 
-	public User(String userName, String email, String password, String gender,
-			int integral, String rank, String avatar, String type) {
-		this.userName = userName;
-		this.email = email;
-		this.password = password;
-		this.gender = gender;
-		this.integral = integral;
-		this.rank = rank;
-		this.avatar = avatar;
-		this.type = type;
-	}
+        public User() {
+        }
 
-	public User(String userName, String email, String password, String gender,
-			int integral, String rank, String avatar, String type,
-			String motto, String city, Set<BlogComment> blogComments,
-			Set<RelUserRoute> relUserRoutes,
-			Set<QuestionAnswer> questionAnswers, Set<Question> questions,
-			Set<LessonComment> lessonComments, Set<Blog> blogs,
-			Set<RelUserCourse> relUserCourses, Set<Feedback> feedbacks) {
-		this.userName = userName;
-		this.email = email;
-		this.password = password;
-		this.gender = gender;
-		this.integral = integral;
-		this.rank = rank;
-		this.avatar = avatar;
-		this.type = type;
-		this.motto = motto;
-		this.city = city;
-		this.blogComments = blogComments;
-		this.relUserRoutes = relUserRoutes;
-		this.questionAnswers = questionAnswers;
-		this.questions = questions;
-		this.lessonComments = lessonComments;
-		this.blogs = blogs;
-		this.relUserCourses = relUserCourses;
-		this.feedbacks = feedbacks;
-	}
+        public User(String userName, String email, String password,
+                        String gender, int integral, String rank,
+                        String avatar, String type) {
+                this.userName = userName;
+                this.email = email;
+                this.password = password;
+                this.gender = gender;
+                this.integral = integral;
+                this.rank = rank;
+                this.avatar = avatar;
+                this.type = type;
+        }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "userId", unique = true, nullable = false)
-	public Integer getUserId() {
-		return this.userId;
-	}
+        public User(String userName, String email, String password,
+                        String gender, int integral, String rank,
+                        String avatar, String type, String motto, String city,
+                        Set<BlogComment> blogComments,
+                        Set<RelUserRoute> relUserRoutes,
+                        Set<QuestionAnswer> questionAnswers,
+                        Set<Question> questions,
+                        Set<LessonComment> lessonComments, Set<Blog> blogs,
+                        Set<RelUser> relUsersForUserId1,
+                        Set<RelUserCourse> relUserCourses,
+                        Set<RelUser> relUsersForUserId2, Set<Feedback> feedbacks) {
+                this.userName = userName;
+                this.email = email;
+                this.password = password;
+                this.gender = gender;
+                this.integral = integral;
+                this.rank = rank;
+                this.avatar = avatar;
+                this.type = type;
+                this.motto = motto;
+                this.city = city;
+                this.blogComments = blogComments;
+                this.relUserRoutes = relUserRoutes;
+                this.questionAnswers = questionAnswers;
+                this.questions = questions;
+                this.lessonComments = lessonComments;
+                this.blogs = blogs;
+                this.relUsersForUserId1 = relUsersForUserId1;
+                this.relUserCourses = relUserCourses;
+                this.relUsersForUserId2 = relUsersForUserId2;
+                this.feedbacks = feedbacks;
+        }
 
-	public void setUserId(Integer userId) {
-		this.userId = userId;
-	}
+        @Id
+        @GeneratedValue(strategy = IDENTITY)
+        @Column(name = "userId", unique = true, nullable = false)
+        public Integer getUserId() {
+                return this.userId;
+        }
 
-	@Column(name = "userName", nullable = false, length = 50)
-	public String getUserName() {
-		return this.userName;
-	}
+        public void setUserId(Integer userId) {
+                this.userId = userId;
+        }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+        @Column(name = "userName", nullable = false, length = 50)
+        public String getUserName() {
+                return this.userName;
+        }
 
-	@Column(name = "email", unique = true, nullable = false, length = 50)
-	public String getEmail() {
-		return this.email;
-	}
+        public void setUserName(String userName) {
+                this.userName = userName;
+        }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+        @Column(name = "email", unique = true, nullable = false, length = 50)
+        public String getEmail() {
+                return this.email;
+        }
 
-	@Column(name = "password", nullable = false, length = 50)
-	public String getPassword() {
-		return this.password;
-	}
+        public void setEmail(String email) {
+                this.email = email;
+        }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+        @Column(name = "password", nullable = false, length = 50)
+        public String getPassword() {
+                return this.password;
+        }
 
-	@Column(name = "gender", nullable = false, length = 10)
-	public String getGender() {
-		return this.gender;
-	}
+        public void setPassword(String password) {
+                this.password = password;
+        }
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
+        @Column(name = "gender", nullable = false, length = 10)
+        public String getGender() {
+                return this.gender;
+        }
 
-	@Column(name = "integral", nullable = false)
-	public int getIntegral() {
-		return this.integral;
-	}
+        public void setGender(String gender) {
+                this.gender = gender;
+        }
 
-	public void setIntegral(int integral) {
-		this.integral = integral;
-	}
+        @Column(name = "integral", nullable = false)
+        public int getIntegral() {
+                return this.integral;
+        }
 
-	@Column(name = "rank", nullable = false, length = 10)
-	public String getRank() {
-		return this.rank;
-	}
+        public void setIntegral(int integral) {
+                this.integral = integral;
+        }
 
-	public void setRank(String rank) {
-		this.rank = rank;
-	}
+        @Column(name = "rank", nullable = false, length = 10)
+        public String getRank() {
+                return this.rank;
+        }
 
-	@Column(name = "avatar", nullable = false, length = 100)
-	public String getAvatar() {
-		return this.avatar;
-	}
+        public void setRank(String rank) {
+                this.rank = rank;
+        }
 
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
+        @Column(name = "avatar", nullable = false, length = 100)
+        public String getAvatar() {
+                return this.avatar;
+        }
 
-	@Column(name = "type", nullable = false, length = 10)
-	public String getType() {
-		return this.type;
-	}
+        public void setAvatar(String avatar) {
+                this.avatar = avatar;
+        }
 
-	public void setType(String type) {
-		this.type = type;
-	}
+        @Column(name = "type", nullable = false, length = 10)
+        public String getType() {
+                return this.type;
+        }
 
-	@Column(name = "motto", length = 65535)
-	public String getMotto() {
-		return this.motto;
-	}
+        public void setType(String type) {
+                this.type = type;
+        }
 
-	public void setMotto(String motto) {
-		this.motto = motto;
-	}
+        @Column(name = "motto", length = 65535)
+        public String getMotto() {
+                return this.motto;
+        }
 
-	@Column(name = "city", length = 50)
-	public String getCity() {
-		return this.city;
-	}
+        public void setMotto(String motto) {
+                this.motto = motto;
+        }
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+        @Column(name = "city", length = 50)
+        public String getCity() {
+                return this.city;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<BlogComment> getBlogComments() {
-		return this.blogComments;
-	}
+        public void setCity(String city) {
+                this.city = city;
+        }
 
-	public void setBlogComments(Set<BlogComment> blogComments) {
-		this.blogComments = blogComments;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<BlogComment> getBlogComments() {
+                return this.blogComments;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<RelUserRoute> getRelUserRoutes() {
-		return this.relUserRoutes;
-	}
+        public void setBlogComments(Set<BlogComment> blogComments) {
+                this.blogComments = blogComments;
+        }
 
-	public void setRelUserRoutes(Set<RelUserRoute> relUserRoutes) {
-		this.relUserRoutes = relUserRoutes;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<RelUserRoute> getRelUserRoutes() {
+                return this.relUserRoutes;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<QuestionAnswer> getQuestionAnswers() {
-		return this.questionAnswers;
-	}
+        public void setRelUserRoutes(Set<RelUserRoute> relUserRoutes) {
+                this.relUserRoutes = relUserRoutes;
+        }
 
-	public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
-		this.questionAnswers = questionAnswers;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<QuestionAnswer> getQuestionAnswers() {
+                return this.questionAnswers;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Question> getQuestions() {
-		return this.questions;
-	}
+        public void setQuestionAnswers(Set<QuestionAnswer> questionAnswers) {
+                this.questionAnswers = questionAnswers;
+        }
 
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<Question> getQuestions() {
+                return this.questions;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<LessonComment> getLessonComments() {
-		return this.lessonComments;
-	}
+        public void setQuestions(Set<Question> questions) {
+                this.questions = questions;
+        }
 
-	public void setLessonComments(Set<LessonComment> lessonComments) {
-		this.lessonComments = lessonComments;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<LessonComment> getLessonComments() {
+                return this.lessonComments;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Blog> getBlogs() {
-		return this.blogs;
-	}
+        public void setLessonComments(Set<LessonComment> lessonComments) {
+                this.lessonComments = lessonComments;
+        }
 
-	public void setBlogs(Set<Blog> blogs) {
-		this.blogs = blogs;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<Blog> getBlogs() {
+                return this.blogs;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<RelUserCourse> getRelUserCourses() {
-		return this.relUserCourses;
-	}
+        public void setBlogs(Set<Blog> blogs) {
+                this.blogs = blogs;
+        }
 
-	public void setRelUserCourses(Set<RelUserCourse> relUserCourses) {
-		this.relUserCourses = relUserCourses;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "userByUserId1")
+        public Set<RelUser> getRelUsersForUserId1() {
+                return this.relUsersForUserId1;
+        }
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-	public Set<Feedback> getFeedbacks() {
-		return this.feedbacks;
-	}
+        public void setRelUsersForUserId1(Set<RelUser> relUsersForUserId1) {
+                this.relUsersForUserId1 = relUsersForUserId1;
+        }
 
-	public void setFeedbacks(Set<Feedback> feedbacks) {
-		this.feedbacks = feedbacks;
-	}
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<RelUserCourse> getRelUserCourses() {
+                return this.relUserCourses;
+        }
+
+        public void setRelUserCourses(Set<RelUserCourse> relUserCourses) {
+                this.relUserCourses = relUserCourses;
+        }
+
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "userByUserId2")
+        public Set<RelUser> getRelUsersForUserId2() {
+                return this.relUsersForUserId2;
+        }
+
+        public void setRelUsersForUserId2(Set<RelUser> relUsersForUserId2) {
+                this.relUsersForUserId2 = relUsersForUserId2;
+        }
+
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+        public Set<Feedback> getFeedbacks() {
+                return this.feedbacks;
+        }
+
+        public void setFeedbacks(Set<Feedback> feedbacks) {
+                this.feedbacks = feedbacks;
+        }
 
 }

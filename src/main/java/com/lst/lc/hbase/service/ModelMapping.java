@@ -10,6 +10,7 @@ import org.apache.hadoop.hbase.client.ResultScanner;
 import org.springframework.stereotype.Service;
 
 import com.lst.lc.hbase.model.Log;
+import com.lst.lc.hbase.model.Message;
 
 @Service
 public class ModelMapping {
@@ -45,4 +46,42 @@ public class ModelMapping {
 		}
 		return list;
 	}
+	
+	 /**
+         * 将数据库读出的数据映射到Message的 List
+         * @param rs
+         * @return
+         */
+        public List<Message> messageListMapping(ResultScanner rs){
+                List<Message> list = new ArrayList<Message>();
+                for (Result r : rs) {
+                        Message message = new Message();
+                        message.setKey(new String(r.getRow()));
+                        for(Cell cell:r.rawCells()){
+                                String v = new String(CellUtil.cloneQualifier(cell));
+                                String val = new String(CellUtil.cloneValue(cell));
+                                if (v.equals("fromUid")) {
+                                        message.setFromUid(val);
+                                }
+                                if (v.equals("toUid")) {
+                                       message.setToUid(val);
+                                }
+                                if (v.equals("content")) {
+                                       message.setContent(val);
+                                }
+                                if (v.equals("time")) {
+                                        message.setTime(val);
+                                 }
+                                if (v.equals("state")) {
+                                        message.setState(val);
+                                 }
+                        }
+                        list.add(message);
+                }
+                rs.close();
+                if (list.size() == 0) {
+                        return null;
+                }
+                return list;
+        }
 }

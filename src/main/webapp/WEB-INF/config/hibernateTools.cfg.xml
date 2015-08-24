@@ -8,7 +8,7 @@
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.password">lst</property>
-		<property name="hibernate.connection.url">jdbc:mysql://121.248.199.34:3306/LearningCommunity</property>
+		<property name="hibernate.connection.url">jdbc:mysql://121.248.199.37:3306/LearningCommunity</property>
 		<property name="hibernate.connection.username">lst</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</property>
 

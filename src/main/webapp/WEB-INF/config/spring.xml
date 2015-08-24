@@ -72,7 +72,6 @@
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
 
-
 	<hdp:configuration resources="/WEB-INF/config/hbase-site.xml" />
 	<hdp:hbase-configuration configuration-ref="hadoopConfiguration" />
 	<bean id="hbaseTemplate" class="org.springframework.data.hadoop.hbase.HbaseTemplate"
@@ -81,6 +80,7 @@
 	<!-- 表名配置 -->
 	<util:list id="hbaseTableNames">
 		<value>log</value>
+		<!--  <value>message</value> -->
 	</util:list>
 
 	<!-- 列族名配置 -->
@@ -99,6 +99,5 @@
 	<bean id="hbaseOperation" class="com.lst.lc.hbase.service.HbaseOperation">
 		<constructor-arg name="mHbaseTemplate" ref="hbaseTemplate"></constructor-arg>
 	</bean>
-	 
 </beans>
 
