@@ -74,4 +74,11 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 		return query.list();
 	}
 
+        @Override
+        public void addAnswerNums(int questionId) {
+                String hql = "update Question as question set question.answerNums = question.answerNums + 1 where question.questionId = ?";
+                Query query = query(hql).setInteger(0, questionId);
+                query.executeUpdate();
+        }
+
 }

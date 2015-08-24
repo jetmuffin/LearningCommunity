@@ -107,7 +107,7 @@ public class BlogController {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		Blog blog = blogDao.getBlog(blogId);
-		
+		blogDao.addReadNums(blogId);
 		List<Blog> blogs = blogDao.getOtherBlogs(blog.getUser().getUserId(), blogId);
 		model.addAttribute("blog", blog);
 		model.addAttribute("otherBlogs", blogs);
@@ -168,6 +168,7 @@ public class BlogController {
 		Blog blog = blogDao.getBlog(blogId);
 		BlogComment comment = new BlogComment(blog, user, new Date(), content, head);
 		blogCommentDao.addBlogComment(comment);
+		blogDao.addCommentNums(blogId);
 		//写入日志
 		logHandler.toLog(user, "回复了博客:"+ blogId);
 		logHandler.updateIntegral(user.getUserId(), "commentBlog");

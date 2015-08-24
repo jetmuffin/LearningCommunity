@@ -109,7 +109,7 @@ public class QuestionController {
 		if (pageSize != null) {
 			pagesize = Integer.valueOf(pageSize);
 		}
-		if (pageSize != null) {
+		if (pageNum != null) {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		Question question = questionDao.getQuestion(questionId);
@@ -203,6 +203,7 @@ public class QuestionController {
 		QuestionAnswer answer = new QuestionAnswer(question, user, new Date(),
 				content, head);
 		questionAnswerDao.addQuestionAnswer(answer);
+		questionDao.addAnswerNums(questionId);
 		// 写入日志
 		logHandler.toLog(user, "回答了问题:" + questionId);
 		logHandler.updateIntegral(user.getUserId(), "answerQuestion");
