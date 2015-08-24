@@ -17,6 +17,7 @@
 			<div class="textbody rich-text">
 				${course.content}
 			</div>
+			<iframe src="http://localhost:8000" frameborder="0"></iframe>
 		</div>
 	<div id="editor" class=" clearfix l">
 		<div id="laboratory"></div>
