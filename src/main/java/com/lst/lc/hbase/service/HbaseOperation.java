@@ -18,7 +18,9 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.filter.CompareFilter.CompareOp;
 import org.apache.hadoop.hbase.filter.Filter;
 import org.apache.hadoop.hbase.filter.FilterList;
+import org.apache.hadoop.hbase.filter.RowFilter;
 import org.apache.hadoop.hbase.filter.SingleColumnValueFilter;
+import org.apache.hadoop.hbase.filter.SubstringComparator;
 import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.data.hadoop.hbase.HbaseTemplate;
 import org.springframework.stereotype.Service;
@@ -91,6 +93,28 @@ public class HbaseOperation {
 			return null;
 		}
 	}
+	
+	       /**
+         * 根据主键模糊检索数据
+         */
+        public ResultScanner queryByVagueRowKey(String tableName, String key) {
+                try {
+                        HTable table = new HTable(mConfiguration, tableName);
+                        List<Filter> filters = new ArrayList<Filter>();
+                        SubstringComparator subString = new SubstringComparator(key);
+                        RowFilter rf = new RowFilter(CompareOp.EQUAL, subString);
+                        filters.add(rf);
+                        FilterList filterList = new FilterList(filters);
+                        Scan scan = new Scan();
+                        scan.setFilter(filterList);
+                        ResultScanner rs = table.getScanner(scan);
+                        // table.close();
+                        return rs;
+                } catch (IOException e1) {
+                        e1.printStackTrace();
+                        return null;
+                }
+        }
 
 	/**
 	 * 根据某个列值检索数据

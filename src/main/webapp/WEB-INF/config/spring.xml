@@ -80,6 +80,7 @@
 	<!-- 表名配置 -->
 	<util:list id="hbaseTableNames">
 		<value>log</value>
+		<!--  <value>message</value> -->
 	</util:list>
 
 	<!-- 列族名配置 -->
