@@ -70,16 +70,59 @@
 							</div>
 						</div>
 					</c:forEach>
+
 					<div class="text-center">
 						<ul class="pagination">
-							<li class="active"><a href="">上一页</a></li>
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li><a href="">5</a></li>
-							<li><a href="">下一页</a></li>
+							<c:choose>
+								<c:when test="${not page.hasPre}">
+									<li class="disabled"><a href="#">上一页</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="/LearningCommunity/question/questions?pageNum=${page.pageNow-1}">上一页</a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${page.totalPageCount lt 5}">
+									<c:forEach var="item" varStatus="status" begin="1"
+										end="${page.totalPageCount}">
+										<li <c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+											href="/LearningCommunity/question/questions?pageNum=${status.index}">${status.index}</a></li>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${page.pageNow lt 5}">
+											<c:forEach var="item" varStatus="status" begin="1" end="5">
+												<li <c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+													href="/LearningCommunity/question/questions?pageNum=${status.index}">${status.index}</a></li>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="item" varStatus="status"
+												begin="${page.pageNow-2}" end="${page.pageNow+2}">
+												<li <c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+													href="/LearningCommunity/question/questions?pageNum=${status.index}">${status.index}}</a></li>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${not page.hasNext}">
+									<li class="disabled"><a href="#">下一页</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="/LearningCommunity/question/questions?pageNum=${page.pageNow+1}">下一页</a></li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
+
+
 					</div>
 				</div>
 			</div>

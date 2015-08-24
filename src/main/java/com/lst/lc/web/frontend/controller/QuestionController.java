@@ -152,7 +152,7 @@ public class QuestionController {
 		if (pageSize != null) {
 			pagesize = Integer.valueOf(pageSize);
 		}
-		if (pageSize != null) {
+		if (pageNum != null) {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		if (type != null) {

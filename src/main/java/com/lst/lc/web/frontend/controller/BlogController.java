@@ -134,13 +134,12 @@ public class BlogController {
 		if (pageSize != null) {
 			pagesize = Integer.valueOf(pageSize);
 		}
-		if (pageSize != null) {
+		if (pageNum != null) {
 			pageNow = Integer.valueOf(pageNum);
 		}
 		if (type != null) {
 			sorttype = Integer.valueOf(type);
 		}
-		
 		List<User> users = userDao.getTopFive();
 		model.addAttribute("users", users);
 		List<BlogTag> tags = blogTagDao.getTagsOrderByNum();

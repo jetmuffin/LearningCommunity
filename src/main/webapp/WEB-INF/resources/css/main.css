@@ -543,6 +543,22 @@ h5 {
   border-color: #3689b3;
   cursor: default;
 }
+.pagination li:first-child.active a{
+	border-top-left-radius:3px;
+	border-bottom-left-radius:3px;
+	cursor:pointer;
+}
+.pagination li:last-child.active a{
+	border-top-right-radius:3px;
+	border-bottom-right-radius:3px;	
+	cursor:pointer;
+}
+.pagination>.disabled>a{
+color: #777;
+  cursor: not-allowed;
+  background-color: #fff;
+  border-color: #ddd;	
+}
 #footer {
   border-top: 1px solid #EEE;
   padding: 40px 0;

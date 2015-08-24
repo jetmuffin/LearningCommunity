@@ -56,7 +56,8 @@
 									</c:forEach>
 								</div>
 								<div class="blog-addon r">
-									<span>浏览 ${blog.readNums }</span> <span>评论 ${blog.commentNums }</span>
+									<span>浏览 ${blog.readNums }</span> <span>评论
+										${blog.commentNums }</span>
 								</div>
 							</div>
 						</div>
@@ -65,39 +66,85 @@
 
 					<div class="text-center">
 						<ul class="pagination">
-							<li class="active"><a href="">上一页</a></li>
-							<li><a href="">1</a></li>
-							<li><a href="">2</a></li>
-							<li><a href="">3</a></li>
-							<li><a href="">4</a></li>
-							<li><a href="">5</a></li>
-							<li><a href="">下一页</a></li>
+							<c:choose>
+								<c:when test="${not page.hasPre}">
+									<li class="disabled"><a href="#">上一页</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="/LearningCommunity/blog/blogs?pageNum=${page.pageNow-1}">上一页</a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${page.totalPageCount lt 5}">
+									<c:forEach var="item" varStatus="status" begin="1"
+										end="${page.totalPageCount}">
+										<li
+											<c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+											href="/LearningCommunity/blog/blogs?pageNum=${status.index}">${status.index}</a></li>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${page.pageNow lt 5}">
+											<c:forEach var="item" varStatus="status" begin="1" end="5">
+												<li
+													<c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+													href="/LearningCommunity/blog/blogs?pageNum=${status.index}">${status.index}</a></li>
+											</c:forEach>
+										</c:when>
+										<c:otherwise>
+											<c:forEach var="item" varStatus="status"
+												begin="${page.pageNow-2}" end="${page.pageNow+2}">
+												<li
+													<c:if test="${page.pageNow eq status.index}">class="active"</c:if>><a
+													href="/LearningCommunity/blog/blogs?pageNum=${status.index}">${status.index}}</a></li>
+											</c:forEach>
+										</c:otherwise>
+									</c:choose>
+
+								</c:otherwise>
+							</c:choose>
+
+							<c:choose>
+								<c:when test="${not page.hasNext}">
+									<li class="disabled"><a href="#">下一页</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a
+										href="/LearningCommunity/blog/blogs?pageNum=${page.pageNow+1}">下一页</a></li>
+								</c:otherwise>
+							</c:choose>
 						</ul>
+
 					</div>
 				</div>
 			</div>
 			<div class="blog-sidebar">
-				
+
 				<c:if test="${ not empty loginUser}">
-				<div class="sidebar-item">
-					<h3 class="item-title">
-						我的讨论<a>»</a>
-					</h3>
-					<div class="user-info clearfix">
-						<div class="user-img  text-center clearfix">
-							<a href="" class=""><img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt=""></a>
-							<p class="username ">${loginUser.userName}</p>
-						</div>
-						<div class="user-statics l text-center statics-mid">
-							<a href="">我的文章</a>
-						</div>
-						<div class="user-statics l text-center">
-							<a href="">我的回复</a>
+					<div class="sidebar-item">
+						<h3 class="item-title">
+							我的讨论<a>»</a>
+						</h3>
+						<div class="user-info clearfix">
+							<div class="user-img  text-center clearfix">
+								<a href="" class=""><img
+									src="/LearningCommunity/read/avatar/${loginUser.userId }"
+									alt=""></a>
+								<p class="username ">${loginUser.userName}</p>
+							</div>
+							<div class="user-statics l text-center statics-mid">
+								<a href="">我的文章</a>
+							</div>
+							<div class="user-statics l text-center">
+								<a href="">我的回复</a>
+							</div>
 						</div>
 					</div>
-					</div>
-					</c:if>
-				
+				</c:if>
+
 				<div class="sidebar-item">
 					<h3 class="item-title">
 						热门作者<a>»</a>
