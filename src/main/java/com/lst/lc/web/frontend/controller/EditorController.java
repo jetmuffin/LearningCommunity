@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/editor")
-
 public class EditorController {
 	
 	

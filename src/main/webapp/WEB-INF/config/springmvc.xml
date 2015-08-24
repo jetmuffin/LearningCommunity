@@ -59,6 +59,7 @@
                         <mvc:mapping path="/question/edit/*" />
                         <mvc:mapping path="/question/answer/*" />
                         <mvc:mapping path="/course/learn/*" />
+                         <mvc:mapping path="/feedback/*" />
 			<!-- 需排除拦截的地址 -->
 			<mvc:exclude-mapping path="/user/login" />
 			<mvc:exclude-mapping path="/user/logout" />
