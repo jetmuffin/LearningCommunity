@@ -1,5 +1,6 @@
 package com.lst.lc.test.controller;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +17,7 @@ import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.SetUtils;
+import com.lst.lc.web.bean.Info;
 import com.lst.lc.web.service.BlogPageHandler;
 import com.lst.lc.web.service.LogHandler;
 
@@ -30,14 +32,14 @@ public class Test {
         @Autowired
         @Qualifier("blogDao")
         private BlogDao blogDao;
-        
+
         @Autowired
         @Qualifier("questionDao")
         private QuestionDao questionDao;
-        
+
         @Autowired
         private LogHandler logHandler;
-        
+
         @Autowired
         @Qualifier("blogPageHandler")
         private BlogPageHandler blogPageHandler;
@@ -45,13 +47,13 @@ public class Test {
         public Test() {
                 super();
         }
-        
+
         @RequestMapping(value = "/addFriend", method = RequestMethod.GET)
         public String add(Model model) {
                 userDao.addRel(18, 19);
                 return "frontend/user/login";
         }
-        
+
         @RequestMapping(value = "/getFriend", method = RequestMethod.GET)
         public String get(Model model) {
                 User user = userDao.getById(18);
@@ -59,7 +61,7 @@ public class Test {
                 System.out.println(user.getRelUsersForUserId2().size());
                 return "frontend/user/login";
         }
-        
+
         @RequestMapping(value = "/set", method = RequestMethod.GET)
         public String set(Model model) {
                 User user1 = userDao.getById(18);
@@ -70,18 +72,44 @@ public class Test {
                 System.out.println(set.size());
                 return "frontend/user/login";
         }
-        
+
         @RequestMapping(value = "/merge", method = RequestMethod.GET)
         public String merge(Model model) {
                 User user = userDao.getById(18);
-                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user, 1);
+                List<User> users = SetUtils.mergeFriend(
+                                user.getRelUsersForUserId1(),
+                                user.getRelUsersForUserId2(), user, 1);
                 System.out.println(users.get(0).getUserName());
                 return "frontend/user/login";
         }
-        
+
         @RequestMapping(value = "/validate", method = RequestMethod.GET)
         public String validate(Model model) {
                 userDao.validateFriend(18, 19, 1);
+                return "frontend/user/login";
+        }
+        
+        @RequestMapping(value = "/ifFriend", method = RequestMethod.GET)
+        public String ifFriend(Model model) {
+                System.out.println(userDao.ifFriend(18, 19));
+                return "frontend/user/login";
+        }
+
+        @RequestMapping(value = "/info", method = RequestMethod.GET)
+        public String info(Model model) {
+                List<User> friends = userDao.getValidateFriends(18);
+                if (friends.size() > 0) {
+                        Info info = new Info();
+                        info.setNum(friends.size());
+                        List<String> messages = new ArrayList<String>();
+                        for (int i = 0; i < friends.size(); i++) {
+                                String str = friends.get(i).getUserName()
+                                                + "请求添加你为好友";
+                                messages.add(str);
+                        }
+                        info.setMessages(messages);
+                        System.out.println(info.getNum());
+                }
                 return "frontend/user/login";
         }
 }

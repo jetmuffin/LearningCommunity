@@ -75,4 +75,6 @@ public interface UserDao {
 	
 	public void validateFriend(int uid1, int uid2, int state);
 	
+	public boolean ifFriend(int uid1, int uid2);
+	
 }

@@ -133,4 +133,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
                 query.executeUpdate();
         }
 
+        @Override
+        public boolean ifFriend(int uid1, int uid2) {
+                List<User> friends = getFriends(uid1);
+                User user = getById(uid2);
+                if(friends.contains(user))
+                        return true;
+                return false;
+        }
+
 }

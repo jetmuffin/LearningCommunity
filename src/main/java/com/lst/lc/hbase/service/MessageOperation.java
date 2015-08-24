@@ -11,7 +11,6 @@ import com.lst.lc.hbase.model.Log;
 import com.lst.lc.hbase.model.Message;
 import com.lst.lc.utils.EncryptUtils;
 
-@Service
 public class MessageOperation {
         
         @Autowired
