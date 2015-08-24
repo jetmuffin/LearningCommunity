@@ -74,8 +74,14 @@ public class Test {
         @RequestMapping(value = "/merge", method = RequestMethod.GET)
         public String merge(Model model) {
                 User user = userDao.getById(18);
-                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user);
+                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user, 1);
                 System.out.println(users.get(0).getUserName());
+                return "frontend/user/login";
+        }
+        
+        @RequestMapping(value = "/validate", method = RequestMethod.GET)
+        public String validate(Model model) {
+                userDao.validateFriend(18, 19, 1);
                 return "frontend/user/login";
         }
 }

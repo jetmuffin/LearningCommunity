@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-8-23 12:55:26 by Hibernate Tools 4.3.1
+// Generated 2015-8-24 10:07:51 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import javax.persistence.AttributeOverride;
@@ -25,22 +25,26 @@ public class RelUser implements java.io.Serializable {
         private RelUserId id;
         private User userByUserId1;
         private User userByUserId2;
+        private int state;
         private Date date;
 
         public RelUser() {
         }
 
-        public RelUser(RelUserId id, User userByUserId1, User userByUserId2) {
+        public RelUser(RelUserId id, User userByUserId1, User userByUserId2,
+                        int state) {
                 this.id = id;
                 this.userByUserId1 = userByUserId1;
                 this.userByUserId2 = userByUserId2;
+                this.state = state;
         }
 
         public RelUser(RelUserId id, User userByUserId1, User userByUserId2,
-                        Date date) {
+                        int state, Date date) {
                 this.id = id;
                 this.userByUserId1 = userByUserId1;
                 this.userByUserId2 = userByUserId2;
+                this.state = state;
                 this.date = date;
         }
 
@@ -74,6 +78,15 @@ public class RelUser implements java.io.Serializable {
 
         public void setUserByUserId2(User userByUserId2) {
                 this.userByUserId2 = userByUserId2;
+        }
+
+        @Column(name = "state", nullable = false)
+        public int getState() {
+                return this.state;
+        }
+
+        public void setState(int state) {
+                this.state = state;
         }
 
         @Temporal(TemporalType.DATE)

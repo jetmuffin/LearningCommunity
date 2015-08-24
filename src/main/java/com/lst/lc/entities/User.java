@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-8-23 12:55:26 by Hibernate Tools 4.3.1
+// Generated 2015-8-24 10:07:51 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -20,9 +20,9 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "user", catalog = "LearningCommunity", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User implements java.io.Serializable {
-
-        private static final long serialVersionUID = 1L;
         
+        private static final long serialVersionUID = 1L;
+
         private Integer userId;
         private String userName;
         private String email;
