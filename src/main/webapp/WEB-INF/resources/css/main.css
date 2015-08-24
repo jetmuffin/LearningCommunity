@@ -224,6 +224,7 @@ h5 {
   font-size: 14px;
   height: 60px;
   line-height: 60px;
+   text-decoration: none;
 }
 #header .header-menu .nav-item li a.active {
   color: #fff;
@@ -245,7 +246,6 @@ h5 {
 #header #search-area .search-input {
   padding: 5px 10px;
   width: 190px;
-  height: 20px;
   line-height: 20px;
   font-size: 12px;
   float: left;
@@ -284,6 +284,7 @@ h5 {
   font-size: 14px;
   height: 60px;
   line-height: 60px;
+  text-decoration:none;
 }
 #header #login-area .header-unlogin li a.active {
   color: #fff;
@@ -561,6 +562,8 @@ h5 {
   background-color: #fff;
   z-index: 2001;
   top: 80px;
+  bottom:auto;
+  right:auto;
   border: 1px solid #999;
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
@@ -569,6 +572,11 @@ h5 {
 .modal .modal-header {
   padding: 10px 20px;
   border-bottom: 1px solid #ddd;
+}
+.modal .modal-header h2{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-weight: normal;	
 }
 .modal .modal-header .register {
   color: #999;
@@ -2111,6 +2119,7 @@ padding: 10px;
   margin-left: auto;
   margin-right: auto;
   width: 1050px;
+  padding:0;
 }
 .btn {
   right: 15px;

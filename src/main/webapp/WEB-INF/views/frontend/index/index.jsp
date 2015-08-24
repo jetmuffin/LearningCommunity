@@ -10,7 +10,6 @@
 		<!-- animate css -->
 		<link rel="stylesheet" href="/LearningCommunity/resources/css/animate.min.css">
 		<!-- bootstrap css -->
-		<link rel="stylesheet" href="/LearningCommunity/resources/css/bootstrap.min.css">
 		<!-- font-awesome -->
 		<link rel="stylesheet" href="/LearningCommunity/resources/font/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/LearningCommunity/resources/css/templatemo-index-style.css">
@@ -69,20 +68,11 @@ h1,h2,h3,h4,h5,h6,b,strong{font-weight:bolder}
 						<h3 class="text-uppercase">社区化学习</h3>
 						<p>左偏树学习社区提供了社区化学习，学员可以根据课程内容进行讨论，还可以对课堂的心得体会发表博客文章，促进学院之间的相互交流。</p>
 					</div>
+					<div class="clearfix"></div>
 				</div>
 			</div>
 		</section>
-		<!-- end divider -->
 
-
-		<!-- start pricing -->
-		<!-- end pricing -->
-
-		<!-- start download -->
-		<!-- end download -->
-
-		<!-- start contact -->
-		<!-- end contact -->
 
 		<!-- start footer -->
 		<jsp:include page="../common/footer.jsp"></jsp:include>

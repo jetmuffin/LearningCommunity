@@ -194,6 +194,9 @@ img
     }
 /* end home */
 
+.modal{
+	display:inline-block !important;
+}
 /* start divider */
 #divider
     {
@@ -201,6 +204,8 @@ img
         padding-top: 80px;
         padding-bottom: 80px;
     }
+    
+
 #divider .fa
     {
         color: #28a7e9;
@@ -277,6 +282,7 @@ img
         padding-top: 80px;
         padding-bottom: 80px;
     }
+ 
 #pricing h2
     {
         padding-bottom: 60px;
@@ -413,6 +419,21 @@ footer
     }
 /* end footer */
 
+@media screen and (min-width: 992px)
+.col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+  float: left;
+}
+
+.col-md-4.wow.fadeInUp.templatemo-box.animated {
+  float: left;
+  width: 33.3%;
+}
+
+@media screen and (max-width: 991px)
+.templatemo-box {
+  margin-bottom: 30px;
+}    
+
 @media screen and ( max-width: 991px ) {
     .templatemo-box {
         margin-bottom: 30px;
@@ -451,3 +472,4 @@ footer
         }
 }
 /* end media 360 */
+
