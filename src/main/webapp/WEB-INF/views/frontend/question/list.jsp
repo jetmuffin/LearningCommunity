@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
+<jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,7 +61,7 @@
 								<div class="question-author l">
 									<a href="">${question.user.userName}</a>
 								</div>
-								<div class="question-time l">${question.time}</div>
+								<div class="question-time l">${jt.format(question.time)}</div>
 								<div class="question-tag-list l">
 									<c:forEach var="tag" items="${st.stringSplit(question.tag)}">
 										<a href="" target="_blank" class="list-tag">${tag}</a>
