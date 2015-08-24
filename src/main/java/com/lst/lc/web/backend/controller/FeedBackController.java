@@ -15,7 +15,7 @@ import com.lst.lc.dao.FeedbackDao;
 import com.lst.lc.entities.Feedback;
 
 @Controller
-@RequestMapping("/feedback")
+@RequestMapping("/manage/feedback")
 public class FeedBackController {
         
         @Autowired
