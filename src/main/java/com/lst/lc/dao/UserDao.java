@@ -77,4 +77,6 @@ public interface UserDao {
 	
 	public boolean ifFriend(int uid1, int uid2);
 	
+	public long count();
+	
 }

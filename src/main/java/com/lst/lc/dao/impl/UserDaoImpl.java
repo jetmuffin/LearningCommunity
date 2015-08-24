@@ -142,4 +142,12 @@ public class UserDaoImpl extends BaseDao implements UserDao {
                 return false;
         }
 
+        @Override
+        public long count() {
+                String hql = "select count(*) from User";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
+
 }

@@ -80,5 +80,21 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
                 Query query = query(hql).setInteger(0, questionId);
                 query.executeUpdate();
         }
+        
+        @Override
+        public long count() {
+                String hql = "select count(*) from Question";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
+
+        @Override
+        public long userCount() {
+                String hql = "select count(DISTINCT question.user) from Question as question";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
 
 }

@@ -71,8 +71,8 @@
 									<td>${direction.admin.name}</td>
 									<td>${direction.time}</td>
 									<td><c:if test="${direction.enabled eq 1}"><div class="margin-right-15  templatemo-inline-block circle green-bg"></div>启用</c:if><c:if test="${direction.enabled eq 0}"><div class="margin-right-15  templatemo-inline-block circle pink-bg"></div>未启用</c:if></td>
-								<td><a href="edit/${direction.directionId}" class="templatemo-edit-btn">Edit</a></td>
-								<td><a href="delete/${direction.directionId}" class="templatemo-link">Delete</a></td>									
+								<td><a href="edit/${direction.directionId}" class="templatemo-edit-btn">编辑</a></td>
+								<td><a href="delete/${direction.directionId}" class="templatemo-link">删除</a></td>									
 								</tr>
 							</c:forEach>
 						</tbody>

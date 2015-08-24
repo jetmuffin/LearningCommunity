@@ -88,4 +88,20 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
                 query.executeUpdate();
         }
 
+        @Override
+        public long count() {
+                String hql = "select count(*) from Blog";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
+
+        @Override
+        public long userCount() {
+                String hql = "select count(DISTINCT blog.user) from Blog as blog";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
+
 }
