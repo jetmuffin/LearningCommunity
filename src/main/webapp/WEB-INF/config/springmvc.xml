@@ -51,6 +51,8 @@
 			<!-- 需拦截的地址 -->
 			<mvc:mapping path="/user/*" />
 			<mvc:mapping path="/user/zone/*" />
+			<mvc:mapping path="/user/addFriend/*" />
+			<mvc:mapping path="/user/validateFriend/*/*" />
 			<mvc:mapping path="/blog/add" />
 			<mvc:mapping path="/blog/comment/*" />
 			<mvc:mapping path="/question/ask" />
