@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 public class UserInterceptor implements HandlerInterceptor {
         
-        private String loginUrl = "/LearningCommunity/index/index";
+        private String loginUrl = "/LearningCommunity/index";
 
         @Override
         public void afterCompletion(HttpServletRequest arg0,
