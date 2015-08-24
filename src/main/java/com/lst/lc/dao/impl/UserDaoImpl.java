@@ -11,9 +11,12 @@ import org.springframework.stereotype.Repository;
 import com.lst.lc.dao.RankDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Course;
+import com.lst.lc.entities.RelUser;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.RelUserCourseId;
+import com.lst.lc.entities.RelUserId;
 import com.lst.lc.entities.User;
+import com.lst.lc.utils.SetUtils;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao implements UserDao {
@@ -97,5 +100,46 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		Query query = query(hql).setMaxResults(5);
 		return query.list();
 	}
+
+        @Override
+        public void addRel(int uid1, int uid2) {
+                System.out.println("ddd");
+               RelUserId id = new RelUserId(uid1, uid2);
+               User user1 = getById(uid1);
+               User user2 = getById(uid2);
+               RelUser relUser = new RelUser(id, user1, user2, 0, new Date());
+               save(relUser);
+               getSession().flush();
+        }
+
+        @Override
+        public List<User> getFriends(int uid) {
+                User user = getById(uid);
+                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user, 1);
+                return users;
+        }
+
+        @Override
+        public List<User> getValidateFriends(int uid) {
+                User user = getById(uid);
+                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user, 0);
+                return users;
+        }
+
+        @Override
+        public void validateFriend(int uid1, int uid2, int state) {
+                String hql = "update RelUser as relUser set relUser.state = ? where relUser.id.userId1 = ? and relUser.id.userId2 = ?";
+                Query query = query(hql).setInteger(0, state).setInteger(1, uid1).setInteger(2, uid2);
+                query.executeUpdate();
+        }
+
+        @Override
+        public boolean ifFriend(int uid1, int uid2) {
+                List<User> friends = getFriends(uid1);
+                User user = getById(uid2);
+                if(friends.contains(user))
+                        return true;
+                return false;
+        }
 
 }

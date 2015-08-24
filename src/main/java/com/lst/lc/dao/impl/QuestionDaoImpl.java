@@ -42,11 +42,11 @@ public class QuestionDaoImpl extends BaseDao implements QuestionDao {
 	}
 
 	@Override
-	public List<Question> getTopFiveRecently() {
-		Date end = DateUtils.getDateBefore(new Date(), 7);
-		String hql = "from Question as question where question.time > ? order by question.readNums*0.2+question.answerNums*0.8 desc";
+	public List<Question> getTopFiveRecently(int id) {
+		Date end = DateUtils.getDateBefore(new Date(), 40);
+		String hql = "from Question as question where question.time > ? and question.questionId != ? order by question.readNums*0.2+question.answerNums*0.8 desc";
 		Query query = query(hql);
-		query.setDate(0, end);
+		query.setDate(0, end).setInteger(1, id);
 		query.setMaxResults(5);
 		List<Question> lists = query.list();
 		return lists;

@@ -30,6 +30,7 @@ import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
 import com.lst.lc.utils.MultipartFileUtils;
+import com.lst.lc.web.bean.Info;
 import com.lst.lc.web.bean.StatusMessage;
 import com.lst.lc.web.service.BlogPageHandler;
 import com.lst.lc.web.service.LogHandler;
@@ -80,6 +81,21 @@ public class UserController {
 		} else if (user.getPassword().equals(password)) {
 			message = "登录成功";
 			session.setAttribute("loginUser", user);
+			
+			List<User> friends = userDao.getValidateFriends(user.getUserId());
+			if(friends.size() > 0){
+			        Info info = new Info(); 
+			        info.setNum(friends.size());
+			        List<String> messages = new ArrayList<String>();
+			        for(int i = 0; i < friends.size(); i++){
+			                String str = friends.get(i).getUserName()+"请求添加你为好友";
+			                messages.add(str);
+			        }
+			        info.setMessages(messages);
+			        System.out.println(info.getNum());
+			        session.setAttribute("info", info);
+			}
+			
 			statusMessage = new StatusMessage(1, message);
 			// 写进日志，积分加1
 			logHandler.toLog(user, "登录网站");
