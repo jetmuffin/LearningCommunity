@@ -194,7 +194,7 @@ public class UserController {
 			RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("logoutMsg", "退出成功");
 		session.removeAttribute("loginUser");
-		return "redirect:/user/login";
+		return "redirect:/index";
 	}
 
 	@RequestMapping(value = "/completeInfo", method = RequestMethod.GET)
@@ -216,13 +216,53 @@ public class UserController {
 	}
 	
 	       @RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
-	        public String addFriend(Model model, HttpSession session, @PathVariable int uid) {
+	        public String addFriend(Model model, HttpSession session, @PathVariable int uid, RedirectAttributes redirectAttributes) {
 	                User user = (User) session.getAttribute("loginUser");
 	                model.addAttribute("user", user);
+	                String message = null;
 	                if(!userDao.ifFriend(user.getUserId(), uid)){
 	                     userDao.addRel(user.getUserId(), uid);   
+	                     message = "好友请求已发送";
+	                }else{
+	                     message = "你们已经是好友";
 	                }
-	                
-	                return "frontend/user/complete";
+	                redirectAttributes.addFlashAttribute("userMsg", message);
+	                return "frontend/user/center";
 	        }
+	       
+	       /**
+	        * 
+	        * @param model
+	        * @param session
+	        * @param state 为0表示拒绝,其他为同意
+	        * @param uid 对方的id
+	        * @return
+	        */
+               @RequestMapping(value = "/validateFriend/{uid}/{state}", method = RequestMethod.GET)
+               public String validateFriend(Model model, HttpSession session, @PathVariable int state, @PathVariable int uid) {
+                       User user = (User) session.getAttribute("loginUser");
+                       model.addAttribute("user", user);
+                       if(state != 0){
+                               userDao.validateFriend(uid, user.getUserId(), 1);
+                       }
+                       return "frontend/user/center";
+               }
+               
+               @RequestMapping(value = "/friends", method = RequestMethod.GET)
+               public String friends(Model model, HttpSession session) {
+                       User user = (User) session.getAttribute("loginUser");
+                       model.addAttribute("user", user);
+                       List<User> friends = userDao.getFriends(user.getUserId());
+                       model.addAttribute("friends",friends);
+                       return "frontend/user/center";
+               }
+               
+               @RequestMapping(value = "/info", method = RequestMethod.GET)
+               public String info(Model model, HttpSession session) {
+                       User user = (User) session.getAttribute("loginUser");
+                       model.addAttribute("user", user);
+                       List<User> friends = userDao.getValidateFriends(user.getUserId());
+                       model.addAttribute("friends",friends);
+                       return "frontend/user/center";
+               }
 }
