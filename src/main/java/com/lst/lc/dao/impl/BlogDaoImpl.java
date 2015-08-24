@@ -81,4 +81,11 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
 		return query.list();
 	}
 
+        @Override
+        public void addCommentNums(int blogId) {
+                String hql = "update Blog as blog set blog.commentNums = blog.commentNums + 1 where blog.blogId = ?";
+                Query query = query(hql).setInteger(0, blogId);
+                query.executeUpdate();
+        }
+
 }

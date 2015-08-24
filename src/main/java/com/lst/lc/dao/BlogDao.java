@@ -46,6 +46,8 @@ public interface BlogDao {
 	
 	public void addReadNums(int blogId);
 	
+	public void addCommentNums(int blogId);
+	
 	public List<Blog> getOtherBlogs(int userId, int blogId);
 	
 	public List<Blog> search(String key);

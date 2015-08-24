@@ -214,4 +214,15 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("userMsg", "信息完善成功");
 		return "redirect:/course/courses";
 	}
+	
+	       @RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
+	        public String addFriend(Model model, HttpSession session, @PathVariable int uid) {
+	                User user = (User) session.getAttribute("loginUser");
+	                model.addAttribute("user", user);
+	                if(!userDao.ifFriend(user.getUserId(), uid)){
+	                     userDao.addRel(user.getUserId(), uid);   
+	                }
+	                
+	                return "frontend/user/complete";
+	        }
 }

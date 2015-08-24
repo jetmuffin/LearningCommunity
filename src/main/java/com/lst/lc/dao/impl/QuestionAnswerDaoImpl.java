@@ -13,7 +13,7 @@ import com.lst.lc.entities.User;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 @Repository("questionAnswerDao")
-public class QuestionDaoAnswerImpl extends BaseDao implements QuestionAnswerDao {
+public class QuestionAnswerDaoImpl extends BaseDao implements QuestionAnswerDao {
 
 	@Override
 	public void addQuestionAnswer(QuestionAnswer questionAnswer) {
