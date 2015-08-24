@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,7 +55,7 @@
 							<div class="blog-comment-header">
 								<a href="" class="blog-comment-author"><img
 									src="/LearningCommunity/read/avatar/${comment.user.userId }" class="avatar-32" alt="">${comment.user.userName}</a>
-								<span class="answer-time">${comment.time} 回答</span>
+								<span class="answer-time">${jt.format(comment.time)} 回答</span>
 								<div class="blog-comment-header-right r">#${status.count
 									+1}</div>
 							</div>
