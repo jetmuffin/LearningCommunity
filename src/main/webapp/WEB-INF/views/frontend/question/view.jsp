@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
+<jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -35,7 +36,7 @@
 					<div class="qa-content">
 						<div class="qa-content-inner rich-text">${question.content }</div>
 						<div class="qa-content-addon clearfix">
-							<span class="qa-createtime l">${question.time}</span>
+							<span class="qa-createtime l">${jt.format(question.time)}</span>
 							<div class="taglist l">
 								<c:forEach var="tag" items="${st.stringSplit(question.tag)}">
 									<a href="" target="_blank" class="list-tag">${tag}</a>
@@ -54,7 +55,7 @@
 								<div class="qa-answer-header">
 									<a href="" class="qa-author"><img src="/LearningCommunity/read/avatar/${answer.user.userId }"
 										class="avatar-32" alt="">${answer.user.userName}</a> <span
-										class="answer-time">${answer.time} 回答</span>
+										class="answer-time">${jt.format(answer.time)} 回答</span>
 									<div class="qa-answer-header-right r">#${status.count }</div>
 								</div>
 								<div class="qa-answer-content">
