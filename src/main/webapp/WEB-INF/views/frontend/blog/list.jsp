@@ -76,6 +76,8 @@
 				</div>
 			</div>
 			<div class="blog-sidebar">
+				
+				<c:if test="${ not empty loginUser}">
 				<div class="sidebar-item">
 					<h3 class="item-title">
 						我的讨论<a>»</a>
@@ -92,7 +94,9 @@
 							<a href="">我的回复</a>
 						</div>
 					</div>
-				</div>
+					</div>
+					</c:if>
+				
 				<div class="sidebar-item">
 					<h3 class="item-title">
 						热门作者<a>»</a>

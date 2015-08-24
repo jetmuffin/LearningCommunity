@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="question-sidebar">
-	<div class="sidebar-item">
+	
+		<c:if test="${ not empty loginUser}">
+		<div class="sidebar-item">
 		<h3 class="item-title">
 			我的讨论<a>»</a>
 		</h3>
@@ -20,7 +22,9 @@
 				<p>${questionSide.answerNums }</p>
 			</div>
 		</div>
-	</div>
+		</div>
+		</c:if>
+	
 	<div class="sidebar-item">
 		<h3 class="item-title">
 			热门标签<a>»</a>
