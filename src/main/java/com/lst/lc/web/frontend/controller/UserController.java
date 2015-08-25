@@ -41,9 +41,9 @@ import com.lst.lc.web.service.LogHandler;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-        
-        @Autowired
-        private IntegralRecordOperation integralRecordOperation;
+
+	@Autowired
+	private IntegralRecordOperation integralRecordOperation;
 
 	@Autowired
 	@Qualifier("userDao")
@@ -52,14 +52,14 @@ public class UserController {
 	@Autowired
 	@Qualifier("blogDao")
 	private BlogDao blogDao;
-	
+
 	@Autowired
 	@Qualifier("questionDao")
 	private QuestionDao questionDao;
-	
+
 	@Autowired
 	private LogHandler logHandler;
-	
+
 	@Autowired
 	@Qualifier("blogPageHandler")
 	private BlogPageHandler blogPageHandler;
@@ -87,21 +87,21 @@ public class UserController {
 		} else if (user.getPassword().equals(password)) {
 			message = "登录成功";
 			session.setAttribute("loginUser", user);
-			
+
 			List<User> friends = userDao.getValidateFriends(user.getUserId());
-			if(friends.size() > 0){
-			        Info info = new Info(); 
-			        info.setNum(friends.size());
-			        List<String> messages = new ArrayList<String>();
-			        for(int i = 0; i < friends.size(); i++){
-			                String str = friends.get(i).getUserName()+"请求添加你为好友";
-			                messages.add(str);
-			        }
-			        info.setMessages(messages);
-			        System.out.println(info.getNum());
-			        session.setAttribute("info", info);
+			if (friends.size() > 0) {
+				Info info = new Info();
+				info.setNum(friends.size());
+				List<String> messages = new ArrayList<String>();
+				for (int i = 0; i < friends.size(); i++) {
+					String str = friends.get(i).getUserName() + "请求添加你为好友";
+					messages.add(str);
+				}
+				info.setMessages(messages);
+				System.out.println(info.getNum());
+				session.setAttribute("info", info);
 			}
-			
+
 			statusMessage = new StatusMessage(1, message);
 			// 写进日志，积分加1
 			logHandler.toLog(user, "登录网站");
@@ -116,11 +116,12 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/zone/{userId}", method = RequestMethod.GET)
-	public String index(Model model, @PathVariable int userId, String pageNum, String pageSize, String type) {
+	public String index(Model model, @PathVariable int userId, String pageNum,
+			String pageSize, String type) {
 
 		User user = userDao.getById(userId);
 		model.addAttribute("user", user);
-		
+
 		int pageNow = 1;
 		int pagesize = 10;
 		int sorttype = 1;
@@ -133,58 +134,62 @@ public class UserController {
 		if (type != null) {
 			sorttype = Integer.valueOf(type);
 		}
-		
+
 		model.addAttribute("page",
 				blogPageHandler.getBlogs(pageNow, pagesize, sorttype));
-		
+
 		return "frontend/user/zone";
 	}
-	
+
 	@RequestMapping(value = "/{userId}/center", method = RequestMethod.GET)
-	public String center(Model model, @PathVariable int userId, HttpSession session) {
-		//User user = (User) session.getAttribute("loginUser");
-//		if(user == null){
-//			return "redirect:/course/courses";
-//		}else{
-//			user = userDao.getById(user.getUserId());
-			User user = userDao.getById(userId);
-			model.addAttribute("user",user);
-			Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
-			Iterator<RelUserCourse> iterator = relUserCourses.iterator();
-			List<Course> courses = new ArrayList<Course>();
-			while(iterator.hasNext()){
-				RelUserCourse relUserCourse = iterator.next();
-				Course course = relUserCourse.getCourse();
-				courses.add(course);
-			}
-			model.addAttribute("courses", courses);
-			
-			List<Blog> blogs = blogDao.getBlogsOfUser(user.getUserId());
-			List<Question> questions = questionDao.getQuestionOfUser(user.getUserId());
-			model.addAttribute("blogs", blogs);
-			model.addAttribute("questions", questions);
-			return "frontend/user/center";
-//		}
-	}
-	
-	@RequestMapping(value="/{userId}/blog", method = RequestMethod.GET)
-	public String blog(Model model, @PathVariable int userId, HttpSession session){
+	public String center(Model model, @PathVariable int userId,
+			HttpSession session) {
+		// User user = (User) session.getAttribute("loginUser");
+		// if(user == null){
+		// return "redirect:/course/courses";
+		// }else{
+		// user = userDao.getById(user.getUserId());
 		User user = userDao.getById(userId);
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
+		Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
+		Iterator<RelUserCourse> iterator = relUserCourses.iterator();
+		List<Course> courses = new ArrayList<Course>();
+		while (iterator.hasNext()) {
+			RelUserCourse relUserCourse = iterator.next();
+			Course course = relUserCourse.getCourse();
+			courses.add(course);
+		}
+		model.addAttribute("courses", courses);
+
+		List<Blog> blogs = blogDao.getBlogsOfUser(user.getUserId());
+		List<Question> questions = questionDao.getQuestionOfUser(user
+				.getUserId());
+		model.addAttribute("blogs", blogs);
+		model.addAttribute("questions", questions);
+		return "frontend/user/center";
+		// }
+	}
+
+	@RequestMapping(value = "/{userId}/blog", method = RequestMethod.GET)
+	public String blog(Model model, @PathVariable int userId,
+			HttpSession session) {
+		User user = userDao.getById(userId);
+		model.addAttribute("user", user);
 		List<Blog> blogs = blogDao.getBlogsOfUser(userId);
 		model.addAttribute("blogs", blogs);
 		model.addAttribute("center_module", "blog");
 		return "frontend/user/center";
 	}
 
-	@RequestMapping(value="/{userId}/course", method = RequestMethod.GET)
-	public String course(Model model, @PathVariable int userId, HttpSession session){
+	@RequestMapping(value = "/{userId}/course", method = RequestMethod.GET)
+	public String course(Model model, @PathVariable int userId,
+			HttpSession session) {
 		User user = userDao.getById(userId);
-		model.addAttribute("user",user);
+		model.addAttribute("user", user);
 		Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
 		Iterator<RelUserCourse> iterator = relUserCourses.iterator();
 		List<Course> courses = new ArrayList<Course>();
-		while(iterator.hasNext()){
+		while (iterator.hasNext()) {
 			RelUserCourse relUserCourse = iterator.next();
 			Course course = relUserCourse.getCourse();
 			courses.add(course);
@@ -193,27 +198,30 @@ public class UserController {
 		model.addAttribute("center_module", "course");
 		return "frontend/user/center";
 	}
-	
-	@RequestMapping(value="/{userId}/ask", method = RequestMethod.GET)
-	public String ask(Model model, @PathVariable int userId, HttpSession session){
+
+	@RequestMapping(value = "/{userId}/ask", method = RequestMethod.GET)
+	public String ask(Model model, @PathVariable int userId, HttpSession session) {
 		User user = userDao.getById(userId);
-		model.addAttribute("user",user);
-		List<Question> questions = questionDao.getQuestionOfUser(user.getUserId());
+		model.addAttribute("user", user);
+		List<Question> questions = questionDao.getQuestionOfUser(user
+				.getUserId());
 		model.addAttribute("questions", questions);
 		model.addAttribute("center_module", "ask");
 		return "frontend/user/center";
 	}
-	
-	@RequestMapping(value="/{userId}/answer", method = RequestMethod.GET)
-	public String answer(Model model, @PathVariable int userId, HttpSession session){
+
+	@RequestMapping(value = "/{userId}/answer", method = RequestMethod.GET)
+	public String answer(Model model, @PathVariable int userId,
+			HttpSession session) {
 		User user = userDao.getById(userId);
-		model.addAttribute("user",user);
-		List<QuestionAnswer> questionAnswers = new ArrayList<QuestionAnswer>(user.getQuestionAnswers());
+		model.addAttribute("user", user);
+		List<QuestionAnswer> questionAnswers = new ArrayList<QuestionAnswer>(
+				user.getQuestionAnswers());
 		model.addAttribute("answers", questionAnswers);
 		model.addAttribute("center_module", "answer");
 		return "frontend/user/center";
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public StatusMessage register(String userName, String email,
@@ -261,7 +269,8 @@ public class UserController {
 
 	@RequestMapping(value = "/completeInfo", method = RequestMethod.POST)
 	public String complete(Model model, HttpSession session, String gender,
-			MultipartFile avatar, String motto, String city, RedirectAttributes redirectAttributes) {
+			MultipartFile avatar, String motto, String city,
+			RedirectAttributes redirectAttributes) {
 		User user = (User) session.getAttribute("loginUser");
 		String avatarPath = "/opt/LearningCommunity/avatar";
 		String avatarUrl = MultipartFileUtils.saveFile(avatar, avatarPath);
@@ -269,63 +278,70 @@ public class UserController {
 		redirectAttributes.addFlashAttribute("userMsg", "信息完善成功");
 		return "redirect:/course/courses";
 	}
-	
-	       @RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
-	        public String addFriend(Model model, HttpSession session, @PathVariable int uid, RedirectAttributes redirectAttributes) {
-	                User user = (User) session.getAttribute("loginUser");
-	                model.addAttribute("user", user);
-	                String message = null;
-	                if(!userDao.ifFriend(user.getUserId(), uid)){
-	                     userDao.addRel(user.getUserId(), uid);   
-	                     message = "好友请求已发送";
-	                }else{
-	                     message = "你们已经是好友";
-	                }
-	                redirectAttributes.addFlashAttribute("userMsg", message);
-	                return "frontend/user/center";
-	        }
-	       
-	       /**
-	        * 
-	        * @param model
-	        * @param session
-	        * @param state 为0表示拒绝,其他为同意
-	        * @param uid 对方的id
-	        * @return
-	        */
-               @RequestMapping(value = "/validateFriend/{uid}/{state}", method = RequestMethod.GET)
-               public String validateFriend(Model model, HttpSession session, @PathVariable int state, @PathVariable int uid) {
-                       User user = (User) session.getAttribute("loginUser");
-                       model.addAttribute("user", user);
-                       if(state != 0){
-                               userDao.validateFriend(uid, user.getUserId(), 1);
-                       }
-                       return "frontend/user/center";
-               }
-               
-               @RequestMapping(value = "/friends", method = RequestMethod.GET)
-               public String friends(Model model, HttpSession session) {
-                       User user = (User) session.getAttribute("loginUser");
-                       model.addAttribute("user", user);
-                       List<User> friends = userDao.getFriends(user.getUserId());
-                       model.addAttribute("friends",friends);
-                       return "frontend/user/center";
-               }
-               
-               @RequestMapping(value = "/info", method = RequestMethod.GET)
-               public String info(Model model, HttpSession session) {
-                       User user = (User) session.getAttribute("loginUser");
-                       model.addAttribute("user", user);
-                       List<User> friends = userDao.getValidateFriends(user.getUserId());
-                       model.addAttribute("friends",friends);
-                       return "frontend/user/center";
-               }
-               
-               @RequestMapping(value = "/record/{userId}", method = RequestMethod.GET)
-               @ResponseBody
-               public List<IntegralRecord> record(Model model, HttpSession session, @PathVariable int userId) {
-                       User user = userDao.getById(userId);
-                       List<IntegralRecord> records = integralRecordOperation.getRecent(user.getEmail());
-                       return records;
-               }
+
+	@RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
+	public String addFriend(Model model, HttpSession session,
+			@PathVariable int uid, RedirectAttributes redirectAttributes) {
+		User user = (User) session.getAttribute("loginUser");
+		model.addAttribute("user", user);
+		String message = null;
+		if (!userDao.ifFriend(user.getUserId(), uid)) {
+			userDao.addRel(user.getUserId(), uid);
+			message = "好友请求已发送";
+		} else {
+			message = "你们已经是好友";
+		}
+		redirectAttributes.addFlashAttribute("userMsg", message);
+		return "frontend/user/center";
+	}
+
+	/**
+	 * 
+	 * @param model
+	 * @param session
+	 * @param state
+	 *            为0表示拒绝,其他为同意
+	 * @param uid
+	 *            对方的id
+	 * @return
+	 */
+	@RequestMapping(value = "/validateFriend/{uid}/{state}", method = RequestMethod.GET)
+	public String validateFriend(Model model, HttpSession session,
+			@PathVariable int state, @PathVariable int uid) {
+		User user = (User) session.getAttribute("loginUser");
+		model.addAttribute("user", user);
+		if (state != 0) {
+			userDao.validateFriend(uid, user.getUserId(), 1);
+		}
+		return "frontend/user/center";
+	}
+
+	@RequestMapping(value = "/friends", method = RequestMethod.GET)
+	public String friends(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		model.addAttribute("user", user);
+		List<User> friends = userDao.getFriends(user.getUserId());
+		model.addAttribute("friends", friends);
+		return "frontend/user/center";
+	}
+
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public String info(Model model, HttpSession session) {
+		User user = (User) session.getAttribute("loginUser");
+		model.addAttribute("user", user);
+		List<User> friends = userDao.getValidateFriends(user.getUserId());
+		model.addAttribute("friends", friends);
+		return "frontend/user/center";
+	}
+
+	@RequestMapping(value = "/record/{userId}", method = RequestMethod.GET)
+	@ResponseBody
+	public List<IntegralRecord> record(Model model, HttpSession session,
+			@PathVariable int userId) {
+		int day = 30;
+		User user = userDao.getById(userId);
+		List<IntegralRecord> records = integralRecordOperation.getRecent(
+				user.getEmail(), day);
+		return records;
+	}
 }

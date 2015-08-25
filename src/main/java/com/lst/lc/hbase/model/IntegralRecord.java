@@ -17,6 +17,13 @@ public class IntegralRecord {
                 this.date = DateUtils.getCurrentDateForShow();
                 this.integral = integral;
         }
+        
+        public IntegralRecord(String key, String date, String integral) {
+                super();
+                this.key = key;
+                this.date = date;
+                this.integral = integral;
+        }
         public String getKey() {
                 return key;
         }

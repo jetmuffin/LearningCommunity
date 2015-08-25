@@ -192,9 +192,9 @@ public class HbaseOperation {
 		}
 	}
 	
-	public ResultScanner queryIntegral(String email){
+	public ResultScanner queryIntegral(String email, int day){
                 String now = DateUtils.getCurrentDate();
-                String before = DateUtils.get30Before();
+                String before = DateUtils.getBefore(day-1);
                 String startkey = email + before;
                 String endkey = email + now;
                 try {
