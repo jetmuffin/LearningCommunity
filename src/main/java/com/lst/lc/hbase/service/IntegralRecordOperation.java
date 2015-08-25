@@ -64,7 +64,6 @@ public class IntegralRecordOperation {
                 if (record == null) {
                         todayRecord = new IntegralRecord(email,
                                         String.valueOf(integral));
-                        add(todayRecord);
                 } else {
                         int add;
                         if(record.getIntegral() == null || record
@@ -77,5 +76,32 @@ public class IntegralRecordOperation {
                                         email,
                                         String.valueOf(integral + add));
                 }
+                add(todayRecord);
+        }
+        
+        public void updateTest(String date, int integral ,String key) {
+                IntegralRecord record = get(key);
+                IntegralRecord todayRecord = null;
+                System.out.println(key);
+                if (record == null) {
+                        todayRecord = new IntegralRecord();
+                        todayRecord.setKey(key);
+                        todayRecord.setIntegral(String.valueOf(integral));
+                        todayRecord.setDate(date);
+                        
+                } else {
+                        int add;
+                        if(record.getIntegral() == null || record
+                                        .getIntegral().equals("")){
+                                add = 0;
+                        }else{
+                                add = Integer.parseInt(record.getIntegral());
+                        }
+                        todayRecord = new IntegralRecord();
+                        todayRecord.setKey(key);
+                        todayRecord.setIntegral(String.valueOf(integral+add));
+                        todayRecord.setDate(date);
+                }
+                add(todayRecord);
         }
 }
