@@ -24,16 +24,16 @@ public class LogOperation {
 			//传值有问题，处理一下
 			return ;
 		}
-		mHbaseOperation.insertData("cloud_log", log.getKey(), "attr", "userEmail", log.getUserEmail());
-		mHbaseOperation.insertData("cloud_log", log.getKey(), "attr", "time", log.getTime());
-		mHbaseOperation.insertData("cloud_log", log.getKey(), "attr", "operation", log.getOperation());
+		mHbaseOperation.insertData("lc_log", log.getKey(), "attr", "userEmail", log.getUserEmail());
+		mHbaseOperation.insertData("lc_log", log.getKey(), "attr", "time", log.getTime());
+		mHbaseOperation.insertData("lc_log", log.getKey(), "attr", "operation", log.getOperation());
 	}
 
 	/**
 	 * 检索某用户的所有日志
 	 */
 	public List<Log> getByUserEmail(String userEmail) {
-		ResultScanner rs = mHbaseOperation.queryByColumn("cloud_log", "attr", "userEmail", userEmail);
+		ResultScanner rs = mHbaseOperation.queryByColumn("lc_log", "attr", "userEmail", userEmail);
 		return modelMapping.logListMapping(rs);
 	}
 
