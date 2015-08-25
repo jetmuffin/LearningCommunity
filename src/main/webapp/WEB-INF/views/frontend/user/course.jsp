@@ -3,7 +3,12 @@
   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="center-content">
                 <div class="main-title">
-                    <h1>我的课程</h1>
+                    <h1>
+                    	<c:choose>
+                    		<c:when test="${loginUser.userId eq user.userId }">我的课程</c:when>
+                    		<c:otherwise>他的课程</c:otherwise>
+                    	</c:choose>
+                    </h1>
                 </div>
                 <div class="course-list">
                     <div class="all-course-list">

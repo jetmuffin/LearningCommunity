@@ -59,7 +59,7 @@
 							</div>
 							<div class="question-footer clearfix">
 								<div class="question-author l">
-									<a href="">${question.user.userName}</a>
+									<a href="/LearningCommunity/user/${question.user.userId}/course">${question.user.userName}</a>
 								</div>
 								<div class="question-time l">${jt.format(question.time)}</div>
 								<div class="question-tag-list l">

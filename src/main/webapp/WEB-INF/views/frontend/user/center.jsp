@@ -38,7 +38,7 @@
 							class="text-muted">积分</span></li>
 					</ul>
 				</div>
-				<ul class="rep-rects clearfix">
+				<ul class="rep-rects clearfix" id="calendar">
 				
 				</ul>
 				<div class="motto">
@@ -62,5 +62,9 @@
 	</div>
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+		<script>
+			var uid = ${user.userId};
+		</script>
+	<script src="/LearningCommunity/resources/js/frontend/user/center.js"></script>
 </body>
 </html>

@@ -10,15 +10,15 @@
 		</h3>
 		<div class="user-info clearfix">
 			<div class="user-img l text-center">
-				<a href=""><img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt=""></a>
-				<p class="username">${user.userName}</p>
+				<a href="/LearningCommunity/user/${loginUser.userId}/course""><img src="/LearningCommunity/read/avatar/${loginUser.userId }" alt=""></a>
+				<p class="username">${loginUser.userName}</p>
 			</div>
 			<div class="user-statics l text-center statics-mid">
-				<a href="">提问</a>
+				<a href="/LearningCommunity/user/${loginUser.userId}/ask">提问</a>
 				<p>${questionSide.questionNums }</p>
 			</div>
 			<div class="user-statics l text-center">
-				<a href="">回答</a>
+				<a href="/LearningCommunity/user/${loginUser.userId}/answer">回答</a>
 				<p>${questionSide.answerNums }</p>
 			</div>
 		</div>

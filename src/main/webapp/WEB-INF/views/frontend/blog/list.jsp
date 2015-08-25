@@ -45,7 +45,7 @@
 							</div>
 							<div class="blog-footer clearfix">
 								<div class="blog-author l">
-									<a href=""><img
+									<a href="/LearningCommunity/user/${blog.user.userId}/course"><img
 										src="/LearningCommunity/read/avatar/${blog.user.userId }"
 										class="avatar-20" alt="">${blog.user.userName}</a>
 								</div>
@@ -152,12 +152,12 @@
 					<ul class="blog-hot-author">
 						<c:forEach var="user" items="${users}">
 							<li class="author-item clearfix"><a
-								href="/LearningCommunity/user/index/${user.userId }"
+								href="/LearningCommunity/user/${user.userId}/course"
 								class="l user-avatar"><img
 									src="/LearningCommunity/read/avatar/${user.userId }" alt=""
 									class="avatar-40"></a>
 								<div class="author-info">
-									<strong><a href="">${user.userName}</a></strong>
+									<strong><a href="/LearningCommunity/user/${user.userId}/course">${user.userName}</a></strong>
 								</div></li>
 						</c:forEach>
 					</ul>

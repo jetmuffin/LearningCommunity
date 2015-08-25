@@ -2102,6 +2102,71 @@ padding: 10px;
   border: 1px solid #ddd;
   border-width: 1px;
 }
+#usercenter #calendar .rect {
+  display: block;
+  float: left;
+  margin: 1px;
+  width: 15px;
+  height: 15px;
+}
+.rect:hover {
+    -moz-box-shadow: 0 0 0 1px #3A64F9;
+    -webkit-box-shadow: 0 0 0 1px #3A64F9;
+    box-shadow: 0 0 0 1px #3A64F9;
+}
+.bg-blue {
+    background-color: #567BFF;
+}		
+.bg-gray{
+	    background-color: #F3F3F3;
+}
+.tooltip{
+    position: absolute;
+    z-index: 1070;
+    display: block;
+    visibility: visible;
+    font-size: 12px;
+    line-height: 1.4;
+    opacity: 0;
+    filter: alpha(opacity=0);	
+}
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity 0.15s linear;
+    -o-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+.tooltip.bottom {
+    margin-top: 3px;
+    padding: 5px 0;
+}
+.tooltip.in {
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+}
+.tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #000;
+}
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.tooltip-inner {
+    max-width: 200px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000;
+    border-radius: 3px;
+}
 #usercenter .motto{
 	margin-top: -1px;
   padding: 15px 15px 5px;
