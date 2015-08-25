@@ -45,14 +45,33 @@ public class IntegralRecordOperation {
                 return modelMapping.integralRecordMapping(rs, key);
         }
 
-        public List<IntegralRecord> getRecent(String email) {
-                ResultScanner rs = mHbaseOperation.queryIntegral(email);
+        public List<IntegralRecord> getRecent(String email, int day) {
+                ResultScanner rs = mHbaseOperation.queryIntegral(email, day);
                 List<IntegralRecord> lists =  modelMapping.integralListMapping(rs);
                 IntegralRecord record = get(email+DateUtils.getCurrentDate());
                 if(lists == null){
                         lists = new ArrayList<IntegralRecord>();
                 }
                 lists.add(record);
+                if(lists.size() < day){
+                        List<IntegralRecord> records = new ArrayList<IntegralRecord>();
+                        for(int i = day-1; i > 0; i--){
+                                String before = DateUtils.getBefore(i);
+                                String key = email + before;
+                                for(int j = 0; j < lists.size(); j++){
+                                        if(lists.get(j).getKey().equals(key)){
+                                                records.add(lists.get(j));
+                                                lists.remove(j);
+                                        }else{
+                                                IntegralRecord record1 = new IntegralRecord(key, DateUtils.getBeforeForShow(i), "0");
+                                               records.add(record1);
+                                        }
+                                }
+                        }
+                       records.add(record); 
+                       return records;
+                }
+              lists.add(record);
                 return lists;
         }
 

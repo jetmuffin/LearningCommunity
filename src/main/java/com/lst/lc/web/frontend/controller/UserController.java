@@ -321,11 +321,11 @@ public class UserController {
                        return "frontend/user/center";
                }
                
-               @RequestMapping(value = "/record", method = RequestMethod.POST)
+               @RequestMapping(value = "/record/{day}", method = RequestMethod.GET)
                @ResponseBody
-               public List<IntegralRecord> record(Model model, HttpSession session) {
+               public List<IntegralRecord> record(Model model, HttpSession session, @PathVariable int day) {
                        User user = (User) session.getAttribute("loginUser");
-                       List<IntegralRecord> records = integralRecordOperation.getRecent(user.getEmail());
+                       List<IntegralRecord> records = integralRecordOperation.getRecent(user.getEmail(), day);
                        return records;
                }
 }
