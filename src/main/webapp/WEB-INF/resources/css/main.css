@@ -2055,13 +2055,17 @@ padding: 10px;
   border-radius: 3px 3px 0 0;
     width:300px;	
 } 
-
+.add-friend{
+  display: block;
+  max-width: 80px;
+  margin-top:10px;	
+}
 #usercenter  .media-body {
   overflow: hidden;
   zoom: 1;
 }
 #usercenter  .profile-header h4 {
-  margin: 15px 0 5px;
+  margin: 0 0 5px;
   font-size: 20px;
 }
 #usercenter .profile-header .user-avatar{

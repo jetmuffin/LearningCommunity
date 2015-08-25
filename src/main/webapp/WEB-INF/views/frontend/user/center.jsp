@@ -17,7 +17,7 @@
 			</ol>
 		</div>
 	</div>
-
+${userMsg}
 	<div id="usercenter">
 		<div class="container">
 			<div class="sidebar l">
@@ -29,6 +29,12 @@
 						<h4 class="media-heading">${user.userName}</h4>
 						<p>性别: ${user.gender}</p>
 						<p>城市: ${user.city}</p>
+						<c:if test="${not empty loginUser }">
+							<c:if test="${ loginUser.userId ne user.userId}">
+								<a href="/LearningCommunity/user/addFriend/${user.userId }" class=" r btn btn-primary btn-large add-friend">加为好友</a>
+							</c:if>
+						</c:if>
+						
 					</div>
 				</div>
 				<div class="profile clearfix">
@@ -64,7 +70,7 @@
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 		<script>
 			var uid = ${user.userId};
-		</script>
+			</script>
 	<script src="/LearningCommunity/resources/js/frontend/user/center.js"></script>
 </body>
 </html>
