@@ -23,6 +23,7 @@ import com.lst.lc.dao.LessonDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.User;
+import com.lst.lc.utils.MagickPic;
 import com.lst.lc.utils.PathUtils;
 import com.lst.lc.web.bean.MyCaptcha;
 import com.lst.lc.web.service.CaptchaHandler;
@@ -52,6 +53,24 @@ public class ReadResourcesController {
 		Course course = courseDao.getCourse(courseId);
 		String imagePath = course.getImageUrl();
 		PathUtils.readPhoto(imagePath, response);
+	}
+	
+	@RequestMapping(value = "/photo/{courseId}", method = RequestMethod.GET)
+	public void readXPhotos(@PathVariable int courseId, String width, String height,
+			HttpServletResponse response) {
+		Course course = courseDao.getCourse(courseId);
+		String imagePath = course.getImageUrl();
+		//PathUtils.readPhoto(imagePath, response);
+		MagickPic magickPic = new MagickPic();
+		byte[] bytes = magickPic.scaleImage(imagePath, width, height);
+		try {
+			OutputStream os = response.getOutputStream();
+			os.write(bytes);
+			os.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@RequestMapping(value = "/avatar/{userId}", method = RequestMethod.GET)
