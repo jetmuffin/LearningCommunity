@@ -1,5 +1,6 @@
 package com.lst.lc.utils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -55,4 +56,49 @@ public class PathUtils {
 			}
 		}
 	}
+	
+//	public static void readPhoto(String imagePath,String width, String height,HttpServletResponse response){
+//		File imageFile = new File(imagePath);
+//		String format = imagePath.substring(imagePath.lastIndexOf(".") + 1).trim().toLowerCase();
+//		byte[] buffer = null;
+//		if (imageFile != null && imageFile.exists()) {
+//			buffer = new byte[5120];
+//			InputStream is = null;
+//			OutputStream os = null;
+//	        ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+//			try {
+//				is = new FileInputStream(imageFile);
+//				while (is.read(buffer) != -1) {
+//					baos.write(buffer);
+//				}
+//				os.flush();
+//				byte[] data = baos.toByteArray();
+//			} catch (Exception e) {
+//				try {
+//					response.getWriter().write("Can't read the Photo!");
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
+//			} finally {
+//				try {
+//					if (is != null) {
+//						is.close();
+//					}
+//					if (os != null) {
+//						os.close();
+//					}
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		}else{
+//			try {
+//				response.getWriter().write("Not Found the Photo!");
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }
