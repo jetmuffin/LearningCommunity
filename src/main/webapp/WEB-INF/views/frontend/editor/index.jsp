@@ -32,8 +32,15 @@
     </div>
 	<script src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 		<script src="/LearningCommunity/resources/js/socketio/socket.io.js"></script>
-	<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
 	<script>
+	var chatRoomAddress = "${chatRoomAddress}";
+	var user = {
+			'uid': '${loginUser.userName}',
+			'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
+	};
+	var room = {
+			'room_id': 23214
+	};
 		function loadEditor(d){
 			var language = $(d).attr("lang");
 			var url;
@@ -41,9 +48,9 @@
 			{
 			case "html": url = "/LearningCommunity/editor/html";
 			  break;
-			case "java":url = "http://localhost:8000";
+			case "java":url = "${javaRunAddress}";
 				break;
-			case "cpp":url = "http://localhost:8001";
+			case "cpp":url = "${cppRunAddress}";
 			  break;
 			default: url = "/LearningCommunity/editor/html";
 			}
@@ -51,13 +58,6 @@
 		}
 		
 		$(function(){
-			user = {
-					'uid': '${loginUser.userName}',
-					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
-			};
-			room = {
-					'room_id': 23214
-			};
 			 var width = document.body.clientWidth,
 			 		discussBtn = $('#discussBtn'),
 			 		chatroom = $('#chatroom'),
@@ -73,5 +73,6 @@
 			 });
 		});
 	</script>
+		<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
 </body>
 </html>
