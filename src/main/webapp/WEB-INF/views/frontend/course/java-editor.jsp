@@ -20,7 +20,7 @@
 		</div>
 		  <div id="editor" class=" clearfix l">
     <div id="laboratory">
-      <iframe src="" id="java-lab" frameborder="0"></iframe>
+      <iframe src="${javaRunAddress}" id="java-lab" frameborder="0"></iframe>
     </div>
   </div>
   </div>
@@ -35,6 +35,7 @@
 	
 	<script>
 		$(function(){
+			chatRoomAddress = '${chatRoomAddress}';
 			user = {
 					'uid': '${loginUser.userName}',
 					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}

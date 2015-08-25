@@ -15,7 +15,7 @@ HiChat.prototype = {
         var that = this;
         this._initialEmoji();//初始化表情
         //建立到服务器的socket连接
-        this.socket = io.connect("localhost:8000");
+        this.socket = io.connect(chatRoomAddress);
         //监听socket的connect事件，此事件表示连接已经建立
         this.socket.on('connect', function() {
             //连接到服务器后，登录

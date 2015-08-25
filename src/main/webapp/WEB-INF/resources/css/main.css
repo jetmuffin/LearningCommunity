@@ -2091,16 +2091,71 @@ padding: 10px;
 #usercenter .profile .profile-rank li:first-child {
   border-left: none;
 }
+#usercenter .integral{
+	font-weight: bold;
+  color: rgb(87, 130, 224);
+}
+#usercenter .rep-rects {
+  list-style: none;
+  margin: -1px 0 0;
+  padding: 6px 0 6px 6px;
+  border: 1px solid #ddd;
+  border-width: 1px;
+}
+#usercenter .motto{
+	margin-top: -1px;
+  padding: 15px 15px 5px;
+  border: 1px solid #ddd;
+  background-color: #f6f6f6;
+  font-size: 13px;
+  max-height: 300px;
+  overflow: auto;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+#usercenter .route{
+	  position: relative;
+  margin-top: -1px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  -moz-border-radius: 0 0 3px 3px;
+  -webkit-border-radius: 0;
+  border-radius: 0 0 3px 3px;
+}
+#usercenter .nav-pills {
+  margin-bottom: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+#usercenter .nav-pills>li {
+  float: left;
+}
+#usercenter .nav>li {
+  position: relative;
+  display: block;
+}
+#usercenter .nav-pills>li>a {
+  margin-right: 5px;
+  padding: 7px 12px;
+  border-radius:3px;
+}
+#usercenter .nav>li.active a{
+	background-color:#49d;
+	color:#fff;
+}
+#usercenter .nav-pills>li>a:hover{
+	background-color:#eee;
+}
+#usercenter .nav:after {
+  clear: both;
+}
+#usercenter .route strong{
+	font-weight:bold;
+	color:#333;
+}
 #usercenter  .profile .profile-rank li strong {
   display: block;
   font-size: 16px;
   margin-bottom:5px;
-}
-#usercenter .nav li a{
-	  display: block;
-  padding: 10px 30px;
-  border: 1px solid #ddd;
-  border-top: none;
 }
 #usercenter .usercenter-main{
 	width:700px;
@@ -2123,6 +2178,19 @@ padding: 10px;
   line-height: 40px;
   color: #787d82;
   position: relative;
+}
+.center-content  .course-list{
+	margin-top:0;
+}
+.center-content .blog-list{
+	  margin-top: -15px;
+  padding: 0 20px;
+}
+.center-content .question-list{
+	padding: 0 15px;
+}
+.center-content .course-list .all-course-list .course-item .widget-course{
+	height:225px;
 }
 .text-muted {
   color: #777;

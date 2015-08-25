@@ -8,7 +8,7 @@ var fs = require('fs');
  
 app.use("/public", express.static(__dirname + '/public'));
  
-server.listen(8000);
+server.listen(8002);
  
 app.get('/', function (req, res) {
   res.sendfile(__dirname + '/index.html');

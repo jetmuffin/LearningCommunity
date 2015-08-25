@@ -17,7 +17,6 @@
 			<div class="textbody rich-text">
 				${course.content}
 			</div>
-			<iframe src="http://localhost:8000" frameborder="0"></iframe>
 		</div>
 	<div id="editor" class=" clearfix l">
 		<div id="laboratory"></div>
@@ -39,6 +38,7 @@
 	
 	<script>
 		$(function(){
+			chatRoomAddress = '${chatRoomAddress}';
 			user = {
 					'uid': '${loginUser.userName}',
 					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}

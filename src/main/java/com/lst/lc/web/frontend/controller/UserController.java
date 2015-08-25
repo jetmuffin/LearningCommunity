@@ -161,7 +161,7 @@ public class UserController {
 //		}
 	}
 	
-	@RequestMapping(value="/user/{userId}/blog", method = RequestMethod.GET)
+	@RequestMapping(value="/{userId}/blog", method = RequestMethod.GET)
 	public String blog(Model model, @PathVariable int userId, HttpSession session){
 		User user = userDao.getById(userId);
 		model.addAttribute("user",user);
@@ -171,7 +171,7 @@ public class UserController {
 		return "frontend/user/center";
 	}
 
-	@RequestMapping(value="/user/{userId}/course", method = RequestMethod.GET)
+	@RequestMapping(value="/{userId}/course", method = RequestMethod.GET)
 	public String course(Model model, @PathVariable int userId, HttpSession session){
 		User user = userDao.getById(userId);
 		model.addAttribute("user",user);
@@ -188,7 +188,7 @@ public class UserController {
 		return "frontend/user/center";
 	}
 	
-	@RequestMapping(value="/user/{userId}/ask", method = RequestMethod.GET)
+	@RequestMapping(value="/{userId}/ask", method = RequestMethod.GET)
 	public String ask(Model model, @PathVariable int userId, HttpSession session){
 		User user = userDao.getById(userId);
 		model.addAttribute("user",user);
@@ -198,7 +198,7 @@ public class UserController {
 		return "frontend/user/center";
 	}
 	
-	@RequestMapping(value="/user/{userId}/answer", method = RequestMethod.GET)
+	@RequestMapping(value="/{userId}/answer", method = RequestMethod.GET)
 	public String answer(Model model, @PathVariable int userId, HttpSession session){
 		User user = userDao.getById(userId);
 		model.addAttribute("user",user);

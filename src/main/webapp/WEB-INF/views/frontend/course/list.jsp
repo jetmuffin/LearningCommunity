@@ -72,7 +72,7 @@
 							<div class="course-item">
 								<div class="widget-course">
 									<a href="/LearningCommunity/course/view/${course.courseId}"><img
-										src="/LearningCommunity/read/photo/${course.courseId }"
+										src="/LearningCommunity/read/thumb/${course.courseId }?height=236"
 										class="widget-course-banner" alt=""></a>
 									<div class="widget-course-info">
 										<h2 class="h4 title">
