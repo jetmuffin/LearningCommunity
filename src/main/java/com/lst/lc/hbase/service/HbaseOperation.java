@@ -25,6 +25,8 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.springframework.data.hadoop.hbase.HbaseTemplate;
 import org.springframework.stereotype.Service;
 
+import com.lst.lc.utils.DateUtils;
+
 public class HbaseOperation {
 	
 	private Configuration mConfiguration;
@@ -161,7 +163,7 @@ public class HbaseOperation {
 	 */
 	public ResultScanner queryLog(String uid, String min, String max) {
 		try {
-			HTable table = new HTable(mConfiguration, "log");
+			HTable table = new HTable(mConfiguration, "lc_log");
 			List<Filter> filters = new ArrayList<Filter>();
 
 			Filter filter1 = new SingleColumnValueFilter(Bytes.toBytes("attr"),
@@ -188,6 +190,25 @@ public class HbaseOperation {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public ResultScanner queryIntegral(String email){
+                String now = DateUtils.getCurrentDate();
+                String before = DateUtils.get30Before();
+                String startkey = email + before;
+                String endkey = email + now;
+                try {
+                        HTable table = new HTable(mConfiguration, "lc_integralRecord");
+                        Scan scan = new Scan();
+                        scan.setStartRow(startkey.getBytes());
+                        scan.setStopRow(endkey.getBytes());
+                        ResultScanner rs = table.getScanner(scan);
+                        // table.close();
+                        return rs;
+                } catch (Exception e) {
+                        e.printStackTrace();
+                        return null;
+                }
 	}
 
 }

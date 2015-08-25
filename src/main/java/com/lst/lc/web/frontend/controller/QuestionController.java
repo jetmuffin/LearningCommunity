@@ -28,6 +28,7 @@ import com.lst.lc.entities.Question;
 import com.lst.lc.entities.QuestionAnswer;
 import com.lst.lc.entities.QuestionTag;
 import com.lst.lc.entities.User;
+import com.lst.lc.hbase.service.IntegralRecordOperation;
 import com.lst.lc.page.Page;
 import com.lst.lc.page.PageHandler;
 import com.lst.lc.utils.StringUtils;
@@ -39,6 +40,9 @@ import com.lst.lc.web.service.QuestionPageHandler;
 @RequestMapping("/question")
 public class QuestionController {
 
+        @Autowired
+        private IntegralRecordOperation integralRecordOperation;
+        
 	@Autowired
 	@Qualifier("userDao")
 	private UserDao userDao;
@@ -94,7 +98,7 @@ public class QuestionController {
 		// 写入日志，用户增加积分
 		logHandler.toLog(user, "发布问题:" + question.getQuestionId());
 		logHandler.updateIntegral(user.getUserId(), "addQuestion");
-
+		integralRecordOperation.update(user.getEmail(), "addQuestion");
 		model.addAttribute("question", question);
 		redirectAttributes.addFlashAttribute("questionMsg", "问题发布成功");
 		return "redirect:/question/view/" + question.getQuestionId();
@@ -207,7 +211,7 @@ public class QuestionController {
 		// 写入日志
 		logHandler.toLog(user, "回答了问题:" + questionId);
 		logHandler.updateIntegral(user.getUserId(), "answerQuestion");
-
+		integralRecordOperation.update(user.getEmail(), "answerQuestion");
 		redirectAttributes.addFlashAttribute("questionMsg", "回答成功");
 		return "redirect:/question/view/" + questionId;
 	}

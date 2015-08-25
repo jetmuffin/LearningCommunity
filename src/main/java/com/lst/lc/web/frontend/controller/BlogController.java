@@ -26,6 +26,7 @@ import com.lst.lc.entities.BlogTag;
 import com.lst.lc.entities.Question;
 import com.lst.lc.entities.QuestionAnswer;
 import com.lst.lc.entities.User;
+import com.lst.lc.hbase.service.IntegralRecordOperation;
 import com.lst.lc.utils.StringUtils;
 import com.lst.lc.web.service.BlogPageHandler;
 import com.lst.lc.web.service.LogHandler;
@@ -34,6 +35,8 @@ import com.lst.lc.web.service.LogHandler;
 @RequestMapping("/blog")
 public class BlogController {
 
+        @Autowired
+        private IntegralRecordOperation integralRecordOperation;
 	@Autowired
 	@Qualifier("blogDao")
 	private BlogDao blogDao;
@@ -89,7 +92,7 @@ public class BlogController {
 		//写入日志，用户加积分
 		logHandler.toLog(user, "发布博客:"+blog.getBlogId());
 		logHandler.updateIntegral(user.getUserId(), "addBlog");
-		
+		integralRecordOperation.update(user.getEmail(), "addBlog");
 		redirectAttributes.addFlashAttribute("blogMsg", "博客发布成功");
 		return "redirect:/blog/view/" + blog.getBlogId();
 	}
@@ -171,7 +174,7 @@ public class BlogController {
 		//写入日志
 		logHandler.toLog(user, "回复了博客:"+ blogId);
 		logHandler.updateIntegral(user.getUserId(), "commentBlog");
-		
+		integralRecordOperation.update(user.getEmail(), "commentBlog");
 		redirectAttributes.addFlashAttribute("blogMsg", "评论成功");
 		return "redirect:/blog/view/" + blogId;
 	}

@@ -9,6 +9,7 @@ import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.springframework.stereotype.Service;
 
+import com.lst.lc.hbase.model.IntegralRecord;
 import com.lst.lc.hbase.model.Log;
 import com.lst.lc.hbase.model.Message;
 
@@ -83,5 +84,52 @@ public class ModelMapping {
                         return null;
                 }
                 return list;
+        }
+        
+        public List<IntegralRecord> integralListMapping(ResultScanner rs){
+                List<IntegralRecord> list = new ArrayList<IntegralRecord>();
+                for (Result r : rs) {
+                        IntegralRecord IntegralRecord = new IntegralRecord();
+                        IntegralRecord.setKey(new String(r.getRow()));
+                        for(Cell cell:r.rawCells()){
+                                String v = new String(CellUtil.cloneQualifier(cell));
+                                String val = new String(CellUtil.cloneValue(cell));
+                                if (v.equals("date")) {
+                                        IntegralRecord.setDate(val);
+                                }
+                                if (v.equals("integral")) {
+                                       IntegralRecord.setIntegral(val);
+                                }
+                        }
+                        list.add(IntegralRecord);
+                }
+                rs.close();
+                if (list.size() == 0) {
+                        return null;
+                }
+                return list;
+        }
+        
+        public IntegralRecord integralRecordMapping(Result rs, String rowkey) {
+                IntegralRecord integral = new IntegralRecord();
+                if (rs.isEmpty()) {
+                        // 没有检索到，说明数据库中没有该图片，返回错误信息
+                        return null;
+                } else {
+                        integral.setKey(rowkey);
+                        for (Cell cell : rs.rawCells()) {
+                                String v = new String(
+                                                CellUtil.cloneQualifier(cell));
+                                String val = new String(
+                                                CellUtil.cloneValue(cell));
+                                if (v.equals("date")) {
+                                        integral.setDate(val);
+                                }
+                                if (v.equals("integral")) {
+                                        integral.setIntegral(val);
+                                }
+                        }
+                }
+                return integral;
         }
 }

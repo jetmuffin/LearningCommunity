@@ -28,6 +28,8 @@ import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Question;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.User;
+import com.lst.lc.hbase.model.IntegralRecord;
+import com.lst.lc.hbase.service.IntegralRecordOperation;
 import com.lst.lc.utils.EncryptUtils;
 import com.lst.lc.utils.MultipartFileUtils;
 import com.lst.lc.web.bean.Info;
@@ -38,6 +40,9 @@ import com.lst.lc.web.service.LogHandler;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+        
+        @Autowired
+        private IntegralRecordOperation integralRecordOperation;
 
 	@Autowired
 	@Qualifier("userDao")
@@ -100,6 +105,7 @@ public class UserController {
 			// 写进日志，积分加1
 			logHandler.toLog(user, "登录网站");
 			logHandler.updateIntegral(user.getUserId(), "login");
+			integralRecordOperation.update(user.getEmail(), "login");
 
 		} else {
 			message = "密码错误";
@@ -264,5 +270,13 @@ public class UserController {
                        List<User> friends = userDao.getValidateFriends(user.getUserId());
                        model.addAttribute("friends",friends);
                        return "frontend/user/center";
+               }
+               
+               @RequestMapping(value = "/record", method = RequestMethod.POST)
+               @ResponseBody
+               public List<IntegralRecord> record(Model model, HttpSession session) {
+                       User user = (User) session.getAttribute("loginUser");
+                       List<IntegralRecord> records = integralRecordOperation.getRecent(user.getEmail());
+                       return records;
                }
 }
