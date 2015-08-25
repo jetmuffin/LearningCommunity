@@ -55,8 +55,8 @@ public class ReadResourcesController {
 		PathUtils.readPhoto(imagePath, response);
 	}
 	
-	@RequestMapping(value = "/photo/{courseId}", method = RequestMethod.GET)
-	public void readXPhotos(@PathVariable int courseId, String width, String height,
+	@RequestMapping(value = "/thumb/{courseId}", method = RequestMethod.GET)
+	public void readthumb(@PathVariable int courseId, String width, String height,
 			HttpServletResponse response) {
 		Course course = courseDao.getCourse(courseId);
 		String imagePath = course.getImageUrl();
