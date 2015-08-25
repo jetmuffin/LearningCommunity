@@ -18,10 +18,10 @@ HiChat.prototype = {
         this.socket = io.connect("localhost:8000");
         //监听socket的connect事件，此事件表示连接已经建立
         this.socket.on('connect', function() {
-            // //连接到服务器后，显示昵称输入框
-
-            //昵称设置的确定按钮
-
+            //连接到服务器后，登录
+        	that.socket.emit('login', user, room);
+        	that.user = user;
+        	that.room = room;
         });
 
         this.socket.on('nickExisted', function() {
@@ -29,35 +29,31 @@ HiChat.prototype = {
         });
 
         this.socket.on('loginSuccess', function() {
-            document.title = 'hichat | ' + document.getElementById('nicknameInput').value;
-            document.getElementById('loginWrapper').style.display = 'none';//隐藏遮罩层显聊天界面
             document.getElementById('msg-textarea').focus();//让消息输入框获得焦点
         });
 
-        this.socket.on('system', function(nickName, userMap, type) {
+        this.socket.on('system', function(user, userMap, type) {
             var msg = (type == 'login' ? ' 进入讨论房间' : '离开讨论房间');
             //指定系统消息显示为红色
-            that._displayNewMsg(nickName, msg, 2);
+            that._displayNewMsg(user, msg, 'system' , 'all');
             document.getElementById('room').textContent = that.room_id;
             document.getElementById('status').textContent = userMap.size + ' 位用户在线';
             if(type == 'login'){
-                if(nickName == that.user)
+                if(user.uid == that.user.uid)
                     that._loadUser(userMap);
                 else
-                    that._addUser(nickName, userMap);
+                    that._addUser(user, userMap);
             }else{
-                that._removeUser(nickName, userMap);
+                that._removeUser(user, userMap);
             }
         });     
 
         this.socket.on('receive', function(user, msg, type) {
-            var type = type == 'all' ? 1 : 0;
-            that._displayNewMsg(user, msg, type);
+            that._displayNewMsg(user, msg, 'others', type);
         });
 
         this.socket.on('receiveImage', function(user, img, type) {
-            var type = type == 'all' ? 1:0;
-            that._displayImage(user, img, type);
+            that._displayImage(user, img, 'others' , type);
          });
 
         document.getElementById('clearBtn').addEventListener('click', function() {
@@ -74,10 +70,10 @@ HiChat.prototype = {
             if (msg.trim().length != 0) {
                 if(sendTo == 'all'){
                     that.socket.emit('send:all', msg); //把消息发送到服务器
-                    that._displayNewMsg('我', msg , 1); //把自己的消息显示到自己的窗口中                    
+                    that._displayNewMsg(that.user, msg , 'me', 'all'); //把自己的消息显示到自己的窗口中                    
                 }else{
                     that.socket.emit('send:user', msg, sendTo); 
-                    that._displayNewMsg('我', msg , 0);
+                    that._displayNewMsg(that.user, msg , 'me', 'user');
                 }
             };
         }, false);
@@ -99,10 +95,10 @@ HiChat.prototype = {
                     this.value = '';
                     if(sendTo == 'all'){
                         that.socket.emit('img:all', e.target.result);
-                        that._displayImage('我', e.target.result, 1);                 
+                        that._displayImage(that.user, e.target.result, 'me', 'all');                 
                     }else{
                         that.socket.emit('img:user', e.target.result, sendTo);
-                        that._displayImage('我', e.target.result, 0);  
+                        that._displayImage(that.user, e.target.result, 'me', 'user');  
                     }                     
                  };
                  reader.readAsDataURL(file);
@@ -117,10 +113,10 @@ HiChat.prototype = {
                     messageInput.value = '';
                     if(sendTo == 'all'){
                         that.socket.emit('send:all', msg); //把消息发送到服务器
-                        that._displayNewMsg('我', msg , 1); //把自己的消息显示到自己的窗口中                    
+                        that._displayNewMsg(that.user, msg , 'me', 'all'); //把自己的消息显示到自己的窗口中                    
                     }else{
                         that.socket.emit('send:user', msg, sendTo); 
-                        that._displayNewMsg('我', msg , 0);
+                        that._displayNewMsg(that.user, msg , 'me', 'user');
                     }
                 };
           }, false);
@@ -161,7 +157,7 @@ HiChat.prototype = {
             }else{
                 userName = target.innerHTML;
             }
-            if(userName != that.user){
+            if(userName != that.user.uid){
                 if(whisperNode){
                     sendToNode.removeChild(whisperNode);
                 }
@@ -174,33 +170,32 @@ HiChat.prototype = {
         }, false);
     },
 
-    _displayNewMsg: function(user, msg, type) {
+    _displayNewMsg: function(user, msg, from, to) {
         var container = document.getElementById('chat-board'),
             msgToDisplay = document.createElement('p'),
             date = new Date().toTimeString().substr(0, 8),
-            whisper = type == 0 ? '（悄悄话）' : ''
+            whisper = to == 'user' ? '（悄悄话）' : ''
             //将消息中的表情转换为图片
             msg = this._showEmoji(msg);
-        if(user == '我')
-            msgToDisplay.innerHTML = '<div class="msg-right"><div class="avatar"><img src="../images/avatar.png" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user + whisper +' <span class="time">(' + date + '): </span></div><div>'+msg+'</div></div><div class="clear"></div></div>'
-            // msgToDisplay.innerHTML = user + whisper + '<span class="timespan">(' + date + '): </span>' + msg;
-        else if(type == 2)
-            msgToDisplay.innerHTML = '<div class="msg-sys"><div class="msg">系统消息：<span class="name">'+user+'</span> '+msg+'</div></div>'
+        if(from == 'me')
+            msgToDisplay.innerHTML = '<div class="msg-right"><div class="avatar"><img src="' + user.avatar +'" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user.uid + whisper +' <span class="time">(' + date + '): </span></div><div>'+msg+'</div></div><div class="clear"></div></div>'
+        else if(from == 'system')
+            msgToDisplay.innerHTML = '<div class="msg-sys"><div class="msg">系统消息：<span class="name">'+user.uid+'</span> '+msg+'</div></div>'
         else
-            msgToDisplay.innerHTML = '<div class="msg-left"><div class="avatar"><img src="../images/avatar.png" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+user+whisper+'<span class="time">('+date+')</span></div><div>'+msg+'</div></div><div class="clear"></div></div>'
+            msgToDisplay.innerHTML = '<div class="msg-left"><div class="avatar"><img src="' + user.avatar+'" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+user.uid+whisper+'<span class="time">('+date+')</span></div><div>'+msg+'</div></div><div class="clear"></div></div>'
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     },
 
-    _displayImage: function(user, imgData, type) {
+    _displayImage: function(user, imgData, from, to) {
         var container = document.getElementById('chat-board'),
             msgToDisplay = document.createElement('p'),
             date = new Date().toTimeString().substr(0, 8),
-            whisper = type == 0 ? '（悄悄话）' : '';
-        if(user == '我')
-            msgToDisplay.innerHTML = '<div class="msg-right"><div class="avatar"><img src="../images/avatar.png" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user + whisper +'<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '" class="img-thumb"/></a>'+'</div></div><div class="clear"></div></div>'
+            whisper = to == 'user' ? '（悄悄话）' : '';
+        if(from == 'me')
+            msgToDisplay.innerHTML = '<div class="msg-right"><div class="avatar"><img src="'+user.avatar+'" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user.uid + whisper +'<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '" class="img-thumb"/></a>'+'</div></div><div class="clear"></div></div>'
         else
-            msgToDisplay.innerHTML = '<div class="msg-left"><div class="avatar"><img src="../images/avatar.png" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user + whisper +'<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '" class="img-thumb"/></a>'+'</div></div><div class="clear"></div></div>'
+            msgToDisplay.innerHTML = '<div class="msg-left"><div class="avatar"><img src="'+user.avatar+'" alt=""></div><div class="arrow"></div><div class="msg"><div class="name">'+ user.uid + whisper +'<span class="timespan">(' + date + '): </span> <br/>' + '<a href="' + imgData + '" target="_blank"><img src="' + imgData + '" class="img-thumb"/></a>'+'</div></div><div class="clear"></div></div>'
         container.appendChild(msgToDisplay);
         container.scrollTop = container.scrollHeight;
     },   
@@ -208,9 +203,9 @@ HiChat.prototype = {
     _addUser: function(user, userMap) {
         var container = document.getElementById('friend-list'),
             userItem = document.createElement('li');
-        userItem.id = 'user-' + user; 
+        userItem.id = 'user-' + user.uid; 
         userItem.setAttribute("class", "friend");
-        userItem.innerHTML = '<div class="friend-avatar"><img src="../images/avatar.png" alt=""></div><div class="friend-name">'+user+'</div>';
+        userItem.innerHTML = '<div class="friend-avatar"><img src="' + user.avatar+'" alt=""></div><div class="friend-name">'+user.uid+'</div>';
         container.appendChild(userItem);
     },
 
@@ -218,16 +213,16 @@ HiChat.prototype = {
         var container = document.getElementById('friend-list');
         for(var user in userMap.map){
             userItem = document.createElement('li');
-            userItem.id = 'user-' + user; 
+            userItem.id = 'user-' + userMap.map[user].uid; 
             userItem.setAttribute("class", "friend");
-            userItem.innerHTML = '<div class="friend-avatar"><img src="../images/avatar.png" alt=""></div><div class="friend-name">'+user+'</div>';
+            userItem.innerHTML = '<div class="friend-avatar"><img src="' + userMap.map[user].avatar+ '" alt=""></div><div class="friend-name">'+userMap.map[user].uid+'</div>';
             container.appendChild(userItem);            
         }
     },
 
     _removeUser: function(user, userMap){
         var container = document.getElementById('friend-list'),
-            userItem = document.getElementById('user-'+user);
+            userItem = document.getElementById('user-'+user.uid);
         container.removeChild(userItem);
     },
 
@@ -253,7 +248,7 @@ HiChat.prototype = {
             if (emojiIndex > totalEmojiNum) {
                 result = result.replace(match[0], '[X]');
             } else {
-                result = result.replace(match[0], '<img class="emoji" src="../content/tuzki/' + emojiIndex + '.gif" />');
+                result = result.replace(match[0], '<img class="emoji" src="/LearningCommunity/resources/images/emoji/tuzki/' + emojiIndex + '.gif" />');
             };
         };
         return result;

@@ -451,7 +451,6 @@ h5 {
 }
 #run #text .textbody {
   padding: 0 40px 20px 40px;
-  width: 100%;
 }
 #run #text .textbody .page-header h3 {
   font-size: 24px;
@@ -877,6 +876,34 @@ h5 {
 
 .chat-control .to{
     float: right;
+}
+
+.elevator {
+  position: fixed;
+  left: 15px;
+  bottom: 10px;
+  z-index: 1030;
+}
+
+.elevator a {
+  display: block;
+  position: relative;
+  margin: 1px 0;
+  outline: none;
+  height: 52px;
+  width: 52px;
+  -webkit-transition: background-position 0.15s;
+  -moz-transition: background-position 0.15s;
+  transition: background-position 0.15s;
+  background: url(/LearningCommunity/resources/images/elevator.png) no-repeat;
+  cursor:pointer;
+}
+
+.elevator-msg{
+	background-position: 0 0;
+}
+.elevator a:hover{
+	background-position:0 -60px;
 }
 
 .rich-text html,.rich-text address,.rich-text blockquote,.rich-text body,.rich-text dd,.rich-text div,
