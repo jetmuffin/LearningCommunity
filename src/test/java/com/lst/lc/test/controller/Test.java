@@ -5,17 +5,23 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
+import org.apache.http.impl.cookie.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lst.lc.dao.BlogDao;
 import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.User;
+import com.lst.lc.hbase.model.IntegralRecord;
+import com.lst.lc.hbase.service.IntegralRecordOperation;
 import com.lst.lc.utils.SetUtils;
 import com.lst.lc.web.bean.Info;
 import com.lst.lc.web.service.BlogPageHandler;
@@ -24,7 +30,8 @@ import com.lst.lc.web.service.LogHandler;
 @Controller
 @RequestMapping("/test")
 public class Test {
-
+        @Autowired
+        private IntegralRecordOperation integralRecordOperation;
         @Autowired
         @Qualifier("userDao")
         private UserDao userDao;
@@ -88,7 +95,7 @@ public class Test {
                 userDao.validateFriend(18, 19, 1);
                 return "frontend/user/login";
         }
-        
+
         @RequestMapping(value = "/ifFriend", method = RequestMethod.GET)
         public String ifFriend(Model model) {
                 System.out.println(userDao.ifFriend(18, 19));
@@ -109,6 +116,24 @@ public class Test {
                         }
                         info.setMessages(messages);
                         System.out.println(info.getNum());
+                }
+                return "frontend/user/login";
+        }
+
+        @RequestMapping(value = "/record", method = RequestMethod.GET)
+        public String record(Model model, HttpSession session) throws Exception {
+                User user = (User) session.getAttribute("loginUser");
+                for (int i = 20150824; i > 20150800; i--) {
+                        String key = user.getEmail() + String.valueOf(i);
+                        int num = (int) (Math.random() * 50);
+                        integralRecordOperation
+                                        .updateTest(com.lst.lc.utils.DateUtils
+                                                        .formatDate(com.lst.lc.utils.DateUtils
+                                                                        .formatString(String
+                                                                                        .valueOf(i),
+                                                                                        "yyyyMMdd"),
+                                                                        "yyyy-MM-dd"),
+                                                        num, key);
                 }
                 return "frontend/user/login";
         }
