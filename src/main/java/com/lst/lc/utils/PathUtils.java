@@ -59,20 +59,20 @@ public class PathUtils {
 	
 	public static byte[] readPhoto(String imagePath){
 		File imageFile = new File(imagePath);
-		String format = imagePath.substring(imagePath.lastIndexOf(".") + 1).trim().toLowerCase();
+		//String format = imagePath.substring(imagePath.lastIndexOf(".") + 1).trim().toLowerCase();
 		byte[] buffer = null;
 		byte[] data = null;
 		if (imageFile != null && imageFile.exists()) {
 			buffer = new byte[5120];
 			InputStream is = null;
-			OutputStream os = null;
+			//OutputStream os = null;
 	        ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
 			try {
 				is = new FileInputStream(imageFile);
 				while (is.read(buffer) != -1) {
 					baos.write(buffer);
 				}
-				os.flush();
+				baos.flush();
 				data = baos.toByteArray();
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -81,8 +81,8 @@ public class PathUtils {
 					if (is != null) {
 						is.close();
 					}
-					if (os != null) {
-						os.close();
+					if (baos != null) {
+						baos.close();
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
