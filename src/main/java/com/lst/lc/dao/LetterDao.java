@@ -18,6 +18,6 @@ public interface LetterDao {
 	 */
 	public List<Letter> getAll(int uid);
 	
-	public long getUnRead(int uid);
+	public int getUnRead(int uid);
 	
 }

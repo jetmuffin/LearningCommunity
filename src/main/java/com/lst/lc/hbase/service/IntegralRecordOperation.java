@@ -20,7 +20,7 @@ public class IntegralRecordOperation {
         private HbaseOperation mHbaseOperation;
         @Autowired
         private ModelMapping modelMapping;
-        
+
         @Autowired
         @Qualifier("operationDao")
         private OperationDao operationDao;
@@ -47,35 +47,47 @@ public class IntegralRecordOperation {
 
         public List<IntegralRecord> getRecent(String email, int day) {
                 ResultScanner rs = mHbaseOperation.queryIntegral(email, day);
-                List<IntegralRecord> lists =  modelMapping.integralListMapping(rs);
-                IntegralRecord record = get(email+DateUtils.getCurrentDate());
-                if(lists == null){
+                List<IntegralRecord> lists = modelMapping
+                                .integralListMapping(rs);
+                IntegralRecord record = get(email + DateUtils.getCurrentDate());
+                if (lists == null) {
                         lists = new ArrayList<IntegralRecord>();
                 }
+                if (record == null) {
+                        record = new IntegralRecord(email, "0");
+                }
                 lists.add(record);
-                if(lists.size() < day){
+                if (lists.size() < day) {
                         List<IntegralRecord> records = new ArrayList<IntegralRecord>();
-                        for(int i = day-1; i > 0; i--){
+                        for (int i = day - 1; i > 0; i--) {
                                 String before = DateUtils.getBefore(i);
                                 String key = email + before;
-                                for(int j = 0; j < lists.size(); j++){
-                                        if(lists.get(j).getKey().equals(key)){
+                                boolean flag = false;
+                                for (int j = 0; j < lists.size(); j++) {
+                                        if (lists.get(j).getKey().equals(key)) {
+                                                flag = true;
                                                 records.add(lists.get(j));
                                                 lists.remove(j);
-                                        }else{
-                                                IntegralRecord record1 = new IntegralRecord(key, DateUtils.getBeforeForShow(i), "0");
-                                               records.add(record1);
+                                                break;
                                         }
                                 }
+                                if (!flag) {
+                                        IntegralRecord record1 = new IntegralRecord(
+                                                        key,
+                                                        DateUtils.getBeforeForShow(i),
+                                                        "0");
+                                        records.add(record1);
+                                }
+
                         }
-                       records.add(record); 
-                       return records;
+                        records.add(record);
+                        return records;
                 }
-              lists.add(record);
+                lists.add(record);
                 return lists;
         }
 
-        public void update(String email, String operation ) {
+        public void update(String email, String operation) {
                 int integral = operationDao.getIntegral(operation);
                 String key = email + DateUtils.getCurrentDate();
                 IntegralRecord record = get(key);
@@ -85,20 +97,19 @@ public class IntegralRecordOperation {
                                         String.valueOf(integral));
                 } else {
                         int add;
-                        if(record.getIntegral() == null || record
-                                        .getIntegral().equals("")){
+                        if (record.getIntegral() == null
+                                        || record.getIntegral().equals("")) {
                                 add = 0;
-                        }else{
+                        } else {
                                 add = Integer.parseInt(record.getIntegral());
                         }
-                        todayRecord = new IntegralRecord(
-                                        email,
+                        todayRecord = new IntegralRecord(email,
                                         String.valueOf(integral + add));
                 }
                 add(todayRecord);
         }
-        
-        public void updateTest(String date, int integral ,String key) {
+
+        public void updateTest(String date, int integral, String key) {
                 IntegralRecord record = get(key);
                 IntegralRecord todayRecord = null;
                 System.out.println(key);
@@ -107,18 +118,18 @@ public class IntegralRecordOperation {
                         todayRecord.setKey(key);
                         todayRecord.setIntegral(String.valueOf(integral));
                         todayRecord.setDate(date);
-                        
+
                 } else {
                         int add;
-                        if(record.getIntegral() == null || record
-                                        .getIntegral().equals("")){
+                        if (record.getIntegral() == null
+                                        || record.getIntegral().equals("")) {
                                 add = 0;
-                        }else{
+                        } else {
                                 add = Integer.parseInt(record.getIntegral());
                         }
                         todayRecord = new IntegralRecord();
                         todayRecord.setKey(key);
-                        todayRecord.setIntegral(String.valueOf(integral+add));
+                        todayRecord.setIntegral(String.valueOf(integral + add));
                         todayRecord.setDate(date);
                 }
                 add(todayRecord);

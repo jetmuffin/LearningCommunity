@@ -35,11 +35,10 @@ public class LetterDaoImpl extends BaseDao implements LetterDao {
         }
 
         @Override
-        public long getUnRead(int uid) {
-                String hql = "selete count(*) from Letter as letter where letter.id.toUid = ? and letter.state = 0";
+        public int getUnRead(int uid) {
+                String hql = "from Letter as letter where letter.id.toUid = ? and letter.state = 0";
                 Query query = query(hql).setInteger(0, uid);
-                long res = (long) query.uniqueResult();
-                return res;
+                return query.list().size();
         }
 
 
