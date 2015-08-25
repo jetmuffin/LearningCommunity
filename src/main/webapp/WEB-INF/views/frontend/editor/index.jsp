@@ -26,7 +26,13 @@
 			<iframe src="/LearningCommunity/editor/html" id="java-lab" frameborder="0"></iframe>
 		</div>
 	</div>
+		<jsp:include page="../common/chatroom.jsp"></jsp:include>
+    <div class="elevator">
+    <a class="elevator-msg"  id="discussBtn"></a>
+    </div>
 	<script src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
+		<script src="/LearningCommunity/resources/js/socketio/socket.io.js"></script>
+	<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
 	<script>
 		function loadEditor(d){
 			var language = $(d).attr("lang");
@@ -43,6 +49,29 @@
 			}
 			 $('iframe').attr("src",url);
 		}
+		
+		$(function(){
+			user = {
+					'uid': '${loginUser.userName}',
+					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
+			};
+			room = {
+					'room_id': 23214
+			};
+			 var width = document.body.clientWidth,
+			 		discussBtn = $('#discussBtn'),
+			 		chatroom = $('#chatroom'),
+			 		closeBtn = $("#close");
+			 
+			 discussBtn.click(function(){
+				 chatroom.css('left',(width-740)/2);
+				 chatroom.fadeIn();
+			 });
+			 
+			 closeBtn.click(function(){
+				 chatroom.fadeOut();
+			 });
+		});
 	</script>
 </body>
 </html>

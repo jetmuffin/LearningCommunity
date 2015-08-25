@@ -23,6 +23,10 @@
 		<div id="laboratory"></div>
 	</div>
 	</div>
+	<jsp:include page="../common/chatroom.jsp"></jsp:include>
+    <div class="elevator">
+    <a class="elevator-msg"  id="discussBtn"></a>
+    </div>
 	<script src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 	<script src="/LearningCommunity/resources/js/bootstrap.min.js"></script>
 	<script src="/LearningCommunity/resources/js/codemirror/lib/codemirror.js"></script>
@@ -30,5 +34,32 @@
 	<script src="/LearningCommunity/resources/js/codemirror/mode/css/css.js"></script>
 	<script src="/LearningCommunity/resources/js/codemirror/mode/javascript/javascript.js"></script>
 	<script src="/LearningCommunity/resources/js/lab-html.js"></script>
+		<script src="/LearningCommunity/resources/js/socketio/socket.io.js"></script>
+	<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
+	
+	<script>
+		$(function(){
+			user = {
+					'uid': '${loginUser.userName}',
+					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
+			};
+			room = {
+					'room_id': ${lesson.lessonId}
+			};
+			 var width = document.body.clientWidth,
+			 		discussBtn = $('#discussBtn'),
+			 		chatroom = $('#chatroom'),
+			 		closeBtn = $("#close");
+			 
+			 discussBtn.click(function(){
+				 chatroom.css('left',(width-740)/2);
+				 chatroom.fadeIn();
+			 });
+			 
+			 closeBtn.click(function(){
+				 chatroom.fadeOut();
+			 });
+		});
+	</script>
 </body>
 </html>
