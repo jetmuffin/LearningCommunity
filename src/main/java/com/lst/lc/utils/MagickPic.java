@@ -19,14 +19,14 @@ public class MagickPic {
 		byte[] bytes = null;
 		String format = null;
 		//input
-		bytes = ImageUrl.getImageFromURL(url);
-		format = url.substring(url.lastIndexOf(".") + 1).trim().toLowerCase();  
-		System.out.println(format);
+		bytes = PathUtils.readPhoto(url);
+		//format = url.substring(url.lastIndexOf(".") + 1).trim().toLowerCase();  
+		//System.out.println(format);
 		byte[] byter = null;
 		
 		
 		try {
-			byter = scaleImage(bytes,"1000",null,format);
+			byter = scaleImage(bytes,width,height,"jpg");
 		} catch (IOException | InterruptedException | IM4JavaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
