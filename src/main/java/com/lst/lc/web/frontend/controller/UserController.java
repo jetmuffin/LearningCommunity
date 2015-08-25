@@ -24,6 +24,7 @@ import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Blog;
+import com.lst.lc.entities.BlogComment;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Question;
 import com.lst.lc.entities.QuestionAnswer;
@@ -219,6 +220,18 @@ public class UserController {
 				user.getQuestionAnswers());
 		model.addAttribute("answers", questionAnswers);
 		model.addAttribute("center_module", "answer");
+		return "frontend/user/center";
+	}
+	
+	@RequestMapping(value = "/{userId}/comment", method = RequestMethod.GET)
+	public String comment(Model model, @PathVariable int userId,
+			HttpSession session) {
+		User user = userDao.getById(userId);
+		model.addAttribute("user", user);
+		List<BlogComment> comments = new ArrayList<BlogComment>(
+				user.getBlogComments());
+		model.addAttribute("comment", comments);
+		model.addAttribute("center_module", "comment");
 		return "frontend/user/center";
 	}
 
