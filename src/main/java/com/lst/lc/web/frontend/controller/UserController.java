@@ -26,6 +26,7 @@ import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Blog;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Question;
+import com.lst.lc.entities.QuestionAnswer;
 import com.lst.lc.entities.RelUserCourse;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.EncryptUtils;
@@ -133,13 +134,14 @@ public class UserController {
 		return "frontend/user/zone";
 	}
 	
-	@RequestMapping(value = "/center", method = RequestMethod.GET)
-	public String center(Model model, HttpSession session) {
-		User user = (User) session.getAttribute("loginUser");
-		if(user == null){
-			return "redirect:/course/courses";
-		}else{
-			user = userDao.getById(user.getUserId());
+	@RequestMapping(value = "/{userId}/center", method = RequestMethod.GET)
+	public String center(Model model, @PathVariable int userId, HttpSession session) {
+		//User user = (User) session.getAttribute("loginUser");
+//		if(user == null){
+//			return "redirect:/course/courses";
+//		}else{
+//			user = userDao.getById(user.getUserId());
+			User user = userDao.getById(userId);
 			model.addAttribute("user",user);
 			Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
 			Iterator<RelUserCourse> iterator = relUserCourses.iterator();
@@ -156,9 +158,56 @@ public class UserController {
 			model.addAttribute("blogs", blogs);
 			model.addAttribute("questions", questions);
 			return "frontend/user/center";
-		}
+//		}
+	}
+	
+	@RequestMapping(value="/user/{userId}/blog", method = RequestMethod.GET)
+	public String blog(Model model, @PathVariable int userId, HttpSession session){
+		User user = userDao.getById(userId);
+		model.addAttribute("user",user);
+		List<Blog> blogs = blogDao.getBlogsOfUser(userId);
+		model.addAttribute("blogs", blogs);
+		model.addAttribute("center_module", "blog");
+		return "frontend/user/center";
 	}
 
+	@RequestMapping(value="/user/{userId}/course", method = RequestMethod.GET)
+	public String course(Model model, @PathVariable int userId, HttpSession session){
+		User user = userDao.getById(userId);
+		model.addAttribute("user",user);
+		Set<RelUserCourse> relUserCourses = user.getRelUserCourses();
+		Iterator<RelUserCourse> iterator = relUserCourses.iterator();
+		List<Course> courses = new ArrayList<Course>();
+		while(iterator.hasNext()){
+			RelUserCourse relUserCourse = iterator.next();
+			Course course = relUserCourse.getCourse();
+			courses.add(course);
+		}
+		model.addAttribute("courses", courses);
+		model.addAttribute("center_module", "course");
+		return "frontend/user/center";
+	}
+	
+	@RequestMapping(value="/user/{userId}/ask", method = RequestMethod.GET)
+	public String ask(Model model, @PathVariable int userId, HttpSession session){
+		User user = userDao.getById(userId);
+		model.addAttribute("user",user);
+		List<Question> questions = questionDao.getQuestionOfUser(user.getUserId());
+		model.addAttribute("questions", questions);
+		model.addAttribute("center_module", "ask");
+		return "frontend/user/center";
+	}
+	
+	@RequestMapping(value="/user/{userId}/answer", method = RequestMethod.GET)
+	public String answer(Model model, @PathVariable int userId, HttpSession session){
+		User user = userDao.getById(userId);
+		model.addAttribute("user",user);
+		List<QuestionAnswer> questionAnswers = new ArrayList<QuestionAnswer>(user.getQuestionAnswers());
+		model.addAttribute("answers", questionAnswers);
+		model.addAttribute("center_module", "answer");
+		return "frontend/user/center";
+	}
+	
 	@ResponseBody
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public StatusMessage register(String userName, String email,
