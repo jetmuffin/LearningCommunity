@@ -168,6 +168,18 @@ public class DateUtils {
                 return sdf.format(date);
         }
         
+        public static String getBefore(int day){
+                Date date = getDateBefore(new Date(), day);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                return sdf.format(date);
+        }
+        
+        public static String getBeforeForShow(int day){
+                Date date = getDateBefore(new Date(), day);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                return sdf.format(date);
+        }
+        
         @Test
         public void test(){
                 System.out.println(getCurrentDate());

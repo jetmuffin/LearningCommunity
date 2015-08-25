@@ -1,6 +1,7 @@
 package com.lst.lc.test.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lst.lc.dao.BlogDao;
+import com.lst.lc.dao.LetterDao;
 import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
+import com.lst.lc.entities.Letter;
+import com.lst.lc.entities.LetterId;
 import com.lst.lc.entities.User;
 import com.lst.lc.hbase.model.IntegralRecord;
 import com.lst.lc.hbase.service.IntegralRecordOperation;
@@ -35,6 +39,10 @@ public class Test {
         @Autowired
         @Qualifier("userDao")
         private UserDao userDao;
+        
+        @Autowired
+        @Qualifier("letterDao")
+        private LetterDao letterDao;
 
         @Autowired
         @Qualifier("blogDao")
@@ -135,6 +143,22 @@ public class Test {
                                                                         "yyyy-MM-dd"),
                                                         num, key);
                 }
+                return "frontend/user/login";
+        }
+        
+        @RequestMapping(value = "/addLetter", method = RequestMethod.GET)
+        public String addLetter(Model model) {
+                LetterId id = new LetterId(19, 18, new Date());
+                User fromUser = userDao.getById(19);
+                User toUser = userDao.getById(18);
+                Letter letter = new Letter(id, fromUser, toUser, "test", 0);
+                letterDao.add(letter);
+                
+                List<Letter> letters = letterDao.getAll(18);
+                System.out.println(letters.size());
+                
+                System.out.println(letterDao.getUnRead(18));
+                
                 return "frontend/user/login";
         }
 }

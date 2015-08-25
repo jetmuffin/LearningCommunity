@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-8-24 10:07:51 by Hibernate Tools 4.3.1
+// Generated 2015-8-25 19:01:07 by Hibernate Tools 4.3.1
 
 import java.util.HashSet;
 import java.util.Set;
@@ -36,6 +36,7 @@ public class User implements java.io.Serializable {
         private String city;
         private Set<BlogComment> blogComments = new HashSet<BlogComment>(0);
         private Set<RelUserRoute> relUserRoutes = new HashSet<RelUserRoute>(0);
+        private Set<Letter> lettersForToUid = new HashSet<Letter>(0);
         private Set<QuestionAnswer> questionAnswers = new HashSet<QuestionAnswer>(
                         0);
         private Set<Question> questions = new HashSet<Question>(0);
@@ -46,6 +47,7 @@ public class User implements java.io.Serializable {
         private Set<RelUserCourse> relUserCourses = new HashSet<RelUserCourse>(
                         0);
         private Set<RelUser> relUsersForUserId2 = new HashSet<RelUser>(0);
+        private Set<Letter> lettersForFromUid = new HashSet<Letter>(0);
         private Set<Feedback> feedbacks = new HashSet<Feedback>(0);
 
         public User() {
@@ -69,12 +71,14 @@ public class User implements java.io.Serializable {
                         String avatar, String type, String motto, String city,
                         Set<BlogComment> blogComments,
                         Set<RelUserRoute> relUserRoutes,
+                        Set<Letter> lettersForToUid,
                         Set<QuestionAnswer> questionAnswers,
                         Set<Question> questions,
                         Set<LessonComment> lessonComments, Set<Blog> blogs,
                         Set<RelUser> relUsersForUserId1,
                         Set<RelUserCourse> relUserCourses,
-                        Set<RelUser> relUsersForUserId2, Set<Feedback> feedbacks) {
+                        Set<RelUser> relUsersForUserId2,
+                        Set<Letter> lettersForFromUid, Set<Feedback> feedbacks) {
                 this.userName = userName;
                 this.email = email;
                 this.password = password;
@@ -87,6 +91,7 @@ public class User implements java.io.Serializable {
                 this.city = city;
                 this.blogComments = blogComments;
                 this.relUserRoutes = relUserRoutes;
+                this.lettersForToUid = lettersForToUid;
                 this.questionAnswers = questionAnswers;
                 this.questions = questions;
                 this.lessonComments = lessonComments;
@@ -94,6 +99,7 @@ public class User implements java.io.Serializable {
                 this.relUsersForUserId1 = relUsersForUserId1;
                 this.relUserCourses = relUserCourses;
                 this.relUsersForUserId2 = relUsersForUserId2;
+                this.lettersForFromUid = lettersForFromUid;
                 this.feedbacks = feedbacks;
         }
 
@@ -216,6 +222,15 @@ public class User implements java.io.Serializable {
                 this.relUserRoutes = relUserRoutes;
         }
 
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "userByToUid")
+        public Set<Letter> getLettersForToUid() {
+                return this.lettersForToUid;
+        }
+
+        public void setLettersForToUid(Set<Letter> lettersForToUid) {
+                this.lettersForToUid = lettersForToUid;
+        }
+
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
         public Set<QuestionAnswer> getQuestionAnswers() {
                 return this.questionAnswers;
@@ -277,6 +292,15 @@ public class User implements java.io.Serializable {
 
         public void setRelUsersForUserId2(Set<RelUser> relUsersForUserId2) {
                 this.relUsersForUserId2 = relUsersForUserId2;
+        }
+
+        @OneToMany(fetch = FetchType.LAZY, mappedBy = "userByFromUid")
+        public Set<Letter> getLettersForFromUid() {
+                return this.lettersForFromUid;
+        }
+
+        public void setLettersForFromUid(Set<Letter> lettersForFromUid) {
+                this.lettersForFromUid = lettersForFromUid;
         }
 
         @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
