@@ -53,18 +53,35 @@
 			<mvc:mapping path="/user/zone/*" />
 			<mvc:mapping path="/user/addFriend/*" />
 			<mvc:mapping path="/user/validateFriend/*/*" />
+			<mvc:mapping path="/user/notification/*" />
 			<mvc:mapping path="/blog/add" />
 			<mvc:mapping path="/blog/comment/*" />
 			<mvc:mapping path="/question/ask" />
-                        <mvc:mapping path="/question/edit/*" />
-                        <mvc:mapping path="/question/answer/*" />
-                        <mvc:mapping path="/course/learn/*" />
-                         <mvc:mapping path="/feedback/*" />
+			<mvc:mapping path="/question/edit/*" />
+			<mvc:mapping path="/question/answer/*" />
+			<mvc:mapping path="/course/learn/*" />
+			<mvc:mapping path="/feedback/*" />
 			<!-- 需排除拦截的地址 -->
 			<mvc:exclude-mapping path="/user/login" />
 			<mvc:exclude-mapping path="/user/logout" />
 			<mvc:exclude-mapping path="/user/register" />
 			<bean class="com.lst.lc.interceptor.UserInterceptor" />
 		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<!-- 需拦截的地址 -->
+			<mvc:mapping path="/blog/*" />
+			<mvc:mapping path="/blog/*/*" />
+			<mvc:mapping path="/question/*" />
+			<mvc:mapping path="/question/*/*" />
+			<mvc:mapping path="/course/*" />
+			<mvc:mapping path="/course/*/*" />
+			<!-- 需排除拦截的地址 -->
+			<mvc:exclude-mapping path="/user/login" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/user/register" />
+			<bean class="com.lst.lc.interceptor.InfoInterceptor" />
+		</mvc:interceptor>
+
 	</mvc:interceptors>
 </beans>
