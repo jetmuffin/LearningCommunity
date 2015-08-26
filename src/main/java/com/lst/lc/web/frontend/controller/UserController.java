@@ -100,15 +100,6 @@ public class UserController {
                         message = "登录成功";
                         session.setAttribute("loginUser", user);
 
-                        List<User> friends = userDao.getValidateFriends(user
-                                        .getUserId());
-                        int letters = letterDao.getUnRead(user.getUserId());
-                        if (friends.size() > 0)
-                                session.setAttribute("notity_friends",
-                                                friends.size());
-                        if (letters > 0)
-                                session.setAttribute("notify_letters", letters);
-
                         statusMessage = new StatusMessage(1, message);
                         // 写进日志，积分加1
                         logHandler.toLog(user, "登录网站");
@@ -382,15 +373,15 @@ public class UserController {
                 return "frontend/notify/index";
         }
 
-        @RequestMapping(value = "/read/{uid}/{time}", method = RequestMethod.GET)
-        public String read(Model model, HttpSession session,
-                        @PathVariable int uid, @PathVariable String time)
-                        throws Exception {
-                User user = (User) session.getAttribute("loginUser");
-                System.out.println(time);
-                letterDao.updateState(uid, user.getUserId(), time, 1);
-                return "frontend/user/login";
-        }
+//        @RequestMapping(value = "/read/{uid}/{time}", method = RequestMethod.GET)
+//        public String read(Model model, HttpSession session,
+//                        @PathVariable int uid, @PathVariable String time)
+//                        throws Exception {
+//                User user = (User) session.getAttribute("loginUser");
+//                System.out.println(time);
+//                letterDao.updateState(uid, user.getUserId(), time, 1);
+//                return "frontend/user/login";
+//        }
 
         @RequestMapping(value = "/notification/write", method = RequestMethod.GET)
         public String addLetter(Model model, HttpSession session) {
