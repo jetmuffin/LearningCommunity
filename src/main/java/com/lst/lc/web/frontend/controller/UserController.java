@@ -351,7 +351,7 @@ public class UserController {
                 return "frontend/user/login";
         }
 
-        @RequestMapping(value = "/notification/letter", method = RequestMethod.GET)
+        @RequestMapping(value = "/notification/friends", method = RequestMethod.GET)
         public String notification(Model model, HttpSession session) {
                 User user = (User) session.getAttribute("loginUser");
                 model.addAttribute("user", user);
