@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
      <jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
+     <jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
      <div class="center-content">
 <div class="main-title" >
 					<h1>
@@ -39,7 +40,7 @@
                             	<p>${st.getSummary(answer.content, 200) }</p>
                             </div>
                             <div class="question-footer clearfix">
-                                <div class="question-time l">${answer.question.time}</div>
+                                <div class="question-time l">${jt.format(answer.question.time)}</div>
                                 <div class="question-tag-list l">
                                     <c:forEach var="tag" items="${st.stringSplit(answer.question.tag)}">
                                         <a href="" target="_blank" class="list-tag">${tag}</a>

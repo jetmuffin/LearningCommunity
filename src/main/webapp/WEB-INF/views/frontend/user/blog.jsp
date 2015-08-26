@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
+ <jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <div class="center-content">
                  <div class="main-title">
@@ -27,7 +28,7 @@
                                         src="/LearningCommunity/read/avatar/${blog.user.userId }"
                                         class="avatar-20" alt="">${blog.user.userName}</a>
                                 </div>
-                                <div class="blog-time l">${blog.time}</div>
+                                <div class="blog-time l">${jt.format(blog.time)}</div>
                                 <div class="blog-tag-list l">
                                     <c:forEach var="tag" items="${st.stringSplit(blog.tag)}">
                                         <a href="" target="_blank" class="list-tag">${tag}</a>

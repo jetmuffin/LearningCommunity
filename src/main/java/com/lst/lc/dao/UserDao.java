@@ -1,7 +1,9 @@
 package com.lst.lc.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import com.lst.lc.entities.BlogTag;
 import com.lst.lc.entities.User;
 
 public interface UserDao {
@@ -78,5 +80,7 @@ public interface UserDao {
 	public boolean ifFriend(int uid1, int uid2);
 	
 	public long count();
+	
+	public List<Map.Entry<String, Integer>> getTags(int uid);
 	
 }

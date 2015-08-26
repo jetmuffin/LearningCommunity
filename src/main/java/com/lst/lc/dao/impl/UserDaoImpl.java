@@ -1,9 +1,13 @@
 package com.lst.lc.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -13,6 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.lst.lc.dao.RankDao;
 import com.lst.lc.dao.UserDao;
+import com.lst.lc.entities.Blog;
+import com.lst.lc.entities.BlogTag;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.RelUser;
 import com.lst.lc.entities.RelUserCourse;
@@ -20,6 +26,7 @@ import com.lst.lc.entities.RelUserCourseId;
 import com.lst.lc.entities.RelUserId;
 import com.lst.lc.entities.User;
 import com.lst.lc.utils.SetUtils;
+import com.lst.lc.utils.StringUtils;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDao implements UserDao {
@@ -158,6 +165,37 @@ public class UserDaoImpl extends BaseDao implements UserDao {
                 Query query = query(hql);
                 long res = (long) query.uniqueResult();
                 return res;
+        }
+
+        @Override
+        public List<Map.Entry<String, Integer>> getTags(int uid) {
+                User user = getById(uid);
+                Set<Blog> blogs = user.getBlogs();
+                Map<String, Integer> tags = new HashMap<String, Integer>();
+                for(Iterator<Blog> iterator = blogs.iterator(); iterator.hasNext();){
+                        Blog blog = iterator.next();
+                        String t = blog.getTag();
+                        List<String> ts = StringUtils.stringSplit(t, ",");
+                        for(int i = 0; i < ts.size(); i++){
+                                String tname = ts.get(i);
+                                if(tags.containsKey(tname)){
+                                        tags.put(tname, tags.get(tname)+1);
+                                }else{
+                                        tags.put(tname, 1);
+                                }
+                        }
+                                
+                }
+                List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(tags.entrySet());  
+                Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {   
+                        public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {      
+                            return (o2.getValue() - o1.getValue()); 
+                        }
+                    }); 
+                if(list.size() > 6){
+                        return list.subList(0, 6);
+                }
+                return list;
         }
 
 }
