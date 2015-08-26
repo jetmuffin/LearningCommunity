@@ -15,7 +15,7 @@ import com.lst.lc.dao.LetterDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.User;
 
-public class UserInterceptor implements HandlerInterceptor {
+public class InfoInterceptor implements HandlerInterceptor {
         
         @Autowired
         @Qualifier("userDao")
@@ -48,8 +48,7 @@ public class UserInterceptor implements HandlerInterceptor {
                 HttpSession session = request.getSession();
                 User user = (User) session.getAttribute("loginUser");
                 if(user == null){
-                        response.sendRedirect(loginUrl);
-                        return false;
+                        return true;
                 }else{
                         List<User> friends = userDao.getValidateFriends(user
                                         .getUserId());
