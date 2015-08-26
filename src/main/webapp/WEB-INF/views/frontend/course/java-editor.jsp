@@ -31,18 +31,16 @@
 </body>
 	<script src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 	<script src="/LearningCommunity/resources/js/socketio/socket.io.js"></script>
-	<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
-	
 	<script>
+	var chatRoomAddress = '${chatRoomAddress}';
+	var user = {
+			'uid': '${loginUser.userName}',
+			'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
+	};
+	var room = {
+			'room_id': ${lesson.lessonId}
+	};
 		$(function(){
-			chatRoomAddress = '${chatRoomAddress}';
-			user = {
-					'uid': '${loginUser.userName}',
-					'avatar': '/LearningCommunity/read/avatar/' + ${loginUser.userId}
-			};
-			room = {
-					'room_id': ${lesson.lessonId}
-			};
 			 var width = document.body.clientWidth,
 			 		discussBtn = $('#discussBtn'),
 			 		chatroom = $('#chatroom'),
@@ -58,4 +56,5 @@
 			 });
 		});
 	</script>
+	<script src="/LearningCommunity/resources/js/socketio/hichat.js"></script>
 </html>

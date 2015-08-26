@@ -1,8 +1,7 @@
 package com.lst.lc.entities;
 
-// Generated 2015-8-25 19:01:07 by Hibernate Tools 4.3.1
+// Generated 2015-8-25 20:56:56 by Hibernate Tools 4.3.1
 
-import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,12 +13,12 @@ public class LetterId implements java.io.Serializable {
 
         private int fromUid;
         private int toUid;
-        private Date time;
+        private String time;
 
         public LetterId() {
         }
 
-        public LetterId(int fromUid, int toUid, Date time) {
+        public LetterId(int fromUid, int toUid, String time) {
                 this.fromUid = fromUid;
                 this.toUid = toUid;
                 this.time = time;
@@ -43,12 +42,12 @@ public class LetterId implements java.io.Serializable {
                 this.toUid = toUid;
         }
 
-        @Column(name = "time", nullable = false, length = 19)
-        public Date getTime() {
+        @Column(name = "time", nullable = false, length = 50)
+        public String getTime() {
                 return this.time;
         }
 
-        public void setTime(Date time) {
+        public void setTime(String time) {
                 this.time = time;
         }
 

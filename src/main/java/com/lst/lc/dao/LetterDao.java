@@ -9,7 +9,7 @@ public interface LetterDao {
 	
 	public void add(Letter letter);
 	
-	public void updateState(int fromUid, int toUid, Date date, int State);
+	public void updateState(int fromUid, int toUid, String date, int State);
 	
 	/**
 	 * 收到的所有站内信
