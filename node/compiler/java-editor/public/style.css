@@ -1,0 +1,76 @@
+body{
+  margin: 0;
+  overflow-x: hidden;
+}
+.CodeMirror{
+  position: absolute;
+  font-size: 16px;
+  top: 0;
+  bottom: 50%;
+  width: 100%;
+  height: 50%;
+  border-left: 10px solid #3D3D3D;
+}
+.terminal {
+  position: absolute;
+  top: 50%;
+  bottom: 50px;
+  border: 0;
+  background-color: #202020;
+  color: #E6E1DC;
+  width: 100%;
+  box-shadow: 0 0 5px black inset;
+  padding: 3px;
+  font-weight: bolder;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  overflow-y: auto;
+  border-left: 10px solid #3D3D3D;
+  border-top: 10px solid #3D3D3D;
+  z-index: 1000;
+}
+.lab-operate {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #3D3D3D;
+  height: 50px;
+  padding-left: 40px;
+}
+#submit{
+  margin:10px; 
+}
+
+.btn {
+    right: 15px;
+    bottom: 15px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+  color: #fff !important;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-default{
+  color:#000 !important;
+    border: 1px solid #ccc;
+    background-color: #fff; 
+    &:hover{
+      background-color: #ddd;
+    }
+}
+.btn-primary {
+    border-color: #49d;
+    background-color: #49d;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+} 
+
+.btn-lg{
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 3px;
+}

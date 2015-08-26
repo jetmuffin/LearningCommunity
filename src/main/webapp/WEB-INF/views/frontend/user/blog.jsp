@@ -4,10 +4,12 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
  <div class="center-content">
                  <div class="main-title">
+                 	<h1>
                     	<c:choose>
                     		<c:when test="${loginUser.userId eq user.userId }">我的文章</c:when>
                     		<c:otherwise>他的文章</c:otherwise>
                     	</c:choose>
+                    </h1>
                 </div>              
               <div class="course-list blog-list"  >
                     <div class="all-course-list">

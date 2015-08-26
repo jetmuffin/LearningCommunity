@@ -82,8 +82,7 @@
 											<li class="course-desc">${course.description}</li>
 											<li class="course-student-number">学生人数：${course.studentNums}</li>
 										</ul>
-										<a href="" id="join-right-now" class="btn btn-primary btn-sm">立即学习</a>
-
+										<a href="/LearningCommunity/course/learn/${course.courseId}'" id="join-right-now" class="btn btn-primary btn-sm">立即学习</a>
 									</div>
 								</div>
 							</div>

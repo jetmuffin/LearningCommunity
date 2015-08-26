@@ -19,6 +19,7 @@
 				<li ><a onclick="javascript:loadEditor(this)" lang="html">HTML</a></li>
 				<li><a onclick="javascript:loadEditor(this)" lang="java">Java</a></li>
 				<li><a onclick="javascript:loadEditor(this)" lang="cpp">C & C++</a></li>
+				<li><a onclick="javascript:loadEditor(this)" lang="python">Python</a></li>
 				<li><a href="#more" data="more">更多语言支持敬请期待</a></li>
 			</ul>
 		</div>
@@ -52,6 +53,7 @@
 				break;
 			case "cpp":url = "${cppRunAddress}";
 			  break;
+			case "python": url = "${pythonRunAddress}";
 			default: url = "/LearningCommunity/editor/html";
 			}
 			 $('iframe').attr("src",url);

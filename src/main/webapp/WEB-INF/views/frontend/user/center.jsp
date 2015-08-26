@@ -60,6 +60,7 @@ ${userMsg}
 					<li <c:if test="${center_module eq 'ask'}">class="active"</c:if> ><a href="/LearningCommunity/user/${user.userId}/ask"><span>提问</span></a></li>
 					<li <c:if test="${center_module eq 'answer'}">class="active"</c:if> ><a href="/LearningCommunity/user/${user.userId}/answer"><span>回答</span></a></li>
 					<li <c:if test="${center_module eq 'blog'}">class="active"</c:if> ><a href="/LearningCommunity/user/${user.userId}/blog"><span>文章</span></a></li>
+					<li <c:if test="${center_module eq 'comment'}">class="active"</c:if> ><a href="/LearningCommunity/user/${user.userId}/comment"><span>评论</span></a></li>
 					<div class="clearfix"></div>
 				</ul>
 				<jsp:include page="${center_module}.jsp"></jsp:include>

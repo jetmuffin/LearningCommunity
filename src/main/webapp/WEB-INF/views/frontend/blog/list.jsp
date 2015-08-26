@@ -126,7 +126,7 @@
 				<c:if test="${ not empty loginUser}">
 					<div class="sidebar-item">
 						<h3 class="item-title">
-							我的讨论<a>»</a>
+							我的文章<a>»</a>
 						</h3>
 						<div class="user-info clearfix">
 							<div class="user-img  text-center clearfix">
@@ -136,10 +136,10 @@
 								<p class="username ">${loginUser.userName}</p>
 							</div>
 							<div class="user-statics l text-center statics-mid">
-								<a href="">我的文章</a>
+								<a href="/LearningCommunity/user/${loginUser.userId}/blog">我的主题</a>
 							</div>
 							<div class="user-statics l text-center">
-								<a href="">我的回复</a>
+								<a href="/LearningCommunity/user/${loginUser.userId}/comment">我的回复</a>
 							</div>
 						</div>
 					</div>

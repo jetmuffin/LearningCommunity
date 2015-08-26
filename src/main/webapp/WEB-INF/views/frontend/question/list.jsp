@@ -31,8 +31,8 @@
 						class="btn btn-primary btn-lg">我要提问</a>
 				</p>
 				<div class="main-tab">
-					<a href="" class="question-tab active">最新</a> <a href=""
-						class="question-tab">最热</a> <a href="" class="question-tab">未回答</a>
+					<a href="/LearningCommunity/question/questions?type=3" class="question-tab active">最新</a> <a href="/LearningCommunity/question/questions?type=1"
+						class="question-tab">最热</a> <a href="/LearningCommunity/question/questions?type=2" class="question-tab">未回答</a>
 				</div>
 				<div class="main-list">
 					<c:forEach var="question" items="${page.list}">

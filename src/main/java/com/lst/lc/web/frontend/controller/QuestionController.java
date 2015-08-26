@@ -152,7 +152,7 @@ public class QuestionController {
 			String pageSize, String type) {
 		int pageNow = 1;
 		int pagesize = 10;
-		int sorttype = 1;
+		int sorttype = 3;
 		if (pageSize != null) {
 			pagesize = Integer.valueOf(pageSize);
 		}

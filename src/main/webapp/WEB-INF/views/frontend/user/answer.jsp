@@ -4,10 +4,12 @@
      <jsp:useBean id="st" class="com.lst.lc.utils.StringUtils" scope="page" />
      <div class="center-content">
 <div class="main-title" >
+					<h1>
                      	<c:choose>
                     		<c:when test="${loginUser.userId eq user.userId }">我的回答</c:when>
                     		<c:otherwise>他的回答</c:otherwise>
                     	</c:choose>
+                    </h1>
                 </div>
                 <div class="course-list question-list" >
                     <div class="all-course-list">

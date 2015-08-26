@@ -573,3 +573,15 @@ h5 {
   height: 40px;
   border-radius: 3px;
 }
+#footer {
+  border-top: 1px solid #EEE;
+  padding: 40px 0;
+  margin-top:20px;
+  color: #888;
+  line-height: 1.6;
+  vertical-align: top;
+}
+#footer .copyright {
+  text-align: center;
+  font-size: 13px;
+}
