@@ -27,6 +27,7 @@ import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
 import com.lst.lc.entities.Blog;
+import com.lst.lc.entities.BlogComment;
 import com.lst.lc.entities.Course;
 import com.lst.lc.entities.Letter;
 import com.lst.lc.entities.LetterId;
