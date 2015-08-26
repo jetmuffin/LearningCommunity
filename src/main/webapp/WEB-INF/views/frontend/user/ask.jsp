@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <jsp:useBean id="jt" class="com.lst.lc.utils.JspUtil" scope="page" />
      <div class="center-content">
 <div class="main-title" >
                     	<c:choose>
@@ -33,7 +34,7 @@
                                     href="/LearningCommunity/question/view/${question.questionId}">${question.title}</a>
                             </div>
                             <div class="question-footer clearfix">
-                                <div class="question-time l">${question.time}</div>
+                                <div class="question-time l">${jt.format(question.time)}</div>
                                 <div class="question-tag-list l">
                                     <c:forEach var="tag" items="${st.stringSplit(question.tag)}">
                                         <a href="" target="_blank" class="list-tag">${tag}</a>

@@ -165,7 +165,6 @@ public class UserController {
                 model.addAttribute("blogs", blogs);
                 model.addAttribute("questions", questions);
                 return "frontend/user/center";
-                // }
         }
 
         @RequestMapping(value = "/{userId}/blog", method = RequestMethod.GET)
@@ -400,6 +399,13 @@ public class UserController {
                 List<IntegralRecord> records = integralRecordOperation
                                 .getRecent(user.getEmail(), day);
                 return records;
+        }
+        
+        @RequestMapping(value = "/tags", method = RequestMethod.GET)
+        public String tags(Model model, HttpSession session ) {
+                User user = (User) session.getAttribute("loginUser");
+                model.addAttribute("tags", userDao.getTags(user.getUserId()));
+                return "redirect:/user/"+user.getUserId()+"/course";
         }
 
 }

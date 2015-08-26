@@ -29,14 +29,14 @@ public class LetterDaoImpl extends BaseDao implements LetterDao {
 
         @Override
         public List<Letter> getAll(int uid) {
-                String hql = "from Letter as letter where letter.id.toUid = ? order by letter.state desc";
+                String hql = "from Letter as letter where letter.id.toUid = ? order by letter.id.time desc";
                 Query query = query(hql).setInteger(0, uid);
                 return query.list();
         }
 
         @Override
         public int getUnRead(int uid) {
-                String hql = "from Letter as letter where letter.id.toUid = ? and letter.state = 0";
+                String hql = "from Letter as letter where letter.id.toUid = ? and letter.state = 0 order by letter.id.time desc";
                 Query query = query(hql).setInteger(0, uid);
                 return query.list().size();
         }
