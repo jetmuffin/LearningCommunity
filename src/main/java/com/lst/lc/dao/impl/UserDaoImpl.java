@@ -1,7 +1,10 @@
 package com.lst.lc.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,8 +125,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         @Override
         public List<User> getValidateFriends(int uid) {
                 User user = getById(uid);
-                List<User> users = SetUtils.mergeFriend(user.getRelUsersForUserId1(), user.getRelUsersForUserId2(), user, 0);
-                return users;
+                Set<RelUser> set = user.getRelUsersForUserId2();
+                List<User> friends = new ArrayList<User>();
+                for(Iterator<RelUser> iterator = set.iterator(); iterator.hasNext();){
+                        RelUser relUser = iterator.next();
+                        if(relUser.getState() == 0){
+                                friends.add(relUser.getUserByUserId1());
+                        }
+                }
+                return friends;
         }
 
         @Override
