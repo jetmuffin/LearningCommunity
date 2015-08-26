@@ -33,64 +33,45 @@ $(function(){
         "Doughnut": green
     },
     helpers = Chart.helpers;
-
-
-var data = [
-    {
-        value: 7.57,
-        label: "Core"
-    },
-
-    {
-        value: 1.63,
-        label: "Bar"
-    },
-
-    {
-        value: 1.09,
-        label: "Doughnut"
-    },
-
-    {
-        value: 1.71,
-        label: "Radar"
-    },
-
-    {
-        value: 1.64,
-        label: "Line"
-    },
-
-    {
-        value: 1.37,
-        label: "Polar Area"
+    var colors = new Array();
+    for (var index in colours) {
+    	colors.push(colours[index]);
     }
-]
-var colors = getArrayItems(colours,data.length);
-for(var i = 0; i < data.length; i++){
-    data[i].color = colors[i];
-    data[i].highlight = Colour(colors[i],10);
-}
+	$.getJSON('/LearningCommunity/user/tags/'+uid,function(raw_data){
+		var data = [];
+		for(var i = 0; i < raw_data.length; i++){
+			for(key in raw_data[i]){
+				var d = new Object();
+				d.value = raw_data[i][key];
+				d.label = key;
+				data.push(d);
+			}			
+		}
+		for(var i = 0; i < data.length; i++){
+		    data[i].color = colors[i];
+		    data[i].highlight = Colour(colors[i],10);
+		}
+		var moduleDoughnut = new Chart(canvas.getContext('2d')).Doughnut(data, { tooltipTemplate : "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+		// 
+		var legendHolder = document.createElement('div');
+		legendHolder.innerHTML = moduleDoughnut.generateLegend();
+		helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
+		    helpers.addEvent(legendNode, 'mouseover', function(){
+		        var activeSegment = moduleDoughnut.segments[index];
+		        activeSegment.save();
+		        activeSegment.fillColor = activeSegment.highlightColor;
+		        moduleDoughnut.showTooltip([activeSegment]);
+		        activeSegment.restore();
+		    });
+		});
+		helpers.addEvent(legendHolder.firstChild, 'mouseout', function(){
+		    moduleDoughnut.draw();
+		});
+		canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+		});
+	});
 
-// 
-var moduleDoughnut = new Chart(canvas.getContext('2d')).Doughnut(data, { tooltipTemplate : "<%if (label){%><%=label%>: <%}%><%= value %>kb", animation: false });
-// 
-var legendHolder = document.createElement('div');
-legendHolder.innerHTML = moduleDoughnut.generateLegend();
-helpers.each(legendHolder.firstChild.childNodes, function(legendNode, index){
-    helpers.addEvent(legendNode, 'mouseover', function(){
-        var activeSegment = moduleDoughnut.segments[index];
-        activeSegment.save();
-        activeSegment.fillColor = activeSegment.highlightColor;
-        moduleDoughnut.showTooltip([activeSegment]);
-        activeSegment.restore();
-    });
-});
-helpers.addEvent(legendHolder.firstChild, 'mouseout', function(){
-    moduleDoughnut.draw();
-});
-canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-});
+
 
 var Calendar = function(){
 	this.container = $('#calendar');
@@ -138,7 +119,6 @@ Calendar.prototype = {
 	init: function(data){
 		var that = this;
 		for(var i = 0; i < data.length; i++){
-			console.log(data[i]);
 			var li = document.createElement("li");
 			var data_title = "+"+data[i].integral+"积分<br>" + data[i].date;
 			$(li).addClass('rect').attr("data-title",data_title);

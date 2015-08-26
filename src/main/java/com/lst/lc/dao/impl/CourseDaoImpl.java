@@ -139,6 +139,14 @@ public class CourseDaoImpl extends BaseDao implements CourseDao {
 	public List<Course> getCourseOfUser(int userId) {
 		return null;
 	}
+
+        @Override
+        public long getCount() {
+                String hql = "select count(*) from Course";
+                Query query = query(hql);
+                long res = (long) query.uniqueResult();
+                return res;
+        }
 	
 
 }

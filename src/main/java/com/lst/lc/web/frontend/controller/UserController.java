@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -414,11 +415,10 @@ public class UserController {
                 return records;
         }
         
-        @RequestMapping(value = "/tags", method = RequestMethod.GET)
-        public String tags(Model model, HttpSession session ) {
-                User user = (User) session.getAttribute("loginUser");
-                model.addAttribute("tags", userDao.getTags(user.getUserId()));
-                return "redirect:/user/"+user.getUserId()+"/course";
+        @RequestMapping(value = "/tags/{userId}", method = RequestMethod.GET)
+        @ResponseBody
+        public List<Map.Entry<String, Integer>> tags(Model model, HttpSession session,@PathVariable int userId ) {
+                return userDao.getTags(userId);
         }
 
 }

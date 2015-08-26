@@ -43,4 +43,6 @@ public interface CourseDao {
 	public List<User> getUsers(int courseId);
 	
 	public List<Course> getCourseOfUser(int userId);
+	
+	public long getCount();
 }
