@@ -1452,6 +1452,9 @@ color: #777;
   font-size: 16px;
   color:#333;
 }
+.notify-friend .stream-item{
+	  margin-bottom: 15px;
+}
 .notify-stream .stream-item {
   position: relative;
   padding: 8px 15px 8px 25px;

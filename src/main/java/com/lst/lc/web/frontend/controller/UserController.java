@@ -8,6 +8,7 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.http.HttpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -100,10 +101,10 @@ public class UserController {
                         List<User> friends = userDao.getValidateFriends(user
                                         .getUserId());
                         int letters = letterDao.getUnRead(user.getUserId());
-                        if (friends.size() + letters > 0) {
-                                session.setAttribute("notification",
-                                                friends.size() + letters);
-                        }
+                        if(friends.size() > 0)
+                        	session.setAttribute("notity_friends", friends.size());
+                        if(letters > 0)
+                        	session.setAttribute("notify_letters", letters);
 
                         statusMessage = new StatusMessage(1, message);
                         // 写进日志，积分加1
@@ -290,7 +291,7 @@ public class UserController {
         @RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
         public String addFriend(Model model, HttpSession session,
                         @PathVariable int uid,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes,HttpRequest request) {
                 User user = (User) session.getAttribute("loginUser");
                 model.addAttribute("user", user);
                 String message = null;
@@ -301,7 +302,7 @@ public class UserController {
                         message = "你们已经是好友";
                 }
                 redirectAttributes.addFlashAttribute("userMsg", message);
-                return "frontend/user/center";
+                return "redirect:/user/notification/letter";
         }
 
         /**
@@ -322,7 +323,7 @@ public class UserController {
                 if (state != 0) {
                         userDao.validateFriend(uid, user.getUserId(), 1);
                 }
-                return "frontend/user/center";
+                return "redirect:/user/notification/friends";
         }
 
         @RequestMapping(value = "/friends", method = RequestMethod.GET)
@@ -348,7 +349,9 @@ public class UserController {
                                                 .getTime(), 1);
                         }
                 }
-                return "frontend/user/login";
+                session.removeAttribute("notify_letters");
+                model.addAttribute("notify_module","message");
+                return "frontend/notify/index";
         }
 
         @RequestMapping(value = "/notification/friends", method = RequestMethod.GET)
@@ -358,7 +361,9 @@ public class UserController {
                 List<User> friends = userDao.getValidateFriends(user
                                 .getUserId());
                 model.addAttribute("friends", friends);
-                return "frontend/user/login";
+                model.addAttribute("notify_module","friendApplication");
+                session.removeAttribute("notify_friends");
+                return "frontend/notify/index";
         }
         
         @RequestMapping(value = "/read/{uid}/{time}", method = RequestMethod.GET)
@@ -371,7 +376,13 @@ public class UserController {
                 return "frontend/user/login";
         }
 
-        @RequestMapping(value = "/sendLetter", method = RequestMethod.POST)
+        @RequestMapping(value = "/notification/write", method = RequestMethod.GET)
+        public String addLetter(Model model, HttpSession session) {
+            model.addAttribute("notify_module","writeLetter");
+        return "frontend/notify/index";
+        }
+        
+        @RequestMapping(value = "/notification/write", method = RequestMethod.POST)
         public String addLetter(Model model, HttpSession session, int uid,
                         String content) {
                 User user = (User) session.getAttribute("loginUser");

@@ -21,12 +21,12 @@
 	<div id="notification">
 		<div class="container">
 			<div class="stream-list l">
-					<jsp:include page="friendApplication.jsp"></jsp:include>
+					<jsp:include page="${notify_module}.jsp"></jsp:include>
 			</div>
 			<div class="widget-messages r">
-				<a href="" class="message-item">好友申请<span class="badge">1</span></a>
-				<a href="" class="message-item">消息列表</a>
-				<a href="" class="message-item">写站内信</a>
+				<a href="/LearningCommunity/user/notification/friends" class="message-item">好友申请<span class="badge">1</span></a>
+				<a href="/LearningCommunity/user/notification/letter" class="message-item">消息列表</a>
+				<a href="/LearningCommunity/user/notification/write" class="message-item">写站内信</a>
 			</div>
 		</div>
 	</div>
