@@ -6,7 +6,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>左偏树 - 消息箱</title>
+<link rel="stylesheet" href="/LearningCommunity/resources/js/chosen/chosen.css" />
 <link rel="stylesheet" href="/LearningCommunity/resources/css/main.css">
+<style>
+	.chosen-container{
+	width:300px !important;
+	margin-bottom:10px;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp"></jsp:include>
@@ -24,8 +31,8 @@
 					<jsp:include page="${notify_module}.jsp"></jsp:include>
 			</div>
 			<div class="widget-messages r">
-				<a href="/LearningCommunity/user/notification/friends" class="message-item">好友申请<span class="badge">1</span></a>
-				<a href="/LearningCommunity/user/notification/letter" class="message-item">消息列表</a>
+				<a href="/LearningCommunity/user/notification/friends" class="message-item">好友申请 <c:if test="${not empty notify_friends}"><span class="badge">${notify_friends}</span></c:if></a>
+				<a href="/LearningCommunity/user/notification/letter" class="message-item">消息列表 <c:if test="${not empty notify_letters}"><span class="badge">${notify_letters }</span></c:if></a>
 				<a href="/LearningCommunity/user/notification/write" class="message-item">写站内信</a>
 			</div>
 		</div>

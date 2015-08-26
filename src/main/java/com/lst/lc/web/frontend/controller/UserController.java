@@ -391,7 +391,7 @@ public class UserController {
                                 DateUtils.getDateString(new Date()));
                 Letter letter = new Letter(id, toUser,user, content, 0);
                 letterDao.add(letter);
-                return "frontend/user/login";
+                return "redirect:/user/notification/write";
         }
 
         @RequestMapping(value = "/record/{userId}", method = RequestMethod.GET)

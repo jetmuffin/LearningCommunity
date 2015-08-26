@@ -5,8 +5,8 @@
 <div class="notify-stream  notify-friend border-top">
 	<c:forEach var="friend" items="${friends}">
 		<section class="stream-item viewed">
-		<a href="" class="user-thumb"><img src="/LearningCommunity/read/avatar/${friend.userId }" alt="" /></a>
-		<a href="">${friend.userName }</a>
+		<a href="/LearningCommunity/user/${friend.userId }/course" class="user-thumb"><img src="/LearningCommunity/read/avatar/${friend.userId }" alt="" /></a>
+		<a href="/LearningCommunity/user/${friend.userId }/course">${friend.userName }</a>
 		<p>城市：${friend.city }</p>
 		<p>座右铭：${friend.motto}</p>
 		<p>积分：${friend.integral}</p>
@@ -15,5 +15,4 @@
 		<div class="clearfix"></div>
 	</section>
 	</c:forEach>
-
 </div>

@@ -27,7 +27,7 @@
 					</c:when>
 					<c:otherwise>
 						<ul class="header-login">
-							<li class="notification"><a href="/LearningCommunity/user/notification/letter"></a></li>
+							<li class="notification"><a href="/LearningCommunity/user/notification/letter"><c:if test="${notify_letters+notify_friends gt 0}"><span class="badge bg-red r">${notify_letters+notify_friends}</span></c:if></a></li>
 											<li class="user-avatar-list">
 						<a href="" class="user-avatar"><img class="avatar-32" src="/LearningCommunity/read/avatar/${loginUser.userId }" alt="" width="32" height="32"></a>
 						<div class="user-card">

@@ -1510,7 +1510,7 @@ color: #777;
 #ask form {
   position: relative;
 }
-#ask form #myTitle {
+#ask form #myTitle,.letter-form form #myTitle {
   display: block;
   width: 97%;
   color: #555;
@@ -1542,7 +1542,7 @@ color: #777;
 #ask form #cke_content {
   width: 100%;
 }
-#ask form #btn-ask {
+#ask form #btn-ask , .letter-form form #btn-ask{
   margin-top: 10px;
 }
 #feedback h4 {
@@ -1760,6 +1760,12 @@ color: #777;
   padding: 10px 0;
   border-bottom: 1px solid #e3e5e5;
   position: relative;
+}
+.bg-red{
+	background-color:rgb(232, 24, 63);
+}
+.notification .badge{
+	margin-top:3px;
 }
 .all-course-list .blog-item .replynumber {
   font-size: 12px;

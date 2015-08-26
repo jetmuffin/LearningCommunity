@@ -31,7 +31,7 @@
 						href="/LearningCommunity/blog/add" class="btn btn-primary btn-lg">撰写文章</a>
 				</p>
 				<div class="main-tab">
-					<a href="" class="blog-tab active">最新</a> <a href=""
+					<a href="/LearningCommunity/blog/blogs?type=0" class="blog-tab active">最新</a> <a href="/LearningCommunity/blog/blogs?type=1"
 						class="blog-tab">最热</a>
 				</div>
 				<div class="main-list">
