@@ -1,6 +1,6 @@
 package com.lst.lc.entities;
 
-// Generated 2015-8-25 19:01:07 by Hibernate Tools 4.3.1
+// Generated 2015-8-25 20:56:56 by Hibernate Tools 4.3.1
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
@@ -36,20 +36,12 @@ public class Letter implements java.io.Serializable {
                 this.content = content;
                 this.state = state;
         }
-        
-        public Letter(User userByToUid, User userByFromUid,
-                        String content, int state) {
-                this.userByToUid = userByToUid;
-                this.userByFromUid = userByFromUid;
-                this.content = content;
-                this.state = state;
-        }
 
         @EmbeddedId
         @AttributeOverrides({
                         @AttributeOverride(name = "fromUid", column = @Column(name = "fromUid", nullable = false)),
                         @AttributeOverride(name = "toUid", column = @Column(name = "toUid", nullable = false)),
-                        @AttributeOverride(name = "time", column = @Column(name = "time", nullable = false, length = 19)) })
+                        @AttributeOverride(name = "time", column = @Column(name = "time", nullable = false, length = 50)) })
         public LetterId getId() {
                 return this.id;
         }

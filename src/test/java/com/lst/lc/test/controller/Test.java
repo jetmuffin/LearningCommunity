@@ -146,19 +146,19 @@ public class Test {
                 return "frontend/user/login";
         }
         
-        @RequestMapping(value = "/addLetter", method = RequestMethod.GET)
-        public String addLetter(Model model) {
-                LetterId id = new LetterId(19, 18, new Date());
-                User fromUser = userDao.getById(19);
-                User toUser = userDao.getById(18);
-                Letter letter = new Letter(id, fromUser, toUser, "test", 0);
-                letterDao.add(letter);
-                
-                List<Letter> letters = letterDao.getAll(18);
-                System.out.println(letters.size());
-                
-                System.out.println(letterDao.getUnRead(18));
-                
-                return "frontend/user/login";
-        }
+//        @RequestMapping(value = "/addLetter", method = RequestMethod.GET)
+//        public String addLetter(Model model) {
+//                LetterId id = new LetterId(19, 18, new Date());
+//                User fromUser = userDao.getById(19);
+//                User toUser = userDao.getById(18);
+//                Letter letter = new Letter(id, fromUser, toUser, "test", 0);
+//                letterDao.add(letter);
+//                
+//                List<Letter> letters = letterDao.getAll(18);
+//                System.out.println(letters.size());
+//                
+//                System.out.println(letterDao.getUnRead(18));
+//                
+//                return "frontend/user/login";
+//        }
 }
