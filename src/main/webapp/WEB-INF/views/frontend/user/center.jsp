@@ -52,6 +52,10 @@ ${userMsg}
 				</div>
 				<div class="route">
 					<strong>钻研方向</strong>
+					        <div class="labeled-chart-container">
+        <div id="canvas-holder">
+            <canvas id="modular-doughnut" width="300" height="300"/>
+        </div>
 				</div>
 			</div>
 			<div class="usercenter-main r">
@@ -72,6 +76,7 @@ ${userMsg}
 		<script>
 			var uid = ${user.userId};
 			</script>
+			<script src="/LearningCommunity/resources/js/Chat.min.js"></script>
 	<script src="/LearningCommunity/resources/js/frontend/user/center.js"></script>
 </body>
 </html>
