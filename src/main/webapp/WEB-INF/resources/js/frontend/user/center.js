@@ -5,7 +5,6 @@
 $(function(){
 	
 	$.getJSON('/LearningCommunity/user/record/'+uid,function(data){
-		console.log(data);
 		var calendar = new Calendar();
 		calendar.init(data);
 	});
@@ -18,14 +17,13 @@ var Calendar = function(){
 Calendar.prototype = {
 	init: function(data){
 		var that = this;
-		console.log(this.container);
 		for(var i = 0; i < data.length; i++){
 			console.log(data[i]);
 			var li = document.createElement("li");
 			var data_title = "+"+data[i].integral+"积分<br>" + data[i].date;
 			$(li).addClass('rect').attr("data-title",data_title);
 			if(data[i].integral > 0)
-				$(li).addClass('bg-blue').css("opacity",data[i].integral/10);
+				$(li).addClass('bg-blue').css("opacity",data[i].integral/30);
 			else
 				$(li).addClass('bg-gray');
 			$(li).appendTo(this.container);					
@@ -35,7 +33,6 @@ Calendar.prototype = {
 				var data_title = $(this).attr("data-title");
 				var top = $(this).position().top;
 				var left = $(this).position().left;
-				console.log(top,left);
 				that._createTooltip(data_title, top, left);
 			},
 			'mouseout':function(){

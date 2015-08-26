@@ -325,20 +325,20 @@ public class UserController {
 		return "frontend/user/center";
 	}
 
-	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	@RequestMapping(value = "/notifications", method = RequestMethod.GET)
 	public String info(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("loginUser");
 		model.addAttribute("user", user);
 		List<User> friends = userDao.getValidateFriends(user.getUserId());
 		model.addAttribute("friends", friends);
-		return "frontend/user/center";
+		return "frontend/notify/index";
 	}
 
 	@RequestMapping(value = "/record/{userId}", method = RequestMethod.GET)
 	@ResponseBody
 	public List<IntegralRecord> record(Model model, HttpSession session,
 			@PathVariable int userId) {
-		int day = 30;
+		int day = 54;
 		User user = userDao.getById(userId);
 		List<IntegralRecord> records = integralRecordOperation.getRecent(
 				user.getEmail(), day);

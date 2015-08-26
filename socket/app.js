@@ -11,7 +11,7 @@ app.use("/public", express.static(__dirname + '/public'));
 server.listen(8002);
  
 app.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
  
 io.sockets.on('connection', function (socket) {
@@ -65,12 +65,10 @@ function getPath(data){
   if(res == null){
     var file = randomString(16);
     return 'classes/' + file + ".java";    
-    // return 'classes/' + folder + '/' + file + ".java";    
   } else{
     var name = res[1];
     console.log(name);
     return 'classes/' + name + ".java";
-    // return 'classes/' + folder + '/' + name + ".java";
   }
 }
 
