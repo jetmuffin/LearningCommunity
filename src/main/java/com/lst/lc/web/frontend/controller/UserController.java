@@ -102,10 +102,11 @@ public class UserController {
                         List<User> friends = userDao.getValidateFriends(user
                                         .getUserId());
                         int letters = letterDao.getUnRead(user.getUserId());
-                        if(friends.size() > 0)
-                        	session.setAttribute("notity_friends", friends.size());
-                        if(letters > 0)
-                        	session.setAttribute("notify_letters", letters);
+                        if (friends.size() > 0)
+                                session.setAttribute("notity_friends",
+                                                friends.size());
+                        if (letters > 0)
+                                session.setAttribute("notify_letters", letters);
 
                         statusMessage = new StatusMessage(1, message);
                         // 写进日志，积分加1
@@ -292,7 +293,8 @@ public class UserController {
         @RequestMapping(value = "/addFriend/{uid}", method = RequestMethod.GET)
         public String addFriend(Model model, HttpSession session,
                         @PathVariable int uid,
-                        RedirectAttributes redirectAttributes,HttpRequest request) {
+                        RedirectAttributes redirectAttributes,
+                        HttpRequest request) {
                 User user = (User) session.getAttribute("loginUser");
                 model.addAttribute("user", user);
                 String message = null;
@@ -351,7 +353,7 @@ public class UserController {
                         }
                 }
                 session.removeAttribute("notify_letters");
-                model.addAttribute("notify_module","message");
+                model.addAttribute("notify_module", "message");
                 return "frontend/notify/index";
         }
 
@@ -362,11 +364,11 @@ public class UserController {
                 List<User> friends = userDao.getValidateFriends(user
                                 .getUserId());
                 model.addAttribute("friends", friends);
-                model.addAttribute("notify_module","friendApplication");
+                model.addAttribute("notify_module", "friendApplication");
                 session.removeAttribute("notify_friends");
                 return "frontend/notify/index";
         }
-        
+
         @RequestMapping(value = "/read/{uid}/{time}", method = RequestMethod.GET)
         public String read(Model model, HttpSession session,
                         @PathVariable int uid, @PathVariable String time)
@@ -379,10 +381,13 @@ public class UserController {
 
         @RequestMapping(value = "/notification/write", method = RequestMethod.GET)
         public String addLetter(Model model, HttpSession session) {
-            model.addAttribute("notify_module","writeLetter");
-        return "frontend/notify/index";
+                User user = (User) session.getAttribute("loginUser");
+                List<User> friends = userDao.getFriends(user.getUserId());
+                model.addAttribute("friends", friends);
+                model.addAttribute("notify_module", "writeLetter");
+                return "frontend/notify/index";
         }
-        
+
         @RequestMapping(value = "/notification/write", method = RequestMethod.POST)
         public String addLetter(Model model, HttpSession session, int uid,
                         String content) {
@@ -390,7 +395,7 @@ public class UserController {
                 User toUser = userDao.getById(uid);
                 LetterId id = new LetterId(user.getUserId(), uid,
                                 DateUtils.getDateString(new Date()));
-                Letter letter = new Letter(id, toUser,user, content, 0);
+                Letter letter = new Letter(id, toUser, user, content, 0);
                 letterDao.add(letter);
                 return "redirect:/user/notification/write";
         }
