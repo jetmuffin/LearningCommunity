@@ -51,13 +51,14 @@ ${userMsg}
 					<p>${user.motto}</p>
 				</div>
 				<div class="route">
-					<strong>钻研方向</strong>
-					        <div class="labeled-chart-container">
-        <div id="canvas-holder">
-            <canvas id="modular-doughnut" width="300" height="300"/>
-        </div>
-				</div>
-			</div>
+			             <strong>钻研方向</strong>
+					<div class="labeled-chart-container">
+					        <div id="canvas-holder">
+					            <canvas id="modular-doughnut" width="170" height="170"/>
+					        </div>
+					</div>
+			     </div>
+			    </div>
 			<div class="usercenter-main r">
 				<ul class="nav nav-pills">
 					<li  <c:if test="${center_module eq 'course'}">class="active"</c:if> ><a href="/LearningCommunity/user/${user.userId}/course"><span>课程</span></a></li>
@@ -71,12 +72,13 @@ ${userMsg}
 			</div>
 		</div>
 	</div>
+	
 	<script type="text/javascript"
 		src="/LearningCommunity/resources/js/jquery-2.0.0.min.js"></script>
 		<script>
 			var uid = ${user.userId};
 			</script>
-			<script src="/LearningCommunity/resources/js/Chat.min.js"></script>
+			<script src="/LearningCommunity/resources/js/Chart.min.js"></script>
 	<script src="/LearningCommunity/resources/js/frontend/user/center.js"></script>
 </body>
 </html>

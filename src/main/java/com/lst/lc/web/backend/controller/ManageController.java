@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lst.lc.dao.AdminDao;
 import com.lst.lc.dao.BlogDao;
+import com.lst.lc.dao.CourseDao;
 import com.lst.lc.dao.QuestionDao;
 import com.lst.lc.dao.UserDao;
 import com.lst.lc.entities.Admin;
@@ -36,6 +37,10 @@ public class ManageController {
         @Autowired
         @Qualifier("questionDao")
         private QuestionDao questionDao;
+        
+        @Autowired
+        @Qualifier("courseDao")
+        private CourseDao courseDao;
 
         public ManageController() {
                 super();
@@ -84,6 +89,8 @@ public class ManageController {
                 model.addAttribute("questionNum", num3);
                 long num4 = questionDao.userCount();
                 model.addAttribute("questionUserCount", num4);
+                long num5 = courseDao.getCount();
+                model.addAttribute("courseCount", num5);
                 return "backend/index/index";
         }
 

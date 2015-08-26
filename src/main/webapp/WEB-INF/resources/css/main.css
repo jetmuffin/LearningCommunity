@@ -2867,7 +2867,7 @@ padding: 10px;
 .doughnut-legend {
   list-style: none;
   position: absolute;
-  right: 8px;
+  right: 0;
   top: 0;
 }
 
@@ -2875,10 +2875,8 @@ padding: 10px;
   display: block;
   padding-left: 30px;
   position: relative;
-  margin-bottom: 4px;
   border-radius: 5px;
-  padding: 2px 8px 2px 28px;
-  font-size: 14px;
+  font-size: 12px;
   cursor: default;
   -webkit-transition: background-color 200ms ease-in-out;
   -moz-transition: background-color 200ms ease-in-out;
@@ -2892,6 +2890,6 @@ padding: 10px;
   left: 0;
   top: 0;
   width: 20px;
-  height: 100%;
+  height: 20px;
   border-radius: 5px;
 }
