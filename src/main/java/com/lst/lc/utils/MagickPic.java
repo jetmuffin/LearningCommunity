@@ -27,7 +27,7 @@ public class MagickPic {
 		
 		try {
 			byter = scaleImage(bytes,width,height,"jpg");
-		} catch (IOException | InterruptedException | IM4JavaException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
