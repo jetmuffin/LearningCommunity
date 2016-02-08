@@ -1,6 +1,0 @@
-target/*
-.settings/*
-.classpath
-.project
-/target/
-src/main/webapp/WEB-INF/config/mysql.properties

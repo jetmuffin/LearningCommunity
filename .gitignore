@@ -9,3 +9,6 @@ socket/classes/*
 node/compiler/java-editor/classes/*
 node/compiler/c-editor/classes/*
 node/compiler/python-editor/classes/*
+.idea
+.springBeans
+LearningCommunity.iml
